@@ -1,6 +1,6 @@
 using Core.DB.Variables;
 using Core.Events;
-using Core.GamePlay;
+//using Core.GamePlay;
 using Core.Purchase;
 using Core.States;
 using DG.Tweening;
@@ -32,7 +32,7 @@ namespace Core.Screen
                 FeedbackBtn.SetActive(true);
             }
 
-            LevelsManager.I.TempLvlIndex = -1;
+            //LevelsManager.I.TempLvlIndex = -1;
             for (int l = 0; l < Lvls.Length; l++)
             {
                 if (l < _activeLvl)

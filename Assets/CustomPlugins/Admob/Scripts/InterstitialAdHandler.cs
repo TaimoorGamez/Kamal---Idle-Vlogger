@@ -1,6 +1,6 @@
 using Core.Events;
 using UnityEngine;
-using Core.GamePlay;
+//using Core.GamePlay;
 using Core.DB.Variables;
 using GoogleMobileAds.Api;
 using Core.Plugins.Firebase;
@@ -53,8 +53,7 @@ namespace Core.Plugins.Ads
             get
             {
                 return _interstitialAd != null && _interstitialAd.CanShowAd() && AdsManager.I.AdTimerComplete && !AdsManager.I.AdPlaying
-                    && DBVariablesHolder.LvlNum.Value > LevelsManager.I.MinLvlCount && DBVariablesHolder.RemoveAds.Value != 1
-                    && DBVariablesHolder.AdBlocked.Value != 1;
+                    &&  DBVariablesHolder.RemoveAds.Value != 1 && DBVariablesHolder.AdBlocked.Value != 1;
             }
         }
 

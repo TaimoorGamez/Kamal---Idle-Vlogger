@@ -1,10 +1,10 @@
 using TMPro;
-using Core.Store;
+//using Core.Store;
 using UnityEngine;
 using DG.Tweening;
 using Core.Events;
 using Core.States;
-using Core.GamePlay;
+//using Core.GamePlay;
 using UnityEngine.UI;
 using Core.DB.Variables;
 
@@ -31,9 +31,9 @@ namespace Core.Screen
         {
             if (DBVariablesHolder.FFT.Value != 1)
             {
-                StorageData.AllItems[StorageData.FlameThrowersKey][0].IsPurchased = true;
-                StorageData.AllItems[StorageData.CapsKey][0].IsPurchased = true;
-                StorageData.AllItems[StorageData.SpraysKey][0].IsPurchased = true;
+                //StorageData.AllItems[StorageData.FlameThrowersKey][0].IsPurchased = true;
+                //StorageData.AllItems[StorageData.CapsKey][0].IsPurchased = true;
+                //StorageData.AllItems[StorageData.SpraysKey][0].IsPurchased = true;
                 DBVariablesHolder.FFT.Value = 1;
             }
 
@@ -48,7 +48,7 @@ namespace Core.Screen
                 LoadingText.text = _loadingTxt + percent + "%";
             }).OnComplete(() =>
             {
-                if (DBVariablesHolder.LvlNum.Value <= LevelsManager.I.MinLvlCount)
+                if (DBVariablesHolder.LvlNum.Value <= 5)
                 {
                     SimpleEventsHolder.InitLvlEvent?.Invoke();
                     StateManager.I.ActiveState(StateManager.I.GamePlayStatePath);

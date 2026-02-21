@@ -1,4 +1,4 @@
-using Core.Store;
+//using Core.Store;
 using DG.Tweening;
 using Core.Events;
 using UnityEngine;
@@ -49,7 +49,7 @@ namespace Core.Screen
                             LoadRewardItem(_flamesPath + randomReward);
                             PowerImage.sprite = PowerSprites[0];
                             DBVariableDictionariesHolder.PowersData[0].Value += 1;
-                            StorageData.AllItems[StorageData.FlameThrowersKey][randomReward].IsPurchased = true;
+                            //StorageData.AllItems[StorageData.FlameThrowersKey][randomReward].IsPurchased = true;
                             break;
 
                         case 1:
@@ -57,7 +57,7 @@ namespace Core.Screen
                             LoadRewardItem(_capsPath + randomReward);
                             PowerImage.sprite = PowerSprites[1];
                             DBVariableDictionariesHolder.PowersData[1].Value += 1;
-                            StorageData.AllItems[StorageData.CapsKey][randomReward].IsPurchased = true;
+                            //StorageData.AllItems[StorageData.CapsKey][randomReward].IsPurchased = true;
                             break;
 
                         case 2:
@@ -65,7 +65,7 @@ namespace Core.Screen
                             LoadRewardItem(_spraysPath + randomReward);
                             PowerImage.sprite = PowerSprites[2];
                             DBVariableDictionariesHolder.PowersData[2].Value += 1;
-                            StorageData.AllItems[StorageData.SpraysKey][randomReward].IsPurchased = true;
+                            //StorageData.AllItems[StorageData.SpraysKey][randomReward].IsPurchased = true;
                             break;
                     }
                     break;

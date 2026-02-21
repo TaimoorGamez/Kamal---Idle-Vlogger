@@ -25,7 +25,7 @@ namespace Core.Purchase
         public override void BuyProduct()
         {
             DBVariableDictionariesHolder.NonConsumableProductsData[ProductID].Value = 1;
-            NonConsumableProductsEventsHandler.I.TriggerEvent(ProductID);
+            //NonConsumableProductsEventsHandler.I.TriggerEvent(ProductID);
             FirebaseHandler.I?.LogEvent($"IAP_{ProductID}");
         }
 

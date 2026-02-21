@@ -2,7 +2,7 @@ using Core.Events;
 using Core.States;
 using DG.Tweening;
 using UnityEngine;
-using Core.GamePlay;
+//using Core.GamePlay;
 using Core.DB.Variables;
 using Core.Plugins.Firebase;
 
@@ -69,7 +69,7 @@ namespace Core.Screen
         {
             SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(2);
             Body.DOScale(0, _transitionDuration / 2).SetEase(Ease.InBack).OnComplete(() => {
-                LevelsManager.I.CanPlay = true;
+                //LevelsManager.I.CanPlay = true;
                 StateManager.I.DestroyState(StateManager.I.PauseStatePath);
             });
             FirebaseHandler.I?.LogEvent("Pas_Close");

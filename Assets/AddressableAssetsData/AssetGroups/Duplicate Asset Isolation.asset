@@ -20,11 +20,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 055ad55a897044741b69b00106acf6b6
-    m_Address: Assets/Store/Sprites/Sprays/Spray 7.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0648c05403788fe4095f92ccc4937e15
     m_Address: Assets/GamePlay/Materials/CapMaterial.mat
     m_ReadOnly: 0
@@ -40,18 +35,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 14524d2347273b54aa6dec8142362178
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 41.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1814ade01c91ecb47b8d278a64449799
     m_Address: Assets/UI/Animations/TriggerScaleUp.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1916618bd29574842af33d36055fbbad
-    m_Address: Assets/Store/Sprites/FlameThrowers/FlameThrower 1.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -62,11 +47,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 235f995e698ae9d47aa41ef82d258278
     m_Address: Assets/UI/Sprites/Undo.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 271cac25c04a2c04190344b0a477aa6a
-    m_Address: Assets/GamePlay/Animations/legacy/LiquidDefault.anim
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -120,16 +100,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4ebbefaf8e460984287b1a9b6067a16d
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 43.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 51d97e25f381d0d4e8128e82ffe88fe9
-    m_Address: Assets/Store/Sprites/Sprays/Spray 5.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 526cd5b151b03ec469ffc1c7d66f1202
     m_Address: Assets/GamePlay/Materials/BurnParticle.mat
     m_ReadOnly: 0
@@ -140,18 +110,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5c675c2f404c2ff448c20a09a3ed6306
-    m_Address: Assets/Store/Sprites/FlameThrowers/FlameThrower 3.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d07a16756adbed48b770e2e70a15bc4
     m_Address: Assets/UI/Animations/RvBtnNormalScale.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5e905450cdbec564faf5b836073f59da
-    m_Address: Assets/Store/Sprites/FlameThrowers/FlameThrower 2.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -180,18 +140,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6ea1484259cff3e4b871298fbe94c291
-    m_Address: Assets/Store/Sprites/Sprays/Spray 6.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 715b5d1899527d248a60f38cb5ce6720
     m_Address: Assets/UI/Sprites/Star.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 73d322b871438d1499fdb6f986a62bb2
-    m_Address: Assets/Store/Sprites/Sprays/Spray 2.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -202,11 +152,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 77d1fdfd3b8de894faab8906ea12909f
     m_Address: Assets/3dModles/source/Cap.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 791a65b602174354ea7f244638f8b16d
-    m_Address: Assets/Store/Sprites/FlameThrowers/FlameThrower 0.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -255,16 +200,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 90730573796183d428926070746da515
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 32.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 90bdf829cd630d0428119c277335ba73
-    m_Address: Assets/Store/Sprites/Sprays/Spray 0.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 933532a4fcc9baf4fa0491de14d08ed7
     m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
     m_ReadOnly: 0
@@ -300,16 +235,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ae8673520dbbba347ab1e072c792068f
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 42.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b00be155c9f723745bfcd5013dc085ea
-    m_Address: Assets/Store/Sprites/Sprays/Spray 1.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b03dbf391de474f489fc4cfc758e8d51
     m_Address: Assets/Sfx/Sounds/Flames.mp3
     m_ReadOnly: 0
@@ -320,38 +245,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b523e458e9aedfa4c888c2dc23522657
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 11.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b61afeb24d2f1444b9625f2bcf913ed0
     m_Address: Assets/Sfx/Sounds/spray.mp3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bd6d8eb75d0de544aa4fc60891507a60
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 33.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c4a009e25609da648ac193c16c17e2a4
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 22.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c60dd5901b4a64c4b8faf099109c7fad
     m_Address: Assets/UI/Animations/TriggerScaleDown.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c6b38062ec6b4c047ad36771d039a088
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 31.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d15c6bf3ada060c42958f16597fd51dd
-    m_Address: Assets/Store/Sprites/Sprays/Spray 3.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -365,11 +265,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e6b9f68d3d6b6e345af9bdb1882506c1
-    m_Address: Assets/GamePlay/Animations/legacy/Liquid 21.anim
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6e9a19c3678ded42a3bc431ebef7dbd
     m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Utils/FallbackError.shader
     m_ReadOnly: 0
@@ -377,11 +272,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: faceefd1610daf54a9b91b355969fdcf
     m_Address: Assets/UI/Sprites/ColorSwap.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fbb064191ba78884aa3c1c4a3dbb5af7
-    m_Address: Assets/Store/Sprites/Sprays/Spray 4.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
