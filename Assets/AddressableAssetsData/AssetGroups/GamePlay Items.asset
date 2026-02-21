@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: GamePlay Items
+  m_EditorClassIdentifier: 
+  m_GroupName: GamePlay Items
+  m_GUID: 56ee44e77ed2a1a44b5c4a1dab092041
+  m_SerializeEntries:
+  - m_GUID: 0b49ed956e9b556418350f8021e6fee0
+    m_Address: GamePlay/Spray/6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 114c8a7a02be0ee408e18827579c36f1
+    m_Address: GamePlayFlame/3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 118dfbfdf94e11e439b34354e1264729
+    m_Address: GamePlay/Cap/1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34fe2db8de4bcc54e9940da309362498
+    m_Address: GamePlay/Cap/0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b26ef21bc2acbb4e95dabcf8aaec039
+    m_Address: GamePlayFlame/1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 434137c579644704f8e4a43cf2dda468
+    m_Address: GamePlay/Cap/5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66930b71114ffa3459dab92b74f191c0
+    m_Address: GamePlay/Cap/4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7501c904be6571040b60b614af1eddfa
+    m_Address: GamePlay/Cap/3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 780440981a73a0347b6401976879e349
+    m_Address: GamePlay/WaterSort/Tube
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84288bfc00a3a7540adb1952651b268a
+    m_Address: GamePlay/Spray/1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97f6e92b30076264fa4285025a3a831d
+    m_Address: GamePlayFlame/0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: affdf2cc7fac3084a9adb5cf6b3a99fc
+    m_Address: GamePlay/Spray/0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b200dc89d25ac8949bee396ad3964dd2
+    m_Address: GamePlay/Cap/2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cab6301b22184a04abc5813aa5bfe01e
+    m_Address: GamePlay/Spray/7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7e94281dbced0c469ee2d7c8a9b8037
+    m_Address: GamePlay/Spray/5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da5b464443fa3094cb98b16f5a0961fe
+    m_Address: GamePlay/Spray/4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8eb3ca98ce54954e84c1bdbdcdbddec
+    m_Address: GamePlayFlame/2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e981e32c10964cb4586a6f439dad15d7
+    m_Address: GamePlay/Spray/2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecde3eb03fe699b4c9f1184a97876e1b
+    m_Address: GamePlay/Spray/3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - gameplay_item
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 01a2334dbae6d74459f208d43f43b731, type: 2}
+    - {fileID: 11400000, guid: a4e7bc7f4634a13478e29f7cf2bc7cce, type: 2}

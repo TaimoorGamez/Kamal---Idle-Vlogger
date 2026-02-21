@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "629614082318",
+    "project_id": "sort-paint-anime-art-puz-d825c",
+    "storage_bucket": "sort-paint-anime-art-puz-d825c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629614082318:android:dfb94ba951fca3b0143f5f",
+        "android_client_info": {
+          "package_name": "com.playmenu.animesortpaint"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRXBfiVgKFpA6yWjsLtmbMvrMUW7hq3oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

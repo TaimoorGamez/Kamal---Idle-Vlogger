@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Store Items
+  m_EditorClassIdentifier: 
+  m_GroupName: Store Items
+  m_GUID: 4a51112de49a2754294020a11e59dc42
+  m_SerializeEntries:
+  - m_GUID: 03ee5b42f10b310458e838c1e0a7bd0c
+    m_Address: Store/Cap/2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 113d521cfcd4a9040b592e93311d7768
+    m_Address: Store/Cap/1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 156017e960747b24b880326345653b1b
+    m_Address: Store/Cap/3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1aa4f819ba29db841b962ea361b54ebb
+    m_Address: Store/Spray/1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2467d719cdbd7944d93a51876b902f9b
+    m_Address: Store/Cap/0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dc5b32ee99db6d4ab2da7a9e340c90c
+    m_Address: Store/Spray/2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e683db8050658347a6cde4116eeabab
+    m_Address: Store/Cap/4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 470fe0812084b384cbe8d199223dd0a9
+    m_Address: Store/Flame/1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 822eb6db3f644ff4dac63e98411096fa
+    m_Address: Store/Spray/3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d69e9118fa47e3479ece632e1c88e4f
+    m_Address: Store/Spray/4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95c7f2f86429e6a43856987b5e4ee805
+    m_Address: Store/Flame/2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 960b3c02b0623234eb2f653d29d6830e
+    m_Address: Store/Spray/7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99db92408ee2e5f4cb658ce5a60374c4
+    m_Address: Store/Flame/0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dd944142611d564a9282be63fd799fe
+    m_Address: Store/Flame/3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6e28656bce767540b2c7674d31fc627
+    m_Address: Store/Spray/0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc527391a79826f4da681136aecd5c44
+    m_Address: Store/Spray/6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d89ef52e5772ac144ac6c65870ead72e
+    m_Address: Store/Cap/5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ede9dfe7d6205b4449e906cfefa8ef40
+    m_Address: Store/Spray/5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - store_item
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2ee58c74bb32ee54b8a2e348954b82b3, type: 2}
+    - {fileID: 11400000, guid: 9fc3495f47776e2479723e521902ce23, type: 2}

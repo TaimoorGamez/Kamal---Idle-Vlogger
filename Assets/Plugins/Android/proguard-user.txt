@@ -1,0 +1,26 @@
+# Keep Unity classes
+-keep class com.unity3d.** { *; }
+-keep class com.unity.** { *; }
+
+# Keep AdMob
+-keep class com.google.android.gms.ads.** { *; }
+-keep class com.google.ads.** { *; }
+-keep class com.google.android.** { *; }
+
+# Keep Unity Ads
+-keep class com.unity3d.ads.** { *; }
+
+# Google Play Billing (IMPORTANT)
+-keep class com.android.billingclient.** { *; }
+-dontwarn com.android.billingclient.**
+
+# Prevent stripping of AndroidX
+-keep class androidx.** { *; }
+
+# Keep mediation adapters
+-keep class com.applovin.** { *; }
+-keep class com.ironsource.** { *; }
+-keep class com.facebook.ads.** { *; }
+
+# Prevent errors with reflection
+-keep class * extends java.lang.annotation.Annotation { *; }

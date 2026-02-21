@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI States
+  m_EditorClassIdentifier: 
+  m_GroupName: UI States
+  m_GUID: 50e7b67124b469d4eb7b1a3d70df6297
+  m_SerializeEntries:
+  - m_GUID: 2b6600634ed610440b82903d884a7c2c
+    m_Address: UI/State/GamePlayScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui_screen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fb79d71314325241954b09465530627
+    m_Address: UI/State/CompleteScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui_screen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8241147b79dc354398d2e8b602d8065
+    m_Address: UI/State/MainMenuScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui_screen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4e4ab9b05ff35741a13ad10a2f0a646
+    m_Address: UI/State/SplashScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui_screen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8ff3f6d34c7148429320db5819b8fc3
+    m_Address: UI/State/FailScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui_screen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea215fe962372ad44b5406f8c7ba89af
+    m_Address: UI/State/PauseScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui_screen
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 67ff7038f8713b546a1675a9a23a1a61, type: 2}
+    - {fileID: 11400000, guid: 3caac0c14f13bbe4393963914ce82117, type: 2}
