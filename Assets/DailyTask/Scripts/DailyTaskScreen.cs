@@ -7,9 +7,9 @@ using Core.Plugins.Firebase;
 
 namespace Core.Screen
 {
-    public class DailyTaskScreen : UiScreens
+    public class DailyTaskScreen : MonoBehaviour
     {
-        [SerializeField] RectTransform BoxPanel, RewardFillBar;
+        [SerializeField] RectTransform BoxPanel, RewardFillBar, Body;
         [SerializeField] TaskBar[] TaskBars;
         [SerializeField] RectTransform[] RewardImgs;
         [SerializeField] GameObject[] RewardChecks;
@@ -17,7 +17,7 @@ namespace Core.Screen
 
         DailyTaskData[] _activeTasks;
 
-        float _rewardFillTime = 0.5f;
+        float _rewardFillTime = 0.5f, _transitionDuration = 0.25f;
         int _taskClaimed = 0;
 
         void OnEnable()
@@ -77,13 +77,13 @@ namespace Core.Screen
                 FirebaseHandler.I?.LogEvent($"DT_Claim_{_taskClaimed}");
             }
         }
-        public override void OnOpen()
+        public void OnOpen()
         {
             SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(3);
             Body.DOScale(0.9f, _transitionDuration).SetEase(Ease.OutBack);
             FirebaseHandler.I?.LogEvent("DT_Open");
         }
-        public override void OnClose()
+        public void OnClose()
         {
             SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(2);
             Body.DOScale(0, _transitionDuration/2).SetEase(Ease.InBack).OnComplete(() => {

@@ -18,7 +18,7 @@ namespace Core.Plugins
     public class PluginsHandler : MonoBehaviour
     {
         [SerializeField] GameObject StateManager, DownloadingScreen;
-        [SerializeField] UiScreens InternetPanel;
+        //[SerializeField] UiScreens InternetPanel;
         [SerializeField] TextMeshProUGUI LoadingText;
         [SerializeField] Transform FillImage;
 
@@ -47,7 +47,7 @@ namespace Core.Plugins
             {
                 if (!isOnline)
                 {
-                    InternetPanel.gameObject.SetActive(true);
+                    //InternetPanel.gameObject.SetActive(true);
                     _checkRoutine = StartCoroutine(CheckInternetLoop());
                 }
                 else
@@ -142,24 +142,24 @@ namespace Core.Plugins
                 }
             }
 
-            if (RemoteDataHolder.MaxLevelsAvailable > DBVariablesHolder.MaxLvlCount.Value)
-            {
-                DownloadingScreen.SetActive(true); 
-                yield return CheckAndUpdateCatalog();
-                yield return DownloadRemoteLevels();
-                yield return new WaitForEndOfFrame();
-                if (_remoteDownloadSuccess)
-                {
-                    _remoteDownloadSuccess = false;
-                    if (DBVariablesHolder.LvlNum.Value >= RemoteDataHolder.MaxLevelsAvailable)
-                    {
-                        DBVariablesHolder.LvlIndex.Value = DBVariablesHolder.MaxLvlCount.Value;
-                    }
-                    yield return new WaitForEndOfFrame();
-                    DBVariablesHolder.MaxLvlCount.Value = RemoteDataHolder.MaxLevelsAvailable;
-                }
-                DownloadingScreen.SetActive(false); 
-            }
+            //if (RemoteDataHolder.MaxLevelsAvailable > DBVariablesHolder.MaxLvlCount.Value)
+            //{
+            //    DownloadingScreen.SetActive(true); 
+            //    yield return CheckAndUpdateCatalog();
+            //    yield return DownloadRemoteLevels();
+            //    yield return new WaitForEndOfFrame();
+            //    if (_remoteDownloadSuccess)
+            //    {
+            //        _remoteDownloadSuccess = false;
+            //        if (DBVariablesHolder.LvlNum.Value >= RemoteDataHolder.MaxLevelsAvailable)
+            //        {
+            //            DBVariablesHolder.LvlIndex.Value = DBVariablesHolder.MaxLvlCount.Value;
+            //        }
+            //        yield return new WaitForEndOfFrame();
+            //        DBVariablesHolder.MaxLvlCount.Value = RemoteDataHolder.MaxLevelsAvailable;
+            //    }
+            //    DownloadingScreen.SetActive(false); 
+            //}
 
             if (!AdsManager.I.IsInitialized)
             {

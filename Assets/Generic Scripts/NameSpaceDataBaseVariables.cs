@@ -76,10 +76,6 @@ namespace Core.DB.Variables
         //---------------------Currencies Data -------------------
         public static DBInt CashWallet = new DBInt("CashWallet", 0);       
 
-        //---------------------Daily Reward -----------------------
-        public static DBInt ToDay = new DBInt("ToDay", 0);
-        public static DBInt RewardClaimed = new DBInt("RewardClaimed", 0);
-
         //---------------------Daily Tasks ------------------------
         public static DBInt Task0 = new DBInt("Task0", 0);
         public static DBInt Task1 = new DBInt("Task1", 0);
@@ -94,30 +90,20 @@ namespace Core.DB.Variables
         public static DBInt Sound = new DBInt("Sound", 1);
 
         //---------------------Store Data -------------------------
-        public static DBInt CurrentActiveCap = new DBInt("CurrentActiveCap", 0);
-        public static DBInt CurrentActiveSpray = new DBInt("CurrentActiveSpray", 0);
-        public static DBInt CurrentActiveFlameThrower = new DBInt("CurrentActiveFlameThrower", 0);
 
 
         //---------------------Game Flow --------------------------
         public static DBInt FFT = new DBInt("FFT", 0);
-        public static DBInt LvlNum = new DBInt("LvlNum", 1);
-        public static DBInt LvlIndex = new DBInt("LvlIndex", 1);
-        public static DBInt RemaingUndo = new DBInt("RemaingUndo", 1);
-        public static DBInt RemainingSwaps = new DBInt("RemainingSwaps", 1);
-        public static DBInt RemainingTubes = new DBInt("RemainingTubes", 1);
-        public static DBInt MaxLvlCount = new DBInt("MaxLvlCount", 19);
-
+        public static DBInt CurrentArea = new DBInt("CurrentArea", 0);
+        public static DBInt VehicleID = new DBInt("VehicleID", 0);
+        public static DBInt HouseID = new DBInt("HouseID", 0);
+        public static DBInt Camera = new DBInt("Camera", 0);
+        public static DBInt Microphone = new DBInt("Microphone", 0);
+        public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
     }
 
     public static class DBVariableDictionariesHolder
     {
-        public static Dictionary<int, DBInt> PowersData = new Dictionary<int, DBInt>()
-        {
-            { 0, DBVariablesHolder.RemaingUndo },
-            { 1, DBVariablesHolder.RemainingSwaps },
-            { 2, DBVariablesHolder.RemainingTubes }
-        };
 
         public static Dictionary<int, DBInt> TaskIndexies = new Dictionary<int, DBInt>()
         {
@@ -125,20 +111,6 @@ namespace Core.DB.Variables
             { 1, DBVariablesHolder.Task1 },
             { 2, DBVariablesHolder.Task2 },
             { 3, DBVariablesHolder.Task3 }
-        };
-
-        public static Dictionary<string, DBInt> PowerStatusData = new Dictionary<string, DBInt>(StringComparer.Ordinal)
-        {
-            { "SortUndo", DBVariablesHolder.RemaingUndo },
-            { "SwapColor", DBVariablesHolder.RemainingSwaps },
-            { "ExtraTube", DBVariablesHolder.RemainingTubes }
-        };
-
-        public static Dictionary<string, DBInt> StoreActiveItems = new Dictionary<string, DBInt>(StringComparer.Ordinal)
-        {
-            { "Caps", DBVariablesHolder.CurrentActiveCap },
-            { "Sprays", DBVariablesHolder.CurrentActiveSpray },
-            { "FlameThrowers", DBVariablesHolder.CurrentActiveFlameThrower }
         };
 
         public static Dictionary<string, DBInt> NonConsumableProductsData = new Dictionary<string, DBInt>(StringComparer.Ordinal)

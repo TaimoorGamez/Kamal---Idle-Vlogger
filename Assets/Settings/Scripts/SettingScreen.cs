@@ -6,17 +6,19 @@ using Core.Plugins.Firebase;
 
 namespace Core.Screen
 {
-    public class SettingScreen : UiScreens
+    public class SettingScreen : MonoBehaviour
     {
         [SerializeField] RectTransform MusicBtn, SoundBtn;
         [SerializeField] GameObject MusicOff, SoundOff;
+
+        float _transitionDuration = 0.25f;
 
         private void OnEnable()
         {
             OnOpen();
         }
 
-        public override void OnOpen()
+        public void OnOpen()
         {
             UpdateMusicUI();
             UpdateSoundUI();
@@ -52,7 +54,7 @@ namespace Core.Screen
             SoundOff.SetActive(DBVariablesHolder.Sound.Value != 1);
         }
 
-        public override void OnClose()
+        public void OnClose()
         {
             MusicBtn.DOAnchorPosY(-60, _transitionDuration).SetEase(Ease.InBack);
             SoundBtn.DOAnchorPosY(-60, _transitionDuration).SetEase(Ease.InBack).OnComplete(()=>gameObject.SetActive(false));

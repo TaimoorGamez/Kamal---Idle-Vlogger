@@ -1,16 +1,12 @@
 using TMPro;
-//using Core.Store;
 using UnityEngine;
 using DG.Tweening;
-using Core.Events;
-using Core.States;
-//using Core.GamePlay;
 using UnityEngine.UI;
 using Core.DB.Variables;
 
 namespace Core.Screen
 {
-    public class SplashScreen : UiScreens
+    public class SplashScreen : MonoBehaviour
     {
         [SerializeField] Transform FillImage;
         [SerializeField] TextMeshProUGUI LoadingText, TipsText;
@@ -48,16 +44,16 @@ namespace Core.Screen
                 LoadingText.text = _loadingTxt + percent + "%";
             }).OnComplete(() =>
             {
-                if (DBVariablesHolder.LvlNum.Value <= 5)
-                {
-                    SimpleEventsHolder.InitLvlEvent?.Invoke();
-                    StateManager.I.ActiveState(StateManager.I.GamePlayStatePath);
-                }
-                else
-                {
-                    StateManager.I.ActiveState(StateManager.I.MainMenuStatePath);
-                }
-                StateManager.I.DestroyState(StateManager.I.SplashStatePath);
+                //if (DBVariablesHolder.LvlNum.Value <= 5)
+                //{
+                //    SimpleEventsHolder.InitLvlEvent?.Invoke();
+                //    StateManager.I.ActiveState(StateManager.I.GamePlayStatePath);
+                //}
+                //else
+                //{
+                //    StateManager.I.ActiveState(StateManager.I.MainMenuStatePath);
+                //}
+                Destroy(gameObject, 0.1f);
             });
         }
     }
