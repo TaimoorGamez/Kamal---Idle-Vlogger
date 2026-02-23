@@ -1,42 +1,20 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-using Core.DB.Variables;
 
 namespace Core.Screen
 {
     public class SplashScreen : MonoBehaviour
     {
         [SerializeField] Transform FillImage;
-        [SerializeField] TextMeshProUGUI LoadingText, TipsText;
-        [SerializeField] Image LogoImage;
+        [SerializeField] TextMeshProUGUI LoadingText;
 
         float _loadingTime = 2;
         string _loadingTxt = "Loading...     ";
-        string[] _gameTips = 
-        {
-            "Tip: Fill a bottle with one color to complete it.",
-            "Tip: Use Undo to fix mistakes.",
-            "Tip: Mixed-color bottles are not complete.",
-            "Tip: Having trouble? Try adding an extra bottle.",
-            "Tip: Use Switch to swap two colors."
-        };
+     
 
         private void Start()
         {
-            if (DBVariablesHolder.FFT.Value != 1)
-            {
-                //StorageData.AllItems[StorageData.FlameThrowersKey][0].IsPurchased = true;
-                //StorageData.AllItems[StorageData.CapsKey][0].IsPurchased = true;
-                //StorageData.AllItems[StorageData.SpraysKey][0].IsPurchased = true;
-                DBVariablesHolder.FFT.Value = 1;
-            }
-
-            int tipIndex = Random.Range(0, _gameTips.Length);
-            TipsText.text = _gameTips[tipIndex];
-
-            LogoImage.DOFillAmount(1, _loadingTime).SetEase(Ease.Linear);
             FillImage.DOScaleX(1f, _loadingTime).SetEase(Ease.Linear).OnUpdate(() =>
             {
                 float currentX = FillImage.localScale.x;
@@ -44,15 +22,6 @@ namespace Core.Screen
                 LoadingText.text = _loadingTxt + percent + "%";
             }).OnComplete(() =>
             {
-                //if (DBVariablesHolder.LvlNum.Value <= 5)
-                //{
-                //    SimpleEventsHolder.InitLvlEvent?.Invoke();
-                //    StateManager.I.ActiveState(StateManager.I.GamePlayStatePath);
-                //}
-                //else
-                //{
-                //    StateManager.I.ActiveState(StateManager.I.MainMenuStatePath);
-                //}
                 Destroy(gameObject, 0.1f);
             });
         }
