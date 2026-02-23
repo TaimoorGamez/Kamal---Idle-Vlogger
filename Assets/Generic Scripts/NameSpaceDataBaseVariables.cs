@@ -96,8 +96,8 @@ namespace Core.DB.Variables
         public static DBInt FFT = new DBInt("FFT", 0);
         public static DBInt CurrentMap = new DBInt("CurrentMap", 0);
         public static DBInt GroundLvl = new DBInt("GroundLvl", 0);
-        public static DBInt VehicleLvl = new DBInt("VehicleLvl", 0);
         public static DBInt HouseLvl = new DBInt("HouseLvl", 0);
+        public static DBInt VehicleLvl = new DBInt("VehicleLvl", 0);
         public static DBInt CameraLvl = new DBInt("CameraLvl", 0);
         public static DBInt MicrophoneLvl = new DBInt("MicrophoneLvl", 0);
         public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
