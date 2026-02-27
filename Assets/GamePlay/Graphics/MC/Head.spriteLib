@@ -19,24 +19,24 @@ MonoBehaviour:
     m_OverrideEntries:
     - m_Name: TK 0
       m_Hash: 716779974
-      m_Sprite: {fileID: 1415261349, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_Sprite: {fileID: 1267701114199741171, guid: a482457b259887449937be1fa1c46f19, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 1415261349, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_SpriteOverride: {fileID: 1267701114199741171, guid: a482457b259887449937be1fa1c46f19, type: 3}
     - m_Name: TK 1
       m_Hash: 498991440
-      m_Sprite: {fileID: -435118098, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_Sprite: {fileID: -8751407568910587243, guid: a482457b259887449937be1fa1c46f19, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -435118098, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_SpriteOverride: {fileID: -8751407568910587243, guid: a482457b259887449937be1fa1c46f19, type: 3}
     - m_Name: TK 2
       m_Hash: 79122666
-      m_Sprite: {fileID: -893288836, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_Sprite: {fileID: 8906226313704687679, guid: a482457b259887449937be1fa1c46f19, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -893288836, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_SpriteOverride: {fileID: 8906226313704687679, guid: a482457b259887449937be1fa1c46f19, type: 3}
     - m_Name: TK 3
       m_Hash: 867197052
-      m_Sprite: {fileID: 185707951, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_Sprite: {fileID: -8085049343302569256, guid: a482457b259887449937be1fa1c46f19, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 185707951, guid: 370bf8d96045eeb4aad4f0b7540a3099, type: 3}
+      m_SpriteOverride: {fileID: -8085049343302569256, guid: a482457b259887449937be1fa1c46f19, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 4
   - m_Name: Right Arm
@@ -52,5 +52,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 0
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639077208875756465
+  m_ModificationHash: 639078067463974027
   m_Version: 1
