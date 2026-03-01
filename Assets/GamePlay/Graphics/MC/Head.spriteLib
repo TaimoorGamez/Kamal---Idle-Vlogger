@@ -32,8 +32,48 @@ MonoBehaviour:
       m_Sprite: {fileID: 1120184974518476652, guid: a482457b259887449937be1fa1c46f19, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 1120184974518476652, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 3
+      m_Hash: 867197052
+      m_Sprite: {fileID: 3467475550197951313, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3467475550197951313, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 4
+      m_Hash: 768931295
+      m_Sprite: {fileID: -5181900439323761821, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5181900439323761821, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 5
+      m_Hash: 450086217
+      m_Sprite: {fileID: -3654216793090733357, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3654216793090733357, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 6
+      m_Hash: 64656627
+      m_Sprite: {fileID: 5967157913721560275, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5967157913721560275, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 7
+      m_Hash: 886940773
+      m_Sprite: {fileID: 9165440367373975855, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9165440367373975855, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 8
+      m_Hash: 610449908
+      m_Sprite: {fileID: 2126734182163039564, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2126734182163039564, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 9
+      m_Hash: 325421410
+      m_Sprite: {fileID: 1115276892736987728, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1115276892736987728, guid: a482457b259887449937be1fa1c46f19, type: 3}
+    - m_Name: TK 10
+      m_Hash: 527249620
+      m_Sprite: {fileID: -975828791599629855, guid: a482457b259887449937be1fa1c46f19, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -975828791599629855, guid: a482457b259887449937be1fa1c46f19, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 3
+    m_EntryOverrideCount: 11
   - m_Name: Right Arm
     m_Hash: 747450821
     m_CategoryList: []
@@ -47,5 +87,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 0
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639078805830585071
+  m_ModificationHash: 639079746114143342
   m_Version: 1
