@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrarySourceAsset
+  m_Library:
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: TK 0
+      m_Hash: 716779974
+      m_Sprite: {fileID: 3682659306874591924, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3682659306874591924, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: TK 1
+      m_Hash: 498991440
+      m_Sprite: {fileID: 422514239138523429, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 422514239138523429, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: TK 3
+      m_Hash: 867197052
+      m_Sprite: {fileID: 3840110675459585571, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3840110675459585571, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: Right Arm
+    m_Hash: 747450821
+    m_CategoryList: []
+    m_OverrideEntries: []
+    m_FromMain: 0
+    m_EntryOverrideCount: 0
+  - m_Name: Left Hand
+    m_Hash: 430203331
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Normal Hand
+      m_Hash: 801904408
+      m_Sprite: {fileID: -6604574623447608041, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6604574623447608041, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: Tick Hand Left
+      m_Hash: 237601315
+      m_Sprite: {fileID: -2188060116077993732, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2188060116077993732, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639081723986942199
+  m_Version: 1

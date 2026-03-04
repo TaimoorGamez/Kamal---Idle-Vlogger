@@ -396,8 +396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FillImage: {fileID: 826523963614189057}
   LoadingText: {fileID: 5520582786994793759}
-  TipsText: {fileID: 5666122316712631196}
-  LogoImage: {fileID: 0}
 --- !u!114 &700242445152969740
 MonoBehaviour:
   m_ObjectHideFlags: 0
