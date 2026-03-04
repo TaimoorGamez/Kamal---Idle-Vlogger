@@ -29,9 +29,9 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 422514239138523429, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - m_Name: TK 3
       m_Hash: 867197052
-      m_Sprite: {fileID: 3840110675459585571, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_Sprite: {fileID: 3336119468011419147, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 3840110675459585571, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_SpriteOverride: {fileID: 3336119468011419147, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 3
   - m_Name: Right Arm
@@ -46,16 +46,16 @@ MonoBehaviour:
     m_OverrideEntries:
     - m_Name: Normal Hand
       m_Hash: 801904408
-      m_Sprite: {fileID: -6604574623447608041, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_Sprite: {fileID: -801559040405918046, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -6604574623447608041, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_SpriteOverride: {fileID: -801559040405918046, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - m_Name: Tick Hand Left
       m_Hash: 237601315
-      m_Sprite: {fileID: -2188060116077993732, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_Sprite: {fileID: -4679946469842457189, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -2188060116077993732, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_SpriteOverride: {fileID: -4679946469842457189, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 2
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639081723986942199
+  m_ModificationHash: 639082275097730138
   m_Version: 1
