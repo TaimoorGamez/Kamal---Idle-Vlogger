@@ -37,9 +37,19 @@ MonoBehaviour:
   - m_Name: Right Arm
     m_Hash: 747450821
     m_CategoryList: []
-    m_OverrideEntries: []
+    m_OverrideEntries:
+    - m_Name: Normal Hand
+      m_Hash: 801904408
+      m_Sprite: {fileID: -8982013879723514861, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8982013879723514861, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: Calling Hand
+      m_Hash: 989319866
+      m_Sprite: {fileID: 2609918764857720651, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2609918764857720651, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 0
+    m_EntryOverrideCount: 2
   - m_Name: Left Hand
     m_Hash: 430203331
     m_CategoryList: []
@@ -54,8 +64,13 @@ MonoBehaviour:
       m_Sprite: {fileID: -4679946469842457189, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -4679946469842457189, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: Calling Hand
+      m_Hash: 989319866
+      m_Sprite: {fileID: 3094431523117676271, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3094431523117676271, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 2
+    m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639082275097730138
+  m_ModificationHash: 639082489322130788
   m_Version: 1
