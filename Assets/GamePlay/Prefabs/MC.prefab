@@ -283,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 8436229672550602968, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 3682659306874591924, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      objectReference: {fileID: 3336119468011419147, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - target: {fileID: 8436229672550602968, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -393,9 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
   m_CategoryHash: 2.9092094e-34
-  m_labelHash: 3.289714e-13
+  m_labelHash: 0.00000008213189
   m_SpriteKey: 0
-  m_SpriteHash: 340961203
+  m_SpriteHash: 224130569
 --- !u!114 &8877251048995424639
 MonoBehaviour:
   m_ObjectHideFlags: 0
