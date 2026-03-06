@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 using Core.DB.Variables;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -9,7 +8,7 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] Image BgImg, GroundImg, HouseImg, VehicleImg;
+        [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, VehicleImg;
         [SerializeField] Vector2[] HousePositions, VehiclePositions;
 
         int SpriteChangeCount = 20;
@@ -69,7 +68,7 @@ namespace Core.GamePlay
             _currentHouse = DBVariablesHolder.HouseLvl.Value / SpriteChangeCount;
             string key = $"House_{_currentHouse}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.rectTransform.anchoredPosition = HousePositions[_currentHouse];
+            HouseImg.transform.position = HousePositions[_currentHouse];
         }
         void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -96,7 +95,7 @@ namespace Core.GamePlay
             _currentVehicle = DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount;
             string key = $"Vehicle_{_currentVehicle}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.rectTransform.anchoredPosition = VehiclePositions[_currentVehicle];
+            VehicleImg.transform.position = VehiclePositions[_currentVehicle];
         }
         void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
         {

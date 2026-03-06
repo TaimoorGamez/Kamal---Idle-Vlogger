@@ -44,5 +44,8 @@ TagManager:
   - name: MC
     uniqueID: 2858279899
     locked: 0
+  - name: Cash
+    uniqueID: 1114958611
+    locked: 0
   m_RenderingLayers:
   - Default
