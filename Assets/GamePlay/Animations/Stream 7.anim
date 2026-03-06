@@ -105,7 +105,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 5.362}
+        value: {x: 0, y: 0, z: 5}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1192,7 +1192,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 5.362
+        value: 5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3124,7 +3124,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: RA/RA_2/RH
+    path: Spine/Spine_2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3136,7 +3136,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: RA/RA_2/RH
+    path: Spine/Spine_2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3148,7 +3148,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: RA/RA_2/RH
+    path: Spine/Spine_2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3232,7 +3232,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Spine/Spine_2
+    path: RA/RA_2/RH
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3244,7 +3244,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Spine/Spine_2
+    path: RA/RA_2/RH
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3256,7 +3256,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Spine/Spine_2
+    path: RA/RA_2/RH
     classID: 4
     script: {fileID: 0}
     flags: 0

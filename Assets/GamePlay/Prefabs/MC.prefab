@@ -52,6 +52,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7605720907633127579, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.91709775
+      objectReference: {fileID: 0}
+    - target: {fileID: -7605720907633127579, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7605720907633127579, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7605720907633127579, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.3986623
+      objectReference: {fileID: 0}
+    - target: {fileID: -7605720907633127579, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 46.989
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.55
@@ -358,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
   m_CategoryHash: 1.6996688e-23
-  m_labelHash: 3.7123793e-10
+  m_labelHash: 2.0893517e-30
   m_SpriteKey: 0
   m_SpriteHash: 961788792
 --- !u!114 &1487968623771786029
