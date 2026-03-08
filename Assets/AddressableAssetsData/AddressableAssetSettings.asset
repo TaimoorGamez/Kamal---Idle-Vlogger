@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: e204c2a1c81af014eb7717b70809a88a
+  m_DefaultGroup: bdf4d672cf9df984a980d63a484b045d
   m_currentHash:
     serializedVersion: 2
-    Hash: 53dc299f79ed4ab1a207d17d9cfc7842
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -63,6 +63,8 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 466c0254b79be7a4987047f0a4be7c10, type: 2}
   - {fileID: 11400000, guid: 6b3b374d4dd2a444592c961606373d5d, type: 2}
+  - {fileID: 11400000, guid: c6258c97abdd01140af9e4bb18c39cfa, type: 2}
+  - {fileID: 11400000, guid: 77a737f1cdf5c614d92460486c0eea4e, type: 2}
   - {fileID: 11400000, guid: 13e65a8b171926b4eaa9d0c69f6e6db5, type: 2}
   - {fileID: 11400000, guid: 1c5e4712781784144a4f4cda60499aff, type: 2}
   m_BuildSettings:
@@ -107,7 +109,9 @@ MonoBehaviour:
     - BG
     - Ground
     - House
+    - Backyard
     - Vehicle
+    - Statue
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 8a3dea8bfef544c40afef856c576c446, type: 2}

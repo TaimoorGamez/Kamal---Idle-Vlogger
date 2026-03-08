@@ -8,11 +8,11 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, VehicleImg;
-        [SerializeField] Vector2[] HousePositions, VehiclePositions;
+        [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, BackyardImg, VehicleImg, StatueImg;
+        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions;
 
         int SpriteChangeCount = 20;
-        int _currentBG, _currentGround, _currentHouse, _currentVehicle;
+        int _currentBG, _currentGround, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f;
 
         private void Start()
@@ -24,7 +24,9 @@ namespace Core.GamePlay
             LoadBG();
             LoadGround();
             LoadHouse();
+            LoadBackyard();
             LoadVehicle();
+            LoadStatue();
         }
 
         void LoadBG()
@@ -77,7 +79,8 @@ namespace Core.GamePlay
                 HouseImg.sprite = handle.Result;
                 Material mat = HouseImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                HouseImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(()=> {
+                HouseImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
@@ -87,6 +90,34 @@ namespace Core.GamePlay
             else
             {
                 Debug.Log("House load failed!");
+            }
+        }
+
+        void LoadBackyard()
+        {
+            _currentBackyard = DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount;
+            string key = $"Backyard_{_currentBackyard}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
+            BackyardImg.transform.position = BackyardPositions[_currentBackyard];
+        }
+        void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                BackyardImg.sprite = handle.Result;
+                Material mat = BackyardImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                BackyardImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Backyard load failed!");
             }
         }
 
@@ -104,7 +135,8 @@ namespace Core.GamePlay
                 VehicleImg.sprite = handle.Result;
                 Material mat = VehicleImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                VehicleImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() => {
+                VehicleImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
@@ -117,6 +149,32 @@ namespace Core.GamePlay
             }
         }
 
-
+        void LoadStatue()
+        {
+            _currentStatue = DBVariablesHolder.StatueLvl.Value / SpriteChangeCount;
+            string key = $"Statue_{_currentStatue}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
+            StatueImg.transform.position = StatuePositions[_currentStatue];
+        }
+        void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                StatueImg.sprite = handle.Result;
+                Material mat = StatueImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                StatueImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Statue load failed!");
+            }
+        }
     }
 }
