@@ -15,7 +15,7 @@ namespace Core.GamePlay
         int _currentHouse, _currentBackyard, _currentVehicle, _currentStatue;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f;
 
-        public void SwitchToGameplay()
+        public void CountinueGameplay()
         {
             LoadHouse();
             LoadBackyard();

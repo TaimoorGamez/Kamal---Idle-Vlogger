@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using Core.DB.Variables;
 using UnityEngine.AddressableAssets;
@@ -6,31 +5,22 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Core.GamePlay
 {
-    public enum GameMod
-    {
-        Storyline = 0,
-        Gameplay = 1
-    }
-
-
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, BackyardImg, VehicleImg, StatueImg;
-        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions;
+        [SerializeField] GameObject GameplayEnvironment, GameplayUI;
+        [SerializeField] SpriteRenderer BgImg, GroundImg;
         [SerializeField] Vector2 GameplayPositionMC, StorylinePositionMC;
         [SerializeField] StorylineHandler CurrentStorylineHandler;
         [SerializeField] GameplayHandler CurrentGameplayHandler;
 
         int SpriteChangeCount = 20;
         int _currentBG, _currentGround;
-        GameMod _currentGameMod;
 
         private void Start()
         {
             if (DBVariablesHolder.FFT.Value == 0)
             {
                 DBVariablesHolder.FFT.Value = 1;
-                _currentGameMod = GameMod.Storyline;
             }
             LoadBG();
             LoadGround();
@@ -71,6 +61,37 @@ namespace Core.GamePlay
             {
                 Debug.Log("Ground load failed!");
             }
+        }
+
+        public void StartGame()
+        {
+            int storyIndex = DBVariablesHolder.StoryProgress.Value;
+            if (storyIndex < 1 || ConditionFullfillForStoryProgress(storyIndex))
+            {
+                SwitchToStoryline();
+            }
+            else
+            {
+                SwitchToGameplay();
+            }
+        }
+
+        bool ConditionFullfillForStoryProgress(int index)
+        {
+            return false;
+        }
+
+        void SwitchToStoryline()
+        {
+            GameplayEnvironment.SetActive(false);
+            GameplayUI.SetActive(false);
+            CurrentStorylineHandler.CountinueStory();
+        }
+
+        void SwitchToGameplay()
+        {
+            GameplayEnvironment.SetActive(true);
+            CurrentGameplayHandler.CountinueGameplay();
         }
     }
 }

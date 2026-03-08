@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Core.GamePlay;
 
 namespace Core.Screen
 {
     public class SplashScreen : MonoBehaviour
     {
+        [SerializeField] GameManager CurrentGameManager;
         [SerializeField] Transform FillImage;
         [SerializeField] TextMeshProUGUI LoadingText;
 
@@ -22,6 +24,7 @@ namespace Core.Screen
                 LoadingText.text = _loadingTxt + percent + "%";
             }).OnComplete(() =>
             {
+                CurrentGameManager.StartGame();
                 Destroy(gameObject, 0.1f);
             });
         }

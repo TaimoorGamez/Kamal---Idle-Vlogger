@@ -103,6 +103,7 @@ namespace Core.DB.Variables
         public static DBInt CameraLvl = new DBInt("CameraLvl", 0);
         public static DBInt MicrophoneLvl = new DBInt("MicrophoneLvl", 0);
         public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
+        public static DBInt StoryProgress = new DBInt("StoryProgress", 0);
     }
 
     public static class DBVariableDictionariesHolder
