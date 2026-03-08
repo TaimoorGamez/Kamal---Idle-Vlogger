@@ -6,27 +6,35 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Core.GamePlay
 {
+    public enum GameMod
+    {
+        Storyline = 0,
+        Gameplay = 1
+    }
+
+
     public class GameManager : MonoBehaviour
     {
         [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, BackyardImg, VehicleImg, StatueImg;
         [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions;
+        [SerializeField] Vector2 GameplayPositionMC, StorylinePositionMC;
+        [SerializeField] StorylineHandler CurrentStorylineHandler;
+        [SerializeField] GameplayHandler CurrentGameplayHandler;
 
         int SpriteChangeCount = 20;
-        int _currentBG, _currentGround, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue;
-        float _scaleDuration = 0.5f, _revealDuration = 0.25f;
+        int _currentBG, _currentGround;
+        GameMod _currentGameMod;
 
         private void Start()
         {
             if (DBVariablesHolder.FFT.Value == 0)
             {
                 DBVariablesHolder.FFT.Value = 1;
+                _currentGameMod = GameMod.Storyline;
             }
             LoadBG();
             LoadGround();
-            LoadHouse();
-            LoadBackyard();
-            LoadVehicle();
-            LoadStatue();
+
         }
 
         void LoadBG()
@@ -62,118 +70,6 @@ namespace Core.GamePlay
             else
             {
                 Debug.Log("Ground load failed!");
-            }
-        }
-
-        void LoadHouse()
-        {
-            _currentHouse = DBVariablesHolder.HouseLvl.Value / SpriteChangeCount;
-            string key = $"House_{_currentHouse}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[_currentHouse];
-        }
-        void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                HouseImg.sprite = handle.Result;
-                Material mat = HouseImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                HouseImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("House load failed!");
-            }
-        }
-
-        void LoadBackyard()
-        {
-            _currentBackyard = DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount;
-            string key = $"Backyard_{_currentBackyard}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
-            BackyardImg.transform.position = BackyardPositions[_currentBackyard];
-        }
-        void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                BackyardImg.sprite = handle.Result;
-                Material mat = BackyardImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                BackyardImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Backyard load failed!");
-            }
-        }
-
-        void LoadVehicle()
-        {
-            _currentVehicle = DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount;
-            string key = $"Vehicle_{_currentVehicle}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[_currentVehicle];
-        }
-        void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                VehicleImg.sprite = handle.Result;
-                Material mat = VehicleImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                VehicleImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Vehicle load failed!");
-            }
-        }
-
-        void LoadStatue()
-        {
-            _currentStatue = DBVariablesHolder.StatueLvl.Value / SpriteChangeCount;
-            string key = $"Statue_{_currentStatue}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
-            StatueImg.transform.position = StatuePositions[_currentStatue];
-        }
-        void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                StatueImg.sprite = handle.Result;
-                Material mat = StatueImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                StatueImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Statue load failed!");
             }
         }
     }
