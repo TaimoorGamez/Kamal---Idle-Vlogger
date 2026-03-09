@@ -7,7 +7,7 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] GameObject GameplayEnvironment, GameplayUI;
+        [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
         [SerializeField] SpriteRenderer BgImg, GroundImg;
         [SerializeField] Vector2 GameplayPositionMC, StorylinePositionMC;
         [SerializeField] StorylineHandler CurrentStorylineHandler;
@@ -68,7 +68,7 @@ namespace Core.GamePlay
             int storyIndex = DBVariablesHolder.StoryProgress.Value;
             if (storyIndex < 1 || ConditionFullfillForStoryProgress(storyIndex))
             {
-                SwitchToStoryline();
+                SwitchToStoryline(storyIndex);
             }
             else
             {
@@ -81,11 +81,12 @@ namespace Core.GamePlay
             return false;
         }
 
-        void SwitchToStoryline()
+        void SwitchToStoryline(int storyIndex)
         {
             GameplayEnvironment.SetActive(false);
             GameplayUI.SetActive(false);
-            CurrentStorylineHandler.CountinueStory();
+            StorylineUI.SetActive(true);
+            CurrentStorylineHandler.CountinueStory(storyIndex);
         }
 
         void SwitchToGameplay()

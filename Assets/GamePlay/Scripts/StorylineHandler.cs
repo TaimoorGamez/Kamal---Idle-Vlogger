@@ -4,9 +4,11 @@ namespace Core.GamePlay
 {
     public class StorylineHandler : MonoBehaviour
     {
-        public void CountinueStory()
-        {
+        [SerializeField] CurtainController CurrentCurtainController;
 
+        public void CountinueStory(int storyIndex)
+        {
+            CurrentCurtainController.gameObject.SetActive(true);
         }
     }
 }
