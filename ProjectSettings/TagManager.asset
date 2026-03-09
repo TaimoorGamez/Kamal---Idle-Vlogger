@@ -41,7 +41,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: MC
+  - name: Characters
     uniqueID: 2858279899
     locked: 0
   - name: Cash
