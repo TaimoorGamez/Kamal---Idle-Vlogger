@@ -13,5 +13,24 @@ namespace Core.GamePlay
         [SerializeField] protected float[] BubbleRotation;
 
         protected int CurrentMsgIndex = 0;
+
+        protected virtual void ShowMsg()
+        {
+
+        }
+
+        public virtual void NextMsg()
+        {
+            CurrentMsgIndex++;
+            if (CurrentMsgIndex < Messages.Length)
+            {
+                ShowMsg();
+            }
+            else
+            {
+                MsgObj.SetActive(false);
+                CurrentCurtainController.gameObject.SetActive(true);
+            }
+        }
     }
 }

@@ -6,9 +6,17 @@ namespace Core.GamePlay
     {
         [SerializeField] StoryLine[] Stories;
 
+        int _storyIndex = -1;
+
         public void CountinueStory(int storyIndex)
         {
-            Stories[storyIndex].gameObject.SetActive(true);
+            _storyIndex = storyIndex;
+            Stories[_storyIndex].gameObject.SetActive(true);
+        }
+
+        public void Next()
+        {
+            Stories[_storyIndex].NextMsg();
         }
     }
 }

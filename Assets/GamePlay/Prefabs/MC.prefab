@@ -347,6 +347,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       insertIndex: -1
       addedObject: {fileID: 977740751759226555}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7951519903300014102}
     - targetCorrespondingSourceObject: {fileID: -5656506211127375912, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6958532550092778267}
@@ -462,3 +465,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &7951519903300014102
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228459560165775794}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: da11b9ca7a3ec024582f29d3aa1febb3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: da11b9ca7a3ec024582f29d3aa1febb3, type: 2}
+  - {fileID: 7400000, guid: 6545a422b4d93994b8cb11559d46590b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0

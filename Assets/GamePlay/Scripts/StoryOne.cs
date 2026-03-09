@@ -4,36 +4,37 @@ namespace Core.GamePlay
 {
     public class StoryOne : StoryLine
     {
-        [SerializeField] Animation GirlFriend, Enemy;
+        [SerializeField] Animation MC, GirlFriend, Enemy;
 
         private void Start()
         {
             CurrentCurtainController.gameObject.SetActive(true);
             CurrentMsgIndex = 0;
-            GirlFriend.gameObject.SetActive(true);
             MsgObj.SetActive(true);
             ShowMsg();
         }
 
-        void ShowMsg()
+        protected override void ShowMsg()
         {
             MsgTxt.text = Messages[CurrentMsgIndex];
             NameTxt.text = MessengerName[CurrentMsgIndex];
             MsgBubble.rotation = Quaternion.Euler(0, BubbleRotation[CurrentMsgIndex], 0);
+            switch(CurrentMsgIndex)
+            {
+                case 0:
+                    GirlFriend.gameObject.SetActive(true);
+                    GirlFriend.Play();
+                    break;
+
+                case 1:
+                    MC.Play("TalkingDefault");
+                    break;
+            }
         }
 
-        public void NextMsg()
+        public override void NextMsg()
         {
-            CurrentMsgIndex++;
-            if (CurrentMsgIndex < Messages.Length)
-            {
-                ShowMsg();
-            }
-            else
-            {
-                MsgObj.SetActive(false);
-                CurrentCurtainController.gameObject.SetActive(true);
-            }
+            base.NextMsg();
         }
     }
 }
