@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.U2D.Animation;
 
 namespace Core.GamePlay
@@ -8,35 +7,16 @@ namespace Core.GamePlay
     public class McTalking : MonoBehaviour
     {
         [SerializeField] SpriteResolver HeadspriteResolver;
-        [SerializeField] List<string> SpriteLabel;
+        [SerializeField] string[] SpriteLabel;
 
-        float _delay = 10f;  
+        float _delay = 0.1f;  
         bool _canTalk = false;
         int _currentIndex;
         string _categoryName = "Head";
         Coroutine _animationCoroutine;
 
-        private void Start()
-        {
-            SpriteLibrary library = HeadspriteResolver.spriteLibrary;
-            SpriteLabel = new List<string>();
-            foreach (var category in library.spriteLibraryAsset.GetCategoryNames())
-            {
-                Debug.Log("Category: " + category);
-                if (category == _categoryName)
-                {
-                    foreach (var label in library.spriteLibraryAsset.GetCategoryLabelNames(category))
-                    {
-                        Debug.Log("   Label: " + label);
-                        SpriteLabel.Add(label);
-                    }
-                }
-            } 
-        }
-
         public void StartTalking(bool loop)
         {
-            Debug.Log("StartTalking called with loop: " + loop);
             if (_animationCoroutine != null)
                 StopCoroutine(_animationCoroutine);
 
@@ -56,27 +36,26 @@ namespace Core.GamePlay
 
         private IEnumerator AnimateSprites(bool loop)
         {
-            //do
-            //{
-                HeadspriteResolver.SetCategoryAndLabel(_categoryName, SpriteLabel[1]);
-                //_currentIndex++;
-                yield return new WaitForSeconds(0.1f);
+            do
+            {
+                HeadspriteResolver.SetCategoryAndLabel(_categoryName, SpriteLabel[_currentIndex]);
+                _currentIndex++;
+                yield return new WaitForSeconds(_delay);
 
-                //Debug.Log("StartTalking called with loop: " + _currentIndex);
-                //if (_currentIndex >= SpriteLabel.Count)
-                //{
-                //    if (loop)
-                //        _currentIndex = 0;
-                //    else
-                //    {
-                //        HeadspriteResolver.SetCategoryAndLabel(_categoryName, SpriteLabel[0]);
-                //        _canTalk = false;
-                //        yield break;
-                //    }
-                //}
+                if (_currentIndex >= SpriteLabel.Length)
+                {
+                    if (loop)
+                        _currentIndex = 0;
+                    else
+                    {
+                        HeadspriteResolver.SetCategoryAndLabel(_categoryName, SpriteLabel[0]);
+                        _canTalk = false;
+                        yield break;
+                    }
+                }
 
-            //}
-            //while (_canTalk);
+            }
+            while (_canTalk);
         }
     }
 }
