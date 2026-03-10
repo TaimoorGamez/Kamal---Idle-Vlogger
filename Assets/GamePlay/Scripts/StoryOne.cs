@@ -4,7 +4,8 @@ namespace Core.GamePlay
 {
     public class StoryOne : StoryLine
     {
-        [SerializeField] Animation MC, GirlFriend, Enemy;
+        [SerializeField] McTalking MC;
+        [SerializeField] Animation GirlFriend, Enemy;
 
         private void Start()
         {
@@ -27,7 +28,7 @@ namespace Core.GamePlay
                     break;
 
                 case 1:
-                    MC.Play("TalkingDefault");
+                    MC.StartTalking(false);
                     break;
             }
         }
