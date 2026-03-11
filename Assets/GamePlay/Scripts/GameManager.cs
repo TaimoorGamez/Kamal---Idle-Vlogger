@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 using Core.DB.Variables;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -16,7 +15,6 @@ namespace Core.GamePlay
 
         int SpriteChangeCount = 20;
         int _currentBG, _currentGround;
-        float _gameplayPositionMC = -1.5f, _storylinePositionMC= -2f, _moveDuration = 0.25f;
 
         private void Start()
         {
@@ -89,13 +87,11 @@ namespace Core.GamePlay
             GameplayUI.SetActive(false);
             StorylineUI.SetActive(true);
             CurrentStorylineHandler.CountinueStory(storyIndex);
-            MC.DOLocalMoveX(_storylinePositionMC, _moveDuration);
 
         }
 
         void SwitchToGameplay()
         {
-            MC.DOLocalMoveX(_gameplayPositionMC, _moveDuration);
             GameplayEnvironment.SetActive(true);
             CurrentGameplayHandler.CountinueGameplay();
         }

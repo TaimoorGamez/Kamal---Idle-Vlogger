@@ -8,7 +8,7 @@ namespace Core.GamePlay
         [SerializeField] McTalking MC;
         [SerializeField] Animation GirlFriend, Rohan;
 
-        float _rohanPosition = 2.5f, _moveDuration = 0.1f;
+        float _rohanPosition = 2f, _moveDuration = 0.1f;
 
         private void Start()
         {

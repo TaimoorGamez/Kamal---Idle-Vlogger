@@ -288,7 +288,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 15
   m_fontSizeMax: 70
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -697,6 +697,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128834302}
     m_Modifications:
+    - target: {fileID: 5520582786994793759, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
+      propertyPath: m_fontSize
+      value: 39.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520582786994793759, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520582786994793759, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6007223163525069571, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
+    - target: {fileID: 5666122316712631196, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
+      propertyPath: m_fontSize
+      value: 23.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5666122316712631196, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5666122316712631196, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6007223163525069571, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
     - target: {fileID: 6738889630947477267, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -783,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: LogoImage
@@ -893,7 +917,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
   m_fontSizeMax: 50
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2293,7 +2317,7 @@ Transform:
   m_GameObject: {fileID: 1522989655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.75, y: -1.5, z: 0}
+  m_LocalPosition: {x: 1, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2854,7 +2878,7 @@ GameObject:
   - component: {fileID: 1927081779}
   - component: {fileID: 1927081778}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2932,7 +2956,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
   m_fontSizeMax: 50
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
