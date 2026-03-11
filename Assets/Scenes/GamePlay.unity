@@ -169,19 +169,35 @@ MonoBehaviour:
   MsgTxt: {fileID: 543073970}
   NameTxt: {fileID: 1927081778}
   Messages:
-  - "I need to tell you something. I feel like our relationship has come to its end\u2026
-    I don\u2019t think I can continue my life with you anymore."
-  - "I promise. Next month I will buy you that expensive watch you wanted\u2026 please
+  - I want to tell you something. Our relationship comes to its end.
+  - "I promise. Next month I will buy you that expensive watch you wanted. please
     don\u2019t leave me."
+  - 'I want a luxury life, the kind of life you could never give me, and I have already
+    made my decision. '
+  - After four years, you are saying this? I even sold my ancestral home for you.
+    All those expensive gifts I kept giving you all this time weren't they proof
+    of my love for you?
+  - Stop hiding and tell me who he is.
+  - "There\u2019s no need to hide anything anymore. Meet him \u2014 this is **Rohan
+    Singhania, the CEO of FreshNova Drinks**. Only a rich and successful man like
+    him is worthy of me."
   MessengerName:
   - Sara
   - Kabir
+  - Sara
+  - Kabir
+  - Kabir
+  - Sara
   BubbleRotation:
   - 180
   - 0
+  - 180
+  - 0
+  - 0
+  - 180
   MC: {fileID: 556233798}
   GirlFriend: {fileID: 1522989660}
-  Enemy: {fileID: 0}
+  Rohan: {fileID: 2097685935}
 --- !u!1 &253617022
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,7 +783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: LogoImage
@@ -3290,8 +3306,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2097685933}
   - component: {fileID: 2097685934}
+  - component: {fileID: 2097685937}
+  - component: {fileID: 2097685936}
+  - component: {fileID: 2097685935}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Rohan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3306,7 +3325,7 @@ Transform:
   m_GameObject: {fileID: 2097685932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -1.7, z: 0}
+  m_LocalPosition: {x: 5, y: -1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3361,7 +3380,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: fd2276da588b5d9439956563e0fdc9dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9d263c68b4b26641869640dfb085fb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3371,6 +3390,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!111 &2097685935
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097685932}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 9b660bab76180e0498aed169149dc37c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9b660bab76180e0498aed169149dc37c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!114 &2097685936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097685932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 419876126
+--- !u!114 &2097685937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097685932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: bc06c6923a401624e86a21518f8c7853, type: 3}
 --- !u!1001 &1508514119530018068
 PrefabInstance:
   m_ObjectHideFlags: 0

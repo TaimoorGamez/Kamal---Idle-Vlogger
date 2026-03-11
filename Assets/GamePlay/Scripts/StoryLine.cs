@@ -12,17 +12,19 @@ namespace Core.GamePlay
         [SerializeField] protected string[] Messages, MessengerName;
         [SerializeField] protected float[] BubbleRotation;
 
-        protected int CurrentMsgIndex = 0;
+        protected int _currentMsgIndex = 0;
 
         protected virtual void ShowMsg()
         {
-
+            MsgTxt.text = Messages[_currentMsgIndex];
+            NameTxt.text = MessengerName[_currentMsgIndex];
+            MsgBubble.rotation = Quaternion.Euler(0, BubbleRotation[_currentMsgIndex], 0);
         }
 
         public virtual void NextMsg()
         {
-            CurrentMsgIndex++;
-            if (CurrentMsgIndex < Messages.Length)
+            _currentMsgIndex++;
+            if (_currentMsgIndex < Messages.Length)
             {
                 ShowMsg();
             }

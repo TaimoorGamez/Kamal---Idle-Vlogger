@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace Core.GamePlay
@@ -5,32 +6,36 @@ namespace Core.GamePlay
     public class StoryOne : StoryLine
     {
         [SerializeField] McTalking MC;
-        [SerializeField] Animation GirlFriend, Enemy;
+        [SerializeField] Animation GirlFriend, Rohan;
+
+        float _rohanPosition = 2.5f, _moveDuration = 0.1f;
 
         private void Start()
         {
             CurrentCurtainController.gameObject.SetActive(true);
-            CurrentMsgIndex = 0;
+            _currentMsgIndex = 0;
             MsgObj.SetActive(true);
+            GirlFriend.gameObject.SetActive(true);
             ShowMsg();
         }
 
         protected override void ShowMsg()
         {
-            MsgTxt.text = Messages[CurrentMsgIndex];
-            NameTxt.text = MessengerName[CurrentMsgIndex];
-            MsgBubble.rotation = Quaternion.Euler(0, BubbleRotation[CurrentMsgIndex], 0);
-            switch(CurrentMsgIndex)
+            if (_currentMsgIndex == 0 || _currentMsgIndex == 2)
             {
-                case 0:
-                    GirlFriend.gameObject.SetActive(true);
-                    GirlFriend.Play();
-                    break;
-
-                case 1:
-                    MC.StartTalking(false);
-                    break;
+                GirlFriend.Play();
             }
+            else if (_currentMsgIndex == 1 || _currentMsgIndex == 3 || _currentMsgIndex == 4)
+            {
+                MC.StartTalking(false);
+            }
+            else if (_currentMsgIndex == 5) 
+            {
+                Rohan.gameObject.SetActive(true);
+                Rohan.transform.DOLocalMoveX(_rohanPosition, _moveDuration);
+                GirlFriend.Play();
+            }
+            base.ShowMsg();
         }
 
         public override void NextMsg()

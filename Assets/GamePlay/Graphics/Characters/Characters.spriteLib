@@ -29,6 +29,22 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 21300000, guid: ab8b28c52536a33468a32382a2b2c3d7, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 2
+  - m_Name: Rohan
+    m_Hash: 932970690
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Talk0
+      m_Hash: 691453684
+      m_Sprite: {fileID: 21300000, guid: e9d263c68b4b26641869640dfb085fb9, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: e9d263c68b4b26641869640dfb085fb9, type: 3}
+    - m_Name: Talk1
+      m_Hash: 506564194
+      m_Sprite: {fileID: 21300000, guid: fd2b51c1b11f8d744972e18a8630f9c3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: fd2b51c1b11f8d744972e18a8630f9c3, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639086670297083875
+  m_ModificationHash: 639088272486130702
   m_Version: 1
