@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using Core.Events;
 
 namespace Core.GamePlay
 {
@@ -30,8 +31,10 @@ namespace Core.GamePlay
             }
             else
             {
-                MsgObj.SetActive(false);
                 CurrentCurtainController.gameObject.SetActive(true);
+                MsgObj.SetActive(false);
+                gameObject.SetActive(false);
+                SimpleEventsHolder.StoryPartComplete?.Invoke();
             }
         }
     }

@@ -174,13 +174,17 @@ MonoBehaviour:
     don\u2019t leave me."
   - 'I want a luxury life, the kind of life you could never give me, and I have already
     made my decision. '
-  - After four years, you are saying this? I even sold my ancestral home for you.
-    All those expensive gifts I kept giving you all this time weren't they proof
-    of my love for you?
+  - "After four years, you are saying this? I even sold my ancestral home for you.
+    Wasn\u2019t that proof of my love?"
   - Stop hiding and tell me who he is.
   - "There\u2019s no need to hide anything anymore. Meet him this is Rohan Singhania,
     the CEO of FreshNova Drinks. Only a rich and successful man like him is worthy
     of me."
+  - 'So you were playing with me all this time? How could you do this to me? '
+  - How could you even think someone could fall in love with a loser like you?
+  - "Let\u2019s go, baby. We can\u2019t waste our precious time on this trash. "
+  - 'I will make you regret. From now on, I have only one goal: to become rich and
+    famous.'
   MessengerName:
   - Sara
   - Kabir
@@ -188,6 +192,10 @@ MonoBehaviour:
   - Kabir
   - Kabir
   - Sara
+  - Kabir
+  - Sara
+  - Rohan
+  - Kabir
   BubbleRotation:
   - 180
   - 0
@@ -195,9 +203,14 @@ MonoBehaviour:
   - 0
   - 0
   - 180
+  - 0
+  - 180
+  - 180
+  - 0
   MC: {fileID: 556233798}
   GirlFriend: {fileID: 1522989660}
   Rohan: {fileID: 2097685935}
+  McAnimator: {fileID: 556233800}
 --- !u!1 &253617022
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,8 +300,8 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 15
-  m_fontSizeMax: 70
-  m_fontStyle: 1
+  m_fontSizeMax: 60
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -697,30 +710,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1128834302}
     m_Modifications:
-    - target: {fileID: 5520582786994793759, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: m_fontSize
-      value: 39.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520582786994793759, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520582786994793759, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -6007223163525069571, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
-    - target: {fileID: 5666122316712631196, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: m_fontSize
-      value: 23.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5666122316712631196, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5666122316712631196, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -6007223163525069571, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
     - target: {fileID: 6738889630947477267, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -808,10 +797,6 @@ PrefabInstance:
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
-      propertyPath: LogoImage
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -917,7 +902,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
   m_fontSizeMax: 50
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -975,6 +960,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730f772608e4ce4ea536a1b53fe3daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.McTalking
+--- !u!95 &556233800 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 977740751759226555, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+  m_PrefabInstance: {fileID: 1570655817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686840639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d97adabfb47d5c42ab0c609538d5dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameplayHandler
+  McTalk: {fileID: 556233798}
+  McAnimator: {fileID: 556233800}
   HouseImg: {fileID: 1485845330}
   BackyardImg: {fileID: 510399220}
   VehicleImg: {fileID: 293105122}
@@ -1597,6 +1589,16 @@ MonoBehaviour:
   - {x: 2.75, y: -1.5}
   StatuePositions:
   - {x: 1.5, y: -4.5}
+  BaseStreamAnimation:
+  - Stream 1
+  - Stream 2
+  - Stream 3
+  - Stream 4
+  - Stream 5
+  - Stream 6
+  - Stream 7
+  - Stream 8
+  - Stream 9
 --- !u!1 &1185115378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1319645638
 Transform:
   m_ObjectHideFlags: 0
@@ -2956,7 +2958,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
   m_fontSizeMax: 50
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3427,7 +3429,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 9b660bab76180e0498aed169149dc37c, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0

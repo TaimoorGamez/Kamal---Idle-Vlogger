@@ -233,7 +233,7 @@ MonoBehaviour:
   m_text: 'Tip: Upgrade Mpore Earn More.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
-  m_sharedMaterial: {fileID: 4775208833711610063, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
+  m_sharedMaterial: {fileID: -8197631875740921459, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.35
+  m_fontSize: 23.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -394,6 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae6e821ed4f7aa41bf56021cf2de6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentGameManager: {fileID: 0}
   FillImage: {fileID: 826523963614189057}
   LoadingText: {fileID: 5520582786994793759}
 --- !u!114 &700242445152969740
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_text: Loading...     0%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
-  m_sharedMaterial: {fileID: 4775208833711610063, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
+  m_sharedMaterial: {fileID: -8197631875740921459, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -532,7 +533,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.65
+  m_fontSize: 40.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

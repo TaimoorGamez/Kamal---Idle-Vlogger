@@ -13,8 +13,22 @@ namespace Core.GamePlay
         [SerializeField] GameplayHandler CurrentGameplayHandler;
         [SerializeField] Transform MC;
 
-        int SpriteChangeCount = 20;
-        int _currentBG, _currentGround;
+        int SpriteChangeCount = 20, _currentBG, _currentGround;
+
+        public static GameManager Instance;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject); 
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
@@ -81,7 +95,7 @@ namespace Core.GamePlay
             return false;
         }
 
-        void SwitchToStoryline(int storyIndex)
+        public void SwitchToStoryline(int storyIndex)
         {
             GameplayEnvironment.SetActive(false);
             GameplayUI.SetActive(false);
@@ -90,9 +104,11 @@ namespace Core.GamePlay
 
         }
 
-        void SwitchToGameplay()
+        public void SwitchToGameplay()
         {
             GameplayEnvironment.SetActive(true);
+            GameplayUI.SetActive(true);
+            StorylineUI.SetActive(false);
             CurrentGameplayHandler.CountinueGameplay();
         }
     }

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using Core.DB.Variables;
+using System.Collections;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -8,19 +9,26 @@ namespace Core.GamePlay
 {
     public class GameplayHandler : MonoBehaviour
     {
+        [SerializeField] McTalking McTalk;
+        [SerializeField] Animator McAnimator;
         [SerializeField] SpriteRenderer HouseImg, BackyardImg, VehicleImg, StatueImg;
         [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions;
+        [SerializeField] string[] BaseStreamAnimation;
 
-        int SpriteChangeCount = 20;
-        int _currentHouse, _currentBackyard, _currentVehicle, _currentStatue;
+        int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f;
+        bool _canStream = false;
+        string[] _mainStreamAnimations;
+        Coroutine _streamRoutine;
 
         public void CountinueGameplay()
         {
+            McAnimator.SetTrigger("Default");
             LoadHouse();
             LoadBackyard();
             LoadVehicle();
             LoadStatue();
+            StartStreaming();
         }
 
 
@@ -133,6 +141,35 @@ namespace Core.GamePlay
             else
             {
                 Debug.Log("Statue load failed!");
+            }
+        }
+
+        void StartStreaming()
+        {
+            if (_streamRoutine != null)
+                StopCoroutine(_streamRoutine);
+
+             _mainStreamAnimations = BaseStreamAnimation;
+             _canStream = true;
+            _streamRoutine = StartCoroutine(StreamCoroutine());
+        }
+
+        public void StopStreaming()
+        {
+            _canStream = false;
+            if (_streamRoutine != null)
+                StopCoroutine(_streamRoutine);
+        }
+
+        IEnumerator StreamCoroutine()
+        {
+            yield return new WaitForSeconds(2f);
+            McTalk.StartTalking(true);
+            while (_canStream)
+            {
+                int i = Random.Range(0, _mainStreamAnimations.Length);
+                yield return new WaitForSeconds(5f);
+                McAnimator.Play(_mainStreamAnimations[i]);
             }
         }
     }

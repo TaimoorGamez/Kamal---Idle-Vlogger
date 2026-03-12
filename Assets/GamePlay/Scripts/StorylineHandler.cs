@@ -1,3 +1,5 @@
+using Core.DB.Variables;
+using Core.Events;
 using UnityEngine;
 
 namespace Core.GamePlay
@@ -8,6 +10,16 @@ namespace Core.GamePlay
 
         int _storyIndex = -1;
 
+        private void OnEnable()
+        {
+            SimpleEventsHolder.StoryPartComplete += OnStoryPartEnd;
+        }
+
+        private void OnDisable()
+        {
+            SimpleEventsHolder.StoryPartComplete -= OnStoryPartEnd;
+        }
+
         public void CountinueStory(int storyIndex)
         {
             _storyIndex = storyIndex;
@@ -17,6 +29,13 @@ namespace Core.GamePlay
         public void Next()
         {
             Stories[_storyIndex].NextMsg();
+        }
+
+        void OnStoryPartEnd()
+        {
+            _storyIndex++;
+            DBVariablesHolder.StoryProgress.Value = _storyIndex;
+            GameManager.Instance.SwitchToGameplay();
         }
     }
 }
