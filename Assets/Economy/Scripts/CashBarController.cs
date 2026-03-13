@@ -5,7 +5,7 @@ using Core.Economy;
 
 namespace Core.Screen
 {
-    public class CurrencyBarController : MonoBehaviour
+    public class CashBarController : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI CurrencyTxt;
 
@@ -21,7 +21,7 @@ namespace Core.Screen
 
         void UpdateCashText()
         {
-            CurrencyTxt.text = CurrenciesHolder.CashCurrency.Amount.ToString();
+            CurrencyTxt.text = CashCurrency.Amount.ToString();
         }
     }
 }

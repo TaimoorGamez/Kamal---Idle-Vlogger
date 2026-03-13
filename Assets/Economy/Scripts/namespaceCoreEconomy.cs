@@ -1,42 +1,29 @@
-using System;
 using Core.Events;
 using Core.DB.Variables;
-using System.Collections.Generic;
 
 namespace Core.Economy
 {
-    public class Currencies
+    public static class CashCurrency
     {
-        public DBInt CurrencyWallet;
 
-        public Currencies(DBInt wallet)
-        {
-            CurrencyWallet = wallet;
-        }
-
-        public virtual int Amount
+        public static int Amount
         {
             get
             {
-                return CurrencyWallet.Value;
+                return DBVariablesHolder.CashWallet.Value;
             }
             set
             {
-                CurrencyWallet.Value = (value);
-                SimpleEventsHolder.UpdateCashTxtEvent.Invoke();
-                if (value > CurrencyWallet.Value)
+                if (value > DBVariablesHolder.CashWallet.Value)
                 {
                 }
-                else if (value < CurrencyWallet.Value)
+                else if (value < DBVariablesHolder.CashWallet.Value)
                 {
                     DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value);
                 }
+                DBVariablesHolder.CashWallet.Value = value;
+                SimpleEventsHolder.UpdateCashTxtEvent.Invoke();
             }
         }
-    }
-
-    public static class CurrenciesHolder 
-    {
-        public static Currencies CashCurrency = new Currencies(DBVariablesHolder.CashWallet);
     }
 }

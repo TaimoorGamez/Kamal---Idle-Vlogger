@@ -61,13 +61,13 @@ namespace Core.Screen
                 switch(_taskClaimed)
                 {
                     case 0:
-                        CurrenciesHolder.CashCurrency.Amount += 100;
+                        CashCurrency.Amount += 100;
                         break;
                     case 1:
-                        CurrenciesHolder.CashCurrency.Amount += 150;
+                        CashCurrency.Amount += 150;
                         break;
                     case 2:
-                        CurrenciesHolder.CashCurrency.Amount += 200;
+                        CashCurrency.Amount += 200;
                         break;
                     case 3:
                         BoxPanel.gameObject.SetActive(true);

@@ -75,6 +75,8 @@ namespace Core.DB.Variables
 
         //---------------------Currencies Data -------------------
         public static DBInt CashWallet = new DBInt("CashWallet", 0);       
+        public static DBInt GoldWallet = new DBInt("GoldWallet", 0);       
+        public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);       
 
         //---------------------Daily Tasks ------------------------
         public static DBInt Task0 = new DBInt("Task0", 0);
