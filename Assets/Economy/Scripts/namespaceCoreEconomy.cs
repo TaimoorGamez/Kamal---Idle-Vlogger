@@ -22,16 +22,15 @@ namespace Core.Economy
             }
             set
             {
+                CurrencyWallet.Value = (value);
+                SimpleEventsHolder.UpdateCashTxtEvent.Invoke();
                 if (value > CurrencyWallet.Value)
                 {
-                    SingleIntegerEventsHolder.DepositEvent?.Invoke(value);
                 }
                 else if (value < CurrencyWallet.Value)
                 {
-                    SingleIntegerEventsHolder.TransactionEvent?.Invoke(value);
                     DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value);
                 }
-                CurrencyWallet.Value = (value);
             }
         }
     }
@@ -39,12 +38,5 @@ namespace Core.Economy
     public static class CurrenciesHolder 
     {
         public static Currencies CashCurrency = new Currencies(DBVariablesHolder.CashWallet);
-    }
-
-    public static class CurrencyDictionariesHolder 
-    {
-        public static Dictionary<string, Currencies> AllCurrencies = new Dictionary<string, Currencies>(StringComparer.Ordinal)
-        {
-        };
     }
 }

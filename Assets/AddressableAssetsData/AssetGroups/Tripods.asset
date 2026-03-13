@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Tripods
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Tripods
+  m_GUID: 01b60d49823a0164082767925a2b9179
+  m_SerializeEntries:
+  - m_GUID: 2022f98832c5ac64cab95d8e93399466
+    m_Address: Tripod_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Tripod
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5d60ce42834f534fbb67884d6bf069c
+    m_Address: Tripod_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Tripod
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f277e711d756ac94aaf4992516bf63d4, type: 2}
+    - {fileID: 11400000, guid: 39e7ad01d06ce3e4d980071ade176a0d, type: 2}

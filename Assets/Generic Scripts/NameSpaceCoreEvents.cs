@@ -16,6 +16,9 @@ namespace Core.Events
         //-------------------Game Flow Events-------------------
         SelfDestructionEvent, StoryPartComplete, CheckPluginStatus,
 
+        //-------------------Economy Events-------------------
+        UpdateCashTxtEvent,
+
         //-------------------Sound Events-------------------
         BtnPressSfxEvent, UpdateMusicStateEvent, UpdateSoundStateEvent,
 
@@ -38,10 +41,6 @@ namespace Core.Events
     public static class SingleIntegerEventsHolder
     {
         public static GameEventInteger
-
-        //-------------------Economy Events-------------------
-        DepositEvent, TransactionEvent,
-
         //-------------------Game Flow Events-------------------
 
         //-------------------Toast Events-------------------

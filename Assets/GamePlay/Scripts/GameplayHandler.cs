@@ -11,11 +11,11 @@ namespace Core.GamePlay
     {
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
-        [SerializeField] SpriteRenderer HouseImg, BackyardImg, VehicleImg, StatueImg;
-        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions;
+        [SerializeField] SpriteRenderer HouseImg, BackyardImg, VehicleImg, StatueImg, CameraImg, TripodImg;
+        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, CameraPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue;
+        int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f;
         bool _canStream = false;
         string[] _mainStreamAnimations;
@@ -28,6 +28,8 @@ namespace Core.GamePlay
             LoadBackyard();
             LoadVehicle();
             LoadStatue();
+            LoadCamera();
+            LoadTripod();
             StartStreaming();
         }
 
@@ -131,6 +133,62 @@ namespace Core.GamePlay
                 Material mat = StatueImg.material;
                 mat.SetFloat("_Reveal", 0f);
                 StatueImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Statue load failed!");
+            }
+        }
+
+        void LoadCamera()
+        {
+            _currentCamera = DBVariablesHolder.CameraLvl.Value / SpriteChangeCount;
+            string key = $"Camera_{_currentCamera}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
+            CameraImg.transform.position = CameraPositions[_currentCamera];
+        }
+        void OnCameraLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                CameraImg.sprite = handle.Result;
+                Material mat = CameraImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                CameraImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Statue load failed!");
+            }
+        }
+
+        void LoadTripod()
+        {
+            _currentTripod = DBVariablesHolder.TripodLvl.Value / SpriteChangeCount;
+            string key = $"Tripod_{_currentTripod}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
+            TripodImg.transform.position = TripodPositions[_currentTripod];
+        }
+        void OnTripodLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                TripodImg.sprite = handle.Result;
+                Material mat = TripodImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                TripodImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),

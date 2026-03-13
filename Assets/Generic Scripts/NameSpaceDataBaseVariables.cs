@@ -101,6 +101,7 @@ namespace Core.DB.Variables
         public static DBInt VehicleLvl = new DBInt("VehicleLvl", 0);
         public static DBInt StatueLvl = new DBInt("StatueLvl", 0);
         public static DBInt CameraLvl = new DBInt("CameraLvl", 0);
+        public static DBInt TripodLvl = new DBInt("TripodLvl", 0);
         public static DBInt MicrophoneLvl = new DBInt("MicrophoneLvl", 0);
         public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
         public static DBInt StoryProgress = new DBInt("StoryProgress", 0);
