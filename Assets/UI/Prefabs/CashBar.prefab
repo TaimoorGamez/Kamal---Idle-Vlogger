@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33333334, g: 0.19607843, b: 0.078431375, a: 1}
+  m_Color: {r: 0.072668225, g: 0.6698113, b: 0.072668225, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 8677033764322293460}
   - component: {fileID: 2524884250200801658}
   - component: {fileID: 2253655083902048110}
+  - component: {fileID: 4266621363771924250}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -127,7 +128,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -4}
+  m_SizeDelta: {x: -2, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2524884250200801658
 CanvasRenderer:
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9215687, g: 0.8039216, b: 0.7254902, a: 1}
+  m_Color: {r: 0.6509804, g: 0.9568628, b: 0.23529413, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -167,6 +168,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 5
+--- !u!114 &4266621363771924250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894067854847321329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8e4bb9796eb7042ae25a0d856721af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.CustomUI.UIGradient
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.023529414, g: 0.4901961, b: 0.14117648, a: 1}
+    key1: {r: 0.18823531, g: 0.6627451, b: 0.003921569, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  gradientType: 0
+  blendMode: 0
 --- !u!1 &6288412250533934595
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,17 +237,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6288412250533934595}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5115930599845863787}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67, y: 0}
-  m_SizeDelta: {x: 86, y: 82}
+  m_AnchoredPosition: {x: -75, y: 0}
+  m_SizeDelta: {x: 70, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7521742284053045887
 CanvasRenderer:
@@ -276,8 +321,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.5, y: 1}
-  m_SizeDelta: {x: 95, y: 53}
+  m_AnchoredPosition: {x: 10, y: 0}
+  m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6902163614085991255
 CanvasRenderer:
@@ -309,15 +354,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
-  m_sharedMaterial: {fileID: -8197631875740921459, guid: 4b891c51647e4a544949dbb64ed68f18, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: aa6a0798dbf39174c96c604ef54726f9, type: 2}
+  m_sharedMaterial: {fileID: -8197631875740921459, guid: aa6a0798dbf39174c96c604ef54726f9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -334,7 +379,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
