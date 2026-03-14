@@ -1,5 +1,7 @@
+using TMPro;
 using DG.Tweening;
 using UnityEngine;
+using Core.Economy;
 using Core.DB.Variables;
 using System.Collections;
 using UnityEngine.AddressableAssets;
@@ -12,14 +14,15 @@ namespace Core.GamePlay
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
         [SerializeField] SpriteRenderer HouseImg, BackyardImg, VehicleImg, StatueImg, CameraImg, TripodImg;
+        [SerializeField] TextMeshProUGUI IncomeTxt;
         [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, CameraPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
         int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
-        float _scaleDuration = 0.5f, _revealDuration = 0.25f;
-        bool _canStream = false;
+        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _basicIncome = 0.01f;
+        bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
-        Coroutine _streamRoutine;
+        Coroutine _streamRoutine, _earningRotine;
 
         public void CountinueGameplay()
         {
@@ -207,8 +210,8 @@ namespace Core.GamePlay
             if (_streamRoutine != null)
                 StopCoroutine(_streamRoutine);
 
-             _mainStreamAnimations = BaseStreamAnimation;
-             _canStream = true;
+            _mainStreamAnimations = BaseStreamAnimation;
+            _canStream = true;
             _streamRoutine = StartCoroutine(StreamCoroutine());
         }
 
@@ -223,6 +226,7 @@ namespace Core.GamePlay
         {
             yield return new WaitForSeconds(2f);
             McTalk.StartTalking(true);
+            StartEarning();
             while (_canStream)
             {
                 int i = Random.Range(0, _mainStreamAnimations.Length);
@@ -230,5 +234,35 @@ namespace Core.GamePlay
                 McAnimator.Play(_mainStreamAnimations[i]);
             }
         }
+
+        void StartEarning()
+        {
+            if (_earningRotine != null)
+                StopCoroutine(_earningRotine);
+
+            _canEarn = true;
+            _earningRotine = StartCoroutine(EarningCoroutine());
+        }
+
+        IEnumerator EarningCoroutine()
+        {
+            while (_canEarn)
+            {
+                Subscribers.Amount += 1;
+                float income = GetIncomePerSecond();
+                IncomeTxt.text = $"{income:F2}/s";
+                CashCurrency.Amount += income;
+                yield return new WaitForSecondsRealtime(1f);
+            }
+        }
+
+        float GetIncomePerSecond()
+        {
+            int hundreds = Subscribers.Amount / 100;
+            float subscriberIncome = hundreds * 0.01f;
+
+            return _basicIncome + subscriberIncome;
+        }
+
     }
 }

@@ -73,8 +73,7 @@ namespace Core.DB.Variables
         public static DBString AdBlockingTime = new DBString("AdBlockingTime", DateTime.MinValue.ToString());
         public static DBString LastDate = new DBString("LastDate", DateTime.MinValue.ToString());
 
-        //---------------------Currencies Data -------------------
-        public static DBInt CashWallet = new DBInt("CashWallet", 0);       
+        //---------------------Currencies Data -------------------  
         public static DBInt GoldWallet = new DBInt("GoldWallet", 0);       
         public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);       
 

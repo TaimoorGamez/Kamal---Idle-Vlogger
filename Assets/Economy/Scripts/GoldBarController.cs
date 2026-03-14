@@ -5,23 +5,23 @@ using Core.Economy;
 
 namespace Core.Screen
 {
-    public class CashBarController : MonoBehaviour
+    public class GoldBarController : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI CurrencyTxt;
 
         private void OnEnable()
         {
-            SimpleEventsHolder.UpdateCashTxtEvent += UpdateCashText;
+            SimpleEventsHolder.UpdateGoldTxtEvent += UpdateCashText;
         }
 
         private void OnDisable()
         {
-            SimpleEventsHolder.UpdateCashTxtEvent -= UpdateCashText;
+            SimpleEventsHolder.UpdateGoldTxtEvent -= UpdateCashText;
         }
 
         void UpdateCashText()
         {
-            CurrencyTxt.text = CashCurrency.Amount.ToString("F2");
+            CurrencyTxt.text = GoldCurrency.Amount.ToString();
         }
     }
 }

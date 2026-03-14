@@ -17,7 +17,7 @@ namespace Core.Events
         SelfDestructionEvent, StoryPartComplete, CheckPluginStatus,
 
         //-------------------Economy Events-------------------
-        UpdateCashTxtEvent,
+        UpdateCashTxtEvent, UpdateGoldTxtEvent, UpdateSubscribeTxtEvent,
 
         //-------------------Sound Events-------------------
         BtnPressSfxEvent, UpdateMusicStateEvent, UpdateSoundStateEvent,
