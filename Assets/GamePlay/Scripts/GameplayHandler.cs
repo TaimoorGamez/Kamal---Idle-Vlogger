@@ -19,7 +19,7 @@ namespace Core.GamePlay
         [SerializeField] string[] BaseStreamAnimation;
 
         int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
-        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _basicIncome = 0.01f;
+        [SerializeField]float _scaleDuration = 0.5f, _revealDuration = 0.25f, _basicIncome = 0.01f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.5f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
@@ -250,9 +250,22 @@ namespace Core.GamePlay
             {
                 Subscribers.Amount += 1;
                 float income = GetIncomePerSecond();
-                IncomeTxt.text = $"{income:F2}/s";
+                if (CashParticle._isTapped) 
+                {
+                    if(_tappedMultipler < _maxTapped)
+                        _tappedMultipler += 0.1f;
+
+                    IncomeTxt.color = Color.green;
+                }
+                else if (_tappedMultipler > 1)
+                {
+                    _tappedMultipler -= 0.1f;
+                    IncomeTxt.color = Color.black;
+                }
+                income *= _tappedMultipler;
+                IncomeTxt.text = $"{income:F3}/s";
                 CashCurrency.Amount += income;
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime(_perSecond);
             }
         }
 

@@ -17,6 +17,8 @@ namespace Core.GamePlay
         bool _isSpawning;
         Coroutine _cashCorotine;
 
+        public static bool _isTapped = false;
+
         private void Start()
         {
             for (int i = 0; i < PoolSize; i++)
@@ -29,12 +31,14 @@ namespace Core.GamePlay
 
         public void OnButtonClick()
         {
+            _isTapped = true;
             if (!_isSpawning)
                 _cashCorotine = StartCoroutine(SpawnCash());
         }
 
         public void OnButtonRelease()
         {
+            _isTapped = false;
             _isSpawning = false;
             if(_cashCorotine != null)
                 StopCoroutine(_cashCorotine);
