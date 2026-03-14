@@ -19,7 +19,7 @@ namespace Core.GamePlay
         [SerializeField] string[] BaseStreamAnimation;
 
         int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
-        [SerializeField]float _scaleDuration = 0.5f, _revealDuration = 0.25f, _basicIncome = 0.01f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.5f;
+        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _basicIncome = 0.01f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
