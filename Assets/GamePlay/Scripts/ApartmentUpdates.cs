@@ -4,14 +4,14 @@ using Core.DB.Variables;
 
 namespace Core.GamePlay
 {
-    public class SkillsUpdate : UpdateSystem
+    public class ApartmentUpdates : UpdateSystem
     {
         protected override void OnEnable()
         {
             base.OnEnable();
-            UpdateCost(0, DBVariablesHolder.CharismaLvl.Value);
-            UpdateCost(1, DBVariablesHolder.EruditionLvl.Value);
-            UpdateCost(2, DBVariablesHolder.WitLvl.Value);
+            UpdateCost(0, DBVariablesHolder.HouseLvl.Value);
+            UpdateCost(1, DBVariablesHolder.VehicleLvl.Value);
+            UpdateCost(2, DBVariablesHolder.StatueLvl.Value);
         }
 
         public override void UpdateItem(int itemIndex)
@@ -21,42 +21,42 @@ namespace Core.GamePlay
             switch (itemIndex)
             {
                 case 0:
-                    lvl = DBVariablesHolder.CharismaLvl.Value;
+                    lvl = DBVariablesHolder.HouseLvl.Value;
                     cost = GetCost(lvl);
 
                     if (CashCurrency.Amount >= cost)
                     {
                         CashCurrency.Amount -= cost;
                         DBVariablesHolder.BasicIncome.Value += Increments[0];
-                        DBVariablesHolder.CharismaLvl.Value++;
+                        DBVariablesHolder.HouseLvl.Value++;
                         UpdateCost(itemIndex, lvl + 1);
                         return;
                     }
                     break;
 
                 case 1:
-                    lvl = DBVariablesHolder.EruditionLvl.Value;
+                    lvl = DBVariablesHolder.VehicleLvl.Value;
                     cost = GetCost(lvl);
 
                     if (CashCurrency.Amount >= cost)
                     {
                         CashCurrency.Amount -= cost;
                         DBVariablesHolder.BasicIncome.Value += Increments[1];
-                        DBVariablesHolder.EruditionLvl.Value++;
+                        DBVariablesHolder.VehicleLvl.Value++;
                         UpdateCost(itemIndex, lvl + 1);
                         return;
                     }
                     break;
 
                 case 2:
-                    lvl = DBVariablesHolder.WitLvl.Value;
+                    lvl = DBVariablesHolder.StatueLvl.Value;
                     cost = GetCost(lvl);
 
                     if (CashCurrency.Amount >= cost)
                     {
                         CashCurrency.Amount -= cost;
                         DBVariablesHolder.BasicIncome.Value += Increments[2];
-                        DBVariablesHolder.WitLvl.Value++;
+                        DBVariablesHolder.StatueLvl.Value++;
                         UpdateCost(itemIndex, lvl + 1);
                         return;
                     }

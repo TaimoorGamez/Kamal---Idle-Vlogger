@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: bdf4d672cf9df984a980d63a484b045d
   m_SerializeEntries:
   - m_GUID: 9b1a47d454c854c4a9a7a40f1b81a97c
-    m_Address: Statue_0
+    m_Address: Statue_1
     m_ReadOnly: 0
     m_SerializedLabels:
     - Statue

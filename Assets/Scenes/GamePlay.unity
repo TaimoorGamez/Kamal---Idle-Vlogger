@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 50161390}
   - component: {fileID: 50161389}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 118367451}
   - component: {fileID: 118367450}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 162481869}
   - component: {fileID: 162481868}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1566,8 +1566,8 @@ RectTransform:
   - {fileID: 1695326553}
   - {fileID: 1716960574}
   - {fileID: 1288743869}
-  - {fileID: 815167975}
   - {fileID: 2005387607}
+  - {fileID: 815167975}
   m_Father: {fileID: 652647586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1646,8 +1646,8 @@ RectTransform:
   - {fileID: 1408710505}
   - {fileID: 1810965659}
   - {fileID: 1892016536}
-  - {fileID: 1723584701}
   - {fileID: 531063150}
+  - {fileID: 1723584701}
   m_Father: {fileID: 1350180289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1878,8 +1878,8 @@ RectTransform:
   - {fileID: 1618234188}
   - {fileID: 1292257980}
   - {fileID: 1840353747}
-  - {fileID: 908296088}
   - {fileID: 938769755}
+  - {fileID: 908296088}
   m_Father: {fileID: 1350180289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2818,7 +2818,7 @@ GameObject:
   - component: {fileID: 276931266}
   - component: {fileID: 276931265}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3025,7 +3025,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 277338009}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 652647587}
+        m_TargetAssemblyTypeName: Core.GamePlay.CameraUpdates, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &277338009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3389,7 +3413,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 298363714}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 652647587}
+        m_TargetAssemblyTypeName: Core.GamePlay.CameraUpdates, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &298363714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3440,7 +3488,7 @@ GameObject:
   - component: {fileID: 299771820}
   - component: {fileID: 299771819}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3577,7 +3625,7 @@ GameObject:
   - component: {fileID: 304634588}
   - component: {fileID: 304634587}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4309,7 +4357,7 @@ GameObject:
   - component: {fileID: 384078861}
   - component: {fileID: 384078860}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4846,7 +4894,7 @@ GameObject:
   - component: {fileID: 443932768}
   - component: {fileID: 443932767}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5447,7 +5495,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 531063152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1350180290}
+        m_TargetAssemblyTypeName: Core.GamePlay.AppearanceUpdate, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &531063152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5580,7 +5652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -5994,8 +6066,8 @@ RectTransform:
   - {fileID: 1057678729}
   - {fileID: 1540015913}
   - {fileID: 629729639}
-  - {fileID: 290372933}
   - {fileID: 298363712}
+  - {fileID: 290372933}
   m_Father: {fileID: 652647586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6989,6 +7061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 652647586}
+  - component: {fileID: 652647587}
   m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
@@ -7020,6 +7093,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &652647587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652647585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c5bc796df9af249bc020138d80fd30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.CameraUpdates
+  Body: {fileID: 1684788216}
+  Increments:
+  - 0.2
+  - 0.1
+  - 0.2
+  UpdatePriceTxts:
+  - {fileID: 1860959225}
+  - {fileID: 1139488133}
+  - {fileID: 903089350}
+  UpdateItemLvlTxt:
+  - {fileID: 299771819}
+  - {fileID: 276931265}
+  - {fileID: 443932767}
 --- !u!1 &657825279
 GameObject:
   m_ObjectHideFlags: 0
@@ -7376,7 +7474,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 664352127}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1350180290}
+        m_TargetAssemblyTypeName: Core.GamePlay.AppearanceUpdate, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &664352127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7427,7 +7549,7 @@ GameObject:
   - component: {fileID: 675404409}
   - component: {fileID: 675404408}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7775,7 +7897,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 698446286}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2067078554}
+        m_TargetAssemblyTypeName: Core.GamePlay.ApartmentUpdates, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &698446286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8475,7 +8621,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8754,7 +8900,7 @@ GameObject:
   - component: {fileID: 851819189}
   - component: {fileID: 851819188}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9358,7 +9504,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9645,7 +9791,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 938769757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1350180290}
+        m_TargetAssemblyTypeName: Core.GamePlay.AppearanceUpdate, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &938769757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11367,7 +11537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1136529011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11475,7 +11645,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12897,7 +13067,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13091,6 +13261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1350180289}
+  - component: {fileID: 1350180290}
   m_Layer: 5
   m_Name: Appearance
   m_TagString: Untagged
@@ -13122,6 +13293,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1350180290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350180288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab0d0665b657db4ca42b1338132647b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.AppearanceUpdate
+  Body: {fileID: 1684788216}
+  Increments:
+  - 0.1
+  - 0.2
+  - 0.1
+  UpdatePriceTxts:
+  - {fileID: 1430476446}
+  - {fileID: 1990041116}
+  - {fileID: 1841199907}
+  UpdateItemLvlTxt:
+  - {fileID: 1574060221}
+  - {fileID: 384078860}
+  - {fileID: 675404408}
 --- !u!1 &1359139184
 GameObject:
   m_ObjectHideFlags: 0
@@ -13279,7 +13475,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1369409175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2067078554}
+        m_TargetAssemblyTypeName: Core.GamePlay.ApartmentUpdates, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1369409175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13955,7 +14175,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14740,7 +14960,7 @@ GameObject:
   - component: {fileID: 1574060222}
   - component: {fileID: 1574060221}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15159,7 +15379,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1629938183}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2067078554}
+        m_TargetAssemblyTypeName: Core.GamePlay.ApartmentUpdates, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1629938183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15446,7 +15690,7 @@ RectTransform:
   m_GameObject: {fileID: 1684788215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1282964085}
@@ -16147,7 +16391,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -16447,8 +16691,8 @@ RectTransform:
   - {fileID: 2042655568}
   - {fileID: 954004239}
   - {fileID: 243743687}
-  - {fileID: 722295297}
   - {fileID: 1629938181}
+  - {fileID: 722295297}
   m_Father: {fileID: 2067078553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -17228,7 +17472,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17365,7 +17609,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18341,8 +18585,8 @@ RectTransform:
   - {fileID: 250397108}
   - {fileID: 959360460}
   - {fileID: 2036660412}
-  - {fileID: 197629524}
   - {fileID: 698446284}
+  - {fileID: 197629524}
   m_Father: {fileID: 2067078553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -18638,7 +18882,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 50
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -19151,7 +19395,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2005387609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508514119530018069}
+        m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
+        m_MethodName: OnBtnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 652647587}
+        m_TargetAssemblyTypeName: Core.GamePlay.CameraUpdates, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2005387609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19223,8 +19491,8 @@ RectTransform:
   - {fileID: 2003817664}
   - {fileID: 1900216855}
   - {fileID: 563476622}
-  - {fileID: 1778248436}
   - {fileID: 664352125}
+  - {fileID: 1778248436}
   m_Father: {fileID: 1350180289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -19824,8 +20092,8 @@ RectTransform:
   - {fileID: 1033351208}
   - {fileID: 2127569301}
   - {fileID: 1275790774}
-  - {fileID: 2140635764}
   - {fileID: 277338007}
+  - {fileID: 2140635764}
   m_Father: {fileID: 652647586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -19880,6 +20148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2067078553}
+  - component: {fileID: 2067078554}
   m_Layer: 5
   m_Name: Apartment
   m_TagString: Untagged
@@ -19911,6 +20180,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2067078554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067078552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2687b0aaaf1a3645907761979f5d3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.ApartmentUpdates
+  Body: {fileID: 1684788216}
+  Increments:
+  - 0.1
+  - 0.1
+  - 0.1
+  UpdatePriceTxts:
+  - {fileID: 766136977}
+  - {fileID: 1731145611}
+  - {fileID: 1327424857}
+  UpdateItemLvlTxt:
+  - {fileID: 162481868}
+  - {fileID: 304634587}
+  - {fileID: 851819188}
 --- !u!1 &2078067968
 GameObject:
   m_ObjectHideFlags: 0
@@ -20365,7 +20659,7 @@ GameObject:
   - component: {fileID: 2119354233}
   - component: {fileID: 2119354232}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20523,8 +20817,8 @@ RectTransform:
   - {fileID: 30887099}
   - {fileID: 1729440422}
   - {fileID: 1511547946}
-  - {fileID: 1754388148}
   - {fileID: 1369409173}
+  - {fileID: 1754388148}
   m_Father: {fileID: 2067078553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 3494837789634b344bf461a542929786
   m_SerializeEntries:
   - m_GUID: 96724a8136111234d8af1125edbb94c1
-    m_Address: House_0
+    m_Address: House_1
     m_ReadOnly: 0
     m_SerializedLabels:
     - House
