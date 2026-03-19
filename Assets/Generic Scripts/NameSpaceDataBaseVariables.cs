@@ -64,6 +64,31 @@ namespace Core.DB.Variables
         }
     }
 
+    public class DBFloat
+    {
+        public string PrefName;
+        public float DefaultValue;
+        public float Value
+        {
+            get => PlayerPrefs.GetFloat(PrefName, DefaultValue);
+            set
+            {
+                PlayerPrefs.SetFloat(PrefName, value);
+                PlayerPrefs.Save();
+            }
+        }
+        public DBFloat(string name, float defaultValue = 0f)
+        {
+            PrefName = name;
+            DefaultValue = defaultValue;
+            // Initialize only once
+            if (!PlayerPrefs.HasKey(PrefName))
+            {
+                PlayerPrefs.SetFloat(PrefName, DefaultValue);
+                PlayerPrefs.Save();
+            }
+        }
+    }
 
     public static class DBVariablesHolder
     {
@@ -74,6 +99,7 @@ namespace Core.DB.Variables
         public static DBString LastDate = new DBString("LastDate", DateTime.MinValue.ToString());
 
         //---------------------Currencies Data -------------------  
+        public static DBFloat CashWallet = new DBFloat("CashWallet", 0);       
         public static DBInt GoldWallet = new DBInt("GoldWallet", 0);       
         public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);       
 
@@ -95,10 +121,12 @@ namespace Core.DB.Variables
 
         //---------------------Game Flow --------------------------
         public static DBInt FFT = new DBInt("FFT", 0);
-        public static DBInt CurrentMap = new DBInt("CurrentMap", 0);
+        public static DBInt CurrentMap = new DBInt("CurrentMap", 1);
+        public static DBInt CharismaLvl = new DBInt("CharismaLvl", 1);
+        public static DBInt EruditionLvl = new DBInt("EruditionLvl", 1);
+        public static DBInt WitLvl = new DBInt("WitLvl", 1);
         public static DBInt GroundLvl = new DBInt("GroundLvl", 0);
         public static DBInt HouseLvl = new DBInt("HouseLvl", 0);
-        public static DBInt BackyardLvl = new DBInt("BackyardLvl", 0);
         public static DBInt VehicleLvl = new DBInt("VehicleLvl", 0);
         public static DBInt StatueLvl = new DBInt("StatueLvl", 0);
         public static DBInt CameraLvl = new DBInt("CameraLvl", 0);
@@ -106,6 +134,7 @@ namespace Core.DB.Variables
         public static DBInt MicrophoneLvl = new DBInt("MicrophoneLvl", 0);
         public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
         public static DBInt StoryProgress = new DBInt("StoryProgress", 0);
+        public static DBFloat BasicIncome = new DBFloat("BasicIncome", 0.1f);
     }
 
     public static class DBVariableDictionariesHolder

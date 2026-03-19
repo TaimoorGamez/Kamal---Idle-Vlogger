@@ -1,5 +1,4 @@
 using Core.Events;
-using UnityEngine;
 using Core.DB.Variables;
 
 namespace Core.Economy
@@ -11,18 +10,18 @@ namespace Core.Economy
         {
             get
             {
-                return PlayerPrefs.GetFloat("CashWallet",0);
+                return DBVariablesHolder.CashWallet.Value;
             }
             set
             {
-                if (value > PlayerPrefs.GetFloat("CashWallet", 0))
+                if (value > DBVariablesHolder.CashWallet.Value)
                 {
                 }
-                else if (value < PlayerPrefs.GetFloat("CashWallet", 0))
+                else if (value < DBVariablesHolder.CashWallet.Value)
                 {
                     //DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value)
                 }
-                PlayerPrefs.SetFloat("CashWallet", value);
+                DBVariablesHolder.CashWallet.Value = value;
                 SimpleEventsHolder.UpdateCashTxtEvent?.Invoke();
             }
         }

@@ -18,8 +18,8 @@ namespace Core.GamePlay
         [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, CameraPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int SpriteChangeCount = 20, _currentHouse, _currentBackyard, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
-        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _basicIncome = 0.01f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f;
+        int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
+        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
@@ -245,7 +245,7 @@ namespace Core.GamePlay
             int hundreds = Subscribers.Amount / 100;
             float subscriberIncome = hundreds * 0.01f;
 
-            return _basicIncome + subscriberIncome;
+            return DBVariablesHolder.BasicIncome.Value + subscriberIncome;
         }
 
     }
