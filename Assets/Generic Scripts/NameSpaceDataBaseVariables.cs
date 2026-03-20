@@ -124,6 +124,7 @@ namespace Core.DB.Variables
         public static DBInt CurrentMap = new DBInt("CurrentMap", 1);
         public static DBInt CharismaLvl = new DBInt("CharismaLvl", 1);
         public static DBInt EruditionLvl = new DBInt("EruditionLvl", 1);
+        public static DBInt ImprovisationLvl = new DBInt("ImprovisationLvl", 1);
         public static DBInt WitLvl = new DBInt("WitLvl", 1);
         public static DBInt CameraLvl = new DBInt("CameraLvl", 1);
         public static DBInt TripodLvl = new DBInt("TripodLvl", 1);

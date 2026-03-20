@@ -21,7 +21,7 @@ namespace Core.Screen
 
         void UpdateCashText()
         {
-            CurrencyTxt.text = CashCurrency.Amount.ToString("F2");
+            CurrencyTxt.text = CashCurrency.Amount.ToString("F0");
         }
     }
 }

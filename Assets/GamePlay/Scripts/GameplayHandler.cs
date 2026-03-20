@@ -38,10 +38,10 @@ namespace Core.GamePlay
 
         void LoadHouse()
         {
-            _currentHouse = DBVariablesHolder.HouseLvl.Value / SpriteChangeCount;
+            _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount)+1;
             string key = $"House_{_currentHouse}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[_currentHouse];
+            HouseImg.transform.position = HousePositions[_currentHouse-1];
         }
         void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -66,10 +66,10 @@ namespace Core.GamePlay
 
         void LoadVehicle()
         {
-            _currentVehicle = DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount;
+            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount)+1;
             string key = $"Vehicle_{_currentVehicle}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[_currentVehicle];
+            VehicleImg.transform.position = VehiclePositions[_currentVehicle-1];
         }
         void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -94,10 +94,10 @@ namespace Core.GamePlay
 
         void LoadStatue()
         {
-            _currentStatue = DBVariablesHolder.StatueLvl.Value / SpriteChangeCount;
+            _currentStatue = (DBVariablesHolder.StatueLvl.Value / SpriteChangeCount)+1;
             string key = $"Statue_{_currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
-            StatueImg.transform.position = StatuePositions[_currentStatue];
+            StatueImg.transform.position = StatuePositions[_currentStatue - 1];
         }
         void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -122,10 +122,10 @@ namespace Core.GamePlay
 
         void LoadCamera()
         {
-            _currentCamera = DBVariablesHolder.CameraLvl.Value / SpriteChangeCount;
+            _currentCamera = (DBVariablesHolder.CameraLvl.Value / SpriteChangeCount)+1;
             string key = $"Camera_{_currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
-            CameraImg.transform.position = CameraPositions[_currentCamera];
+            CameraImg.transform.position = CameraPositions[_currentCamera - 1];
         }
         void OnCameraLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -144,16 +144,16 @@ namespace Core.GamePlay
             }
             else
             {
-                Debug.Log("Statue load failed!");
+                Debug.Log("Camera load failed!");
             }
         }
 
         void LoadTripod()
         {
-            _currentTripod = DBVariablesHolder.TripodLvl.Value / SpriteChangeCount;
+            _currentTripod = (DBVariablesHolder.TripodLvl.Value / SpriteChangeCount) + 1;
             string key = $"Tripod_{_currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
-            TripodImg.transform.position = TripodPositions[_currentTripod];
+            TripodImg.transform.position = TripodPositions[_currentTripod - 1];
         }
         void OnTripodLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -172,7 +172,7 @@ namespace Core.GamePlay
             }
             else
             {
-                Debug.Log("Statue load failed!");
+                Debug.Log("Tripod load failed!");
             }
         }
 
@@ -234,7 +234,7 @@ namespace Core.GamePlay
                     IncomeTxt.color = Color.black;
                 }
                 income *= _tappedMultipler;
-                IncomeTxt.text = $"{income:F3}/s";
+                IncomeTxt.text = $"{income:F2}/s";
                 CashCurrency.Amount += income;
                 yield return new WaitForSecondsRealtime(_perSecond);
             }

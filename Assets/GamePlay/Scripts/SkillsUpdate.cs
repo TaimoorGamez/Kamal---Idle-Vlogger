@@ -11,7 +11,8 @@ namespace Core.GamePlay
             base.OnEnable();
             UpdateCost(0, DBVariablesHolder.CharismaLvl.Value);
             UpdateCost(1, DBVariablesHolder.EruditionLvl.Value);
-            UpdateCost(2, DBVariablesHolder.WitLvl.Value);
+            UpdateCost(2, DBVariablesHolder.ImprovisationLvl.Value);
+            UpdateCost(3, DBVariablesHolder.WitLvl.Value);
         }
 
         public override void UpdateItem(int itemIndex)
@@ -49,13 +50,28 @@ namespace Core.GamePlay
                     break;
 
                 case 2:
-                    lvl = DBVariablesHolder.WitLvl.Value;
+                    lvl = DBVariablesHolder.ImprovisationLvl.Value;
                     cost = GetCost(lvl);
 
                     if (CashCurrency.Amount >= cost)
                     {
                         CashCurrency.Amount -= cost;
                         DBVariablesHolder.BasicIncome.Value += Increments[2];
+                        DBVariablesHolder.ImprovisationLvl.Value++;
+                        UpdateCost(itemIndex, lvl + 1);
+                        return;
+                    }
+                    break;
+
+
+                case 3:
+                    lvl = DBVariablesHolder.WitLvl.Value;
+                    cost = GetCost(lvl);
+
+                    if (CashCurrency.Amount >= cost)
+                    {
+                        CashCurrency.Amount -= cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[3];
                         DBVariablesHolder.WitLvl.Value++;
                         UpdateCost(itemIndex, lvl + 1);
                         return;
