@@ -12,6 +12,8 @@ namespace Core.GamePlay
             UpdateCost(0, DBVariablesHolder.HouseLvl.Value);
             UpdateCost(1, DBVariablesHolder.VehicleLvl.Value);
             UpdateCost(2, DBVariablesHolder.StatueLvl.Value);
+            UpdateCost(3, DBVariablesHolder.BackyardLvl.Value);
+            UpdateCost(4, DBVariablesHolder.GroundLvl.Value);
         }
 
         public override void UpdateItem(int itemIndex)
@@ -57,6 +59,34 @@ namespace Core.GamePlay
                         CashCurrency.Amount -= cost;
                         DBVariablesHolder.BasicIncome.Value += Increments[2];
                         DBVariablesHolder.StatueLvl.Value++;
+                        UpdateCost(itemIndex, lvl + 1);
+                        return;
+                    }
+                    break;
+
+                case 3:
+                    lvl = DBVariablesHolder.BackyardLvl.Value;
+                    cost = GetCost(lvl);
+
+                    if (CashCurrency.Amount >= cost)
+                    {
+                        CashCurrency.Amount -= cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[3];
+                        DBVariablesHolder.BackyardLvl.Value++;
+                        UpdateCost(itemIndex, lvl + 1);
+                        return;
+                    }
+                    break;
+
+                case 4:
+                    lvl = DBVariablesHolder.GroundLvl.Value;
+                    cost = GetCost(lvl);
+
+                    if (CashCurrency.Amount >= cost)
+                    {
+                        CashCurrency.Amount -= cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[4];
+                        DBVariablesHolder.GroundLvl.Value++;
                         UpdateCost(itemIndex, lvl + 1);
                         return;
                     }

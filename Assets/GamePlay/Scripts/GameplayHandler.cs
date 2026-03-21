@@ -13,12 +13,12 @@ namespace Core.GamePlay
     {
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
-        [SerializeField] SpriteRenderer HouseImg, VehicleImg, StatueImg, CameraImg, TripodImg;
+        [SerializeField] SpriteRenderer HouseImg, VehicleImg, BackyardImg, StatueImg, CameraImg, TripodImg;
         [SerializeField] TextMeshProUGUI IncomeTxt;
         [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, CameraPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentStatue, _currentCamera, _currentTripod;
+        int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentCamera, _currentTripod;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
@@ -29,6 +29,7 @@ namespace Core.GamePlay
             McAnimator.SetTrigger("Default");
             LoadHouse();
             LoadVehicle();
+            LoadBackyard();
             LoadStatue();
             LoadCamera();
             LoadTripod();
@@ -89,6 +90,34 @@ namespace Core.GamePlay
             else
             {
                 Debug.Log("Vehicle load failed!");
+            }
+        }
+
+        void LoadBackyard()
+        {
+            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount)+1;
+            string key = $"Backyard_{_currentBackyard}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
+            BackyardImg.transform.position = BackyardPositions[_currentBackyard - 1];
+        }
+        void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                BackyardImg.sprite = handle.Result;
+                Material mat = BackyardImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                BackyardImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Backyard load failed!");
             }
         }
 

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VehicleMaterial
+  m_Name: TripodMaterial
   m_Shader: {fileID: 4800000, guid: 86fd8c3aed08d654286c8f4a3b008911, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

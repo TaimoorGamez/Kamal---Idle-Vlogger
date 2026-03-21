@@ -136,6 +136,7 @@ namespace Core.DB.Variables
         public static DBInt GroundLvl = new DBInt("GroundLvl", 1);
         public static DBInt VehicleLvl = new DBInt("VehicleLvl", 1);
         public static DBInt StatueLvl = new DBInt("StatueLvl", 1);
+        public static DBInt BackyardLvl = new DBInt("BackyardLvl", 1);
         public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
         public static DBInt StoryProgress = new DBInt("StoryProgress", 0);
         public static DBFloat BasicIncome = new DBFloat("BasicIncome", 0.1f);
