@@ -11189,7 +11189,7 @@ Transform:
   m_GameObject: {fileID: 811109044}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -1.1, z: 0}
+  m_LocalPosition: {x: 1.1, y: -1.8, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11221,7 +11221,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a00363315158dd4890e49c7aa19eb12, type: 2}
+  - {fileID: 2100000, guid: e6c863672bb8ee14c83dbe78796ba7a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11242,7 +11242,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1579419637
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2cbb5e1fc6c8cbd479c979d0fc9fc012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15225,7 +15225,9 @@ MonoBehaviour:
   VehicleImg: {fileID: 293105122}
   BackyardImg: {fileID: 487461024}
   StatueImg: {fileID: 1194833318}
+  WatchImg: {fileID: 2005872800}
   CameraImg: {fileID: 314697142}
+  MicrophoneImg: {fileID: 811109046}
   TripodImg: {fileID: 1997679199}
   IncomeTxt: {fileID: 4642330911178025938}
   HousePositions:
@@ -15236,8 +15238,12 @@ MonoBehaviour:
   - {x: 2.75, y: -1.1}
   StatuePositions:
   - {x: 1.5, y: -5}
+  WatchPositions:
+  - {x: 0, y: 0}
   CameraPositions:
   - {x: 1.4, y: -1.17}
+  MicPositions:
+  - {x: 1.1, y: -1.8}
   TripodPositions:
   - {x: 1.5, y: -2}
   BaseStreamAnimation:
@@ -23924,6 +23930,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005387606}
   m_CullTransparentMesh: 1
+--- !u!212 &2005872800 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6123138534271614967, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+  m_PrefabInstance: {fileID: 1570655817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2025996319
 GameObject:
   m_ObjectHideFlags: 0

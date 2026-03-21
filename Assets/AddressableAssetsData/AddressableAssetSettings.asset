@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: dfe8a74ba18ce114d92af99bbbafee6d
   m_currentHash:
     serializedVersion: 2
-    Hash: 36546f2de474da47e4867286ee3743f8
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -64,6 +64,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76d7075f3a8255a4b92fe28a0e2f5bac, type: 2}
   - {fileID: 11400000, guid: 466c0254b79be7a4987047f0a4be7c10, type: 2}
   - {fileID: 11400000, guid: 6b3b374d4dd2a444592c961606373d5d, type: 2}
+  - {fileID: 11400000, guid: 134a0df2f46ccc64abf774e7ce62f805, type: 2}
+  - {fileID: 11400000, guid: 49ddbdfda68343143a7118b4a1a158b6, type: 2}
   - {fileID: 11400000, guid: e929a2c5831fe0249999099d022c93bb, type: 2}
   - {fileID: 11400000, guid: 49b6a6ea10ebde34084e0c849403437f, type: 2}
   - {fileID: 11400000, guid: 77a737f1cdf5c614d92460486c0eea4e, type: 2}
@@ -116,6 +118,8 @@ MonoBehaviour:
     - Statue
     - Camera
     - Tripod
+    - Microphone
+    - Watch
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 8a3dea8bfef544c40afef856c576c446, type: 2}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Backyard
+  m_Name: Backyards
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Backyard
+  m_GroupName: Backyards
   m_GUID: 53b2e0884b9efe548a6f56ba8253a3a5
   m_SerializeEntries:
   - m_GUID: 9ab3142bc9e324b4a98776be97914584

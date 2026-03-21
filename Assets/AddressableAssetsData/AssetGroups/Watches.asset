@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Watches
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Watches
+  m_GUID: 48bed6082f9fb6e4db65df7f67ef8fea
+  m_SerializeEntries:
+  - m_GUID: 292c79c6ba17a2340b9e1eaa754b9e6a
+    m_Address: Watch_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Watch
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 993a01be53fc9d34893b722d6a82a2c7, type: 2}
+    - {fileID: 11400000, guid: e5c68983f9310f241ad4787a539edddc, type: 2}

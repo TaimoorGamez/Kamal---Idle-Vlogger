@@ -13,12 +13,13 @@ namespace Core.GamePlay
     {
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
-        [SerializeField] SpriteRenderer HouseImg, VehicleImg, BackyardImg, StatueImg, CameraImg, TripodImg;
+        [SerializeField] SpriteRenderer HouseImg, VehicleImg, BackyardImg, StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
         [SerializeField] TextMeshProUGUI IncomeTxt;
-        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, CameraPositions, TripodPositions;
+        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, WatchPositions, CameraPositions,
+                                    MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentCamera, _currentTripod;
+        int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
@@ -31,7 +32,9 @@ namespace Core.GamePlay
             LoadVehicle();
             LoadBackyard();
             LoadStatue();
+            LoadWatch();
             LoadCamera();
+            LoadMicrophone();
             LoadTripod();
             StartStreaming();
         }
@@ -149,6 +152,34 @@ namespace Core.GamePlay
             }
         }
 
+        void LoadWatch()
+        {
+            _currentWatch = (DBVariablesHolder.WatchLvl.Value / SpriteChangeCount)+1;
+            string key = $"Watch_{_currentWatch}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
+            WatchImg.transform.localPosition = WatchPositions[_currentWatch - 1];
+        }
+        void OnWatchLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                WatchImg.sprite = handle.Result;
+                Material mat = WatchImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                WatchImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Watch load failed!");
+            }
+        }
+
         void LoadCamera()
         {
             _currentCamera = (DBVariablesHolder.CameraLvl.Value / SpriteChangeCount)+1;
@@ -202,6 +233,34 @@ namespace Core.GamePlay
             else
             {
                 Debug.Log("Tripod load failed!");
+            }
+        }
+
+        void LoadMicrophone()
+        {
+            _currentMic = (DBVariablesHolder.MicrophoneLvl.Value / SpriteChangeCount) + 1;
+            string key = $"Microphone_{_currentMic}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
+            MicrophoneImg.transform.position = MicPositions[_currentMic-1];
+        }
+        void OnMicrophoneLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                MicrophoneImg.sprite = handle.Result;
+                Material mat = MicrophoneImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                MicrophoneImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, _revealDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Microphone load failed!");
             }
         }
 
