@@ -14,13 +14,18 @@ namespace Core.GamePlay
 
         int _startingCost = 1;
         float _costMultiplier = 1.45f, _sizeTween = 0.25f;
-        PriceHandler[] PriceData;
+        
+        protected PriceHandler[] _priceData;
 
         protected virtual void OnEnable()
         {
             Body.DOScale(Vector3.one, _sizeTween).From(Vector3.zero).SetEase(Ease.OutBack);
-            PriceData = new PriceHandler[Increments.Length];
+            _priceData = new PriceHandler[Increments.Length];
+            UpdatePriceForAll();
         }
+
+        protected virtual void UpdatePriceForAll()
+        { }
 
         public virtual void UpdateItem(int itemIndex)
         { }
@@ -45,9 +50,8 @@ namespace Core.GamePlay
                         nextCost = GetCost(lvl+1);
                     }
                 }
-                PriceData[item].CurrentItem = item;
-                PriceData[item].Levels = nextLvls;
-                PriceData[item].Cost = cost;
+                _priceData[item].Levels = nextLvls;
+                _priceData[item].Cost = cost;
                 UpdatePriceTxts[item].text = GetCost(lvl).ToString();
                 AvailableUpdatesTxt[item].text = $"+{nextLvls} Level";
             }
@@ -68,8 +72,8 @@ namespace Core.GamePlay
         }
     }
 
-    struct PriceHandler
+    public struct PriceHandler
     {
-        public int CurrentItem, Levels, Cost;
+        public int Levels, Cost;
     }
 }

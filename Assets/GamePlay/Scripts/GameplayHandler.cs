@@ -2,6 +2,7 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine;
 using Core.Economy;
+using UnityEngine.UI;
 using Core.DB.Variables;
 using System.Collections;
 using UnityEngine.AddressableAssets;
@@ -11,6 +12,8 @@ namespace Core.GamePlay
 {
     public class GameplayHandler : MonoBehaviour
     {
+        [SerializeField] RectTransform MaxLvlToggleIcon;
+        [SerializeField] Image MaxLvlToggleBar;
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
         [SerializeField] SpriteRenderer HouseImg, VehicleImg, BackyardImg, StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
@@ -20,7 +23,7 @@ namespace Core.GamePlay
         [SerializeField] string[] BaseStreamAnimation;
 
         int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
-        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f;
+        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
@@ -334,6 +337,22 @@ namespace Core.GamePlay
             float subscriberIncome = hundreds * 0.01f;
 
             return DBVariablesHolder.BasicIncome.Value + subscriberIncome;
+        }
+
+        public void ToggleMaxLvl()
+        {
+            if(DBVariablesHolder.MaxLevels.Value == 0)
+            {
+                DBVariablesHolder.MaxLevels.Value = 1;
+                MaxLvlToggleIcon.DOAnchorPosX(_maxLvlToggleAnchor, _revealDuration).SetEase(Ease.InOutBack);
+                MaxLvlToggleBar.DOBlendableColor(Color.green, _revealDuration);
+            }
+            else
+            {
+                DBVariablesHolder.MaxLevels.Value = 0;
+                MaxLvlToggleIcon.DOAnchorPosX(-_maxLvlToggleAnchor, _revealDuration).SetEase(Ease.InOutBack);
+                MaxLvlToggleBar.DOBlendableColor(Color.clear, _revealDuration);
+            }
         }
 
     }

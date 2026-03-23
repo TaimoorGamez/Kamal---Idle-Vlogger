@@ -9,6 +9,10 @@ namespace Core.GamePlay
         protected override void OnEnable()
         {
             base.OnEnable();
+        }
+
+        protected override void UpdatePriceForAll()
+        {
             UpdateCost(0, DBVariablesHolder.HouseLvl.Value);
             UpdateCost(1, DBVariablesHolder.VehicleLvl.Value);
             UpdateCost(2, DBVariablesHolder.StatueLvl.Value);
@@ -18,20 +22,25 @@ namespace Core.GamePlay
 
         public override void UpdateItem(int itemIndex)
         {
-
             int cost = -1, lvl = -1;
             switch (itemIndex)
             {
                 case 0:
                     lvl = DBVariablesHolder.HouseLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[0];
-                        DBVariablesHolder.HouseLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.HouseLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.HouseLvl.Value);
+                        }
                         return;
                     }
                     break;
@@ -39,13 +48,19 @@ namespace Core.GamePlay
                 case 1:
                     lvl = DBVariablesHolder.VehicleLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[1];
-                        DBVariablesHolder.VehicleLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.VehicleLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.VehicleLvl.Value);
+                        }
                         return;
                     }
                     break;
@@ -53,13 +68,19 @@ namespace Core.GamePlay
                 case 2:
                     lvl = DBVariablesHolder.StatueLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[2];
-                        DBVariablesHolder.StatueLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.StatueLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.StatueLvl.Value);
+                        }
                         return;
                     }
                     break;
@@ -67,13 +88,19 @@ namespace Core.GamePlay
                 case 3:
                     lvl = DBVariablesHolder.BackyardLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[3];
-                        DBVariablesHolder.BackyardLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.BackyardLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.BackyardLvl.Value);
+                        }
                         return;
                     }
                     break;
@@ -81,13 +108,19 @@ namespace Core.GamePlay
                 case 4:
                     lvl = DBVariablesHolder.GroundLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[4];
-                        DBVariablesHolder.GroundLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.GroundLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.GroundLvl.Value);
+                        }
                         return;
                     }
                     break;

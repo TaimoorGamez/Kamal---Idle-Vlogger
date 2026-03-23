@@ -9,6 +9,10 @@ namespace Core.GamePlay
         protected override void OnEnable()
         {
             base.OnEnable();
+        }
+
+        protected override void UpdatePriceForAll()
+        {
             UpdateCost(0, DBVariablesHolder.CameraLvl.Value);
             UpdateCost(1, DBVariablesHolder.TripodLvl.Value);
             UpdateCost(2, DBVariablesHolder.MicrophoneLvl.Value);
@@ -16,20 +20,25 @@ namespace Core.GamePlay
 
         public override void UpdateItem(int itemIndex)
         {
-
             int cost = -1, lvl = -1;
             switch (itemIndex)
             {
                 case 0:
                     lvl = DBVariablesHolder.CameraLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[0];
-                        DBVariablesHolder.CameraLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.CameraLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.CameraLvl.Value);
+                        }
                         return;
                     }
                     break;
@@ -37,13 +46,19 @@ namespace Core.GamePlay
                 case 1:
                     lvl = DBVariablesHolder.TripodLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[1];
-                        DBVariablesHolder.TripodLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.TripodLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.TripodLvl.Value);
+                        }
                         return;
                     }
                     break;
@@ -51,13 +66,19 @@ namespace Core.GamePlay
                 case 2:
                     lvl = DBVariablesHolder.MicrophoneLvl.Value;
                     cost = GetCost(lvl);
-
-                    if (CashCurrency.Amount >= cost)
+                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
                     {
-                        CashCurrency.Amount -= cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[2];
-                        DBVariablesHolder.MicrophoneLvl.Value++;
-                        UpdateCost(itemIndex, lvl + 1);
+                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
+                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
+                        DBVariablesHolder.MicrophoneLvl.Value += _priceData[itemIndex].Levels;
+                        if (DBVariablesHolder.MaxLevels.Value > 0)
+                        {
+                            UpdatePriceForAll();
+                        }
+                        else
+                        {
+                            UpdateCost(itemIndex, DBVariablesHolder.MicrophoneLvl.Value);
+                        }
                         return;
                     }
                     break;
