@@ -49,7 +49,7 @@ namespace Core.GamePlay
                 PriceData[item].Levels = nextLvls;
                 PriceData[item].Cost = cost;
                 UpdatePriceTxts[item].text = GetCost(lvl).ToString();
-                AvailableUpdatesTxt[item].text = $"Available: {nextLvls}";
+                AvailableUpdatesTxt[item].text = $"+{nextLvls} Level";
             }
             else
             {
