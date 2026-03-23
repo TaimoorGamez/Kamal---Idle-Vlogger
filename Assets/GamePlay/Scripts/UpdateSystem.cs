@@ -1,6 +1,8 @@
 using TMPro;
-using DG.Tweening;
 using UnityEngine;
+using DG.Tweening;
+using Core.Economy;
+using Core.DB.Variables;
 
 namespace Core.GamePlay
 {
@@ -8,14 +10,16 @@ namespace Core.GamePlay
     {
         [SerializeField] protected Transform Body;
         [SerializeField] protected float[] Increments;
-        [SerializeField] protected TextMeshProUGUI[] UpdatePriceTxts, UpdateItemLvlTxt;
+        [SerializeField] protected TextMeshProUGUI[] UpdatePriceTxts, UpdateItemLvlTxt, AvailableUpdatesTxt;
 
         int _startingCost = 1;
         float _costMultiplier = 1.45f, _sizeTween = 0.25f;
+        PriceHandler[] PriceData;
 
         protected virtual void OnEnable()
         {
             Body.DOScale(Vector3.one, _sizeTween).From(Vector3.zero).SetEase(Ease.OutBack);
+            PriceData = new PriceHandler[Increments.Length];
         }
 
         public virtual void UpdateItem(int itemIndex)
@@ -26,7 +30,26 @@ namespace Core.GamePlay
             if (!AnyRestriction())
             {
                 UpdateItemLvlTxt[item].text = $"Level: {lvl}";
+                int cost = GetCost(lvl);
+                int nextLvls = 1;
+                if (DBVariablesHolder.MaxLevels.Value > 0) 
+                {
+                    int nextCost = GetCost(lvl+1);
+                    float availableCash = CashCurrency.Amount-cost;
+                    while (availableCash > nextCost) 
+                    {
+                        availableCash -= nextCost;
+                        cost += nextCost;
+                        lvl++;
+                        nextLvls++;
+                        nextCost = GetCost(lvl+1);
+                    }
+                }
+                PriceData[item].CurrentItem = item;
+                PriceData[item].Levels = nextLvls;
+                PriceData[item].Cost = cost;
                 UpdatePriceTxts[item].text = GetCost(lvl).ToString();
+                AvailableUpdatesTxt[item].text = $"Available: {nextLvls}";
             }
             else
             {
@@ -43,5 +66,10 @@ namespace Core.GamePlay
         {
             return false;
         }
+    }
+
+    struct PriceHandler
+    {
+        public int CurrentItem, Levels, Cost;
     }
 }
