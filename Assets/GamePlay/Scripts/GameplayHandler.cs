@@ -17,14 +17,13 @@ namespace Core.GamePlay
         [SerializeField] Image MaxLvlToggleBar;
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
-        [SerializeField] SpriteRenderer HouseImg, VehicleImg, BackyardImg, StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
+        [SerializeField] SpriteRenderer StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
         [SerializeField] TextMeshProUGUI IncomeTxt;
-        [SerializeField] Vector2[] HousePositions, BackyardPositions, VehiclePositions, StatuePositions, WatchPositions, CameraPositions,
-                                    MicPositions, TripodPositions;
+        [SerializeField] Vector2[] StatuePositions, WatchPositions, CameraPositions, MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
-        float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20;
+        int _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
+        float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
@@ -32,100 +31,12 @@ namespace Core.GamePlay
         public void CountinueGameplay()
         {
             McAnimator.SetTrigger("Default");
-            LoadHouse();
-            LoadVehicle();
-            LoadBackyard();
             LoadStatue();
             LoadWatch();
             LoadCamera();
             LoadMicrophone();
             LoadTripod();
             StartStreaming();
-        }
-
-
-        void LoadHouse()
-        {
-            _currentHouse = (DBVariablesHolder.HouseLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
-            string key = $"House_{_currentHouse}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[_currentHouse-1];
-        }
-        void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                HouseImg.sprite = handle.Result;
-                Material mat = HouseImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                HouseImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("House load failed!");
-            }
-        }
-
-        void LoadVehicle()
-        {
-            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
-            string key = $"Vehicle_{_currentVehicle}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[_currentVehicle-1];
-        }
-        void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                VehicleImg.sprite = handle.Result;
-                Material mat = VehicleImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                VehicleImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Vehicle load failed!");
-            }
-        }
-
-        void LoadBackyard()
-        {
-            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
-            string key = $"Backyard_{_currentBackyard}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
-            BackyardImg.transform.position = BackyardPositions[_currentBackyard - 1];
-        }
-        void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                BackyardImg.sprite = handle.Result;
-                Material mat = BackyardImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                BackyardImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Backyard load failed!");
-            }
         }
 
         void LoadStatue()
@@ -142,12 +53,12 @@ namespace Core.GamePlay
                 StatueImg.sprite = handle.Result;
                 Material mat = StatueImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                StatueImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                StatueImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
+                    1f, GameManager.Instance.UpdatingAnimationDuration);
                 });
             }
             else
@@ -170,12 +81,12 @@ namespace Core.GamePlay
                 WatchImg.sprite = handle.Result;
                 Material mat = WatchImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                WatchImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                WatchImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
+                    1f, GameManager.Instance.UpdatingAnimationDuration);
                 });
             }
             else
@@ -198,12 +109,12 @@ namespace Core.GamePlay
                 CameraImg.sprite = handle.Result;
                 Material mat = CameraImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                CameraImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                CameraImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
+                    1f, GameManager.Instance.UpdatingAnimationDuration);
                 });
             }
             else
@@ -226,12 +137,12 @@ namespace Core.GamePlay
                 TripodImg.sprite = handle.Result;
                 Material mat = TripodImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                TripodImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                TripodImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
+                    1f, GameManager.Instance.UpdatingAnimationDuration);
                 });
             }
             else
@@ -254,12 +165,12 @@ namespace Core.GamePlay
                 MicrophoneImg.sprite = handle.Result;
                 Material mat = MicrophoneImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                MicrophoneImg.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                MicrophoneImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, _revealDuration);
+                    1f, GameManager.Instance.UpdatingAnimationDuration);
                 });
             }
             else
@@ -345,14 +256,14 @@ namespace Core.GamePlay
             if(DBVariablesHolder.MaxLevels.Value == 0)
             {
                 DBVariablesHolder.MaxLevels.Value = 1;
-                MaxLvlToggleIcon.DOAnchorPosX(_maxLvlToggleAnchor, _revealDuration).SetEase(Ease.InOutBack);
-                MaxLvlToggleBar.DOBlendableColor(Color.green, _revealDuration);
+                MaxLvlToggleIcon.DOAnchorPosX(_maxLvlToggleAnchor, _maxLvlAnimationDuration).SetEase(Ease.InOutBack);
+                MaxLvlToggleBar.DOBlendableColor(Color.green, _maxLvlAnimationDuration);
             }
             else
             {
                 DBVariablesHolder.MaxLevels.Value = 0;
-                MaxLvlToggleIcon.DOAnchorPosX(-_maxLvlToggleAnchor, _revealDuration).SetEase(Ease.InOutBack);
-                MaxLvlToggleBar.DOBlendableColor(Color.clear, _revealDuration);
+                MaxLvlToggleIcon.DOAnchorPosX(-_maxLvlToggleAnchor, _maxLvlAnimationDuration).SetEase(Ease.InOutBack);
+                MaxLvlToggleBar.DOBlendableColor(Color.clear, _maxLvlAnimationDuration);
             }
             SimpleEventsHolder.UpdatePriceTxt?.Invoke();
         }

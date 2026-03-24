@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using Core.DB.Variables;
 using UnityEngine.AddressableAssets;
@@ -8,14 +9,17 @@ namespace Core.GamePlay
     public class GameManager : MonoBehaviour
     {
         public int SpriteChangeCount = 20;
+        public float UpdatingAnimationDuration = 0.25f;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
-        [SerializeField] SpriteRenderer BgImg, GroundImg;
+        [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, VehicleImg, BackyardImg;
         [SerializeField] StorylineHandler CurrentStorylineHandler;
         [SerializeField] GameplayHandler CurrentGameplayHandler;
         [SerializeField] Transform MC;
-        
-        int _currentBG, _currentGround;
+        [SerializeField] Vector2[] HousePositions, VehiclePositions, BackyardPositions;
+
+
+        int _currentBG, _currentGround, _currentHouse, _currentVehicle, _currentBackyard;
 
         public static GameManager Instance;
 
@@ -40,7 +44,9 @@ namespace Core.GamePlay
             }
             LoadBG();
             LoadGround();
-
+            LoadHouse();
+            LoadVehicle();
+            LoadBackyard();
         }
 
         void LoadBG()
@@ -78,6 +84,92 @@ namespace Core.GamePlay
                 Debug.Log("Ground load failed!");
             }
         }
+
+        void LoadHouse()
+        {
+            Debug.Log("Here");
+            _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount) + 1;
+            string key = $"House_{_currentHouse}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
+            HouseImg.transform.position = HousePositions[_currentHouse - 1];
+        }
+        void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                HouseImg.sprite = handle.Result;
+                Material mat = HouseImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                HouseImg.transform.DOScale(Vector3.one, UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, UpdatingAnimationDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("House load failed!");
+            }
+        }
+
+        void LoadVehicle()
+        {
+            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount) + 1;
+            string key = $"Vehicle_{_currentVehicle}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
+            VehicleImg.transform.position = VehiclePositions[_currentVehicle - 1];
+        }
+        void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                VehicleImg.sprite = handle.Result;
+                Material mat = VehicleImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                VehicleImg.transform.DOScale(Vector3.one, UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, UpdatingAnimationDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Vehicle load failed!");
+            }
+        }
+
+        void LoadBackyard()
+        {
+            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount) + 1;
+            string key = $"Backyard_{_currentBackyard}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
+            BackyardImg.transform.position = BackyardPositions[_currentBackyard - 1];
+        }
+        void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                BackyardImg.sprite = handle.Result;
+                Material mat = BackyardImg.material;
+                mat.SetFloat("_Reveal", 0f);
+                BackyardImg.transform.DOScale(Vector3.one, UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    DOTween.To(
+                    () => mat.GetFloat("_Reveal"),
+                    x => mat.SetFloat("_Reveal", x),
+                    1f, UpdatingAnimationDuration);
+                });
+            }
+            else
+            {
+                Debug.Log("Backyard load failed!");
+            }
+        }
+
 
         public void StartGame()
         {

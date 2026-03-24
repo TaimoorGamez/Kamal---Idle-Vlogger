@@ -1767,7 +1767,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 502990984}
+  m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &293105122
 SpriteRenderer:
@@ -3303,7 +3303,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 502990984}
+  m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &487461024
 SpriteRenderer:
@@ -3393,9 +3393,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1485845329}
-  - {fileID: 293105121}
-  - {fileID: 487461023}
   - {fileID: 1194833317}
   - {fileID: 314697141}
   - {fileID: 1997679198}
@@ -4465,10 +4462,14 @@ MonoBehaviour:
   - {fileID: 1580559747}
   - {fileID: 1106465097}
   - {fileID: 1585013222}
-  MoingWarningPanels:
+  MovingWarningPanels:
   - {fileID: 1580559746}
   - {fileID: 1106465096}
   - {fileID: 1585013219}
+  ItemsNames:
+  - Camera_UpgradeState
+  - Tripod_UpgradeState
+  - Microphone_UpgradeState
 --- !u!1 &653357698
 GameObject:
   m_ObjectHideFlags: 0
@@ -6525,11 +6526,16 @@ MonoBehaviour:
   - {fileID: 1955833204}
   - {fileID: 2085725129}
   - {fileID: 1578209756}
-  MoingWarningPanels:
+  MovingWarningPanels:
   - {fileID: 1131345025}
   - {fileID: 1955833203}
   - {fileID: 2085725128}
   - {fileID: 1578209753}
+  ItemsNames:
+  - Charisma_UpgradeState
+  - Erudition_UpgradeState
+  - Improvisation_UpgradeState
+  - Wit_UpgradeState
 --- !u!114 &1038054102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4588444335830447217, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
@@ -6862,14 +6868,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.GameManager
   SpriteChangeCount: 20
+  UpdatingAnimationDuration: 0.25
   GameplayEnvironment: {fileID: 502990983}
   GameplayUI: {fileID: 1136529010}
   StorylineUI: {fileID: 1185115378}
   BgImg: {fileID: 965588182}
   GroundImg: {fileID: 1977111292}
+  HouseImg: {fileID: 1485845330}
+  VehicleImg: {fileID: 293105122}
+  BackyardImg: {fileID: 487461024}
   CurrentStorylineHandler: {fileID: 505403841}
   CurrentGameplayHandler: {fileID: 1149497271}
   MC: {fileID: 1570655818}
+  HousePositions:
+  - {x: -0.5, y: -0.5}
+  BackyardPositions:
+  - {x: -2, y: 0}
+  VehiclePositions:
+  - {x: 2.75, y: -1.1}
 --- !u!4 &1070337508
 Transform:
   m_ObjectHideFlags: 0
@@ -7670,6 +7686,9 @@ Transform:
   m_Children:
   - {fileID: 965588181}
   - {fileID: 1977111291}
+  - {fileID: 1485845329}
+  - {fileID: 293105121}
+  - {fileID: 487461023}
   - {fileID: 502990984}
   - {fileID: 1570655818}
   - {fileID: 1319645638}
@@ -7692,9 +7711,6 @@ MonoBehaviour:
   MaxLvlToggleBar: {fileID: 895594754}
   McTalk: {fileID: 556233798}
   McAnimator: {fileID: 556233800}
-  HouseImg: {fileID: 1485845330}
-  VehicleImg: {fileID: 293105122}
-  BackyardImg: {fileID: 487461024}
   StatueImg: {fileID: 1194833318}
   WatchImg: {fileID: 2005872800}
   CameraImg: {fileID: 314697142}
@@ -8993,10 +9009,14 @@ MonoBehaviour:
   - {fileID: 997171845}
   - {fileID: 1312201902}
   - {fileID: 1518731419}
-  MoingWarningPanels:
+  MovingWarningPanels:
   - {fileID: 997171844}
   - {fileID: 1312201901}
   - {fileID: 1518731416}
+  ItemsNames:
+  - Clothes_UpgradeState
+  - Hairs_UpgradeState
+  - Watch_UpgradeState
 --- !u!114 &1350223044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4588444335830447217, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
@@ -9455,7 +9475,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 502990984}
+  m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1485845330
 SpriteRenderer:
@@ -13375,12 +13395,18 @@ MonoBehaviour:
   - {fileID: 1203401694}
   - {fileID: 2054247645}
   - {fileID: 1907266148}
-  MoingWarningPanels:
+  MovingWarningPanels:
   - {fileID: 374639785}
   - {fileID: 2003852191}
   - {fileID: 1203401693}
   - {fileID: 2054247644}
   - {fileID: 1907266145}
+  ItemsNames:
+  - House_UpgradeState
+  - Vehicle_UpgradeState
+  - Statue_UpgradeState
+  - Backyard_UpgradeState
+  - Ground_UpgradeState
 --- !u!1 &2078067968
 GameObject:
   m_ObjectHideFlags: 0

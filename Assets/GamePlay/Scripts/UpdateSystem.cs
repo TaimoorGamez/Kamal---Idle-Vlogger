@@ -1,4 +1,5 @@
 using TMPro;
+using System;
 using UnityEngine;
 using DG.Tweening;
 using Core.Events;
@@ -14,12 +15,14 @@ namespace Core.GamePlay
         [SerializeField] protected float[] Increments;
         [SerializeField] protected Image[] UpdateFillBars, TimerFillBar;
         [SerializeField] protected TextMeshProUGUI[] UpdatePriceTxts, UpdateItemLvlTxt, AvailableUpdatesTxt, UpdateTimerTxt;
-        [SerializeField] protected GameObject[] UpdatePanels, ChangeWaitingPanels, MoingWarningPanels;
+        [SerializeField] protected GameObject[] UpdatePanels, ChangeWaitingPanels, MovingWarningPanels;
+        [SerializeField] protected string[] ItemsNames;
 
         int _startingCost = 1;
-        float _costMultiplier = 1.45f, _sizeTween = 0.25f,_updateTimer = 30;
-        
+        float _costMultiplier = 1.45f, _sizeTween = 0.25f, _updateTimer = 30;
+
         protected PriceHandler[] _priceData;
+        protected UpgradeStateData[] _upgradeStates;
         protected Tween[] _timerTweens;
 
         protected virtual void OnEnable()
@@ -27,6 +30,7 @@ namespace Core.GamePlay
             SimpleEventsHolder.UpdatePriceTxt += UpdatePriceForAll;
             Body.DOScale(Vector3.one, _sizeTween).From(Vector3.zero).SetEase(Ease.OutBack);
             _priceData = new PriceHandler[Increments.Length];
+            _upgradeStates = new UpgradeStateData[Increments.Length];
             _timerTweens = new Tween[Increments.Length];
             UpdatePriceForAll();
         }
@@ -34,6 +38,14 @@ namespace Core.GamePlay
         protected virtual void OnDisable()
         {
             SimpleEventsHolder.UpdatePriceTxt -= UpdatePriceForAll;
+            for (int i = 0; i < _upgradeStates.Length; i++)
+            {
+                if (_upgradeStates[i].IsUpdating)
+                {
+                    JsonDB.Save($"{ItemsNames[i]}_UpgradeState", _upgradeStates[i]);
+                }
+            }
+
             if (_timerTweens != null)
             {
                 for (int i = 0; i < _timerTweens.Length; i++)
@@ -48,7 +60,19 @@ namespace Core.GamePlay
         }
 
         protected virtual void UpdatePriceForAll()
-        { }
+        {
+            for (int i = 0; i < _upgradeStates.Length; i++)
+            {
+                if (PlayerPrefs.HasKey($"{ItemsNames[i]}_UpgradeState"))
+                {
+                    _upgradeStates[i] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[i]}_UpgradeState");
+                }
+                else
+                {
+                    _upgradeStates[i] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+                }
+            }
+        }
 
         public virtual void UpdateItemProcess(int itemIndex, DBInt lvlData)
         {
@@ -61,6 +85,8 @@ namespace Core.GamePlay
                 lvlData.Value += _priceData[itemIndex].Levels;
                 if (lvlData.Value % GameManager.Instance.SpriteChangeCount == 0)
                 {
+                    _upgradeStates[itemIndex].IsUpdating = true;
+                    _upgradeStates[itemIndex].UpdateStartTime = DateTime.Now.ToString();
                     UpdatePanels[itemIndex].SetActive(false);
                     ChangeWaitingPanels[itemIndex].SetActive(true);
                     float currentTime = _updateTimer;
@@ -71,7 +97,7 @@ namespace Core.GamePlay
                         int seconds = Mathf.FloorToInt(currentTime % 60);
 
                         UpdateTimerTxt[itemIndex].text = $"{minutes:00}:{seconds:00}";
-                        TimerFillBar[itemIndex].fillAmount = 1-(currentTime / _updateTimer);
+                        TimerFillBar[itemIndex].fillAmount = 1 - (currentTime / _updateTimer);
                     })
                     .OnComplete(() =>
                     {
@@ -96,26 +122,26 @@ namespace Core.GamePlay
 
 
 
-        protected virtual void UpdateCost(int item, int lvl) 
+        protected virtual void UpdateCost(int item, int lvl)
         {
-            if (!AnyRestriction())
+            if (!AnyRestriction() && !_upgradeStates[item].IsUpdating)
             {
                 UpdateItemLvlTxt[item].text = $"Level: {lvl}";
                 UpdateFillBars[item].fillAmount = (float)(lvl % GameManager.Instance.SpriteChangeCount) / GameManager.Instance.SpriteChangeCount;
                 int cost = GetCost(lvl);
                 int nextLvls = 1;
-                if (DBVariablesHolder.MaxLevels.Value > 0) 
+                if (DBVariablesHolder.MaxLevels.Value > 0)
                 {
                     int targetLvl = GetNextMilestone(lvl);
-                    int nextCost = GetCost(lvl+1);
+                    int nextCost = GetCost(lvl + 1);
                     float availableCash = CashCurrency.Amount - cost;
-                    while (availableCash > nextCost && lvl < targetLvl-1) 
+                    while (availableCash > nextCost && lvl < targetLvl - 1)
                     {
                         availableCash -= nextCost;
                         cost += nextCost;
                         lvl++;
                         nextLvls++;
-                        nextCost = GetCost(lvl+1);
+                        nextCost = GetCost(lvl + 1);
                     }
                 }
                 _priceData[item].Levels = nextLvls;
@@ -123,9 +149,33 @@ namespace Core.GamePlay
                 UpdatePriceTxts[item].text = GetCost(lvl).ToString();
                 AvailableUpdatesTxt[item].text = $"+{nextLvls} Level";
             }
+            else if (_upgradeStates[item].IsUpdating)
+            {
+                UpdatePanels[item].SetActive(false);
+                ChangeWaitingPanels[item].SetActive(true);
+                TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[item].UpdateStartTime);
+                float remainingTime = _updateTimer - (float)timePassed.TotalSeconds;
+                if (remainingTime > 0)
+                {
+                    float currentTime = remainingTime;
+                    _timerTweens[item] = DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime).OnUpdate(() =>
+                    {
+                        int minutes = Mathf.FloorToInt(remainingTime / 60);
+                        int seconds = Mathf.FloorToInt(remainingTime % 60);
+                        UpdateTimerTxt[item].text = $"{minutes:00}:{seconds:00}";
+                        TimerFillBar[item].fillAmount = 1 - (remainingTime / _updateTimer);
+                    })
+                    .OnComplete(() =>
+                    {
+                        UpdatePanels[item].SetActive(true);
+                        ChangeWaitingPanels[item].SetActive(false);
+                    });
+                }
+            }
             else
             {
-                // If there is any restriction, we can set the text to "Max" or something similar
+                UpdatePanels[item].SetActive(false);
+                MovingWarningPanels[item].SetActive(true);
             }
         }
 
@@ -140,7 +190,7 @@ namespace Core.GamePlay
             return (int)(_startingCost * Mathf.Pow(_costMultiplier, level));
         }
 
-        bool AnyRestriction() 
+        bool AnyRestriction()
         {
             return false;
         }
@@ -149,5 +199,11 @@ namespace Core.GamePlay
     public struct PriceHandler
     {
         public int Levels, Cost;
+    }
+
+    public struct UpgradeStateData
+    {
+        public bool IsUpdating;
+        public string UpdateStartTime;
     }
 }
