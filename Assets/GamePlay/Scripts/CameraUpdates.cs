@@ -26,15 +26,15 @@ namespace Core.GamePlay
             switch (itemIndex)
             {
                 case 0:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.CameraLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.CameraLvl, 3, true);
                     break;
 
                 case 1:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.TripodLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.TripodLvl, 4, true);
                     break;
 
                 case 2:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.MicrophoneLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.MicrophoneLvl, 5, true);
                     break;
             }
         }

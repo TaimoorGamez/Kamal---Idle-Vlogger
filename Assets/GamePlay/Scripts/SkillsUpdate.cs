@@ -27,20 +27,20 @@ namespace Core.GamePlay
             switch (itemIndex)
             {
                 case 0:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.CharismaLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.CharismaLvl, -1, false);
                     break;
 
                 case 1:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.EruditionLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.EruditionLvl, -1, false);
                     break;
 
                 case 2:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.ImprovisationLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.ImprovisationLvl, -1, false);
                     break;
 
 
                 case 3:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.WitLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.WitLvl, -1, false);
                     break;
             }
         }

@@ -28,23 +28,23 @@ namespace Core.GamePlay
             switch (itemIndex)
             {
                 case 0:
-                    UpdateItemProcess(itemIndex,DBVariablesHolder.HouseLvl);
+                    UpdateItemProcess(itemIndex,DBVariablesHolder.HouseLvl, 6, true);
                     break;
 
                 case 1:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.VehicleLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.VehicleLvl, 7, true);
                     break;
 
                 case 2:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.StatueLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.StatueLvl, 8, true);
                     break;
 
                 case 3:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.BackyardLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.BackyardLvl, 9, true);
                     break;
 
                 case 4:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.GroundLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.GroundLvl, 10, true);
                     break;
             }
         }

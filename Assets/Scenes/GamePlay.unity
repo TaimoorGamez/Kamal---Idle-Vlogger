@@ -1232,7 +1232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -77, y: 0}
+  m_AnchoredPosition: {x: 77, y: 0}
   m_SizeDelta: {x: 140, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &246731352
@@ -3128,7 +3128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -230, y: 5}
+  m_AnchoredPosition: {x: 230, y: 5}
   m_SizeDelta: {x: 140, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &467857501
@@ -3720,7 +3720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -4227,7 +4227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 77, y: 0}
+  m_AnchoredPosition: {x: -77, y: 0}
   m_SizeDelta: {x: 140, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651516784
@@ -4915,10 +4915,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 881969364}
-  - {fileID: 651516783}
-  - {fileID: 246731351}
   - {fileID: 467857500}
+  - {fileID: 246731351}
+  - {fileID: 651516783}
+  - {fileID: 881969364}
   m_Father: {fileID: 984753544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5484,7 +5484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 230, y: 0}
+  m_AnchoredPosition: {x: -230, y: 0}
   m_SizeDelta: {x: 140, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881969365
@@ -6882,10 +6882,10 @@ MonoBehaviour:
   MC: {fileID: 1570655818}
   HousePositions:
   - {x: -0.5, y: -0.5}
-  BackyardPositions:
-  - {x: -2, y: 0}
   VehiclePositions:
   - {x: 2.75, y: -1.1}
+  BackyardPositions:
+  - {x: -2, y: 0}
 --- !u!4 &1070337508
 Transform:
   m_ObjectHideFlags: 0
@@ -7717,12 +7717,6 @@ MonoBehaviour:
   MicrophoneImg: {fileID: 811109046}
   TripodImg: {fileID: 1997679199}
   IncomeTxt: {fileID: 4642330911178025938}
-  HousePositions:
-  - {x: -0.5, y: -0.5}
-  BackyardPositions:
-  - {x: -2, y: 0}
-  VehiclePositions:
-  - {x: 2.75, y: -1.1}
   StatuePositions:
   - {x: 1.5, y: -5}
   WatchPositions:
@@ -10918,8 +10912,8 @@ RectTransform:
   - {fileID: 1282964085}
   - {fileID: 2033983365}
   - {fileID: 1009472493}
-  - {fileID: 652647586}
   - {fileID: 1350180289}
+  - {fileID: 652647586}
   - {fileID: 2067078553}
   m_Father: {fileID: 418440231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13629,7 +13623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8396069586493402097, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize
-      value: 32.9
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

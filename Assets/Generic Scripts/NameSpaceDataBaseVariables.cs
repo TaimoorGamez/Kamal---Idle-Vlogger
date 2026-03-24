@@ -25,7 +25,6 @@ namespace Core.DB.Variables
             PrefName = name;
             DefaultValue = defaultValue;
 
-            // Initialize only once
             if (!PlayerPrefs.HasKey(PrefName))
             {
                 PlayerPrefs.SetInt(PrefName, DefaultValue);
@@ -55,7 +54,6 @@ namespace Core.DB.Variables
             PrefName = name;
             DefaultValue = defaultValue;
 
-            // Initialize only once
             if (!PlayerPrefs.HasKey(PrefName))
             {
                 PlayerPrefs.SetString(PrefName, DefaultValue);
@@ -81,7 +79,7 @@ namespace Core.DB.Variables
         {
             PrefName = name;
             DefaultValue = defaultValue;
-            // Initialize only once
+
             if (!PlayerPrefs.HasKey(PrefName))
             {
                 PlayerPrefs.SetFloat(PrefName, DefaultValue);

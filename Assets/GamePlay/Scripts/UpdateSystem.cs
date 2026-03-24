@@ -74,7 +74,7 @@ namespace Core.GamePlay
             }
         }
 
-        public virtual void UpdateItemProcess(int itemIndex, DBInt lvlData)
+        public virtual void UpdateItemProcess(int itemIndex, DBInt lvlData, int eventIndex, bool canUpdateVisuals)
         {
             int lvl = lvlData.Value;
             int cost = GetCost(lvl);
@@ -83,11 +83,11 @@ namespace Core.GamePlay
                 CashCurrency.Amount -= _priceData[itemIndex].Cost;
                 DBVariablesHolder.BasicIncome.Value += Increments[itemIndex] * _priceData[itemIndex].Levels;
                 lvlData.Value += _priceData[itemIndex].Levels;
-                if (lvlData.Value % GameManager.Instance.SpriteChangeCount == 0)
+                if (lvlData.Value % GameManager.Instance.SpriteChangeCount == 0 && canUpdateVisuals)
                 {
                     _upgradeStates[itemIndex].IsUpdating = true;
                     _upgradeStates[itemIndex].UpdateStartTime = DateTime.Now.ToString();
-                    UpdatePanels[itemIndex].SetActive(false);
+                    UpdatePanels[itemIndex].SetActive(false); 
                     ChangeWaitingPanels[itemIndex].SetActive(true);
                     float currentTime = _updateTimer;
                     _timerTweens[itemIndex] = DOTween.To(() => currentTime, x => currentTime = x, 0, _updateTimer)
@@ -104,6 +104,7 @@ namespace Core.GamePlay
                         UpdatePanels[itemIndex].SetActive(true);
                         ChangeWaitingPanels[itemIndex].SetActive(false);
                     });
+                    SingleIntegerEventsHolder.UpdateItemEvent?.Invoke(eventIndex);
                 }
                 if (DBVariablesHolder.MaxLevels.Value > 0)
                 {

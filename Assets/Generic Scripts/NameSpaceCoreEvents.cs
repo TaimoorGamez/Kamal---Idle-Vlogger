@@ -43,6 +43,7 @@ namespace Core.Events
     {
         public static GameEventInteger
         //-------------------Game Flow Events-------------------
+        UpdateItemEvent,
 
         //-------------------Toast Events-------------------
         ShowToastEvent,

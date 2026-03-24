@@ -87,7 +87,6 @@ namespace Core.GamePlay
 
         void LoadHouse()
         {
-            Debug.Log("Here");
             _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount) + 1;
             string key = $"House_{_currentHouse}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;

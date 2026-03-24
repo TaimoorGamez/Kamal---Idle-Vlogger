@@ -26,15 +26,15 @@ namespace Core.GamePlay
             switch (itemIndex)
             {
                 case 0:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.ClothesLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.ClothesLvl, 0, true);
                     break;
 
                 case 1:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.HairsLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.HairsLvl, 1, true);
                     break;
 
                 case 2:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.WatchLvl);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.WatchLvl, 2, true);
                     break;
             }
         }
