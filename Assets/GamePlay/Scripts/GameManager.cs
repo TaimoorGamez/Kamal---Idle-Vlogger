@@ -7,13 +7,15 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
+        public int SpriteChangeCount = 20;
+
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
         [SerializeField] SpriteRenderer BgImg, GroundImg;
         [SerializeField] StorylineHandler CurrentStorylineHandler;
         [SerializeField] GameplayHandler CurrentGameplayHandler;
         [SerializeField] Transform MC;
-
-        int SpriteChangeCount = 20, _currentBG, _currentGround;
+        
+        int _currentBG, _currentGround;
 
         public static GameManager Instance;
 

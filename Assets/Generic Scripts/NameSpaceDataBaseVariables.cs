@@ -98,10 +98,10 @@ namespace Core.DB.Variables
         public static DBString AdBlockingTime = new DBString("AdBlockingTime", DateTime.MinValue.ToString());
         public static DBString LastDate = new DBString("LastDate", DateTime.MinValue.ToString());
 
-        //---------------------Currencies Data -------------------  
-        public static DBFloat CashWallet = new DBFloat("CashWallet", 0);       
-        public static DBInt GoldWallet = new DBInt("GoldWallet", 0);       
-        public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);       
+        //---------------------Economy Data -------------------  
+        public static DBFloat CashWallet = new DBFloat("CashWallet", 1000000);
+        public static DBInt GoldWallet = new DBInt("GoldWallet", 0);
+        public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);
 
         //---------------------Daily Tasks ------------------------
         public static DBInt Task0 = new DBInt("Task0", 0);
@@ -158,5 +158,24 @@ namespace Core.DB.Variables
         {
             { "removeads", DBVariablesHolder.RemoveAds }
         };
+    }
+
+    public static class JsonDB
+    {
+        public static void Save<T>(string key, T data)
+        {
+            string json = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString(key, json);
+            PlayerPrefs.Save();
+        }
+
+        public static T Load<T>(string key)
+        {
+            if (!PlayerPrefs.HasKey(key))
+                return default;
+
+            string json = PlayerPrefs.GetString(key);
+            return JsonUtility.FromJson<T>(json);
+        }
     }
 }

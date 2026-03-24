@@ -1,6 +1,7 @@
 using TMPro;
 using DG.Tweening;
 using UnityEngine;
+using Core.Events;
 using Core.Economy;
 using UnityEngine.UI;
 using Core.DB.Variables;
@@ -22,7 +23,7 @@ namespace Core.GamePlay
                                     MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int SpriteChangeCount = 20, _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
+        int _currentHouse, _currentVehicle, _currentBackyard, _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
         float _scaleDuration = 0.5f, _revealDuration = 0.25f, _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
@@ -45,7 +46,7 @@ namespace Core.GamePlay
 
         void LoadHouse()
         {
-            _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount)+1;
+            _currentHouse = (DBVariablesHolder.HouseLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
             string key = $"House_{_currentHouse}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
             HouseImg.transform.position = HousePositions[_currentHouse-1];
@@ -73,7 +74,7 @@ namespace Core.GamePlay
 
         void LoadVehicle()
         {
-            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount)+1;
+            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
             string key = $"Vehicle_{_currentVehicle}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
             VehicleImg.transform.position = VehiclePositions[_currentVehicle-1];
@@ -101,7 +102,7 @@ namespace Core.GamePlay
 
         void LoadBackyard()
         {
-            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount)+1;
+            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
             string key = $"Backyard_{_currentBackyard}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
             BackyardImg.transform.position = BackyardPositions[_currentBackyard - 1];
@@ -129,7 +130,7 @@ namespace Core.GamePlay
 
         void LoadStatue()
         {
-            _currentStatue = (DBVariablesHolder.StatueLvl.Value / SpriteChangeCount)+1;
+            _currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
             string key = $"Statue_{_currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
             StatueImg.transform.position = StatuePositions[_currentStatue - 1];
@@ -157,7 +158,7 @@ namespace Core.GamePlay
 
         void LoadWatch()
         {
-            _currentWatch = (DBVariablesHolder.WatchLvl.Value / SpriteChangeCount)+1;
+            _currentWatch = (DBVariablesHolder.WatchLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
             string key = $"Watch_{_currentWatch}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
             WatchImg.transform.localPosition = WatchPositions[_currentWatch - 1];
@@ -185,7 +186,7 @@ namespace Core.GamePlay
 
         void LoadCamera()
         {
-            _currentCamera = (DBVariablesHolder.CameraLvl.Value / SpriteChangeCount)+1;
+            _currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
             string key = $"Camera_{_currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
             CameraImg.transform.position = CameraPositions[_currentCamera - 1];
@@ -213,7 +214,7 @@ namespace Core.GamePlay
 
         void LoadTripod()
         {
-            _currentTripod = (DBVariablesHolder.TripodLvl.Value / SpriteChangeCount) + 1;
+            _currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount) + 1;
             string key = $"Tripod_{_currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
             TripodImg.transform.position = TripodPositions[_currentTripod - 1];
@@ -241,7 +242,7 @@ namespace Core.GamePlay
 
         void LoadMicrophone()
         {
-            _currentMic = (DBVariablesHolder.MicrophoneLvl.Value / SpriteChangeCount) + 1;
+            _currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount) + 1;
             string key = $"Microphone_{_currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
             MicrophoneImg.transform.position = MicPositions[_currentMic-1];
@@ -353,6 +354,7 @@ namespace Core.GamePlay
                 MaxLvlToggleIcon.DOAnchorPosX(-_maxLvlToggleAnchor, _revealDuration).SetEase(Ease.InOutBack);
                 MaxLvlToggleBar.DOBlendableColor(Color.clear, _revealDuration);
             }
+            SimpleEventsHolder.UpdatePriceTxt?.Invoke();
         }
 
     }

@@ -1,5 +1,3 @@
-using Core.Events;
-using Core.Economy;
 using Core.DB.Variables;
 
 namespace Core.GamePlay
@@ -11,6 +9,11 @@ namespace Core.GamePlay
             base.OnEnable();
         }
 
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+        }
+
         protected override void UpdatePriceForAll()
         {
             UpdateCost(0, DBVariablesHolder.ClothesLvl.Value);
@@ -18,73 +21,22 @@ namespace Core.GamePlay
             UpdateCost(2, DBVariablesHolder.WatchLvl.Value);
         }
 
-        public override void UpdateItem(int itemIndex)
+        public void UpdateItem(int itemIndex)
         {
-            int cost = -1, lvl = -1;
             switch (itemIndex)
             {
                 case 0:
-                    lvl = DBVariablesHolder.ClothesLvl.Value;
-                    cost = GetCost(lvl);
-                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
-                    {
-                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[0]* _priceData[itemIndex].Levels;
-                        DBVariablesHolder.ClothesLvl.Value += _priceData[itemIndex].Levels;
-                        if(DBVariablesHolder.MaxLevels.Value > 0)
-                        {
-                            UpdatePriceForAll();
-                        }
-                        else
-                        {
-                            UpdateCost(itemIndex, DBVariablesHolder.ClothesLvl.Value);
-                        }
-                        return;
-                    }
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.ClothesLvl);
                     break;
 
                 case 1:
-                    lvl = DBVariablesHolder.HairsLvl.Value;
-                    cost = GetCost(lvl);
-                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
-                    {
-                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
-                        DBVariablesHolder.HairsLvl.Value += _priceData[itemIndex].Levels;
-                        if (DBVariablesHolder.MaxLevels.Value > 0)
-                        {
-                            UpdatePriceForAll();
-                        }
-                        else
-                        {
-                            UpdateCost(itemIndex, DBVariablesHolder.HairsLvl.Value);
-                        }
-                        return;
-                    }
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.HairsLvl);
                     break;
 
                 case 2:
-                    lvl = DBVariablesHolder.WatchLvl.Value;
-                    cost = GetCost(lvl);
-                    if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
-                    {
-                        CashCurrency.Amount -= _priceData[itemIndex].Cost;
-                        DBVariablesHolder.BasicIncome.Value += Increments[0] * _priceData[itemIndex].Levels;
-                        DBVariablesHolder.WatchLvl.Value += _priceData[itemIndex].Levels;
-                        if (DBVariablesHolder.MaxLevels.Value > 0)
-                        {
-                            UpdatePriceForAll();
-                        }
-                        else
-                        {
-                            UpdateCost(itemIndex, DBVariablesHolder.WatchLvl.Value);
-                        }
-                        return;
-                    }
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.WatchLvl);
                     break;
             }
-
-            SingleIntegerEventsHolder.ShowToastEvent?.Invoke(0); // Not enough cash
         }
     }
 }
