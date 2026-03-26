@@ -9,7 +9,7 @@ namespace Core.GamePlay
         [SerializeField] SpriteResolver HeadspriteResolver;
         [SerializeField] string[] SpriteLabel;
 
-        float _delay = 0.125f;  
+        float _delay = 0.15f;  
         bool _canTalk = false;
         int _currentIndex;
         string _categoryName = "Head";

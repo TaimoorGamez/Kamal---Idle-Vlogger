@@ -9,7 +9,7 @@ namespace Core.GamePlay
     public class GameManager : MonoBehaviour
     {
         public int SpriteChangeCount = 20;
-        public float UpdatingAnimationDuration = 0.25f;
+        public float UpdateDelay = 30;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
         [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, VehicleImg, BackyardImg;
@@ -20,6 +20,7 @@ namespace Core.GamePlay
 
 
         int _currentBG, _currentGround, _currentHouse, _currentVehicle, _currentBackyard;
+        float _updatingAnimationDuration = 0.25f;
 
         public static GameManager Instance;
 
@@ -99,12 +100,12 @@ namespace Core.GamePlay
                 HouseImg.sprite = handle.Result;
                 Material mat = HouseImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                HouseImg.transform.DOScale(Vector3.one, UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                HouseImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else
@@ -127,12 +128,12 @@ namespace Core.GamePlay
                 VehicleImg.sprite = handle.Result;
                 Material mat = VehicleImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                VehicleImg.transform.DOScale(Vector3.one, UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                VehicleImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else
@@ -155,12 +156,12 @@ namespace Core.GamePlay
                 BackyardImg.sprite = handle.Result;
                 Material mat = BackyardImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                BackyardImg.transform.DOScale(Vector3.one, UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                BackyardImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else

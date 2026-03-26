@@ -207,10 +207,10 @@ MonoBehaviour:
   - 180
   - 180
   - 0
-  MC: {fileID: 556233798}
+  MC: {fileID: 999533674}
   GirlFriend: {fileID: 1522989660}
   Rohan: {fileID: 2097685935}
-  McAnimator: {fileID: 556233800}
+  McAnimator: {fileID: 999533675}
 --- !u!1 &26565870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,7 +3720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -3884,22 +3884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &556233798 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8433551263412118756, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-  m_PrefabInstance: {fileID: 1570655817}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7730f772608e4ce4ea536a1b53fe3daf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.McTalking
---- !u!95 &556233800 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 977740751759226555, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-  m_PrefabInstance: {fileID: 1570655817}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &563867975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5842,6 +5826,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895594752}
   m_CullTransparentMesh: 1
+--- !u!212 &949079034 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 416256303406897028, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+  m_PrefabInstance: {fileID: 1570655817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &965588180
 GameObject:
   m_ObjectHideFlags: 0
@@ -6429,6 +6418,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &999533674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2734505629927882709, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+  m_PrefabInstance: {fileID: 1570655817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7730f772608e4ce4ea536a1b53fe3daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.McTalking
+--- !u!95 &999533675 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8714255696385075626, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+  m_PrefabInstance: {fileID: 1570655817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009472492
 GameObject:
   m_ObjectHideFlags: 0
@@ -6868,7 +6873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.GameManager
   SpriteChangeCount: 20
-  UpdatingAnimationDuration: 0.25
+  UpdateDelay: 30
   GameplayEnvironment: {fileID: 502990983}
   GameplayUI: {fileID: 1136529010}
   StorylineUI: {fileID: 1185115378}
@@ -7709,10 +7714,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameplayHandler
   MaxLvlToggleIcon: {fileID: 335744916}
   MaxLvlToggleBar: {fileID: 895594754}
-  McTalk: {fileID: 556233798}
-  McAnimator: {fileID: 556233800}
+  McTalk: {fileID: 999533674}
+  McAnimator: {fileID: 999533675}
   StatueImg: {fileID: 1194833318}
-  WatchImg: {fileID: 2005872800}
+  WatchImg: {fileID: 949079034}
   CameraImg: {fileID: 314697142}
   MicrophoneImg: {fileID: 811109046}
   TripodImg: {fileID: 1997679199}
@@ -10009,9 +10014,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1149497270}
     m_Modifications:
+    - target: {fileID: 34590127907988779, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 34590127907988779, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 34590127907988779, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000000055343197
+      objectReference: {fileID: 0}
+    - target: {fileID: 34590127907988779, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1838088503968483306, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_Name
       value: MC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2208693690354037694, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000009613694
+      objectReference: {fileID: 0}
+    - target: {fileID: 2208693690354037694, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0023353456
       objectReference: {fileID: 0}
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10052,6 +10081,14 @@ PrefabInstance:
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093313639215969991, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4916143
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093313639215969991, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0021544187
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12844,11 +12881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!212 &2005872800 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6123138534271614967, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-  m_PrefabInstance: {fileID: 1570655817}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2014270809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4588444335830447217, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}

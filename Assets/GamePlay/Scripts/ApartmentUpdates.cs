@@ -16,6 +16,7 @@ namespace Core.GamePlay
 
         protected override void UpdatePriceForAll()
         {
+            base.UpdatePriceForAll();
             UpdateCost(0, DBVariablesHolder.HouseLvl.Value);
             UpdateCost(1, DBVariablesHolder.VehicleLvl.Value);
             UpdateCost(2, DBVariablesHolder.StatueLvl.Value);

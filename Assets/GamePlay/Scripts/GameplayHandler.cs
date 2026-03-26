@@ -23,7 +23,8 @@ namespace Core.GamePlay
         [SerializeField] string[] BaseStreamAnimation;
 
         int _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
-        float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f;
+        float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
+              _updatingAnimationDuration = 0.25f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
@@ -53,12 +54,12 @@ namespace Core.GamePlay
                 StatueImg.sprite = handle.Result;
                 Material mat = StatueImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                StatueImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                StatueImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, GameManager.Instance.UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else
@@ -81,12 +82,12 @@ namespace Core.GamePlay
                 WatchImg.sprite = handle.Result;
                 Material mat = WatchImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                WatchImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                WatchImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, GameManager.Instance.UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else
@@ -109,12 +110,12 @@ namespace Core.GamePlay
                 CameraImg.sprite = handle.Result;
                 Material mat = CameraImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                CameraImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                CameraImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, GameManager.Instance.UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else
@@ -137,12 +138,12 @@ namespace Core.GamePlay
                 TripodImg.sprite = handle.Result;
                 Material mat = TripodImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                TripodImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                TripodImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, GameManager.Instance.UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else
@@ -165,12 +166,12 @@ namespace Core.GamePlay
                 MicrophoneImg.sprite = handle.Result;
                 Material mat = MicrophoneImg.material;
                 mat.SetFloat("_Reveal", 0f);
-                MicrophoneImg.transform.DOScale(Vector3.one, GameManager.Instance.UpdatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                MicrophoneImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     DOTween.To(
                     () => mat.GetFloat("_Reveal"),
                     x => mat.SetFloat("_Reveal", x),
-                    1f, GameManager.Instance.UpdatingAnimationDuration);
+                    1f, _updatingAnimationDuration);
                 });
             }
             else

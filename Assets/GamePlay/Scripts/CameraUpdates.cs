@@ -16,6 +16,7 @@ namespace Core.GamePlay
 
         protected override void UpdatePriceForAll()
         {
+            base.UpdatePriceForAll();
             UpdateCost(0, DBVariablesHolder.CameraLvl.Value);
             UpdateCost(1, DBVariablesHolder.TripodLvl.Value);
             UpdateCost(2, DBVariablesHolder.MicrophoneLvl.Value);
