@@ -144,7 +144,7 @@ MonoBehaviour:
     m_Center: {x: 2.18602, y: 4.479999, z: 0}
     m_Extent: {x: 0.30136, y: 0.62, z: 0}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &6441285369761836599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,12 +316,12 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4517043361832170397}
   - {fileID: 2046879550341566669}
-  - {fileID: 2208693690354037694}
   - {fileID: 3985941971129923724}
+  - {fileID: 2208693690354037694}
   - {fileID: 2511759422809029563}
-  - {fileID: 2259624135426484640}
-  - {fileID: 34590127907988779}
   - {fileID: 2365816417792047920}
+  - {fileID: 34590127907988779}
+  - {fileID: 2259624135426484640}
   - {fileID: 7093313639215969991}
   - {fileID: 5867612161473731960}
   - {fileID: 2223826380002301435}
@@ -329,7 +329,7 @@ MonoBehaviour:
     m_Center: {x: 1.3600001, y: 6.5903244, z: 0.044999998}
     m_Extent: {x: 0.96000004, y: 1.766104, z: 0.015}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &5905261622458771183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,13 +468,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
   m_RootBone: {fileID: 5778444905956682691}
   m_BoneTransforms:
+  - {fileID: 5867612161473731960}
   - {fileID: 7093313639215969991}
   - {fileID: 2259624135426484640}
   m_Bounds:
     m_Center: {x: 0.46636483, y: 6.4637346, z: 0.091584206}
     m_Extent: {x: 0.41636503, y: 1.5395861, z: 0.04158421}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &6364315023169310953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,13 +833,13 @@ MonoBehaviour:
   - {fileID: 5601454902189359779}
   - {fileID: 5365304328181836441}
   - {fileID: 2223826380002301435}
-  - {fileID: 5867612161473731960}
   - {fileID: 4517043361832170397}
+  - {fileID: 5867612161473731960}
   m_Bounds:
     m_Center: {x: 1.1550002, y: 2.6705706, z: 0.04}
     m_Extent: {x: 0.6750001, y: 2.6705694, z: 0.02}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &7039313986408839553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +988,7 @@ MonoBehaviour:
     m_Center: {x: 2.0014951, y: 2.7004948, z: 0.02}
     m_Extent: {x: 0.7449953, y: 2.5418854, z: 0.01}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &6508384800497049028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1043,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4376011590288060144}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.07042833, w: 0.99751693}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0698285, w: 0.997559}
   m_LocalPosition: {x: 1.4916146, y: -0.0021544902, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1161,8 +1162,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114282739830408710}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.04677159, w: 0.9989056}
-  m_LocalPosition: {x: 1.3922563, y: -0.000000085721084, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.045064718, w: 0.99898416}
+  m_LocalPosition: {x: 1.3140297, y: -0.00000014321938, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1315,7 +1316,7 @@ MonoBehaviour:
     m_Center: {x: 0.58210003, y: 4.3916903, z: 0.15}
     m_Extent: {x: 0.38722003, y: 0.6091399, z: 0}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &8858613785344531739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,7 +1588,7 @@ MonoBehaviour:
     m_Center: {x: 2.0121098, y: 6.58886, z: 0}
     m_Extent: {x: 0.4478898, y: 1.5488601, z: 0}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &6610128305618915746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1763,7 +1764,7 @@ MonoBehaviour:
     m_Center: {x: 1.2188151, y: 8.221531, z: -0.01}
     m_Extent: {x: 0.39118508, y: 0.38847017, z: 0}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!1 &8291073937596226468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,7 +1910,7 @@ MonoBehaviour:
     m_Center: {x: 1.231315, y: 9.461715, z: 0.04}
     m_Extent: {x: 1.0986853, y: 1.2870655, z: 0}
   m_AlwaysUpdate: 0
-  m_AutoRebind: 0
+  m_AutoRebind: 1
 --- !u!114 &5038071406344021722
 MonoBehaviour:
   m_ObjectHideFlags: 0
