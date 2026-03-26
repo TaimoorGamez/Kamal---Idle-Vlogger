@@ -13,7 +13,7 @@ namespace Core.GamePlay
         [SerializeField] string[] ItemsNames;
         [SerializeField] Material ClothesMaterial, BodyMaterial;
 
-        float _updatingAnimationDuration = 0.1f, _revelAnimationDuration = 0.5f;
+        float _updatingAnimationDuration = 0.1f, _revelAnimationDuration = 0.5f, _clotesScale = 1.1f;
         string[] _categoryName = {"LeftArm", "LeftLeg", "RightLeg", "Body", "RightArm"};
         UpgradeStateData[] _upgradeStates;
 
@@ -67,7 +67,6 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 DBVariablesHolder.ClothesLvl.Value += lvls;
-                _upgradeStates[0].IsUpdating = false;
                 ClothesMaterial.SetFloat("_Reveal", 0f);
                 DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
                 UpdateClothesAnimation();
@@ -76,6 +75,7 @@ namespace Core.GamePlay
 
         void UpdateClothesAnimation()
         {
+            _upgradeStates[0].IsUpdating = false;
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
             for (int c = 0; c < McResolvers.Length; c++)
             {
@@ -83,7 +83,7 @@ namespace Core.GamePlay
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
                 Transform clotheTransform = McResolvers[c].transform;
                 clotheTransform.DOKill();
-                clotheTransform.DOScale(1.2f, _updatingAnimationDuration).SetEase(Ease.OutBack)
+                clotheTransform.DOScale(_clotesScale, _updatingAnimationDuration).SetEase(Ease.OutBack)
                     .OnComplete(() =>
                     {
                         clotheTransform.DOScale(1f, _updatingAnimationDuration).SetEase(Ease.InOutSine);

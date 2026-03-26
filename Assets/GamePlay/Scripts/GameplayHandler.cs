@@ -29,6 +29,11 @@ namespace Core.GamePlay
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
 
+        void Start()
+        {
+            ChangePriceText(DBVariablesHolder.MaxLevels.Value);
+        }
+
         public void CountinueGameplay()
         {
             McAnimator.SetTrigger("Default");
@@ -254,15 +259,19 @@ namespace Core.GamePlay
 
         public void ToggleMaxLvl()
         {
-            if(DBVariablesHolder.MaxLevels.Value == 0)
+            DBVariablesHolder.MaxLevels.Value = 1 - DBVariablesHolder.MaxLevels.Value;
+            ChangePriceText(DBVariablesHolder.MaxLevels.Value);
+        }
+
+        void ChangePriceText(int index)
+        {
+            if (DBVariablesHolder.MaxLevels.Value == 1)
             {
-                DBVariablesHolder.MaxLevels.Value = 1;
                 MaxLvlToggleIcon.DOAnchorPosX(_maxLvlToggleAnchor, _maxLvlAnimationDuration).SetEase(Ease.InOutBack);
                 MaxLvlToggleBar.DOBlendableColor(Color.green, _maxLvlAnimationDuration);
             }
             else
             {
-                DBVariablesHolder.MaxLevels.Value = 0;
                 MaxLvlToggleIcon.DOAnchorPosX(-_maxLvlToggleAnchor, _maxLvlAnimationDuration).SetEase(Ease.InOutBack);
                 MaxLvlToggleBar.DOBlendableColor(Color.clear, _maxLvlAnimationDuration);
             }

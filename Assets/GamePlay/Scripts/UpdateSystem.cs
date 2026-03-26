@@ -87,6 +87,7 @@ namespace Core.GamePlay
                     _upgradeStates[itemIndex].IsUpdating = true;
                     _upgradeStates[itemIndex].UpdateStartTime = DateTime.Now.ToString();
                     _upgradeStates[itemIndex].Levels = _priceData[itemIndex].Levels;
+                    DoubleIntegerEventHolder.UpdateItemEvent?.Invoke(eventIndex, _priceData[itemIndex].Levels);
                     UpdatePanels[itemIndex].SetActive(false); 
                     ChangeWaitingPanels[itemIndex].SetActive(true);
                     float delay = GameManager.Instance.UpdateDelay;
@@ -105,7 +106,6 @@ namespace Core.GamePlay
                         UpdatePanels[itemIndex].SetActive(true);
                         ChangeWaitingPanels[itemIndex].SetActive(false);
                     });
-                    DoubleIntegerEventHolder.UpdateItemEvent?.Invoke(eventIndex, _priceData[itemIndex].Levels);
                 }
                 else
                 {
