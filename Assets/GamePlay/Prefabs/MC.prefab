@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2365816417792047920}
   m_Layer: 0
-  m_Name: NeckBone
+  m_Name: Neck_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1436687397
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -801559040405918046, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 2.18602, y: 4.479999, z: 0}
     m_Extent: {x: 0.30136, y: 0.62, z: 0}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &632476414977976402
 GameObject:
@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 632476414977976402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.4999999, w: -0.86602545}
-  m_LocalPosition: {x: 2.1030958, y: 0.0000037921282, z: 0.02}
+  m_LocalPosition: {x: 2.103095, y: 0.000004044828, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283,16 +283,18 @@ MonoBehaviour:
   - {fileID: 4517043361832170397}
   - {fileID: 2046879550341566669}
   - {fileID: 2208693690354037694}
-  - {fileID: 34590127907988779}
+  - {fileID: 3985941971129923724}
   - {fileID: 2511759422809029563}
-  - {fileID: 2365816417792047920}
   - {fileID: 2259624135426484640}
-  - {fileID: 2223826380002301435}
+  - {fileID: 34590127907988779}
+  - {fileID: 2365816417792047920}
   - {fileID: 7093313639215969991}
+  - {fileID: 5867612161473731960}
+  - {fileID: 2223826380002301435}
   m_Bounds:
     m_Center: {x: 1.3600001, y: 6.5903244, z: 0.044999998}
     m_Extent: {x: 0.96000004, y: 1.766104, z: 0.015}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &946995233451721598
 GameObject:
@@ -374,7 +376,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1436687397
   m_SortingLayer: 1
-  m_SortingOrder: 7
+  m_SortingOrder: 6
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1465856932187112143, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -406,7 +408,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.46636483, y: 6.4637346, z: 0.091584206}
     m_Extent: {x: 0.41636503, y: 1.5395861, z: 0.04158421}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &1204952968895264460
 GameObject:
@@ -494,15 +496,15 @@ MonoBehaviour:
   ClotheSprites:
   - Sprites:
     - {fileID: -5414605627728096085, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: -5463876436801102942, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - {fileID: 5361052929485376052, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - {fileID: 631679962093318352, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - {fileID: 1564573600848419979, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - {fileID: -1465856932187112143, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   - Sprites:
     - {fileID: 30002587660746490, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: -5264984544684290723, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - {fileID: 7363369832408061456, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - {fileID: -3149853673415207291, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: -9019893446815019139, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - {fileID: 2959451976891248793, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     - {fileID: -651204588106937913, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   ItemsNames:
   - Clothes_UpgradeState
@@ -564,8 +566,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2898783905831058732}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.0023353426, w: 0.99999726}
-  m_LocalPosition: {x: 1.5956619, y: 0.00000008787685, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0023353456, w: 0.99999726}
+  m_LocalPosition: {x: 1.5956619, y: -0.00000009613694, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -749,7 +751,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.1550002, y: 2.6705706, z: 0.04}
     m_Extent: {x: 0.6750001, y: 2.6705694, z: 0.02}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &4273333265255053335
 GameObject:
@@ -833,12 +835,12 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5463876436801102942, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: 5361052929485376052, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.55, y: 5.13}
+  m_Size: {x: 1.68, y: 5.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -861,10 +863,11 @@ MonoBehaviour:
   - {fileID: 8409993888573107645}
   - {fileID: 2046879550341566669}
   - {fileID: 4517043361832170397}
+  - {fileID: 2223826380002301435}
   m_Bounds:
     m_Center: {x: 2.0014951, y: 2.7004948, z: 0.02}
     m_Extent: {x: 0.7449953, y: 2.5418854, z: 0.01}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &4376011590288060144
 GameObject:
@@ -891,7 +894,7 @@ Transform:
   m_GameObject: {fileID: 4376011590288060144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.07042811, w: 0.9975169}
-  m_LocalPosition: {x: 1.4916122, y: -0.0021547345, z: 0}
+  m_LocalPosition: {x: 1.4916143, y: -0.0021544187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1131,7 +1134,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1436687397
   m_SortingLayer: 1
-  m_SortingOrder: 6
+  m_SortingOrder: 7
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8982013879723514861, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1161,7 +1164,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.58210003, y: 4.3916903, z: 0.15}
     m_Extent: {x: 0.38722003, y: 0.6091399, z: 0}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!114 &8858613785344531739
 MonoBehaviour:
@@ -1249,8 +1252,8 @@ Transform:
   m_GameObject: {fileID: 6376875299872615217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.034899533, w: 0.99939084}
-  m_LocalPosition: {x: 1.5201306, y: -0.000000037938072, z: 0.03}
-  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_LocalPosition: {x: 1.5201306, y: 0.000000055343197, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4517043361832170397}
@@ -1312,7 +1315,7 @@ Transform:
   m_GameObject: {fileID: 6996336726434374936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1247, y: 0.00000006305013, z: 0.02}
+  m_LocalPosition: {x: 2.1247013, y: 0.00000003547375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1399,7 +1402,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1436687397
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5414605627728096085, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1431,7 +1434,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 2.0121098, y: 6.58886, z: 0}
     m_Extent: {x: 0.4478898, y: 1.5488601, z: 0}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &7613138562282477359
 GameObject:
@@ -1576,7 +1579,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.2188151, y: 8.221531, z: -0.01}
     m_Extent: {x: 0.39118508, y: 0.38847017, z: 0}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!1 &8291073937596226468
 GameObject:
@@ -1721,7 +1724,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 1.231315, y: 9.461715, z: 0.04}
     m_Extent: {x: 1.0986853, y: 1.2870655, z: 0}
-  m_AlwaysUpdate: 1
+  m_AlwaysUpdate: 0
   m_AutoRebind: 0
 --- !u!114 &5038071406344021722
 MonoBehaviour:
