@@ -3748,7 +3748,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 1569}
     spritePosition: {x: 33, y: 480}
-  - name: Neck
+  - name: Neck Sprite
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -8683,8 +8683,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Neck
-    spriteName: Neck
+  - name: Neck Sprite
+    spriteName: Neck Sprite
     isGroup: 0
     parentIndex: -1
     spriteID: aa5b693ff72e4324c8d3901d578630e6
