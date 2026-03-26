@@ -3,16 +3,18 @@ using UnityEngine;
 using Core.Events;
 using DG.Tweening;
 using Core.DB.Variables;
+using UnityEngine.U2D.Animation;
 
 namespace Core.GamePlay
 {
     public class MainCharacterController : MonoBehaviour
     {
-        [SerializeField] SpriteRenderer[] McRenders;
-        [SerializeField] SpritesArray[] ClotheSprites;
+        [SerializeField] SpriteResolver[] McResolvers;
         [SerializeField] string[] ItemsNames;
+        [SerializeField] Material ClothesMaterial, BodyMaterial;
 
         float _updatingAnimationDuration = 0.1f, _revelAnimationDuration = 0.5f;
+        string[] _categoryName = {"LeftArm", "LeftLeg", "RightLeg", "Body", "RightArm"};
         UpgradeStateData[] _upgradeStates;
 
         private void OnEnable()
@@ -33,10 +35,10 @@ namespace Core.GamePlay
         void UpdateClothesFirst()
         {
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
-            for (int c = 0; c < McRenders.Length; c++)
+            for (int c = 0; c < McResolvers.Length; c++)
             {
                 //Debug.Log("clothIndex : " + clotheIndex + " c: " + c);
-                McRenders[c].sprite = ClotheSprites[clotheIndex].Sprites[c];
+                McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
             }
 
             _upgradeStates = new UpgradeStateData[ItemsNames.Length];
@@ -66,6 +68,8 @@ namespace Core.GamePlay
             {
                 DBVariablesHolder.ClothesLvl.Value += lvls;
                 _upgradeStates[0].IsUpdating = false;
+                ClothesMaterial.SetFloat("_Reveal", 0f);
+                DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
                 UpdateClothesAnimation();
             });
         }
@@ -73,14 +77,11 @@ namespace Core.GamePlay
         void UpdateClothesAnimation()
         {
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
-            Material mat = McRenders[0].material;
-            mat.SetFloat("_Reveal", 0f);
-            DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
-            for (int c = 0; c < McRenders.Length; c++)
+            for (int c = 0; c < McResolvers.Length; c++)
             {
                 //Debug.Log("clothIndex : " + clotheIndex + " c: " + c);
-                McRenders[c].sprite = ClotheSprites[clotheIndex].Sprites[c];
-                Transform clotheTransform = McRenders[c].transform;
+                McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
+                Transform clotheTransform = McResolvers[c].transform;
                 clotheTransform.DOKill();
                 clotheTransform.DOScale(1.2f, _updatingAnimationDuration).SetEase(Ease.OutBack)
                     .OnComplete(() =>
@@ -116,6 +117,8 @@ namespace Core.GamePlay
                     switch (index)
                     {
                         case 0:
+                            ClothesMaterial.SetFloat("_Reveal", 0f);
+                            DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
                             UpdateClothesAnimation();
                             break;
                     }
@@ -126,11 +129,5 @@ namespace Core.GamePlay
                 _upgradeStates[index].IsUpdating = false;
             }
         }
-    }
-
-    [Serializable]
-    public class SpritesArray
-    {
-        public Sprite[] Sprites;
     }
 }

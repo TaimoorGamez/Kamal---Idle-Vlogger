@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 4677976478094975668}
   - component: {fileID: 8052715753102473305}
   - component: {fileID: 7092341278839509126}
+  - component: {fileID: 6441285369761836599}
+  - component: {fileID: 7718599377303353498}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Untagged
@@ -143,6 +145,36 @@ MonoBehaviour:
     m_Extent: {x: 0.30136, y: 0.62, z: 0}
   m_AlwaysUpdate: 0
   m_AutoRebind: 0
+--- !u!114 &6441285369761836599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509310333177946573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 1.6996688e-23
+  m_labelHash: 3.7123793e-10
+  m_SpriteKey: 0
+  m_SpriteHash: 655782601
+--- !u!114 &7718599377303353498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509310333177946573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ad88a4b944ef17a4b9019270942702ee, type: 3}
 --- !u!1 &632476414977976402
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +217,8 @@ GameObject:
   - component: {fileID: 8463357593279458004}
   - component: {fileID: 9209801280882908440}
   - component: {fileID: 7510226174085633978}
+  - component: {fileID: 5905261622458771183}
+  - component: {fileID: 5133618032063420847}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -296,6 +330,36 @@ MonoBehaviour:
     m_Extent: {x: 0.96000004, y: 1.766104, z: 0.015}
   m_AlwaysUpdate: 0
   m_AutoRebind: 0
+--- !u!114 &5905261622458771183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825377752220133981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ad88a4b944ef17a4b9019270942702ee, type: 3}
+--- !u!114 &5133618032063420847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825377752220133981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 481208548
 --- !u!1 &946995233451721598
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +371,8 @@ GameObject:
   - component: {fileID: 4310818828905785528}
   - component: {fileID: 5975583284721341084}
   - component: {fileID: 2726250293593852537}
+  - component: {fileID: 6364315023169310953}
+  - component: {fileID: 4015161928061821526}
   m_Layer: 0
   m_Name: Right Arm
   m_TagString: Untagged
@@ -410,6 +476,36 @@ MonoBehaviour:
     m_Extent: {x: 0.41636503, y: 1.5395861, z: 0.04158421}
   m_AlwaysUpdate: 0
   m_AutoRebind: 0
+--- !u!114 &6364315023169310953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946995233451721598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ad88a4b944ef17a4b9019270942702ee, type: 3}
+--- !u!114 &4015161928061821526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946995233451721598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 591388065
 --- !u!1 &1204952968895264460
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,29 +583,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2882ffcc63a50db4e837cec99dbae863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainCharacterController
-  McRenders:
-  - {fileID: 79737875015379460}
-  - {fileID: 2388720722471613146}
-  - {fileID: 789560101328984361}
-  - {fileID: 9209801280882908440}
-  - {fileID: 5975583284721341084}
-  ClotheSprites:
-  - Sprites:
-    - {fileID: -5414605627728096085, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: 5361052929485376052, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: 631679962093318352, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: 1564573600848419979, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: -1465856932187112143, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-  - Sprites:
-    - {fileID: 30002587660746490, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: 7363369832408061456, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: -3149853673415207291, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: 2959451976891248793, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - {fileID: -651204588106937913, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  McResolvers:
+  - {fileID: 4013693787600633385}
+  - {fileID: 3175713567895405078}
+  - {fileID: 7164673247329388280}
+  - {fileID: 5133618032063420847}
+  - {fileID: 4015161928061821526}
   ItemsNames:
   - Clothes_UpgradeState
   - Hairs_UpgradeState
   - Watch_UpgradeState
+  ClothesMaterial: {fileID: 2100000, guid: a5024652ed0060547ba504934522b3b1, type: 2}
+  BodyMaterial: {fileID: 2100000, guid: efbf5db3feda5bd4bb0dc560b9afbc7b, type: 2}
 --- !u!1 &2022567921623192321
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +733,8 @@ GameObject:
   - component: {fileID: 3933370854250329190}
   - component: {fileID: 789560101328984361}
   - component: {fileID: 1423638667611442656}
+  - component: {fileID: 7039313986408839553}
+  - component: {fileID: 7164673247329388280}
   m_Layer: 0
   m_Name: Right Leg
   m_TagString: Untagged
@@ -753,6 +840,36 @@ MonoBehaviour:
     m_Extent: {x: 0.6750001, y: 2.6705694, z: 0.02}
   m_AlwaysUpdate: 0
   m_AutoRebind: 0
+--- !u!114 &7039313986408839553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236451342153951771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ad88a4b944ef17a4b9019270942702ee, type: 3}
+--- !u!114 &7164673247329388280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4236451342153951771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 469169120
 --- !u!1 &4273333265255053335
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +881,8 @@ GameObject:
   - component: {fileID: 5347641635869004372}
   - component: {fileID: 2388720722471613146}
   - component: {fileID: 1964586225871636262}
+  - component: {fileID: 6508384800497049028}
+  - component: {fileID: 3175713567895405078}
   m_Layer: 0
   m_Name: Left Leg
   m_TagString: Untagged
@@ -869,6 +988,36 @@ MonoBehaviour:
     m_Extent: {x: 0.7449953, y: 2.5418854, z: 0.01}
   m_AlwaysUpdate: 0
   m_AutoRebind: 0
+--- !u!114 &6508384800497049028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273333265255053335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ad88a4b944ef17a4b9019270942702ee, type: 3}
+--- !u!114 &3175713567895405078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273333265255053335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 37498596
 --- !u!1 &4376011590288060144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,10 +1341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 4.0129866e-12
+  m_CategoryHash: 0.005704955
   m_labelHash: 3.7123793e-10
   m_SpriteKey: 0
-  m_SpriteHash: 665611580
+  m_SpriteHash: 787080899
 --- !u!1 &5852876402177340754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1482,8 @@ GameObject:
   - component: {fileID: 6428722301525326259}
   - component: {fileID: 79737875015379460}
   - component: {fileID: 972549712910791354}
+  - component: {fileID: 6610128305618915746}
+  - component: {fileID: 4013693787600633385}
   m_Layer: 0
   m_Name: Left Arm
   m_TagString: Untagged
@@ -1436,6 +1587,36 @@ MonoBehaviour:
     m_Extent: {x: 0.4478898, y: 1.5488601, z: 0}
   m_AlwaysUpdate: 0
   m_AutoRebind: 0
+--- !u!114 &6610128305618915746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394333726320036194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ad88a4b944ef17a4b9019270942702ee, type: 3}
+--- !u!114 &4013693787600633385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394333726320036194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 18959552
 --- !u!1 &7613138562282477359
 GameObject:
   m_ObjectHideFlags: 0
