@@ -7684,7 +7684,6 @@ MonoBehaviour:
   - Stream 6
   - Stream 7
   - Stream 8
-  - Stream 9
 --- !u!1 &1174780529
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,10 +9903,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MC
       objectReference: {fileID: 0}
-    - target: {fileID: 4517043361832170397, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.1157873
-      objectReference: {fileID: 0}
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -9947,26 +9942,6 @@ PrefabInstance:
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5975583284721341084, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8876169974885958027, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - target: {fileID: 5975583284721341084, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7493886020130963453, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1808177303133821845, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - target: {fileID: 7493886020130963453, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8714255696385075626, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
