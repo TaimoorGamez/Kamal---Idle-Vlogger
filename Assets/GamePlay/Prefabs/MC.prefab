@@ -259,7 +259,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6886701535258026127, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: -6207496447780834382, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -283,13 +283,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
   m_RootBone: {fileID: 5778444905956682691}
   m_BoneTransforms:
-  - {fileID: 2046879550341566669}
   - {fileID: 4517043361832170397}
-  - {fileID: 2223826380002301435}
+  - {fileID: 2046879550341566669}
   - {fileID: 2511759422809029563}
   - {fileID: 34590127907988779}
   - {fileID: 5371112369816717680}
   - {fileID: 2259624135426484640}
+  - {fileID: 2223826380002301435}
   m_Bounds:
     m_Center: {x: 1.3600001, y: 6.5903244, z: 0.044999998}
     m_Extent: {x: 0.96000004, y: 1.766104, z: 0.015}
@@ -409,7 +409,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 6
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8876169974885958027, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: -863096507263054520, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -799,7 +799,6 @@ MonoBehaviour:
   - {fileID: 5365304328181836441}
   - {fileID: 2223826380002301435}
   - {fileID: 4517043361832170397}
-  - {fileID: 6537895331710522990}
   m_Bounds:
     m_Center: {x: 1.1550002, y: 2.6705706, z: 0.04}
     m_Extent: {x: 0.6750001, y: 2.6705694, z: 0.02}
@@ -946,9 +945,10 @@ MonoBehaviour:
   - {fileID: 6537895331710522990}
   - {fileID: 8409993888573107645}
   - {fileID: 2046879550341566669}
-  - {fileID: 2223826380002301435}
   - {fileID: 3985941971129923724}
   - {fileID: 4517043361832170397}
+  - {fileID: 2223826380002301435}
+  - {fileID: 5601454902189359779}
   m_Bounds:
     m_Center: {x: 2.0014951, y: 2.7004948, z: 0.02}
     m_Extent: {x: 0.7449953, y: 2.5418854, z: 0.01}

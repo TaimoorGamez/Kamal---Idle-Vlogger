@@ -3720,7 +3720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -9942,22 +9942,6 @@ PrefabInstance:
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5975583284721341084, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -863096507263054520, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - target: {fileID: 5975583284721341084, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9209801280882908440, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6207496447780834382, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - target: {fileID: 9209801280882908440, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
