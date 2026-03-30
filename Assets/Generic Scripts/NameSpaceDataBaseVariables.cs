@@ -127,7 +127,7 @@ namespace Core.DB.Variables
         public static DBInt CameraLvl = new DBInt("CameraLvl", 1);
         public static DBInt TripodLvl = new DBInt("TripodLvl", 1);
         public static DBInt MicrophoneLvl = new DBInt("MicrophoneLvl", 1);
-        public static DBInt ClothesLvl = new DBInt("ClothesLvl", 81);
+        public static DBInt ClothesLvl = new DBInt("ClothesLvl", 1);
         public static DBInt HairsLvl = new DBInt("HairsLvl", 1);
         public static DBInt WatchLvl = new DBInt("WatchLvl", 1);
         public static DBInt HouseLvl = new DBInt("HouseLvl", 1);
