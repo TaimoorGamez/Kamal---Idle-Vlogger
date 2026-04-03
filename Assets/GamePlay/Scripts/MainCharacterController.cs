@@ -9,27 +9,39 @@ namespace Core.GamePlay
 {
     public class MainCharacterController : MonoBehaviour
     {
+        [SerializeField] McTalking McTalkingComponent;
+        [SerializeField] SpriteResolver HeadResolver;
         [SerializeField] SpriteResolver[] McResolvers;
         [SerializeField] string[] ItemsNames;
         [SerializeField] Material ClothesMaterial, BodyMaterial;
 
         float _updatingAnimationDuration = 0.1f, _revelAnimationDuration = 0.5f, _clotesScale = 1.1f;
         string[] _categoryName = {"LeftArm", "LeftLeg", "RightLeg", "Body", "RightArm"};
+        string _headCategory = "Head_";
         UpgradeStateData[] _upgradeStates;
 
         private void OnEnable()
         {
             DoubleIntegerEventHolder.UpdateItemEvent += UpdateClothesWithDelay;
+            DoubleIntegerEventHolder.UpdateItemEvent += UpdateHairsWithDelay;
         }
 
         void OnDisable()
         {
             DoubleIntegerEventHolder.UpdateItemEvent -= UpdateClothesWithDelay;
+            DoubleIntegerEventHolder.UpdateItemEvent -= UpdateHairsWithDelay;
         }
 
         private void Start()
         {
             UpdateClothesFirst();
+            UpdateHeadSpritesFirst();
+        }
+
+        void UpdateHeadSpritesFirst()
+        {
+            string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
+            HeadResolver.SetCategoryAndLabel(headCategory, "0");
         }
 
         void UpdateClothesFirst()
@@ -37,7 +49,6 @@ namespace Core.GamePlay
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
             for (int c = 0; c < McResolvers.Length; c++)
             {
-                //Debug.Log("clothIndex : " + clotheIndex + " c: " + c);
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
             }
 
@@ -68,7 +79,9 @@ namespace Core.GamePlay
             {
                 DBVariablesHolder.ClothesLvl.Value += lvls;
                 ClothesMaterial.SetFloat("_Reveal", 0f);
-                DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
+                McTalkingComponent.StopTalking();
+                DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration)
+                    .OnComplete(()=> McTalkingComponent.StartTalking(true));
                 UpdateClothesAnimation();
             });
         }
@@ -89,6 +102,30 @@ namespace Core.GamePlay
                         clotheTransform.DOScale(1f, _updatingAnimationDuration).SetEase(Ease.InOutSine);
                     });
             }
+        }
+
+        void UpdateHairsWithDelay(int eventIndex, int lvls)
+        {
+            if (eventIndex != 1)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                DBVariablesHolder.HairsLvl.Value += lvls;
+                BodyMaterial.SetFloat("_Reveal", 0f);
+                DOTween.To(() => BodyMaterial.GetFloat("_Reveal"), x => BodyMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
+                UpdateHairsAnimation();
+            });
+        }
+
+        void UpdateHairsAnimation()
+        {
+            _upgradeStates[1].IsUpdating = false;
+            int hairIndex = DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount;
+            string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
+            HeadResolver.SetCategoryAndLabel(headCategory, "0");
         }
 
         void CheckRemainingUpdates(int index)

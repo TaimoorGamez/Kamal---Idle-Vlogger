@@ -1,4 +1,5 @@
 using UnityEngine;
+using Core.DB.Variables;
 using System.Collections;
 using UnityEngine.U2D.Animation;
 
@@ -7,12 +8,11 @@ namespace Core.GamePlay
     public class McTalking : MonoBehaviour
     {
         [SerializeField] SpriteResolver HeadspriteResolver;
-        [SerializeField] string[] SpriteLabel;
 
         float _delay = 0.15f;  
         bool _canTalk = false;
-        int _currentIndex;
-        string _categoryName = "Head";
+        int _currentIndex, _spriteLength = 3;
+        string _categoryName, _categoryNamePart = "Head_";
         Coroutine _animationCoroutine;
 
         public void StartTalking(bool loop)
@@ -20,6 +20,7 @@ namespace Core.GamePlay
             if (_animationCoroutine != null)
                 StopCoroutine(_animationCoroutine);
 
+            _categoryName = _categoryNamePart + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
             _currentIndex = 0;
             _canTalk = true;
             _animationCoroutine = StartCoroutine(AnimateSprites(loop));
@@ -38,17 +39,17 @@ namespace Core.GamePlay
         {
             do
             {
-                HeadspriteResolver.SetCategoryAndLabel(_categoryName, SpriteLabel[_currentIndex]);
+                HeadspriteResolver.SetCategoryAndLabel(_categoryName, _currentIndex.ToString());
                 _currentIndex++;
                 yield return new WaitForSeconds(_delay);
 
-                if (_currentIndex >= SpriteLabel.Length)
+                if (_currentIndex >= _spriteLength)
                 {
                     if (loop)
                         _currentIndex = 0;
                     else
                     {
-                        HeadspriteResolver.SetCategoryAndLabel(_categoryName, SpriteLabel[0]);
+                        HeadspriteResolver.SetCategoryAndLabel(_categoryName, "0");
                         _canTalk = false;
                         yield break;
                     }

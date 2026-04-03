@@ -9,7 +9,7 @@ namespace Core.GamePlay
     public class GameManager : MonoBehaviour
     {
         public int SpriteChangeCount = 20;
-        public float UpdateDelay = 60;
+        public float UpdateDelay = 10;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
         [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, VehicleImg, BackyardImg;

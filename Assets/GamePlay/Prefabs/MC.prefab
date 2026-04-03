@@ -61,7 +61,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: efbf5db3feda5bd4bb0dc560b9afbc7b, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -549,6 +549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2882ffcc63a50db4e837cec99dbae863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainCharacterController
+  McTalkingComponent: {fileID: 2734505629927882709}
+  HeadResolver: {fileID: 5038071406344021722}
   McResolvers:
   - {fileID: 4013693787600633385}
   - {fileID: 3175713567895405078}
@@ -1099,9 +1101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.McTalking
   HeadspriteResolver: {fileID: 5038071406344021722}
-  SpriteLabel:
-  - TK 0
-  - TK 1
 --- !u!1 &5114282739830408710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1226,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: efbf5db3feda5bd4bb0dc560b9afbc7b, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1773,10 +1772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 2.9092094e-34
-  m_labelHash: 3.289714e-13
+  m_CategoryHash: 1.6693557e-26
+  m_labelHash: 0.00000040954276
   m_SpriteKey: 0
-  m_SpriteHash: 340961203
+  m_SpriteHash: 87155538
 --- !u!114 &3212778527422525736
 MonoBehaviour:
   m_ObjectHideFlags: 0

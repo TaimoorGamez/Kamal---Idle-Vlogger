@@ -13,25 +13,130 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrarySourceAsset
   m_Library:
-  - m_Name: Head
-    m_Hash: 130111906
+  - m_Name: Head_0
+    m_Hash: 346379058
     m_CategoryList: []
     m_OverrideEntries:
-    - m_Name: TK 0
-      m_Hash: 716779974
+    - m_Name: 0
+      m_Hash: 886824737
       m_Sprite: {fileID: 943448701916162727, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: 943448701916162727, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - m_Name: TK 1
-      m_Hash: 498991440
+    - m_Name: 1
+      m_Hash: 64810935
       m_Sprite: {fileID: -3147003202567788731, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -3147003202567788731, guid: 9b9037c09220d84408acc505d0186133, type: 3}
-    - m_Name: TK 3
-      m_Hash: 867197052
+    - m_Name: 2
+      m_Hash: 450215437
       m_Sprite: {fileID: -3704581496019633163, guid: 9b9037c09220d84408acc505d0186133, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -3704581496019633163, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: Head_1
+    m_Hash: 597844900
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: 2938891598306886876, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2938891598306886876, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 1
+      m_Hash: 64810935
+      m_Sprite: {fileID: -8808082803983585273, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8808082803983585273, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: -3809224571006768993, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3809224571006768993, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: Head_2
+    m_Hash: 984298014
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: -2287510571935245649, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2287510571935245649, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 1
+      m_Hash: 64810935
+      m_Sprite: {fileID: -5794671041489815510, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5794671041489815510, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: 6960442914053680723, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6960442914053680723, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: Head_3
+    m_Hash: 229376648
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: -3684276432978746127, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3684276432978746127, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 1
+      m_Hash: 64810935
+      m_Sprite: {fileID: -753748814486508199, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -753748814486508199, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: 4246264732943422895, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4246264732943422895, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: Head_4
+    m_Hash: 331913003
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: -8848057684425085827, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8848057684425085827, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 1
+      m_Hash: 64810935
+      m_Sprite: {fileID: 5663938905990958493, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5663938905990958493, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: -633411188701549134, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -633411188701549134, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: Head_5
+    m_Hash: 617588669
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: 7091490908422052686, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7091490908422052686, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 1
+      m_Hash: 64810935
+      m_Sprite: {fileID: 8716283014415439732, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8716283014415439732, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: -7329657596019416510, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7329657596019416510, guid: 9b9037c09220d84408acc505d0186133, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 3
   - m_Name: RightHand
@@ -237,5 +342,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 6
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639105158069886515
+  m_ModificationHash: 639108271873442047
   m_Version: 1
