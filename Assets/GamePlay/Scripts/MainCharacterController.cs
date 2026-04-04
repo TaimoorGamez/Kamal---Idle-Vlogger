@@ -79,9 +79,7 @@ namespace Core.GamePlay
             {
                 DBVariablesHolder.ClothesLvl.Value += lvls;
                 ClothesMaterial.SetFloat("_Reveal", 0f);
-                McTalkingComponent.StopTalking();
-                DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration)
-                    .OnComplete(()=> McTalkingComponent.StartTalking(true));
+                DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
                 UpdateClothesAnimation();
             });
         }
@@ -115,7 +113,9 @@ namespace Core.GamePlay
             {
                 DBVariablesHolder.HairsLvl.Value += lvls;
                 BodyMaterial.SetFloat("_Reveal", 0f);
-                DOTween.To(() => BodyMaterial.GetFloat("_Reveal"), x => BodyMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
+                McTalkingComponent.StopTalking();
+                DOTween.To(() => BodyMaterial.GetFloat("_Reveal"), x => BodyMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration)
+                .OnComplete(() => McTalkingComponent.StartTalking(true));
                 UpdateHairsAnimation();
             });
         }
