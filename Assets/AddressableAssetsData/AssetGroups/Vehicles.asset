@@ -15,7 +15,31 @@ MonoBehaviour:
   m_GroupName: Vehicles
   m_GUID: e204c2a1c81af014eb7717b70809a88a
   m_SerializeEntries:
+  - m_GUID: 03a64e0a28660c24ab0aeaa907e04c64
+    m_Address: Vehicle_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Vehicle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 302d8f098d37d68488a50830ef1ce4f4
+    m_Address: Vehicle_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Vehicle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3da697f57a2e06c49b1aa2a1ae099823
+    m_Address: Vehicle_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Vehicle
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 87fc6c6dba023f449b51abc2d188e2a5
+    m_Address: Vehicle_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Vehicle
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8834ebfab6671d2488430578f54bcb05
     m_Address: Vehicle_1
     m_ReadOnly: 0
     m_SerializedLabels:
