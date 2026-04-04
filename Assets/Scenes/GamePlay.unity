@@ -3720,7 +3720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -9899,6 +9899,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1149497270}
     m_Modifications:
+    - target: {fileID: 416256303406897028, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 292c79c6ba17a2340b9e1eaa754b9e6a, type: 3}
     - target: {fileID: 1838088503968483306, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_Name
       value: MC
@@ -9943,6 +9947,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: WatchRenderer
+      value: 
+      objectReference: {fileID: 949079034}
+    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: WatchSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: 'WatchSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 292c79c6ba17a2340b9e1eaa754b9e6a, type: 3}
+    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: 'WatchSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 5402153c61f29a046a0c2b0c44b5fe3a, type: 3}
+    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: 'WatchSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: ecf791cc01c4b7842a55e35f6ebd020d, type: 3}
+    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: 'WatchSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 21300000, guid: ae1b3b05352140243bea23f53853c01f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

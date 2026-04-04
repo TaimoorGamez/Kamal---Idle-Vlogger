@@ -9,6 +9,8 @@ namespace Core.GamePlay
 {
     public class MainCharacterController : MonoBehaviour
     {
+        [SerializeField] SpriteRenderer WatchRenderer;
+        [SerializeField] Sprite[] WatchSprites;
         [SerializeField] McTalking McTalkingComponent;
         [SerializeField] SpriteResolver HeadResolver;
         [SerializeField] SpriteResolver[] McResolvers;
