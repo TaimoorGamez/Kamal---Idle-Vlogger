@@ -15,8 +15,32 @@ MonoBehaviour:
   m_GroupName: Houses
   m_GUID: 3494837789634b344bf461a542929786
   m_SerializeEntries:
+  - m_GUID: 6609ac89b4222eb42a99936e7e30474d
+    m_Address: House_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cebb0a77fd3e4c4a81966fabd52b225
+    m_Address: House_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8687cc2ccda0f354da406b5745e53851
+    m_Address: House_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96724a8136111234d8af1125edbb94c1
     m_Address: House_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9767b4111f803ab41a8d17f60578506e
+    m_Address: House_4
     m_ReadOnly: 0
     m_SerializedLabels:
     - House

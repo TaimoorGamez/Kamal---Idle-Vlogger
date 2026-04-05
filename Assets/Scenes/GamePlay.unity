@@ -6833,7 +6833,7 @@ MonoBehaviour:
   VehiclePositions:
   - {x: 2.75, y: -1.1}
   BackyardPositions:
-  - {x: -2, y: 0}
+  - {x: -2.25, y: -0.6}
 --- !u!4 &1070337508
 Transform:
   m_ObjectHideFlags: 0

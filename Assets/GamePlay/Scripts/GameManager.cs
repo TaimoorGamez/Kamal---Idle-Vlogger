@@ -88,10 +88,10 @@ namespace Core.GamePlay
 
         void LoadHouse()
         {
-            _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount) + 1;
+            _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
             string key = $"House_{_currentHouse}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[_currentHouse - 1];
+            HouseImg.transform.position = HousePositions[_currentHouse];
         }
         void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -116,10 +116,10 @@ namespace Core.GamePlay
 
         void LoadVehicle()
         {
-            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount) + 1;
+            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
             string key = $"Vehicle_{_currentVehicle}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[_currentVehicle - 1];
+            VehicleImg.transform.position = VehiclePositions[_currentVehicle];
         }
         void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -144,10 +144,10 @@ namespace Core.GamePlay
 
         void LoadBackyard()
         {
-            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount) + 1;
+            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
             string key = $"Backyard_{_currentBackyard}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
-            BackyardImg.transform.position = BackyardPositions[_currentBackyard - 1];
+            BackyardImg.transform.position = BackyardPositions[_currentBackyard];
         }
         void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
         {
