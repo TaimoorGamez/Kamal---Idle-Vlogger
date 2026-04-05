@@ -70,7 +70,7 @@ namespace Core.GamePlay
 
         void LoadGround()
         {
-            _currentGround = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount)+1;
+            _currentGround = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount);
             string key = $"Ground_{_currentGround}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnGroundLoaded;
         }

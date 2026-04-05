@@ -3720,7 +3720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945238574925228837, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8887125810894863053, guid: c4e4ab9b05ff35741a13ad10a2f0a646, type: 3}
       propertyPath: CurrentGameManager
@@ -7666,7 +7666,10 @@ MonoBehaviour:
   TripodImg: {fileID: 1997679199}
   IncomeTxt: {fileID: 4642330911178025938}
   StatuePositions:
+  - {x: 1.5, y: -4.75}
   - {x: 1.5, y: -5}
+  - {x: 1.5, y: -4.75}
+  - {x: 1.5, y: -4.85}
   WatchPositions:
   - {x: 0, y: 0}
   CameraPositions:
@@ -9906,6 +9909,10 @@ PrefabInstance:
     - target: {fileID: 1838088503968483306, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_Name
       value: MC
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838088503968483306, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12315,7 +12322,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 062de52693629674cbfedf37ac0197f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea38e2aa88d08fc42ada160d481b6981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

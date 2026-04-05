@@ -15,14 +15,20 @@ MonoBehaviour:
   m_GroupName: Tripods
   m_GUID: 01b60d49823a0164082767925a2b9179
   m_SerializeEntries:
+  - m_GUID: 1fae110b40bcd644cb1aa3a6df10eb3f
+    m_Address: Tripod_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Tripod
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2022f98832c5ac64cab95d8e93399466
-    m_Address: Tripod_1
+    m_Address: Tripod_0
     m_ReadOnly: 0
     m_SerializedLabels:
     - Tripod
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5d60ce42834f534fbb67884d6bf069c
-    m_Address: Tripod_2
+    m_Address: Tripod_1
     m_ReadOnly: 0
     m_SerializedLabels:
     - Tripod

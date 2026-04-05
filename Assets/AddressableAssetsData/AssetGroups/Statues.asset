@@ -15,8 +15,32 @@ MonoBehaviour:
   m_GroupName: Statues
   m_GUID: bdf4d672cf9df984a980d63a484b045d
   m_SerializeEntries:
+  - m_GUID: 03a95865ad3e1b044a8c8b379bbb6812
+    m_Address: Statue_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Statue
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c3874215a356f1419b6a0f4a1f215a5
+    m_Address: Statue_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Statue
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77d4e2d928426f146b1f7c676281498d
+    m_Address: Statue_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Statue
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b1a47d454c854c4a9a7a40f1b81a97c
     m_Address: Statue_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Statue
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5102118e24f02b4da7760a83c49f235
+    m_Address: Statue_2
     m_ReadOnly: 0
     m_SerializedLabels:
     - Statue

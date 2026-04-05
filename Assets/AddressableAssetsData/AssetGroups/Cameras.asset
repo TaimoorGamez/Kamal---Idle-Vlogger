@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 8ec9d7abcce3f9f408c27756f145feec
   m_SerializeEntries:
   - m_GUID: a15d2e0b3f72f3c40866bc60f52fbc6c
-    m_Address: Camera_1
+    m_Address: Camera_0
     m_ReadOnly: 0
     m_SerializedLabels:
     - Camera

@@ -38,7 +38,6 @@ namespace Core.GamePlay
         {
             McAnimator.SetTrigger("Default");
             LoadStatue();
-            LoadWatch();
             LoadCamera();
             LoadMicrophone();
             LoadTripod();
@@ -47,10 +46,10 @@ namespace Core.GamePlay
 
         void LoadStatue()
         {
-            _currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
+            _currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Statue_{_currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
-            StatueImg.transform.position = StatuePositions[_currentStatue - 1];
+            StatueImg.transform.position = StatuePositions[_currentStatue];
         }
         void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -73,40 +72,12 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadWatch()
-        {
-            _currentWatch = (DBVariablesHolder.WatchLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
-            string key = $"Watch_{_currentWatch}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
-            WatchImg.transform.localPosition = WatchPositions[_currentWatch - 1];
-        }
-        void OnWatchLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                WatchImg.sprite = handle.Result;
-                Material mat = WatchImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                WatchImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Watch load failed!");
-            }
-        }
-
         void LoadCamera()
         {
-            _currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount)+1;
+            _currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Camera_{_currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
-            CameraImg.transform.position = CameraPositions[_currentCamera - 1];
+            CameraImg.transform.position = CameraPositions[_currentCamera];
         }
         void OnCameraLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -131,10 +102,10 @@ namespace Core.GamePlay
 
         void LoadTripod()
         {
-            _currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount) + 1;
+            _currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Tripod_{_currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
-            TripodImg.transform.position = TripodPositions[_currentTripod - 1];
+            TripodImg.transform.position = TripodPositions[_currentTripod];
         }
         void OnTripodLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -159,10 +130,10 @@ namespace Core.GamePlay
 
         void LoadMicrophone()
         {
-            _currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount) + 1;
+            _currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Microphone_{_currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
-            MicrophoneImg.transform.position = MicPositions[_currentMic-1];
+            MicrophoneImg.transform.position = MicPositions[_currentMic];
         }
         void OnMicrophoneLoaded(AsyncOperationHandle<Sprite> handle)
         {
