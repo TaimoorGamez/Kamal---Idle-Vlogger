@@ -82,12 +82,13 @@ namespace Core.GamePlay
             {
                 CashCurrency.Amount -= _priceData[itemIndex].Cost;
                 DBVariablesHolder.BasicIncome.Value += Increments[itemIndex] * _priceData[itemIndex].Levels;
+                lvlData.Value += _priceData[itemIndex].Levels;
                 if (lvlData.Value % GameManager.Instance.SpriteChangeCount == 0 && canUpdateVisuals)
                 {
                     _upgradeStates[itemIndex].IsUpdating = true;
                     _upgradeStates[itemIndex].UpdateStartTime = DateTime.Now.ToString();
                     _upgradeStates[itemIndex].Levels = _priceData[itemIndex].Levels;
-                    DoubleIntegerEventHolder.UpdateItemEvent?.Invoke(eventIndex, _priceData[itemIndex].Levels);
+                    SingleIntegerEventsHolder.UpdateItemEvent?.Invoke(eventIndex);
                     UpdatePanels[itemIndex].SetActive(false); 
                     ChangeWaitingPanels[itemIndex].SetActive(true);
                     float delay = GameManager.Instance.UpdateDelay;
@@ -107,18 +108,7 @@ namespace Core.GamePlay
                         ChangeWaitingPanels[itemIndex].SetActive(false);
                     });
                 }
-                else
-                {
-                    lvlData.Value += _priceData[itemIndex].Levels;
-                }
-                if (DBVariablesHolder.MaxLevels.Value > 0)
-                {
-                    UpdatePriceForAll();
-                }
-                else
-                {
-                    UpdateCost(itemIndex, DBVariablesHolder.HouseLvl.Value);
-                }
+                UpdatePriceForAll();
             }
             else
             {
@@ -164,8 +154,10 @@ namespace Core.GamePlay
                 float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
                 if (remainingTime > 0)
                 {
+                    Debug.Log("Here");
                     float currentTime = remainingTime;
-                    _timerTweens[item] = DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime).OnUpdate(() =>
+                    _timerTweens[item] = DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime)
+                    .OnUpdate(() =>
                     {
                         int minutes = Mathf.FloorToInt(remainingTime / 60);
                         int seconds = Mathf.FloorToInt(remainingTime % 60);

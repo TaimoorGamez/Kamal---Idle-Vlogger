@@ -22,7 +22,7 @@ namespace Core.GamePlay
         [SerializeField] Vector2[] StatuePositions, WatchPositions, CameraPositions, MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int _currentStatue, _currentWatch, _currentCamera, _currentMic, _currentTripod;
+        int _currentStatue, _currentCamera, _currentMic, _currentTripod;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
               _updatingAnimationDuration = 0.25f;
         bool _canStream = false, _canEarn = false;

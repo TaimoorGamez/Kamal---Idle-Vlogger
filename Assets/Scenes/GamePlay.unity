@@ -856,7 +856,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2056303028}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.59009016
+  m_Size: 0.5900901
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1991,7 +1991,7 @@ Transform:
   m_GameObject: {fileID: 314697140}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3395,8 +3395,8 @@ Transform:
   m_Children:
   - {fileID: 1194833317}
   - {fileID: 314697141}
-  - {fileID: 1997679198}
   - {fileID: 811109045}
+  - {fileID: 1997679198}
   m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505403840
@@ -5142,7 +5142,7 @@ Transform:
   m_GameObject: {fileID: 811109044}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1, y: -1.8, z: 0}
+  m_LocalPosition: {x: 1.3, y: -1.8, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5195,7 +5195,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1579419637
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2cbb5e1fc6c8cbd479c979d0fc9fc012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7666,18 +7666,18 @@ MonoBehaviour:
   TripodImg: {fileID: 1997679199}
   IncomeTxt: {fileID: 4642330911178025938}
   StatuePositions:
-  - {x: 1.5, y: -4.75}
-  - {x: 1.5, y: -5}
-  - {x: 1.5, y: -4.75}
-  - {x: 1.5, y: -4.85}
+  - {x: 1.7, y: -4.85}
+  - {x: 1.7, y: -5}
+  - {x: 1.7, y: -4.85}
+  - {x: 1.7, y: -4.85}
   WatchPositions:
   - {x: 0, y: 0}
   CameraPositions:
-  - {x: 1.4, y: -1.17}
+  - {x: 1.7, y: -1.17}
   MicPositions:
-  - {x: 1.1, y: -1.8}
+  - {x: 1.37, y: -1.8}
   TripodPositions:
-  - {x: 1.5, y: -2}
+  - {x: 1.75, y: -2}
   BaseStreamAnimation:
   - Stream 1
   - Stream 2
@@ -7791,7 +7791,7 @@ Transform:
   m_GameObject: {fileID: 1194833316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -4.5, z: 0}
+  m_LocalPosition: {x: 1.7, y: -4.5, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8567,14 +8567,14 @@ PrefabInstance:
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 196f12c9539d31b469c074d8dd10d673, type: 3}
+      objectReference: {fileID: 21300000, guid: 9f3ddb772a5e41f4d8cd3dbcbb02755f, type: 3}
     - target: {fileID: 6575072315673244133, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 87
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 6575072315673244133, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 74
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Pivot.x
@@ -9554,14 +9554,14 @@ PrefabInstance:
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 196f12c9539d31b469c074d8dd10d673, type: 3}
+      objectReference: {fileID: 21300000, guid: 0da3c9b07051b7e49a811a447de39ba2, type: 3}
     - target: {fileID: 6575072315673244133, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 87
+      value: 74.9684
       objectReference: {fileID: 0}
     - target: {fileID: 6575072315673244133, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 74
+      value: 85.6782
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Pivot.x
@@ -9902,17 +9902,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1149497270}
     m_Modifications:
-    - target: {fileID: 416256303406897028, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 292c79c6ba17a2340b9e1eaa754b9e6a, type: 3}
     - target: {fileID: 1838088503968483306, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_Name
       value: MC
-      objectReference: {fileID: 0}
-    - target: {fileID: 1838088503968483306, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4870730416966781720, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9954,30 +9946,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: WatchRenderer
-      value: 
-      objectReference: {fileID: 949079034}
-    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: WatchSprites.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: 'WatchSprites.Array.data[0]'
-      value: 
-      objectReference: {fileID: 21300000, guid: 292c79c6ba17a2340b9e1eaa754b9e6a, type: 3}
-    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: 'WatchSprites.Array.data[1]'
-      value: 
-      objectReference: {fileID: 21300000, guid: 5402153c61f29a046a0c2b0c44b5fe3a, type: 3}
-    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: 'WatchSprites.Array.data[2]'
-      value: 
-      objectReference: {fileID: 21300000, guid: ecf791cc01c4b7842a55e35f6ebd020d, type: 3}
-    - target: {fileID: 7406231073447745189, guid: b634a5fe893e35f48bf49f909bf433bb, type: 3}
-      propertyPath: 'WatchSprites.Array.data[3]'
-      value: 
-      objectReference: {fileID: 21300000, guid: ae1b3b05352140243bea23f53853c01f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12508,7 +12476,7 @@ Transform:
   m_GameObject: {fileID: 1997679197}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -1.1, z: 0}
+  m_LocalPosition: {x: 1.75, y: -1.1, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -12561,7 +12529,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1579419637
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2cbb5e1fc6c8cbd479c979d0fc9fc012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

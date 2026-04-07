@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 01b60d49823a0164082767925a2b9179
   m_SerializeEntries:
   - m_GUID: 1fae110b40bcd644cb1aa3a6df10eb3f
-    m_Address: Tripod_2
+    m_Address: Tripod
     m_ReadOnly: 0
     m_SerializedLabels:
     - Tripod

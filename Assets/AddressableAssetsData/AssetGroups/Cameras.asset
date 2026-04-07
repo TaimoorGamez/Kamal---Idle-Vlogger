@@ -15,8 +15,38 @@ MonoBehaviour:
   m_GroupName: Cameras
   m_GUID: 8ec9d7abcce3f9f408c27756f145feec
   m_SerializeEntries:
+  - m_GUID: 18b24409af42ee84bb63250959d2e966
+    m_Address: Camera_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 575c0e958e16cac4387aaaffc47cf02f
+    m_Address: Camera_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c9698aa3867a9f42851d101a6a555a2
+    m_Address: Camera_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c5758aabd4f23a409303a4f3ea284a8
+    m_Address: Camera_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a15d2e0b3f72f3c40866bc60f52fbc6c
     m_Address: Camera_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbe1c93e7ffdd084d8378de7509b7be9
+    m_Address: Camera_4
     m_ReadOnly: 0
     m_SerializedLabels:
     - Camera

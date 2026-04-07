@@ -549,8 +549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2882ffcc63a50db4e837cec99dbae863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainCharacterController
+  WatchRenderer: {fileID: 416256303406897028}
   McTalkingComponent: {fileID: 2734505629927882709}
   HeadResolver: {fileID: 5038071406344021722}
+  WatchImg: {fileID: 416256303406897028}
   McResolvers:
   - {fileID: 4013693787600633385}
   - {fileID: 3175713567895405078}
@@ -563,6 +565,7 @@ MonoBehaviour:
   - Watch_UpgradeState
   ClothesMaterial: {fileID: 2100000, guid: a5024652ed0060547ba504934522b3b1, type: 2}
   BodyMaterial: {fileID: 2100000, guid: efbf5db3feda5bd4bb0dc560b9afbc7b, type: 2}
+  WatchMaterial: {fileID: 2100000, guid: 1c2a4999f65560447a8e0a6ebc46d330, type: 2}
 --- !u!1 &2022567921623192321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1851,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 1c2a4999f65560447a8e0a6ebc46d330, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
