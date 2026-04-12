@@ -27,7 +27,7 @@ namespace Core.GamePlay
 
         protected virtual void OnEnable()
         {
-            SimpleEventsHolder.UpdatePriceTxt += UpdatePriceForAll;
+            SimpleEventsHolder.UpdatePriceTxt += UpdateData;
             Body.DOScale(Vector3.one, _sizeTween).From(Vector3.zero).SetEase(Ease.OutBack);
             _priceData = new PriceHandler[Increments.Length];
             _upgradeStates = new UpgradeStateData[Increments.Length];
@@ -37,7 +37,7 @@ namespace Core.GamePlay
 
         protected virtual void OnDisable()
         {
-            SimpleEventsHolder.UpdatePriceTxt -= UpdatePriceForAll;
+            SimpleEventsHolder.UpdatePriceTxt -= UpdateData;
 
             if (_timerTweens != null)
             {
@@ -99,32 +99,30 @@ namespace Core.GamePlay
 
         protected virtual void UpdateCost(int item, int lvl)
         {
-            UpdateItemLvlTxt[item].text = $"Level: {lvl + 1}";
-            UpdateFillBars[item].fillAmount = (float)(lvl % GameManager.Instance.SpriteChangeCount) / GameManager.Instance.SpriteChangeCount;
             if (!AnyRestriction() && !_upgradeStates[item].IsUpdating)
             {
-                int cost = GetCost(lvl);
-                int nextLvls = 1;
+                int totalLevels = 1, nextLvl = lvl + 1;
+                int cost = GetCost(nextLvl);
                 if (DBVariablesHolder.MaxLevels.Value > 0)
                 {
-                    int targetLvl = GetNextMilestone(lvl);
-                    int nextCost = GetCost(lvl + 1);
-                    float availableCash = CashCurrency.Amount - cost;
-                    while (availableCash > nextCost && lvl < targetLvl - 1)
+                    int targetLvl = GetNextMilestone(lvl), maxLvls = nextLvl + 1, maxCost = cost + GetCost(maxLvls);
+                    float availableCash = CashCurrency.Amount;
+                    while (availableCash >= maxCost && maxLvls <= targetLvl)
                     {
-                        availableCash -= nextCost;
-                        cost += nextCost;
-                        lvl++;
-                        nextLvls++;
-                        nextCost = GetCost(lvl + 1);
+                        cost = maxCost;
+                        nextLvl = maxLvls;
+                        totalLevels++;
+                        maxLvls++;
+                        maxCost = cost + GetCost(maxLvls);
                     }
                 }
-                _priceData[item].Levels = nextLvls;
+                _priceData[item].Levels = totalLevels;
                 _priceData[item].Cost = cost;
-                UpdatePriceTxts[item].text = GetCost(lvl).ToString();
-                AvailableUpdatesTxt[item].text = $"+{nextLvls} Level";
-                UpdateItemLvlTxt[item].text = $"Level: {nextLvls + 1}";
-                UpdateFillBars[item].fillAmount = (float)(nextLvls % GameManager.Instance.SpriteChangeCount) / GameManager.Instance.SpriteChangeCount;
+                UpdatePriceTxts[item].text = GetCost(nextLvl).ToString();
+                AvailableUpdatesTxt[item].text = $"+{totalLevels} Level";
+                UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
+                int count = GameManager.Instance.SpriteChangeCount;
+                UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
             }
             else if (_upgradeStates[item].IsUpdating)
             {
@@ -133,7 +131,7 @@ namespace Core.GamePlay
                 TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[item].UpdateStartTime);
                 float updateDelay = GameManager.Instance.UpdateDelay;
                 float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
-                if (remainingTime > 0)
+                if (remainingTime > 0 && _timerTweens[item] == null)
                 {
                     float currentTime = remainingTime;
                     _timerTweens[item] = DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime)
@@ -146,6 +144,11 @@ namespace Core.GamePlay
                     })
                     .OnComplete(() =>
                     {
+                        int nextLvl = lvl + 1, count = GameManager.Instance.SpriteChangeCount;
+                        UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
+                        UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
+                        JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
+                        UpdatePriceForAll();
                         UpdatePanels[item].SetActive(true);
                         ChangeWaitingPanels[item].SetActive(false);
                     });
@@ -180,7 +183,7 @@ namespace Core.GamePlay
         public int Levels, Cost;
     }
 
-    public struct UpgradeStateData
+    public class UpgradeStateData
     {
         public bool IsUpdating;
         public string UpdateStartTime;
