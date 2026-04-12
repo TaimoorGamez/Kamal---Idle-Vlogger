@@ -88,24 +88,6 @@ namespace Core.GamePlay
                     _upgradeStates[itemIndex].Levels = _priceData[itemIndex].Levels;
                     JsonDB.Save($"{ItemsNames[itemIndex]}_UpgradeState", _upgradeStates[itemIndex]);
                     SingleIntegerEventsHolder.UpdateItemEvent?.Invoke(eventIndex);
-                    UpdatePanels[itemIndex].SetActive(false); 
-                    ChangeWaitingPanels[itemIndex].SetActive(true);
-                    float delay = GameManager.Instance.UpdateDelay;
-                    float currentTime = delay;
-                    _timerTweens[itemIndex] = DOTween.To(() => currentTime, x => currentTime = x, 0, delay)
-                    .OnUpdate(() =>
-                    {
-                        int minutes = Mathf.FloorToInt(currentTime / 60);
-                        int seconds = Mathf.FloorToInt(currentTime % 60);
-
-                        UpdateTimerTxt[itemIndex].text = $"{minutes:00}:{seconds:00}";
-                        TimerFillBar[itemIndex].fillAmount = 1 - (currentTime / delay);
-                    })
-                    .OnComplete(() =>
-                    {
-                        UpdatePanels[itemIndex].SetActive(true);
-                        ChangeWaitingPanels[itemIndex].SetActive(false);
-                    });
                 }
                 UpdatePriceForAll();
             }
@@ -157,11 +139,10 @@ namespace Core.GamePlay
                     _timerTweens[item] = DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime)
                     .OnUpdate(() =>
                     {
-                        Debug.Log("Here");
-                        int minutes = Mathf.FloorToInt(remainingTime / 60);
-                        int seconds = Mathf.FloorToInt(remainingTime % 60);
+                        int minutes = Mathf.FloorToInt(currentTime / 60);
+                        int seconds = Mathf.FloorToInt(currentTime % 60);
                         UpdateTimerTxt[item].text = $"{minutes:00}:{seconds:00}";
-                        TimerFillBar[item].fillAmount = 1 - (remainingTime / updateDelay);
+                        TimerFillBar[item].fillAmount = 1 - (currentTime / updateDelay);
                     })
                     .OnComplete(() =>
                     {
