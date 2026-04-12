@@ -32,19 +32,12 @@ namespace Core.GamePlay
             _priceData = new PriceHandler[Increments.Length];
             _upgradeStates = new UpgradeStateData[Increments.Length];
             _timerTweens = new Tween[Increments.Length];
-            UpdatePriceForAll();
+            UpdateData();
         }
 
         protected virtual void OnDisable()
         {
             SimpleEventsHolder.UpdatePriceTxt -= UpdatePriceForAll;
-            for (int i = 0; i < _upgradeStates.Length; i++)
-            {
-                if (_upgradeStates[i].IsUpdating)
-                {
-                    JsonDB.Save($"{ItemsNames[i]}_UpgradeState", _upgradeStates[i]);
-                }
-            }
 
             if (_timerTweens != null)
             {
@@ -59,7 +52,7 @@ namespace Core.GamePlay
             }
         }
 
-        protected virtual void UpdatePriceForAll()
+        void UpdateData()
         {
             for (int i = 0; i < _upgradeStates.Length; i++)
             {
@@ -72,6 +65,11 @@ namespace Core.GamePlay
                     _upgradeStates[i] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
                 }
             }
+            UpdatePriceForAll();
+        }
+
+        protected virtual void UpdatePriceForAll()
+        {
         }
 
         public virtual void UpdateItemProcess(int itemIndex, DBInt lvlData, int eventIndex, bool canUpdateVisuals)
@@ -88,6 +86,7 @@ namespace Core.GamePlay
                     _upgradeStates[itemIndex].IsUpdating = true;
                     _upgradeStates[itemIndex].UpdateStartTime = DateTime.Now.ToString();
                     _upgradeStates[itemIndex].Levels = _priceData[itemIndex].Levels;
+                    JsonDB.Save($"{ItemsNames[itemIndex]}_UpgradeState", _upgradeStates[itemIndex]);
                     SingleIntegerEventsHolder.UpdateItemEvent?.Invoke(eventIndex);
                     UpdatePanels[itemIndex].SetActive(false); 
                     ChangeWaitingPanels[itemIndex].SetActive(true);
@@ -154,11 +153,11 @@ namespace Core.GamePlay
                 float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
                 if (remainingTime > 0)
                 {
-                    Debug.Log("Here");
                     float currentTime = remainingTime;
                     _timerTweens[item] = DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime)
                     .OnUpdate(() =>
                     {
+                        Debug.Log("Here");
                         int minutes = Mathf.FloorToInt(remainingTime / 60);
                         int seconds = Mathf.FloorToInt(remainingTime % 60);
                         UpdateTimerTxt[item].text = $"{minutes:00}:{seconds:00}";

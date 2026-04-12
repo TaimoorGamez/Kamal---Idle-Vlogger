@@ -39,8 +39,38 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ground
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9d31839bdeb2504a9a34d803821d5c7
+    m_Address: Ground_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ground
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb6a5257b3166c643a0ff867ccb66a23
+    m_Address: Ground_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ground
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d739500a4fa51534090d6dd8fa9a97ce
+    m_Address: Ground_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ground
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e946a12ff900351479e280314400304a
+    m_Address: Ground_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ground
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea38e2aa88d08fc42ada160d481b6981
     m_Address: Ground_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ground
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef4e03903fc4ede4d9fa45c5e2469d48
+    m_Address: Ground_8
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ground

@@ -29,6 +29,15 @@ namespace Core.GamePlay
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
 
+        void OnEnable()
+        {
+        }
+
+        private void OnDisable()
+        {
+            
+        }
+
         void Start()
         {
             ChangePriceText(DBVariablesHolder.MaxLevels.Value);

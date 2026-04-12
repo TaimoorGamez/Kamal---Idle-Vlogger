@@ -1764,8 +1764,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.75, y: -1.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2362,10 +2362,6 @@ PrefabInstance:
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Core.GamePlay.ApartmentUpdates, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -3303,9 +3299,9 @@ Transform:
   m_GameObject: {fileID: 487461022}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -2, y: -1.5, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3358,7 +3354,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: c2638e6d0ca97c84ea9dbba9cc854c9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cbb5e1fc6c8cbd479c979d0fc9fc012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4455,9 +4451,9 @@ MonoBehaviour:
   - {fileID: 1106465096}
   - {fileID: 1585013219}
   ItemsNames:
-  - Camera
-  - Tripod
-  - Microphone
+  - Camera_UpgradeState
+  - Tripod_UpgradeState
+  - Microphone_UpgradeState
 --- !u!1 &653357698
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,7 +5855,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e5707e5dc2ab6864b9fb0bd51a193e77, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96401620c0052784da5de91e175e0fc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6484,10 +6480,10 @@ MonoBehaviour:
   - {fileID: 2085725128}
   - {fileID: 1578209753}
   ItemsNames:
-  - Charisma
-  - Erudition
-  - Improvisation
-  - Wit
+  - Charisma_UpgradeState
+  - Erudition_UpgradeState
+  - Improvisation_UpgradeState
+  - Wit_UpgradeState
 --- !u!114 &1038054102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4588444335830447217, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
@@ -6834,11 +6830,6 @@ MonoBehaviour:
   MC: {fileID: 1570655818}
   HousePositions:
   - {x: -0.5, y: -0.5}
-  - {x: -0.5, y: -0.5}
-  - {x: -0.5, y: -0.5}
-  - {x: -0.5, y: -0.5}
-  - {x: -0.5, y: -0.5}
-  - {x: 0, y: 0.35}
   VehiclePositions:
   - {x: 2.75, y: -1.1}
   BackyardPositions:
@@ -6914,7 +6905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -7400,10 +7391,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: UpdateItem
       objectReference: {fileID: 0}
-    - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize
       value: 32.15
@@ -7591,7 +7578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1136529011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7919,7 +7906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -8914,9 +8901,9 @@ MonoBehaviour:
   - {fileID: 1312201901}
   - {fileID: 1518731416}
   ItemsNames:
-  - Clothes
-  - Hairs
-  - Watch
+  - Clothes_UpgradeState
+  - Hairs_UpgradeState
+  - Watch_UpgradeState
 --- !u!114 &1350223044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4588444335830447217, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
@@ -9371,9 +9358,9 @@ Transform:
   m_GameObject: {fileID: 1485845328}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1149497270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9426,7 +9413,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 1786a995cdc3b0541901e0273ea4ea0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cbb5e1fc6c8cbd479c979d0fc9fc012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10074,7 +10061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize
@@ -10304,10 +10291,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Core.GamePlay.CameraUpdates, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -10507,7 +10490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -11664,7 +11647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -12009,7 +11992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize
@@ -12307,7 +12290,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e946a12ff900351479e280314400304a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea38e2aa88d08fc42ada160d481b6981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12592,7 +12575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -12951,7 +12934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -13301,11 +13284,11 @@ MonoBehaviour:
   - {fileID: 2054247644}
   - {fileID: 1907266145}
   ItemsNames:
-  - House
-  - Vehicle
-  - Statue
-  - Backyard
-  - Ground
+  - House_UpgradeState
+  - Vehicle_UpgradeState
+  - Statue_UpgradeState
+  - Backyard_UpgradeState
+  - Ground_UpgradeState
 --- !u!1 &2078067968
 GameObject:
   m_ObjectHideFlags: 0
@@ -13412,7 +13395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize

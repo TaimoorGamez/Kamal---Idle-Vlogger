@@ -45,7 +45,6 @@ namespace Core.GamePlay
             UpdateClothesFirst();
             UpdateHeadSpritesFirst();
         }
-
         void UpdateHeadSpritesFirst()
         {
             string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
@@ -114,7 +113,6 @@ namespace Core.GamePlay
                 UpdateClothesAnimation();
             });
         }
-
         void UpdateClothesAnimation()
         {
             _upgradeStates[0].IsUpdating = false;
@@ -149,7 +147,6 @@ namespace Core.GamePlay
                 UpdateHairsAnimation();
             });
         }
-
         void UpdateHairsAnimation()
         {
             _upgradeStates[1].IsUpdating = false;
@@ -170,7 +167,6 @@ namespace Core.GamePlay
                 UpdateWatchAnimation();
             });
         }
-
         void UpdateWatchAnimation()
         {
             _upgradeStates[2].IsUpdating = false;
@@ -185,6 +181,14 @@ namespace Core.GamePlay
             {
                 case 0:
                     CheckRemainingTime(index,DBVariablesHolder.ClothesLvl);
+                    break;
+
+                case 1:
+                    CheckRemainingTime(index, DBVariablesHolder.HairsLvl);
+                    break;
+
+                case 2:
+                    CheckRemainingTime(index, DBVariablesHolder.WatchLvl);
                     break;
             }
         }
@@ -208,6 +212,18 @@ namespace Core.GamePlay
                             ClothesMaterial.SetFloat("_Reveal", 0f);
                             DOTween.To(() => ClothesMaterial.GetFloat("_Reveal"), x => ClothesMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
                             UpdateClothesAnimation();
+                            break;
+
+                        case 1:
+                            BodyMaterial.SetFloat("_Reveal", 0f);
+                            DOTween.To(() => BodyMaterial.GetFloat("_Reveal"), x => BodyMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
+                            UpdateHairsAnimation();
+                            break;
+
+                        case 2:
+                            WatchMaterial.SetFloat("_Reveal", 0f);
+                            DOTween.To(() => WatchMaterial.GetFloat("_Reveal"), x => WatchMaterial.SetFloat("_Reveal", x), 1f, _revelAnimationDuration);
+                            UpdateWatchAnimation();
                             break;
                     }
                 });
