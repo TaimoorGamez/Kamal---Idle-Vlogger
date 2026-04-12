@@ -20,7 +20,7 @@ namespace Core.GamePlay
         [SerializeField] Material[] CharacterMaterials;
 
         int _clothesIndex = 0, _hairsIndex = 1, _watchIndex = 2;
-        float _animationDuration = 0.5f, _UpdateAnimationScale = 1.1f;
+        float _scalingDuration = 0.45f, _visualDuration = 0.5f, _UpdateAnimationScale = 1.1f;
         string[] _categoryName = {"LeftArm", "LeftLeg", "RightLeg", "Body", "RightArm"};
         string _headCategory = "Head_";
         UpgradeStateData[] _upgradeStates;
@@ -104,9 +104,9 @@ namespace Core.GamePlay
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 WatchImg.sprite = handle.Result;
+                WatchImg.transform.DOScale(Vector3.one, _scalingDuration).From(Vector3.zero).SetEase(Ease.Linear);
                 DOTween.To(() => CharacterMaterials[_watchIndex].GetFloat("_Reveal"), x => CharacterMaterials[_watchIndex].SetFloat("_Reveal", x),
-                1f, _animationDuration).From(0f).SetEase(Ease.Linear);
-                WatchImg.transform.DOScale(Vector3.one, _animationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                1f, _visualDuration).From(0f).SetEase(Ease.Linear);
             }
             else
             {
@@ -129,15 +129,16 @@ namespace Core.GamePlay
         void UpdateClothesAnimation()
         {
             _upgradeStates[_clothesIndex].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[_clothesIndex]}_UpgradeState", _upgradeStates[_clothesIndex]);
             DOTween.To(() => CharacterMaterials[_clothesIndex].GetFloat("_Reveal"), x => CharacterMaterials[_clothesIndex].SetFloat("_Reveal", x),
-            1f, _animationDuration).From(0f).SetEase(Ease.Linear);
+            1f, _visualDuration).From(0f).SetEase(Ease.Linear);
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
             for (int c = 0; c < McResolvers.Length; c++)
             {
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
                 Transform clotheTransform = McResolvers[c].transform;
                 clotheTransform.DOKill();
-                clotheTransform.DOScale(Vector3.one, _animationDuration).From(_UpdateAnimationScale).SetEase(Ease.OutBack);
+                clotheTransform.DOScale(Vector3.one, _scalingDuration).From(_UpdateAnimationScale).SetEase(Ease.Linear);
             }
         }
 
@@ -156,10 +157,11 @@ namespace Core.GamePlay
         void UpdateHairsAnimation()
         {
             _upgradeStates[_hairsIndex].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[_hairsIndex]}_UpgradeState", _upgradeStates[_hairsIndex]);
             McTalkingComponent.StopTalking();
+            HeadResolver.transform.DOScale(Vector3.one, _scalingDuration).From(_UpdateAnimationScale).SetEase(Ease.Linear);
             DOTween.To(() => CharacterMaterials[_hairsIndex].GetFloat("_Reveal"), x => CharacterMaterials[_hairsIndex].SetFloat("_Reveal", x),
-            1f, _animationDuration).From(0f).SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
-            HeadResolver.transform.DOScale(Vector3.one, _animationDuration).From(_UpdateAnimationScale).SetEase(Ease.OutBack);
+            1f, _visualDuration).From(0f).SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
             int hairIndex = DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount;
             string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
             HeadResolver.SetCategoryAndLabel(headCategory, "0");
@@ -180,6 +182,7 @@ namespace Core.GamePlay
         void UpdateWatchAnimation()
         {
             _upgradeStates[_watchIndex].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[_watchIndex]}_UpgradeState", _upgradeStates[_watchIndex]);
             int watchIndex = DBVariablesHolder.WatchLvl.Value / GameManager.Instance.SpriteChangeCount;
             string key = $"Watch_{watchIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;

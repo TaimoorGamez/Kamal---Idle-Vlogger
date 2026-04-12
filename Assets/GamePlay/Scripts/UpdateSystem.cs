@@ -99,10 +99,10 @@ namespace Core.GamePlay
 
         protected virtual void UpdateCost(int item, int lvl)
         {
+            UpdateItemLvlTxt[item].text = $"Level: {lvl + 1}";
+            UpdateFillBars[item].fillAmount = (float)(lvl % GameManager.Instance.SpriteChangeCount) / GameManager.Instance.SpriteChangeCount;
             if (!AnyRestriction() && !_upgradeStates[item].IsUpdating)
             {
-                UpdateItemLvlTxt[item].text = $"Level: {lvl}";
-                UpdateFillBars[item].fillAmount = (float)(lvl % GameManager.Instance.SpriteChangeCount) / GameManager.Instance.SpriteChangeCount;
                 int cost = GetCost(lvl);
                 int nextLvls = 1;
                 if (DBVariablesHolder.MaxLevels.Value > 0)
@@ -123,6 +123,8 @@ namespace Core.GamePlay
                 _priceData[item].Cost = cost;
                 UpdatePriceTxts[item].text = GetCost(lvl).ToString();
                 AvailableUpdatesTxt[item].text = $"+{nextLvls} Level";
+                UpdateItemLvlTxt[item].text = $"Level: {nextLvls + 1}";
+                UpdateFillBars[item].fillAmount = (float)(nextLvls % GameManager.Instance.SpriteChangeCount) / GameManager.Instance.SpriteChangeCount;
             }
             else if (_upgradeStates[item].IsUpdating)
             {
