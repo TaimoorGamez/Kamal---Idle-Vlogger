@@ -97,8 +97,6 @@ namespace Core.GamePlay
             }
         }
 
-
-
         protected virtual void UpdateCost(int item, int lvl)
         {
             if (!AnyRestriction() && !_upgradeStates[item].IsUpdating)
