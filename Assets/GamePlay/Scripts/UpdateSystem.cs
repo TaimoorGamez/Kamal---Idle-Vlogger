@@ -123,6 +123,8 @@ namespace Core.GamePlay
                 UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
                 int count = GameManager.Instance.SpriteChangeCount;
                 UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
+                UpdatePanels[item].SetActive(true);
+                ChangeWaitingPanels[item].SetActive(false);
             }
             else if (_upgradeStates[item].IsUpdating)
             {
@@ -147,10 +149,9 @@ namespace Core.GamePlay
                         int nextLvl = lvl + 1, count = GameManager.Instance.SpriteChangeCount;
                         UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
                         UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
+                        _upgradeStates[item].IsUpdating = false;
                         JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
-                        UpdatePriceForAll();
-                        UpdatePanels[item].SetActive(true);
-                        ChangeWaitingPanels[item].SetActive(false);
+                        UpdateData();
                     });
                 }
             }
