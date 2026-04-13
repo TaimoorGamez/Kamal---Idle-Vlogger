@@ -559,14 +559,12 @@ MonoBehaviour:
   - {fileID: 7164673247329388280}
   - {fileID: 5133618032063420847}
   - {fileID: 4015161928061821526}
+  ClothMaterial: {fileID: 2100000, guid: a5024652ed0060547ba504934522b3b1, type: 2}
+  HairMaterial: {fileID: 2100000, guid: efbf5db3feda5bd4bb0dc560b9afbc7b, type: 2}
   ItemsNames:
   - Clothes
   - Hairs
   - Watch
-  CharacterMaterials:
-  - {fileID: 2100000, guid: a5024652ed0060547ba504934522b3b1, type: 2}
-  - {fileID: 2100000, guid: efbf5db3feda5bd4bb0dc560b9afbc7b, type: 2}
-  - {fileID: 2100000, guid: 1c2a4999f65560447a8e0a6ebc46d330, type: 2}
 --- !u!1 &2022567921623192321
 GameObject:
   m_ObjectHideFlags: 0

@@ -6859,6 +6859,11 @@ MonoBehaviour:
   - {x: 2.75, y: -1.1}
   BackyardPositions:
   - {x: -2.25, y: -0.6}
+  ItemsNames:
+  - House
+  - Vehicle
+  - Backyard
+  - Ground
 --- !u!4 &1070337508
 Transform:
   m_ObjectHideFlags: 0
@@ -7716,6 +7721,11 @@ MonoBehaviour:
   - Stream 6
   - Stream 7
   - Stream 8
+  ItemsNames:
+  - Camera
+  - Tripod
+  - Microphone
+  - Statue
 --- !u!1 &1174780529
 GameObject:
   m_ObjectHideFlags: 0
@@ -10090,7 +10100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize
@@ -12025,7 +12035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize
@@ -13265,63 +13275,63 @@ MonoBehaviour:
   UpdateFillBars:
   - {fileID: 2014270809}
   - {fileID: 1321262712}
-  - {fileID: 1350223044}
   - {fileID: 317618425}
   - {fileID: 1102791179}
+  - {fileID: 1350223044}
   TimerFillBar:
   - {fileID: 374639789}
   - {fileID: 2003852195}
-  - {fileID: 1203401697}
   - {fileID: 2054247648}
   - {fileID: 1907266147}
+  - {fileID: 1203401697}
   UpdatePriceTxts:
   - {fileID: 374639783}
   - {fileID: 2003852189}
-  - {fileID: 1203401691}
   - {fileID: 2054247642}
   - {fileID: 1907266143}
+  - {fileID: 1203401691}
   UpdateItemLvlTxt:
   - {fileID: 374639782}
   - {fileID: 2003852188}
-  - {fileID: 1203401690}
   - {fileID: 2054247641}
   - {fileID: 1907266142}
+  - {fileID: 1203401690}
   AvailableUpdatesTxt:
   - {fileID: 374639781}
   - {fileID: 2003852187}
-  - {fileID: 1203401689}
   - {fileID: 2054247640}
   - {fileID: 1907266144}
+  - {fileID: 1203401689}
   UpdateTimerTxt:
   - {fileID: 374639788}
   - {fileID: 1407167631}
-  - {fileID: 1203401696}
   - {fileID: 1199959733}
   - {fileID: 1907266146}
+  - {fileID: 1203401696}
   UpdatePanels:
   - {fileID: 374639787}
   - {fileID: 2003852193}
-  - {fileID: 1203401695}
   - {fileID: 2033020602}
   - {fileID: 824473415}
+  - {fileID: 1203401695}
   ChangeWaitingPanels:
   - {fileID: 374639786}
   - {fileID: 1914681776}
-  - {fileID: 1203401694}
   - {fileID: 2054247645}
   - {fileID: 1907266148}
+  - {fileID: 1203401694}
   MovingWarningPanels:
   - {fileID: 374639785}
   - {fileID: 2003852191}
-  - {fileID: 1203401693}
   - {fileID: 2054247644}
   - {fileID: 1907266145}
+  - {fileID: 1203401693}
   ItemsNames:
   - House
   - Vehicle
-  - Statue
   - Backyard
   - Ground
+  - Statue
 --- !u!1 &2078067968
 GameObject:
   m_ObjectHideFlags: 0
@@ -13428,7 +13438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: -1
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4866231831135471957, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_fontSize

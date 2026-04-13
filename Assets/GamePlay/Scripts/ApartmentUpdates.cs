@@ -19,33 +19,33 @@ namespace Core.GamePlay
             base.UpdatePriceForAll();
             UpdateCost(0, DBVariablesHolder.HouseLvl.Value);
             UpdateCost(1, DBVariablesHolder.VehicleLvl.Value);
-            UpdateCost(2, DBVariablesHolder.StatueLvl.Value);
-            UpdateCost(3, DBVariablesHolder.BackyardLvl.Value);
-            UpdateCost(4, DBVariablesHolder.GroundLvl.Value);
+            UpdateCost(2, DBVariablesHolder.BackyardLvl.Value);
+            UpdateCost(3, DBVariablesHolder.GroundLvl.Value);
+            UpdateCost(4, DBVariablesHolder.StatueLvl.Value);
         }
 
         public void UpdateItem(int itemIndex)
         {
             switch (itemIndex)
             {
-                case 0:
-                    UpdateItemProcess(itemIndex,DBVariablesHolder.HouseLvl, 6, true);
+                case 6:
+                    UpdateItemProcess(itemIndex,DBVariablesHolder.HouseLvl, 0, true);
                     break;
 
-                case 1:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.VehicleLvl, 7, true);
+                case 7:
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.VehicleLvl, 1, true);
                     break;
 
-                case 2:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.StatueLvl, 8, true);
+                case 8:
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.BackyardLvl, 2, true);
                     break;
 
-                case 3:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.BackyardLvl, 9, true);
+                case 9:
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.GroundLvl, 3, true);
                     break;
 
-                case 4:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.GroundLvl, 10, true);
+                case 10:
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.StatueLvl, 4, true);
                     break;
             }
         }

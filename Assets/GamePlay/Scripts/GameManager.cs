@@ -1,6 +1,8 @@
-using DG.Tweening;
-using UnityEngine;
 using Core.DB.Variables;
+using Core.Events;
+using DG.Tweening;
+using System;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -17,10 +19,11 @@ namespace Core.GamePlay
         [SerializeField] GameplayHandler CurrentGameplayHandler;
         [SerializeField] Transform MC;
         [SerializeField] Vector2[] HousePositions, VehiclePositions, BackyardPositions;
+        [SerializeField] string[] ItemsNames;
 
-
-        int _currentBG, _currentGround, _currentHouse, _currentVehicle, _currentBackyard;
-        float _updatingAnimationDuration = 0.25f;
+        int _houseIndex = 6, _vehicleIndex = 7, _backyardIndex = 8, _groundIndex = 9;
+        float _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f;
+        UpgradeStateData[] _upgradeStates;
 
         public static GameManager Instance;
 
@@ -37,23 +40,40 @@ namespace Core.GamePlay
             }
         }
 
+        void OnEnable()
+        {
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateHouseWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateVehicleWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateBackyardWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateGroundWithDelay;
+        }
+
+        void OnDisable()
+        {
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateHouseWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateVehicleWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateBackyardWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateGroundWithDelay;
+        }
+
         private void Start()
         {
             if (DBVariablesHolder.FFT.Value == 0)
             {
                 DBVariablesHolder.FFT.Value = 1;
             }
+            _upgradeStates = new UpgradeStateData[ItemsNames.Length];
             LoadBG();
-            LoadGround();
-            LoadHouse();
-            LoadVehicle();
-            LoadBackyard();
+            LoadHouseFirst();
+            LoadVehicleFirst();
+            LoadBackyardFirst();
+            LoadGroundFirst();
         }
 
         void LoadBG()
         {
-            _currentBG = DBVariablesHolder.CurrentMap.Value;
-            string key = $"BG_{_currentBG}";
+            int bgIndex = DBVariablesHolder.CurrentMap.Value;
+            string key = $"BG_{bgIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBgLoaded;
         }
         void OnBgLoaded(AsyncOperationHandle<Sprite> handle)
@@ -68,17 +88,30 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadGround()
+        void LoadGroundFirst()
         {
-            _currentGround = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount);
-            string key = $"Ground_{_currentGround}";
+            int groundIndex = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount);
+            string key = $"Ground_{groundIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnGroundLoaded;
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[3]}_UpgradeState"))
+            {
+                _upgradeStates[3] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[3]}_UpgradeState");
+                if (_upgradeStates[3].IsUpdating)
+                    CheckRemainingTime(3, DBVariablesHolder.CameraLvl);
+            }
+            else
+            {
+                _upgradeStates[3] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnGroundLoaded(AsyncOperationHandle<Sprite> handle)
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 GroundImg.sprite = handle.Result;
+                Material mat = GroundImg.material;
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
             }
             else
             {
@@ -86,12 +119,23 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadHouse()
+        void LoadHouseFirst()
         {
-            _currentHouse = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
-            string key = $"House_{_currentHouse}";
+            int houseIndex = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
+            string key = $"House_{houseIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[_currentHouse];
+            HouseImg.transform.position = HousePositions[houseIndex];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[0]}_UpgradeState"))
+            {
+                _upgradeStates[0] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[0]}_UpgradeState");
+                if (_upgradeStates[0].IsUpdating)
+                    CheckRemainingTime(0, DBVariablesHolder.CameraLvl);
+            }
+            else
+            {
+                _upgradeStates[0] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnHouseLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -99,14 +143,8 @@ namespace Core.GamePlay
             {
                 HouseImg.sprite = handle.Result;
                 Material mat = HouseImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                HouseImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                HouseImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
             }
             else
             {
@@ -114,12 +152,23 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadVehicle()
+        void LoadVehicleFirst()
         {
-            _currentVehicle = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
-            string key = $"Vehicle_{_currentVehicle}";
+            int vehicleIndex = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
+            string key = $"Vehicle_{vehicleIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[_currentVehicle];
+            VehicleImg.transform.position = VehiclePositions[vehicleIndex];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[1]}_UpgradeState"))
+            {
+                _upgradeStates[1] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[1]}_UpgradeState");
+                if (_upgradeStates[1].IsUpdating)
+                    CheckRemainingTime(1, DBVariablesHolder.CameraLvl);
+            }
+            else
+            {
+                _upgradeStates[1] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnVehicleLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -127,14 +176,8 @@ namespace Core.GamePlay
             {
                 VehicleImg.sprite = handle.Result;
                 Material mat = VehicleImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                VehicleImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                VehicleImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
             }
             else
             {
@@ -142,12 +185,23 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadBackyard()
+        void LoadBackyardFirst()
         {
-            _currentBackyard = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
-            string key = $"Backyard_{_currentBackyard}";
+            int backyardIndex = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
+            string key = $"Backyard_{backyardIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
-            BackyardImg.transform.position = BackyardPositions[_currentBackyard];
+            BackyardImg.transform.position = BackyardPositions[backyardIndex];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[2]}_UpgradeState"))
+            {
+                _upgradeStates[2] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[2]}_UpgradeState");
+                if (_upgradeStates[2].IsUpdating)
+                    CheckRemainingTime(2, DBVariablesHolder.CameraLvl);
+            }
+            else
+            {
+                _upgradeStates[2] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnBackyardLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -155,14 +209,8 @@ namespace Core.GamePlay
             {
                 BackyardImg.sprite = handle.Result;
                 Material mat = BackyardImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                BackyardImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                BackyardImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
             }
             else
             {
@@ -170,6 +218,133 @@ namespace Core.GamePlay
             }
         }
 
+        void UpdateHouseWithDelay(int eventIndex)
+        {
+            if (eventIndex != _houseIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateHouseAnimation();
+            });
+        }
+        void UpdateHouseAnimation()
+        {
+            _upgradeStates[0].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[0]}_UpgradeState", _upgradeStates[0]);
+
+            int houseIndex = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
+            string key = $"House_{houseIndex}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
+            HouseImg.transform.position = HousePositions[houseIndex];
+        }
+
+        void UpdateVehicleWithDelay(int eventIndex)
+        {
+            if (eventIndex != _vehicleIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateVehicleAnimation();
+            });
+        }
+        void UpdateVehicleAnimation()
+        {
+            _upgradeStates[1].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[1]}_UpgradeState", _upgradeStates[1]);
+
+            int vehicleIndex = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
+            string key = $"Vehicle_{vehicleIndex}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
+            VehicleImg.transform.position = VehiclePositions[vehicleIndex];
+        }
+
+        void UpdateBackyardWithDelay(int eventIndex)
+        {
+            if (eventIndex != _backyardIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateBackyardAnimation();
+            });
+        }
+        void UpdateBackyardAnimation()
+        {
+            _upgradeStates[2].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[2]}_UpgradeState", _upgradeStates[2]);
+
+            int backyardIndex = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
+            string key = $"Backyard_{backyardIndex}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
+            BackyardImg.transform.position = BackyardPositions[backyardIndex];
+        }
+
+        void UpdateGroundWithDelay(int eventIndex)
+        {
+            if (eventIndex != _groundIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateGroundAnimation();
+            });
+        }
+        void UpdateGroundAnimation()
+        {
+            _upgradeStates[3].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[3]}_UpgradeState", _upgradeStates[3]);
+
+            int groundIndex = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount);
+            string key = $"Ground_{groundIndex}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnGroundLoaded;
+        }
+
+        void CheckRemainingTime(int index, DBInt lvlData)
+        {
+            TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[index].UpdateStartTime);
+            float updateDelay = GameManager.Instance.UpdateDelay;
+            float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
+            if (remainingTime > 0)
+            {
+                float currentTime = remainingTime;
+                DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime).OnComplete(() =>
+                {
+                    lvlData.Value += _upgradeStates[index].Levels;
+                    switch (index)
+                    {
+                        case 0:
+                            UpdateHouseAnimation();
+                            break;
+
+                        case 1:
+                            UpdateVehicleAnimation();
+                            break;
+
+                        case 2:
+                            UpdateBackyardAnimation();
+                            break;
+
+                        case 3:
+                            UpdateGroundAnimation();
+                            break;
+                    }
+                });
+            }
+            else
+            {
+                _upgradeStates[index].IsUpdating = false;
+            }
+        }
 
         public void StartGame()
         {
@@ -203,7 +378,7 @@ namespace Core.GamePlay
             GameplayEnvironment.SetActive(true);
             GameplayUI.SetActive(true);
             StorylineUI.SetActive(false);
-            CurrentGameplayHandler.CountinueGameplay();
+            CurrentGameplayHandler.ContinueGameplay();
         }
     }
 }

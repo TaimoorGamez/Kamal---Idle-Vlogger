@@ -16,8 +16,8 @@ namespace Core.GamePlay
         [SerializeField] SpriteResolver HeadResolver;
         [SerializeField] SpriteRenderer WatchImg;
         [SerializeField] SpriteResolver[] McResolvers;
+        [SerializeField] Material ClothMaterial, HairMaterial;
         [SerializeField] string[] ItemsNames;
-        [SerializeField] Material[] CharacterMaterials;
 
         int _clothesIndex = 0, _hairsIndex = 1, _watchIndex = 2;
         float _scalingDuration = 0.45f, _visualDuration = 0.5f, _UpdateAnimationScale = 1.1f;
@@ -105,9 +105,9 @@ namespace Core.GamePlay
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 WatchImg.sprite = handle.Result;
+                Material mat = WatchImg.material;
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 WatchImg.transform.DOScale(Vector3.one, _scalingDuration).From(Vector3.zero).SetEase(Ease.Linear);
-                DOTween.To(() => CharacterMaterials[_watchIndex].GetFloat("_Reveal"), x => CharacterMaterials[_watchIndex].SetFloat("_Reveal", x),
-                1f, _visualDuration).From(0f).SetEase(Ease.Linear);
             }
             else
             {
@@ -131,8 +131,7 @@ namespace Core.GamePlay
         {
             _upgradeStates[_clothesIndex].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[_clothesIndex]}_UpgradeState", _upgradeStates[_clothesIndex]);
-            DOTween.To(() => CharacterMaterials[_clothesIndex].GetFloat("_Reveal"), x => CharacterMaterials[_clothesIndex].SetFloat("_Reveal", x),
-            1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+            DOTween.To(() => ClothMaterial.GetFloat("_Reveal"), x => ClothMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
             for (int c = 0; c < McResolvers.Length; c++)
             {
@@ -161,8 +160,8 @@ namespace Core.GamePlay
             JsonDB.Save($"{ItemsNames[_hairsIndex]}_UpgradeState", _upgradeStates[_hairsIndex]);
             McTalkingComponent.StopTalking();
             HeadResolver.transform.DOScale(Vector3.one, _scalingDuration).From(_UpdateAnimationScale).SetEase(Ease.Linear);
-            DOTween.To(() => CharacterMaterials[_hairsIndex].GetFloat("_Reveal"), x => CharacterMaterials[_hairsIndex].SetFloat("_Reveal", x),
-            1f, _visualDuration).From(0f).SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
+            DOTween.To(() => HairMaterial.GetFloat("_Reveal"), x => HairMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f)
+                .SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
             int hairIndex = DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount;
             string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
             HeadResolver.SetCategoryAndLabel(headCategory, "0");

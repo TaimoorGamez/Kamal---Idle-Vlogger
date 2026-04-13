@@ -1,7 +1,8 @@
 using TMPro;
-using DG.Tweening;
+using System;
 using UnityEngine;
 using Core.Events;
+using DG.Tweening;
 using Core.Economy;
 using UnityEngine.UI;
 using Core.DB.Variables;
@@ -20,7 +21,7 @@ namespace Core.GamePlay
         [SerializeField] SpriteRenderer StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
         [SerializeField] TextMeshProUGUI IncomeTxt;
         [SerializeField] Vector2[] StatuePositions, WatchPositions, CameraPositions, MicPositions, TripodPositions;
-        [SerializeField] string[] BaseStreamAnimation;
+        [SerializeField] string[] BaseStreamAnimation, ItemsNames;
 
         int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
@@ -28,14 +29,22 @@ namespace Core.GamePlay
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
+        UpgradeStateData[] _upgradeStates;
 
         void OnEnable()
         {
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateCameraWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateTripodWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateMicrophoneWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateStatueWithDelay;
         }
 
         private void OnDisable()
         {
-            
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateCameraWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateTripodWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateMicrophoneWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateStatueWithDelay;
         }
 
         void Start()
@@ -43,13 +52,14 @@ namespace Core.GamePlay
             ChangePriceText(DBVariablesHolder.MaxLevels.Value);
         }
 
-        public void CountinueGameplay()
+        public void ContinueGameplay()
         {
+            _upgradeStates = new UpgradeStateData[ItemsNames.Length];
             McAnimator.SetTrigger("Default");
             LoadCameraFirst();
-            LoadTripod();
-            LoadMicrophone();
-            LoadStatue();
+            LoadTripodFirst();
+            LoadMicrophoneFirst();
+            LoadStatueFirst();
             StartStreaming();
         }
 
@@ -59,6 +69,17 @@ namespace Core.GamePlay
             string key = $"Camera_{currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
             CameraImg.transform.position = CameraPositions[currentCamera];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[0]}_UpgradeState"))
+            {
+                _upgradeStates[0] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[0]}_UpgradeState");
+                if (_upgradeStates[0].IsUpdating)
+                    CheckRemainingTime(0, DBVariablesHolder.CameraLvl);
+            }
+            else
+            {
+                _upgradeStates[0] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnCameraLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -75,12 +96,23 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadTripod()
+        void LoadTripodFirst()
         {
             int currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Tripod_{currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
             TripodImg.transform.position = TripodPositions[currentTripod];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[1]}_UpgradeState"))
+            {
+                _upgradeStates[1] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[1]}_UpgradeState");
+                if (_upgradeStates[1].IsUpdating)
+                    CheckRemainingTime(1, DBVariablesHolder.TripodLvl);
+            }
+            else
+            {
+                _upgradeStates[1] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnTripodLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -97,12 +129,23 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadMicrophone()
+        void LoadMicrophoneFirst()
         {
             int currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Microphone_{currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
             MicrophoneImg.transform.position = MicPositions[currentMic];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[2]}_UpgradeState"))
+            {
+                _upgradeStates[2] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[2]}_UpgradeState");
+                if (_upgradeStates[2].IsUpdating)
+                    CheckRemainingTime(2, DBVariablesHolder.MicrophoneLvl);
+            }
+            else
+            {
+                _upgradeStates[2] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnMicrophoneLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -119,12 +162,23 @@ namespace Core.GamePlay
             }
         }
 
-        void LoadStatue()
+        void LoadStatueFirst()
         {
             int currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
             string key = $"Statue_{currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
             StatueImg.transform.position = StatuePositions[currentStatue];
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[3]}_UpgradeState"))
+            {
+                _upgradeStates[3] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[3]}_UpgradeState");
+                if (_upgradeStates[3].IsUpdating)
+                    CheckRemainingTime(3, DBVariablesHolder.StatueLvl);
+            }
+            else
+            {
+                _upgradeStates[3] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
         }
         void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -138,6 +192,135 @@ namespace Core.GamePlay
             else
             {
                 Debug.Log("Statue load failed!");
+            }
+        }
+
+        void UpdateCameraWithDelay(int eventIndex)
+        {
+            if (eventIndex != _cameraIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateCameraAnimation();
+            });
+        }
+        void UpdateCameraAnimation()
+        {
+            _upgradeStates[0].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[0]}_UpgradeState", _upgradeStates[0]);
+
+            int currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Camera_{currentCamera}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
+            CameraImg.transform.position = CameraPositions[currentCamera];
+        }
+
+        void UpdateTripodWithDelay(int eventIndex)
+        {
+            if (eventIndex != _tripodIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateTripodAnimation();
+            });
+        }
+        void UpdateTripodAnimation()
+        {
+            _upgradeStates[1].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[1]}_UpgradeState", _upgradeStates[1]);
+
+            int currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Tripod_{currentTripod}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
+            TripodImg.transform.position = TripodPositions[currentTripod];
+        }
+
+        void UpdateMicrophoneWithDelay(int eventIndex)
+        {
+            if (eventIndex != _micIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateMicrophoneAnimation();
+            });
+        }
+        void UpdateMicrophoneAnimation()
+        {
+            _upgradeStates[2].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[2]}_UpgradeState", _upgradeStates[2]);
+
+            int currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Microphone_{currentMic}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
+            MicrophoneImg.transform.position = MicPositions[currentMic];
+        }
+
+        void UpdateStatueWithDelay(int eventIndex)
+        {
+            if (eventIndex != _statueIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateStatueAnimation();
+            });
+        }
+        void UpdateStatueAnimation()
+        {
+            _upgradeStates[3].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[3]}_UpgradeState", _upgradeStates[3]);
+
+            int currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Statue_{currentStatue}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
+            StatueImg.transform.position = StatuePositions[currentStatue];
+        }
+
+        void CheckRemainingTime(int index, DBInt lvlData)
+        {
+            TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[index].UpdateStartTime);
+            float updateDelay = GameManager.Instance.UpdateDelay;
+            float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
+            if (remainingTime > 0)
+            {
+                float currentTime = remainingTime;
+                DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime).OnComplete(() =>
+                {
+                    lvlData.Value += _upgradeStates[index].Levels;
+                    switch (index)
+                    {
+                        case 0:
+                            UpdateCameraAnimation();
+                            break;
+
+                        case 1:
+                            UpdateTripodAnimation();
+                            break;
+
+                        case 2:
+                            UpdateMicrophoneAnimation();
+                            break;
+
+                        case 3:
+                            UpdateStatueAnimation();
+                            break;
+                    }
+                });
+            }
+            else
+            {
+                _upgradeStates[index].IsUpdating = false;
             }
         }
 
@@ -165,7 +348,7 @@ namespace Core.GamePlay
             StartEarning();
             while (_canStream)
             {
-                int i = Random.Range(0, _mainStreamAnimations.Length);
+                int i = UnityEngine.Random.Range(0, _mainStreamAnimations.Length);
                 yield return new WaitForSeconds(5f);
                 McAnimator.Play(_mainStreamAnimations[i]);
             }

@@ -29,9 +29,9 @@ namespace Core.GamePlay
         {
             SimpleEventsHolder.UpdatePriceTxt += UpdateData;
             Body.DOScale(Vector3.one, _sizeTween).From(Vector3.zero).SetEase(Ease.OutBack);
-            _priceData = new PriceHandler[Increments.Length];
-            _upgradeStates = new UpgradeStateData[Increments.Length];
-            _timerTweens = new Tween[Increments.Length];
+            _priceData = new PriceHandler[ItemsNames.Length];
+            _upgradeStates = new UpgradeStateData[ItemsNames.Length];
+            _timerTweens = new Tween[ItemsNames.Length];
             UpdateData();
         }
 
@@ -72,7 +72,7 @@ namespace Core.GamePlay
         {
         }
 
-        public virtual void UpdateItemProcess(int itemIndex, DBInt lvlData, int eventIndex, bool canUpdateVisuals)
+        public virtual void UpdateItemProcess(int eventIndex, DBInt lvlData, int itemIndex, bool canUpdateVisuals)
         {
             int lvl = lvlData.Value;
             int cost = GetCost(lvl);
