@@ -22,9 +22,9 @@ namespace Core.GamePlay
         [SerializeField] Vector2[] StatuePositions, WatchPositions, CameraPositions, MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation;
 
-        int _currentStatue, _currentCamera, _currentMic, _currentTripod;
+        int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
-              _updatingAnimationDuration = 0.25f;
+              _updatingAnimationDuration = 0.45f, _visualDuration = 5;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
@@ -46,62 +46,28 @@ namespace Core.GamePlay
         public void CountinueGameplay()
         {
             McAnimator.SetTrigger("Default");
-            LoadStatue();
-            LoadCamera();
-            LoadMicrophone();
+            LoadCameraFirst();
             LoadTripod();
+            LoadMicrophone();
+            LoadStatue();
             StartStreaming();
         }
 
-        void LoadStatue()
+        void LoadCameraFirst()
         {
-            _currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
-            string key = $"Statue_{_currentStatue}";
-            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
-            StatueImg.transform.position = StatuePositions[_currentStatue];
-        }
-        void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                StatueImg.sprite = handle.Result;
-                Material mat = StatueImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                StatueImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
-            }
-            else
-            {
-                Debug.Log("Statue load failed!");
-            }
-        }
-
-        void LoadCamera()
-        {
-            _currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount);
-            string key = $"Camera_{_currentCamera}";
+            int currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Camera_{currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
-            CameraImg.transform.position = CameraPositions[_currentCamera];
+            CameraImg.transform.position = CameraPositions[currentCamera];
         }
         void OnCameraLoaded(AsyncOperationHandle<Sprite> handle)
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
-                CameraImg.sprite = handle.Result;
+                CameraImg.sprite = handle.Result; 
                 Material mat = CameraImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                CameraImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                CameraImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
             }
             else
             {
@@ -111,10 +77,10 @@ namespace Core.GamePlay
 
         void LoadTripod()
         {
-            _currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
-            string key = $"Tripod_{_currentTripod}";
+            int currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Tripod_{currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
-            TripodImg.transform.position = TripodPositions[_currentTripod];
+            TripodImg.transform.position = TripodPositions[currentTripod];
         }
         void OnTripodLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -122,14 +88,8 @@ namespace Core.GamePlay
             {
                 TripodImg.sprite = handle.Result;
                 Material mat = TripodImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                TripodImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                TripodImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
             }
             else
             {
@@ -139,10 +99,10 @@ namespace Core.GamePlay
 
         void LoadMicrophone()
         {
-            _currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
-            string key = $"Microphone_{_currentMic}";
+            int currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Microphone_{currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
-            MicrophoneImg.transform.position = MicPositions[_currentMic];
+            MicrophoneImg.transform.position = MicPositions[currentMic];
         }
         void OnMicrophoneLoaded(AsyncOperationHandle<Sprite> handle)
         {
@@ -150,18 +110,34 @@ namespace Core.GamePlay
             {
                 MicrophoneImg.sprite = handle.Result;
                 Material mat = MicrophoneImg.material;
-                mat.SetFloat("_Reveal", 0f);
-                MicrophoneImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                {
-                    DOTween.To(
-                    () => mat.GetFloat("_Reveal"),
-                    x => mat.SetFloat("_Reveal", x),
-                    1f, _updatingAnimationDuration);
-                });
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                MicrophoneImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
             }
             else
             {
                 Debug.Log("Microphone load failed!");
+            }
+        }
+
+        void LoadStatue()
+        {
+            int currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
+            string key = $"Statue_{currentStatue}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
+            StatueImg.transform.position = StatuePositions[currentStatue];
+        }
+        void OnStatueLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                StatueImg.sprite = handle.Result;
+                Material mat = StatueImg.material;
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                StatueImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+            }
+            else
+            {
+                Debug.Log("Statue load failed!");
             }
         }
 

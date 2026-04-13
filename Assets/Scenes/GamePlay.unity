@@ -7746,9 +7746,9 @@ RectTransform:
   m_Children:
   - {fileID: 374639784}
   - {fileID: 2003852190}
-  - {fileID: 1203401692}
   - {fileID: 2054247643}
   - {fileID: 1907266141}
+  - {fileID: 1203401692}
   m_Father: {fileID: 1063409281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -7935,7 +7935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -8015,7 +8015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: -430
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11680,7 +11680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -11760,7 +11760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -430
+      value: -210
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12967,7 +12967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524898032296376184, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6028889439322702537, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_Sprite
@@ -13047,7 +13047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7364520048804403121, guid: e2a15c4ca0d21d240873388cb2cb9b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

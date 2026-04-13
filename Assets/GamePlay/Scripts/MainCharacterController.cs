@@ -46,6 +46,7 @@ namespace Core.GamePlay
             UpdateHeadSpritesFirst();
             UpdateWatchFirst();
         }
+
         void UpdateClothesFirst()
         {
             int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
