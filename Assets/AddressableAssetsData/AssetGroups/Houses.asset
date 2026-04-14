@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Houses
   m_GUID: 3494837789634b344bf461a542929786
   m_SerializeEntries:
+  - m_GUID: 1786a995cdc3b0541901e0273ea4ea0d
+    m_Address: House_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65af23a4931cb754d9a57bd6b9e7bf00
+    m_Address: House_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6609ac89b4222eb42a99936e7e30474d
     m_Address: House_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73d2d6a8321591f4598011b5dd92fc76
+    m_Address: House_9
     m_ReadOnly: 0
     m_SerializedLabels:
     - House
@@ -39,8 +57,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - House
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 970cd28dc7e273e40a067d0de2fe7979
+    m_Address: House_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9767b4111f803ab41a8d17f60578506e
     m_Address: House_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa8f989c579625d4fb6f6537be0e9811
+    m_Address: House_7
     m_ReadOnly: 0
     m_SerializedLabels:
     - House
