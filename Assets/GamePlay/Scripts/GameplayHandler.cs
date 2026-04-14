@@ -20,12 +20,12 @@ namespace Core.GamePlay
         [SerializeField] Animator McAnimator;
         [SerializeField] SpriteRenderer StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
         [SerializeField] TextMeshProUGUI IncomeTxt;
-        [SerializeField] Vector2[] StatuePositions, WatchPositions, CameraPositions, MicPositions, TripodPositions;
+        [SerializeField] Vector2[] StatuePositions, CameraPositions, MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation, ItemsNames;
 
         int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
-              _updatingAnimationDuration = 0.45f, _visualDuration = 5;
+              _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
         Coroutine _streamRoutine, _earningRotine;
