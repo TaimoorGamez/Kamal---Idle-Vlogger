@@ -15,7 +15,7 @@ namespace Core.Events
 
         //-------------------Game Flow Events-------------------
         SelfDestructionEvent, StoryPartComplete, CheckPluginStatus,
-        UpdatePriceTxt,
+        UpdatePriceTxt, UpdateMapProgress,
 
         //-------------------Economy Events-------------------
         UpdateCashTxtEvent, UpdateGoldTxtEvent, UpdateSubscribeTxtEvent,

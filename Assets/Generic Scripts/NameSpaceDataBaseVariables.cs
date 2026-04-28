@@ -120,6 +120,7 @@ namespace Core.DB.Variables
         //---------------------Game Flow --------------------------
         public static DBInt FFT = new DBInt("FFT", 0);
         public static DBInt CurrentMap = new DBInt("CurrentMap", 0);
+        public static DBInt MapProgress = new DBInt("MapProgress", 0);
         public static DBInt CharismaLvl = new DBInt("CharismaLvl", 0);
         public static DBInt EruditionLvl = new DBInt("EruditionLvl", 0);
         public static DBInt ImprovisationLvl = new DBInt("ImprovisationLvl", 0);

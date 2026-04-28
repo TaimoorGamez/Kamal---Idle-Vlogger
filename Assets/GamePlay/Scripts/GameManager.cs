@@ -1,8 +1,8 @@
-using Core.DB.Variables;
+using System;
 using Core.Events;
 using DG.Tweening;
-using System;
 using UnityEngine;
+using Core.DB.Variables;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -10,7 +10,7 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        public int SpriteChangeCount = 20;
+        public int SpriteChangeCount = 20, MapChangeCount = 100;
         public float UpdateDelay = 10;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
