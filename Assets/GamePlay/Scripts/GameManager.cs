@@ -380,5 +380,51 @@ namespace Core.GamePlay
             StorylineUI.SetActive(false);
             CurrentGameplayHandler.ContinueGameplay();
         }
+
+        public string FormatMoney(double value)
+        {
+            if (value < 1000)
+                return value.ToString("0");
+
+            string[] suffixes = { "K", "M", "B", "T", "Qa" };
+
+            int index = 0;
+
+            // Go through predefined suffixes
+            while (value >= 1000 && index < suffixes.Length)
+            {
+                value /= 1000;
+                index++;
+            }
+
+            // If still large switch to AA system
+            if (index >= suffixes.Length)
+            {
+                int extraIndex = 0;
+
+                while (value >= 1000)
+                {
+                    value /= 1000;
+                    extraIndex++;
+                }
+
+                return value.ToString("0.#") + GetAlphabetSuffix(extraIndex);
+            }
+
+            return value.ToString("0.#") + suffixes[index - 1];
+        }
+
+        string GetAlphabetSuffix(int index)
+        {
+            string result = "";
+
+            while (index >= 0)
+            {
+                result = (char)('A' + (index % 26)) + result;
+                index = index / 26 - 1;
+            }
+
+            return result;
+        }
     }
 }

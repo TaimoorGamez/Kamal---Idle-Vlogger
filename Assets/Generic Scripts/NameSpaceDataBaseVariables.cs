@@ -97,7 +97,7 @@ namespace Core.DB.Variables
         public static DBString LastDate = new DBString("LastDate", DateTime.MinValue.ToString());
 
         //---------------------Economy Data -------------------  
-        public static DBFloat CashWallet = new DBFloat("CashWallet", 1000000);
+        public static DBFloat CashWallet = new DBFloat("CashWallet", 2000000000);
         public static DBInt GoldWallet = new DBInt("GoldWallet", 0);
         public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);
 
@@ -138,7 +138,7 @@ namespace Core.DB.Variables
         public static DBInt BackyardLvl = new DBInt("BackyardLvl", 0);
         public static DBInt LastPlayedTime = new DBInt("LastPlayedTime", 0);
         public static DBInt StoryProgress = new DBInt("StoryProgress", 0);
-        public static DBFloat BasicIncome = new DBFloat("BasicIncome", 0.1f);
+        public static DBFloat BasicIncome = new DBFloat("BasicIncome", 1f);
         public static DBInt MaxLevels = new DBInt("MaxLevels", 0);
     }
 

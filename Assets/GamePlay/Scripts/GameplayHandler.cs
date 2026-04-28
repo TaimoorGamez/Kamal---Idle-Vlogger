@@ -24,7 +24,7 @@ namespace Core.GamePlay
         [SerializeField] string[] BaseStreamAnimation, ItemsNames;
 
         int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
-        float _tappedMultipler = 1, _maxTapped = 1.8f, _perSecond = 0.25f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
+        float _tappedMultipler = 1, _maxTapped = 1.8f, _tappedSpeed = 0.1f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
               _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f;
         bool _canStream = false, _canEarn = false;
         string[] _mainStreamAnimations;
@@ -382,9 +382,9 @@ namespace Core.GamePlay
                     IncomeTxt.color = Color.black;
                 }
                 income *= _tappedMultipler;
-                IncomeTxt.text = $"{income:F2}/s";
+                IncomeTxt.text = $"{GameManager.Instance.FormatMoney(income)}/s";
                 CashCurrency.Amount += income;
-                yield return new WaitForSecondsRealtime(_perSecond);
+                yield return new WaitForSecondsRealtime(_tappedSpeed);
             }
         }
 

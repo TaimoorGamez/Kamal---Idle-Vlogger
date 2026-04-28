@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using Core.Events;
 using Core.Economy;
+using Core.GamePlay;
 
 namespace Core.Screen
 {
@@ -21,7 +22,7 @@ namespace Core.Screen
 
         void UpdateCashText()
         {
-            CurrencyTxt.text = CashCurrency.Amount.ToString("F0");
+            CurrencyTxt.text = GameManager.Instance.FormatMoney(CashCurrency.Amount);
         }
     }
 }

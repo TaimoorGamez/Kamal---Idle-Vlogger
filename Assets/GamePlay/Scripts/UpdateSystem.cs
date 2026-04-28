@@ -118,7 +118,7 @@ namespace Core.GamePlay
                 }
                 _priceData[item].Levels = totalLevels;
                 _priceData[item].Cost = cost;
-                UpdatePriceTxts[item].text = GetCost(nextLvl).ToString();
+                UpdatePriceTxts[item].text = GameManager.Instance.FormatMoney(cost);
                 AvailableUpdatesTxt[item].text = $"+{totalLevels} Level";
                 UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
                 int count = GameManager.Instance.SpriteChangeCount;
