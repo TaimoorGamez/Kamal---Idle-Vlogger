@@ -26,7 +26,7 @@ namespace Core.GamePlay
 
         void UpdateMapProgress()
         {
-            int progress = DBVariablesHolder.MapProgress.Value;
+            int progress = GetMapProgress();
             float targetFill = (float)progress / _totalTasks;
 
             MapFiller.DOFillAmount(targetFill, _tweenTiming).SetEase(Ease.OutCubic);
@@ -35,6 +35,44 @@ namespace Core.GamePlay
             {
                 MapFiller.transform.DOScale(_pulseScale, _tweenTiming).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             }
+        }
+
+        int GetMapProgress()
+        {
+            int progress = 0, mapLvls = GameManager.Instance.MapChangeCount;
+
+            if (DBVariablesHolder.CharismaLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.EruditionLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.ImprovisationLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.WitLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.CameraLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.TripodLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.MicrophoneLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.ClothesLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.HairsLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.WatchLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.HouseLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.GroundLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.VehicleLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.StatueLvl.Value % mapLvls == 0)
+                progress++;
+            if (DBVariablesHolder.BackyardLvl.Value % mapLvls == 0)
+                progress++;
+
+            return progress;
         }
     }
 }
