@@ -71,6 +71,11 @@ namespace Core.GamePlay
         {
         }
 
+        public virtual int GetAvailableUpdates()
+        {
+            return 0;
+        }
+
         public virtual void UpdateItemProcess(int eventIndex, DBInt lvlData, int itemIndex, bool canUpdateVisuals)
         {
             int lvl = lvlData.Value;
@@ -177,7 +182,7 @@ namespace Core.GamePlay
             return _startingCost * Math.Pow(_costMultiplier, level);
         }
 
-        bool AnyRestriction(int lvl)
+        protected bool AnyRestriction(int lvl)
         {
             return lvl % GameManager.Instance.MapChangeCount == 0;
         }

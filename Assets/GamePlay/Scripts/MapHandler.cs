@@ -33,7 +33,6 @@ namespace Core.GamePlay
 
             if (progress >= _totalTasks)
             {
-                MapFiller.transform.DOScale(_pulseScale, _tweenTiming).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             }
         }
 
