@@ -97,9 +97,7 @@ namespace Core.DB.Variables
         public static DBString LastDate = new DBString("LastDate", DateTime.MinValue.ToString());
 
         //---------------------Economy Data -------------------  
-        public static DBFloat CashWallet = new DBFloat("CashWallet", 2000000000);
         public static DBInt GoldWallet = new DBInt("GoldWallet", 0);
-        public static DBInt SubscribeWallet = new DBInt("SubscribeWallet", 0);
 
         //---------------------Daily Tasks ------------------------
         public static DBInt Task0 = new DBInt("Task0", 0);

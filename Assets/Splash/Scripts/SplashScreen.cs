@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Core.Economy;
 using Core.GamePlay;
 
 namespace Core.Screen
@@ -26,6 +27,8 @@ namespace Core.Screen
                 GameManager.Instance.StartGame();
                 Destroy(gameObject, 0.1f);
             });
+            CashCurrency.LoadEconomy();
+            Subscribers.LoadSubscribers();  
         }
     }
 }

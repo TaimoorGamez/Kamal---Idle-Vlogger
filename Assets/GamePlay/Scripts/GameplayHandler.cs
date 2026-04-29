@@ -390,8 +390,8 @@ namespace Core.GamePlay
 
         float GetIncomePerSecond()
         {
-            int hundreds = Subscribers.Amount / 100;
-            float subscriberIncome = hundreds * 0.01f;
+            double hundreds = Subscribers.Amount / 100;
+            float subscriberIncome = (float)(hundreds * 0.01f);
 
             return DBVariablesHolder.BasicIncome.Value + subscriberIncome;
         }

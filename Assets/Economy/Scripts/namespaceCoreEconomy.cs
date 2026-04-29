@@ -1,29 +1,31 @@
 using Core.Events;
 using Core.DB.Variables;
+using UnityEngine;
 
 namespace Core.Economy
 {
     public static class CashCurrency
     {
+        static string _cashPrefName = "CashWallet";
+        static double _amount;
 
-        public static float Amount
+        public static double Amount
         {
             get
             {
-                return DBVariablesHolder.CashWallet.Value;
+                return _amount;
             }
             set
             {
-                if (value > DBVariablesHolder.CashWallet.Value)
-                {
-                }
-                else if (value < DBVariablesHolder.CashWallet.Value)
-                {
-                    //DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value)
-                }
-                DBVariablesHolder.CashWallet.Value = value;
+                _amount = value;
+                PlayerPrefs.SetString(_cashPrefName, _amount.ToString());
                 SimpleEventsHolder.UpdateCashTxtEvent?.Invoke();
             }
+        }
+
+        public static void LoadEconomy()
+        {
+            _amount = double.Parse(PlayerPrefs.GetString(_cashPrefName, "900000000000000"));
         }
     }
 
@@ -52,24 +54,26 @@ namespace Core.Economy
 
     public static class Subscribers
     {
-        public static int Amount
+        static string _subscriberPrefName = "SubscribeWallet";
+        static double _amount;
+
+        public static double Amount
         {
             get
             {
-                return DBVariablesHolder.SubscribeWallet.Value;
+                return _amount;
             }
             set
             {
-                if (value > DBVariablesHolder.SubscribeWallet.Value)
-                {
-                }
-                else if (value < DBVariablesHolder.SubscribeWallet.Value)
-                {
-                    //DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value);
-                }
-                DBVariablesHolder.SubscribeWallet.Value = value;
+                _amount = value;
+                PlayerPrefs.SetString(_subscriberPrefName, _amount.ToString());
                 SimpleEventsHolder.UpdateSubscribeTxtEvent?.Invoke();
             }
+        }
+
+        public static void LoadSubscribers()
+        {
+            _amount = double.Parse(PlayerPrefs.GetString(_subscriberPrefName, "0"));
         }
     }
 }

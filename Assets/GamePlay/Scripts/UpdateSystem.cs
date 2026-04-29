@@ -18,8 +18,7 @@ namespace Core.GamePlay
         [SerializeField] protected GameObject[] UpdatePanels, ChangeWaitingPanels, MovingWarningPanels;
         [SerializeField] protected string[] ItemsNames;
 
-        int _startingCost = 1;
-        float _costMultiplier = 1.45f, _sizeTween = 0.25f;
+        float _startingCost = 0.25f, _costMultiplier = 1.25f, _sizeTween = 0.25f;
 
         protected PriceHandler[] _priceData;
         protected UpgradeStateData[] _upgradeStates;
@@ -75,13 +74,12 @@ namespace Core.GamePlay
         public virtual void UpdateItemProcess(int eventIndex, DBInt lvlData, int itemIndex, bool canUpdateVisuals)
         {
             int lvl = lvlData.Value;
-            int cost = GetCost(lvl);
+            double cost = GetCost(lvl);
             if (CashCurrency.Amount >= _priceData[itemIndex].Cost)
             {
                 CashCurrency.Amount -= _priceData[itemIndex].Cost;
                 DBVariablesHolder.BasicIncome.Value += Increments[itemIndex] * _priceData[itemIndex].Levels;
                 lvlData.Value += _priceData[itemIndex].Levels;
-                Debug.Log($"Updated to level {lvlData.Value}");
                 if (AnyRestriction(lvlData.Value))
                 {
                     SimpleEventsHolder.UpdateMapProgress?.Invoke();
@@ -130,7 +128,7 @@ namespace Core.GamePlay
                     .OnComplete(() =>
                     {
                         int nextLvl = lvl + 1, count = GameManager.Instance.SpriteChangeCount;
-                        UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
+                        UpdateItemLvlTxt[item].text = $"Level: {lvl}";
                         UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
                         _upgradeStates[item].IsUpdating = false;
                         JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
@@ -141,11 +139,12 @@ namespace Core.GamePlay
             else
             {
                 int totalLevels = 1, nextLvl = lvl + 1;
-                int cost = GetCost(nextLvl);
+                double cost = GetCost(nextLvl);
                 if (DBVariablesHolder.MaxLevels.Value > 0)
                 {
-                    int targetLvl = GetNextMilestone(lvl), maxLvls = nextLvl + 1, maxCost = cost + GetCost(maxLvls);
-                    float availableCash = CashCurrency.Amount;
+                    int targetLvl = GetNextMilestone(lvl), maxLvls = nextLvl + 1;
+                    double maxCost = cost + GetCost(maxLvls);
+                    double availableCash = CashCurrency.Amount;
                     while (availableCash >= maxCost && maxLvls <= targetLvl)
                     {
                         cost = maxCost;
@@ -158,9 +157,8 @@ namespace Core.GamePlay
                 _priceData[item].Levels = totalLevels;
                 _priceData[item].Cost = cost;
                 UpdatePriceTxts[item].text = GameManager.Instance.FormatMoney(cost);
-                Debug.Log($"Item: {ItemsNames[item]}, Cost: {cost}");
                 AvailableUpdatesTxt[item].text = $"+{totalLevels} Level";
-                UpdateItemLvlTxt[item].text = $"Level: {nextLvl}";
+                UpdateItemLvlTxt[item].text = $"Level: {lvl}";
                 int count = GameManager.Instance.SpriteChangeCount;
                 UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
                 UpdatePanels[item].SetActive(true);
@@ -174,9 +172,9 @@ namespace Core.GamePlay
             return ((level / mileStonePoint) + 1) * mileStonePoint;
         }
 
-        protected int GetCost(int level)
+        protected double GetCost(int level)
         {
-            return (int)(_startingCost * Mathf.Pow(_costMultiplier, level));
+            return _startingCost * Math.Pow(_costMultiplier, level);
         }
 
         bool AnyRestriction(int lvl)
@@ -187,7 +185,8 @@ namespace Core.GamePlay
 
     public struct PriceHandler
     {
-        public int Levels, Cost;
+        public int Levels;
+        public double Cost;
     }
 
     public class UpgradeStateData
