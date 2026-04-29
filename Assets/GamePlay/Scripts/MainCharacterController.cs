@@ -20,7 +20,7 @@ namespace Core.GamePlay
         [SerializeField] string[] ItemsNames;
 
         int _clothesIndex = 0, _hairsIndex = 1, _watchIndex = 2;
-        float _scalingDuration = 0.45f, _visualDuration = 0.5f, _UpdateAnimationScale = 1.1f;
+        float _scalingDuration = 0.45f, _visualDuration = 0.5f;
         string[] _categoryName = {"LeftArm", "LeftLeg", "RightLeg", "Body", "RightArm"};
         string _headCategory = "Head_";
         UpgradeStateData[] _upgradeStates;
@@ -107,7 +107,7 @@ namespace Core.GamePlay
                 WatchImg.sprite = handle.Result;
                 Material mat = WatchImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
-                WatchImg.transform.DOScale(Vector3.one, _scalingDuration).From(Vector3.zero).SetEase(Ease.Linear);
+                WatchImg.transform.DOScale(Vector3.one, _scalingDuration).From(0.9f).SetEase(Ease.Linear);
             }
             else
             {
@@ -136,9 +136,6 @@ namespace Core.GamePlay
             for (int c = 0; c < McResolvers.Length; c++)
             {
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
-                Transform clotheTransform = McResolvers[c].transform;
-                clotheTransform.DOKill();
-                clotheTransform.DOScale(Vector3.one, _scalingDuration).From(_UpdateAnimationScale).SetEase(Ease.Linear);
             }
         }
 
@@ -159,7 +156,6 @@ namespace Core.GamePlay
             _upgradeStates[_hairsIndex].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[_hairsIndex]}_UpgradeState", _upgradeStates[_hairsIndex]);
             McTalkingComponent.StopTalking();
-            HeadResolver.transform.DOScale(Vector3.one, _scalingDuration).From(_UpdateAnimationScale).SetEase(Ease.Linear);
             DOTween.To(() => HairMaterial.GetFloat("_Reveal"), x => HairMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f)
                 .SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
             int hairIndex = DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount;
