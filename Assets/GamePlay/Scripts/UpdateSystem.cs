@@ -18,7 +18,7 @@ namespace Core.GamePlay
         [SerializeField] protected GameObject[] UpdatePanels, ChangeWaitingPanels, MovingWarningPanels;
         [SerializeField] protected string[] ItemsNames;
 
-        float _startingCost = 0.25f, _costMultiplier = 1.25f, _sizeTween = 0.25f;
+        float _startingCost = 0.25f, _costMultiplier = 2.5f, _sizeTween = 0.25f, _slowFactor = 2;
 
         protected PriceHandler[] _priceData;
         protected UpgradeStateData[] _upgradeStates;
@@ -179,7 +179,10 @@ namespace Core.GamePlay
 
         protected double GetCost(int level)
         {
-            return _startingCost * Math.Pow(_costMultiplier, level);
+            double exponential = _startingCost * Math.Pow(_costMultiplier, level);
+            double slowdown = Math.Pow(_slowFactor, level);
+
+            return exponential / slowdown;
         }
 
         protected bool AnyRestriction(int lvl)

@@ -384,7 +384,7 @@ namespace Core.GamePlay
         public string FormatMoney(double value)
         {
             if (value < 1000)
-                return value.ToString("0");
+                return value.ToString("0.##");
 
             string[] suffixes = { "K", "M", "B", "T", "Qa" };
 
