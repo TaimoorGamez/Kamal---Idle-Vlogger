@@ -9,11 +9,11 @@ namespace Core.GamePlay
     public class CashParticle : MonoBehaviour
     {
         [SerializeField] GameObject cashPrefab;
-        [SerializeField] int PoolSize = 20;
         [SerializeField] float SpawnRate = 0.2f, MoveDistance = 4f, Duration = 1f;
         [SerializeField] Camera MainCamera;
 
         Queue<GameObject> _pool = new Queue<GameObject>();
+        int _poolSize = 10;
         bool _isSpawning;
         Coroutine _cashCorotine;
 
@@ -21,7 +21,7 @@ namespace Core.GamePlay
 
         private void Start()
         {
-            for (int i = 0; i < PoolSize; i++)
+            for (int i = 0; i < _poolSize; i++)
             {
                 GameObject obj = Instantiate(cashPrefab, transform);
                 obj.SetActive(false);
@@ -59,9 +59,17 @@ namespace Core.GamePlay
         {
             if (_pool.Count == 0 || !_isSpawning) return;
 
+            Vector2 inputPos;
+
+            #if UNITY_EDITOR || UNITY_STANDALONE
+                inputPos = Mouse.current.position.ReadValue();
+
+            #elif UNITY_ANDROID || UNITY_IOS
+                inputPos = Touchscreen.current.primaryTouch.position.ReadValue();
+            #endif
+
+            Vector3 worldPos = MainCamera.ScreenToWorldPoint(new Vector3(inputPos.x, inputPos.y, 10f));
             GameObject cash = _pool.Dequeue();
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Vector3 worldPos = MainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10f));
 
             float randomRot = Random.Range(-180f, 180f);
 

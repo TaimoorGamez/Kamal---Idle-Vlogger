@@ -26,15 +26,15 @@ namespace Core.GamePlay
         {
             int count = 0;
 
-            int clothLvl = DBVariablesHolder.ClothesLvl.Value + 1;
+            int clothLvl = DBVariablesHolder.ClothesLvl.Value;
             if (!AnyRestriction(clothLvl) && CashCurrency.Amount >= GetCost(clothLvl + 1))
                 count++;
 
-            int hairLvl = DBVariablesHolder.HairsLvl.Value + 1;
+            int hairLvl = DBVariablesHolder.HairsLvl.Value;
             if (!AnyRestriction(hairLvl) && CashCurrency.Amount >= GetCost(hairLvl + 1))
                 count++;
 
-            int watchLvl = DBVariablesHolder.WatchLvl.Value + 1;
+            int watchLvl = DBVariablesHolder.WatchLvl.Value;
             if (!AnyRestriction(watchLvl) && CashCurrency.Amount >= GetCost(watchLvl + 1))
                 count++;
 
