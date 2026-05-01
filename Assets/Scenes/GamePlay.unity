@@ -9674,7 +9674,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2431ca79bd031634ab90d238337565c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Screen.SubscriberBarController
-  CurrencyTxt: {fileID: 563867977}
+  SubscribarsTxt: {fileID: 563867977}
+  RewardTxt: {fileID: 0}
+  FillBar: {fileID: 966663835}
+  RewardButton: {fileID: 0}
+  RewardPanel: {fileID: 0}
 --- !u!1001 &1518731411
 PrefabInstance:
   m_ObjectHideFlags: 0

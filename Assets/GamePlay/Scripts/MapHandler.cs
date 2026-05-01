@@ -33,6 +33,7 @@ namespace Core.GamePlay
 
             if (progress >= _totalTasks)
             {
+                transform.DOScale(_pulseScale, _tweenTiming).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             }
         }
 
