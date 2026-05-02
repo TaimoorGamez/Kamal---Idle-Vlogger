@@ -140,6 +140,12 @@ namespace Core.GamePlay
                         UpdateData();
                     });
                 }
+                else if (remainingTime <= 0)
+                {
+                    _upgradeStates[item].IsUpdating = false;
+                    JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
+                    UpdateData();
+                }
             }
             else
             {
