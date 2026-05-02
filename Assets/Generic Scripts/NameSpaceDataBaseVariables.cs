@@ -117,6 +117,7 @@ namespace Core.DB.Variables
 
         //---------------------Game Flow --------------------------
         public static DBInt FFT = new DBInt("FFT", 0);
+        public static DBInt IsGameplay = new DBInt("IsGameplay", 0);
         public static DBInt CurrentMap = new DBInt("CurrentMap", 0);
         public static DBInt CharismaLvl = new DBInt("CharismaLvl", 1);
         public static DBInt EruditionLvl = new DBInt("EruditionLvl", 1);

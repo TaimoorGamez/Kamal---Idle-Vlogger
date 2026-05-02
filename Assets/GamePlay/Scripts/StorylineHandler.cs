@@ -33,9 +33,10 @@ namespace Core.GamePlay
 
         void OnStoryPartEnd()
         {
+            DBVariablesHolder.IsGameplay.Value = 1;
             _storyIndex++;
             DBVariablesHolder.StoryProgress.Value = _storyIndex;
-            GameManager.Instance.SwitchToGameplay();
+            GameManager.Instance.StartGame();
         }
     }
 }
