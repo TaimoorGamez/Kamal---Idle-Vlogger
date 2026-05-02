@@ -137,6 +137,7 @@ namespace Core.DB.Variables
         public static DBInt StoryProgress = new DBInt("StoryProgress", 0);
         public static DBFloat BasicIncome = new DBFloat("BasicIncome", 1f);
         public static DBInt MaxLevels = new DBInt("MaxLevels", 0);
+        public static DBInt SubscriberLvl = new DBInt("SubscriberLvl", 0);
     }
 
     public static class DBVariableDictionariesHolder

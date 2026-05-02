@@ -3,7 +3,9 @@ using UnityEngine;
 using Core.Events;
 using DG.Tweening;
 using Core.Economy;
+using Core.GamePlay;
 using UnityEngine.UI;
+using Core.DB.Variables;
 
 namespace Core.Screen
 {
@@ -17,9 +19,15 @@ namespace Core.Screen
         double _currentTarget = 1000;
         int _targetMultiplier = 10;
         float _cashMultipler = 1.2f, _tweenTiming = 0.5f, _pulseScale = 1.1f;
+        Tween _pulseTween;
+
 
         private void OnEnable()
         {
+            int subscriberLvl = DBVariablesHolder.SubscriberLvl.Value;
+            if(subscriberLvl > 0)
+                _currentTarget = _currentTarget * (subscriberLvl * _targetMultiplier);
+
             SimpleEventsHolder.UpdateSubscribeTxtEvent += UpdateCashText;
         }
 
@@ -31,11 +39,12 @@ namespace Core.Screen
         void UpdateCashText()
         {
             double subscribers = Subscribers.Amount;
-            SubscribarsTxt.text = subscribers.ToString();
+            SubscribarsTxt.text = GameManager.Instance.FormatMoney(subscribers);
             FillBar.fillAmount = (float)(subscribers / _currentTarget);
-            if (subscribers >= _currentTarget)
+            if (subscribers >= _currentTarget && _pulseTween == null)
             {
-                transform.DOScale(_pulseScale, _tweenTiming).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+                RewardButton.interactable = true;
+                _pulseTween = transform.DOScale(_pulseScale, _tweenTiming).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             }
         }
 
@@ -43,9 +52,11 @@ namespace Core.Screen
         {
             if (Subscribers.Amount >= _currentTarget)
             {
-                RewardTxt.text = ($"+{_currentTarget * _cashMultipler}");
+                RewardTxt.text = GameManager.Instance.FormatMoney(_currentTarget * _cashMultipler);
                 RewardPanel.SetActive(true);
-                transform.DOKill();
+                RewardPanel.transform.DOScale(Vector3.one, _tweenTiming).From(Vector3.zero).SetEase(Ease.OutBack);
+                RewardButton.interactable = false;
+                transform.localScale = Vector3.one;
             }
         }
 
@@ -53,7 +64,13 @@ namespace Core.Screen
         {
             CashCurrency.Amount += (_currentTarget * _cashMultipler);
             _currentTarget *= _targetMultiplier;
-            RewardPanel.SetActive(false);
+            DBVariablesHolder.SubscriberLvl.Value++;
+            RewardPanel.transform.DOScale(Vector3.zero, _tweenTiming).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                RewardPanel.SetActive(false);
+            });
+            _pulseTween.Kill();
+            _pulseTween = null;
         }
     }
 }
