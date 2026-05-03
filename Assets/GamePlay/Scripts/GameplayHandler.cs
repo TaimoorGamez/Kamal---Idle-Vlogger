@@ -37,6 +37,7 @@ namespace Core.GamePlay
             SingleIntegerEventsHolder.UpdateItemEvent += UpdateTripodWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent += UpdateMicrophoneWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent += UpdateStatueWithDelay;
+            SimpleEventsHolder.StopStreaming += StopStreaming;
         }
 
         private void OnDisable()
@@ -45,6 +46,7 @@ namespace Core.GamePlay
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateTripodWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateMicrophoneWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateStatueWithDelay;
+            SimpleEventsHolder .StopStreaming -= StopStreaming;
         }
 
         void Start()
@@ -65,7 +67,7 @@ namespace Core.GamePlay
 
         void LoadCameraFirst()
         {
-            int currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentCamera = GetItemIndex(DBVariablesHolder.CameraLvl.Value);
             string key = $"Camera_{currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
             CameraImg.transform.position = CameraPositions[currentCamera];
@@ -98,7 +100,7 @@ namespace Core.GamePlay
 
         void LoadTripodFirst()
         {
-            int currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentTripod = GetItemIndex(DBVariablesHolder.TripodLvl.Value);
             string key = $"Tripod_{currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
             TripodImg.transform.position = TripodPositions[currentTripod];
@@ -131,7 +133,7 @@ namespace Core.GamePlay
 
         void LoadMicrophoneFirst()
         {
-            int currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentMic = GetItemIndex(DBVariablesHolder.MicrophoneLvl.Value);
             string key = $"Microphone_{currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
             MicrophoneImg.transform.position = MicPositions[currentMic];
@@ -164,7 +166,7 @@ namespace Core.GamePlay
 
         void LoadStatueFirst()
         {
-            int currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentStatue = GetItemIndex(DBVariablesHolder.StatueLvl.Value);
             string key = $"Statue_{currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
             StatueImg.transform.position = StatuePositions[currentStatue];
@@ -212,7 +214,7 @@ namespace Core.GamePlay
             _upgradeStates[0].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[0]}_UpgradeState", _upgradeStates[0]);
 
-            int currentCamera = (DBVariablesHolder.CameraLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentCamera = GetItemIndex(DBVariablesHolder.CameraLvl.Value);
             string key = $"Camera_{currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
             CameraImg.transform.position = CameraPositions[currentCamera];
@@ -235,7 +237,7 @@ namespace Core.GamePlay
             _upgradeStates[1].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[1]}_UpgradeState", _upgradeStates[1]);
 
-            int currentTripod = (DBVariablesHolder.TripodLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentTripod = GetItemIndex(DBVariablesHolder.TripodLvl.Value);
             string key = $"Tripod_{currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
             TripodImg.transform.position = TripodPositions[currentTripod];
@@ -258,7 +260,7 @@ namespace Core.GamePlay
             _upgradeStates[2].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[2]}_UpgradeState", _upgradeStates[2]);
 
-            int currentMic = (DBVariablesHolder.MicrophoneLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentMic = GetItemIndex(DBVariablesHolder.MicrophoneLvl.Value);
             string key = $"Microphone_{currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
             MicrophoneImg.transform.position = MicPositions[currentMic];
@@ -281,7 +283,7 @@ namespace Core.GamePlay
             _upgradeStates[3].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[3]}_UpgradeState", _upgradeStates[3]);
 
-            int currentStatue = (DBVariablesHolder.StatueLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentStatue = GetItemIndex(DBVariablesHolder.StatueLvl.Value);
             string key = $"Statue_{currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
             StatueImg.transform.position = StatuePositions[currentStatue];
@@ -334,11 +336,14 @@ namespace Core.GamePlay
             _streamRoutine = StartCoroutine(StreamCoroutine());
         }
 
-        public void StopStreaming()
+        void StopStreaming()
         {
             _canStream = false;
             if (_streamRoutine != null)
                 StopCoroutine(_streamRoutine);
+
+            McTalk.StartTalking(false);
+            McAnimator.Play("Default State");
         }
 
         IEnumerator StreamCoroutine()
@@ -417,5 +422,17 @@ namespace Core.GamePlay
             SimpleEventsHolder.UpdatePriceTxt?.Invoke();
         }
 
+        int GetItemIndex(int lvl)
+        {
+            int range = lvl / GameManager.Instance.MapChangeCount;
+            int spriteIndex = GameManager.Instance.SpriteChangeCount;
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            while (range != mapIndex)
+            {
+                lvl -= spriteIndex;
+                range = lvl / GameManager.Instance.MapChangeCount;
+            }
+            return lvl / spriteIndex;
+        }
     }
 }

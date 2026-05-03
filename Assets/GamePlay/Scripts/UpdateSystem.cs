@@ -110,11 +110,13 @@ namespace Core.GamePlay
             if (AnyRestriction(lvl))
             {
                 UpdatePanels[item].SetActive(false);
+                ChangeWaitingPanels[item].SetActive(false);
                 MovingWarningPanels[item].SetActive(true);
             }
             else if (_upgradeStates[item].IsUpdating)
             {
                 UpdatePanels[item].SetActive(false);
+                MovingWarningPanels[item].SetActive(false);
                 ChangeWaitingPanels[item].SetActive(true);
                 TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[item].UpdateStartTime);
                 float updateDelay = GameManager.Instance.UpdateDelay;
@@ -136,6 +138,7 @@ namespace Core.GamePlay
                         UpdateItemLvlTxt[item].text = $"Level: {lvl}";
                         UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
                         _upgradeStates[item].IsUpdating = false;
+                        _upgradeStates[item].UpdateStartTime = "";
                         JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
                         UpdateData();
                     });
@@ -174,6 +177,7 @@ namespace Core.GamePlay
                 UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
                 UpdatePanels[item].SetActive(true);
                 ChangeWaitingPanels[item].SetActive(false);
+                MovingWarningPanels[item].SetActive(false);
             }
         }
 

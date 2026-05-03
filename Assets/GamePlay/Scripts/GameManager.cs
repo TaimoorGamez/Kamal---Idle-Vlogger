@@ -11,7 +11,7 @@ namespace Core.GamePlay
     public class GameManager : MonoBehaviour
     {
         public int SpriteChangeCount = 20, MapChangeCount = 100, MaxStoryIndex = 2;
-        public float UpdateDelay = 5f;
+        public float UpdateDelay = 10f;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
         [SerializeField] SpriteRenderer BgImg, GroundImg, HouseImg, VehicleImg, BackyardImg;
@@ -360,10 +360,20 @@ namespace Core.GamePlay
 
         void SwitchToStoryline()
         {
+            SimpleEventsHolder.StopStreaming?.Invoke();
             GameplayEnvironment.SetActive(false);
             GameplayUI.SetActive(false);
             StorylineUI.SetActive(true);
-            CurrentStorylineHandler.CountinueStory(DBVariablesHolder.StoryProgress.Value);
+            int storyIndex = DBVariablesHolder.StoryProgress.Value;
+            CurrentStorylineHandler.CountinueStory(storyIndex);
+            if (storyIndex < MaxStoryIndex)
+            {
+                LoadBG();
+                LoadHouseFirst();
+                LoadVehicleFirst();
+                LoadBackyardFirst();
+                LoadGroundFirst();
+            }
         }
 
         public void SwitchToGameplay()

@@ -42,6 +42,7 @@ namespace Core.GamePlay
             }
             else if (_currentMsgIndex == 9)
             {
+                CurrentCurtainController.gameObject.SetActive(true);
                 GirlFriend.transform.DOLocalMoveX(_outPosition, _moveDuration).OnComplete(()=> GirlFriend.gameObject.SetActive(false));
                 Rohan.transform.DOLocalMoveX(_outPosition, _moveDuration).OnComplete(() => Rohan.gameObject.SetActive(false));
                 McAnimator.SetTrigger("Kneel");

@@ -1,6 +1,5 @@
-using Core.DB.Variables;
 using Core.Economy;
-using static UnityEditor.Progress;
+using Core.DB.Variables;
 
 namespace Core.GamePlay
 {

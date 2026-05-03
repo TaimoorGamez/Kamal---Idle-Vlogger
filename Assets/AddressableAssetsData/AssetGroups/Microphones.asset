@@ -15,8 +15,32 @@ MonoBehaviour:
   m_GroupName: Microphones
   m_GUID: 4450b1b08b0b87146aded17d7140bced
   m_SerializeEntries:
+  - m_GUID: 6a2ef7f06f7c36540ad36b1a54ebacd4
+    m_Address: Microphone_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7633bf7be23341d449294d3f204d8578
+    m_Address: Microphone_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7aaed113d4dbab54dbf543b945d803da
     m_Address: Microphone_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f980cbe04a847b439ce8106638f2179
+    m_Address: Microphone_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9518ec8a0fde28d41a888e110fc27a24
+    m_Address: Microphone_9
     m_ReadOnly: 0
     m_SerializedLabels:
     - Microphone
@@ -41,6 +65,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1876a6582e40354c95a0f203cda2ce0
     m_Address: Microphone_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6612e15a59d31e40a8a43f2dd530550
+    m_Address: Microphone_8
     m_ReadOnly: 0
     m_SerializedLabels:
     - Microphone
