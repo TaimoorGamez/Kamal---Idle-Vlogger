@@ -11,12 +11,13 @@ namespace Core.GamePlay
         [SerializeField] Image MapFiller;
 
         int _totalTasks = 15;
-        float _tweenTiming = 0.5f, _pulseScale = 1.1f;
+        float _tweenTiming = 0.5f;
 
         private void OnEnable()
         {
             SimpleEventsHolder.UpdateMapProgress += UpdateMapProgress;
-            UpdateMapProgress();
+
+            FillMap();
         }
 
         private void OnDisable()
@@ -24,17 +25,24 @@ namespace Core.GamePlay
             SimpleEventsHolder.UpdateMapProgress -= UpdateMapProgress;
         }
 
+        void FillMap()
+        {
+            int progress = GetMapProgress();
+            float targetFill = (float)progress / _totalTasks;
+            MapFiller.DOFillAmount(targetFill, _tweenTiming).SetEase(Ease.OutCubic);
+        }
+
         void UpdateMapProgress()
         {
             int progress = GetMapProgress();
             float targetFill = (float)progress / _totalTasks;
-
             MapFiller.DOFillAmount(targetFill, _tweenTiming).SetEase(Ease.OutCubic);
 
-            if (progress >= _totalTasks)
+            if (progress >= _totalTasks && DBVariablesHolder.IsGameplay.Value == 1)
             {
                 DBVariablesHolder.IsGameplay.Value = 0;
                 GameManager.Instance.StartGame();
+                DBVariablesHolder.CurrentMap.Value++;
             }
         }
 
@@ -75,5 +83,6 @@ namespace Core.GamePlay
 
             return progress;
         }
+
     }
 }

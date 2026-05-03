@@ -1,6 +1,6 @@
-using Core.DB.Variables;
 using Core.Events;
 using UnityEngine;
+using Core.DB.Variables;
 
 namespace Core.GamePlay
 {
@@ -33,10 +33,40 @@ namespace Core.GamePlay
 
         void OnStoryPartEnd()
         {
-            DBVariablesHolder.IsGameplay.Value = 1;
-            _storyIndex++;
-            DBVariablesHolder.StoryProgress.Value = _storyIndex;
-            GameManager.Instance.StartGame();
+            if (DBVariablesHolder.StoryProgress.Value < GameManager.Instance.MaxStoryIndex)
+            {
+                StartCurrentMap();
+                DBVariablesHolder.IsGameplay.Value = 1;
+                _storyIndex++;
+                DBVariablesHolder.StoryProgress.Value = _storyIndex;
+                GameManager.Instance.StartGame();
+            }
+            else
+            {
+                GameManager.Instance.SwitchToGameplay();
+            }
         }
+
+        void StartCurrentMap()
+        {
+            int mapStartingLvl = 1 + (GameManager.Instance.MapChangeCount * DBVariablesHolder.CurrentMap.Value);
+
+            DBVariablesHolder.CharismaLvl.Value = mapStartingLvl;
+            DBVariablesHolder.EruditionLvl.Value = mapStartingLvl;
+            DBVariablesHolder.ImprovisationLvl.Value = mapStartingLvl;
+            DBVariablesHolder.WitLvl.Value = mapStartingLvl;
+            DBVariablesHolder.CameraLvl.Value = mapStartingLvl;
+            DBVariablesHolder.TripodLvl.Value = mapStartingLvl;
+            DBVariablesHolder.MicrophoneLvl.Value = mapStartingLvl;
+            DBVariablesHolder.ClothesLvl.Value = mapStartingLvl;
+            DBVariablesHolder.HairsLvl.Value = mapStartingLvl;
+            DBVariablesHolder.WatchLvl.Value = mapStartingLvl;
+            DBVariablesHolder.HouseLvl.Value = mapStartingLvl;
+            DBVariablesHolder.GroundLvl.Value = mapStartingLvl;
+            DBVariablesHolder.VehicleLvl.Value = mapStartingLvl;
+            DBVariablesHolder.StatueLvl.Value = mapStartingLvl;
+            DBVariablesHolder.BackyardLvl.Value = mapStartingLvl;
+        }
+
     }
 }

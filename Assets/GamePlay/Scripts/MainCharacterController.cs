@@ -49,7 +49,7 @@ namespace Core.GamePlay
 
         void UpdateClothesFirst()
         {
-            int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
+            int clotheIndex = GetItemIndex(DBVariablesHolder.ClothesLvl.Value);
             for (int c = 0; c < McResolvers.Length; c++)
             {
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
@@ -68,7 +68,7 @@ namespace Core.GamePlay
         }
         void UpdateHeadSpritesFirst()
         {
-            string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
+            string headCategory = _headCategory + GetItemIndex(DBVariablesHolder.HairsLvl.Value).ToString();
             HeadResolver.SetCategoryAndLabel(headCategory, "0");
 
             if (PlayerPrefs.HasKey($"{ItemsNames[_hairsIndex]}_UpgradeState"))
@@ -82,10 +82,9 @@ namespace Core.GamePlay
                 _upgradeStates[_hairsIndex] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
             }
         }
-
         void UpdateWatchFirst()
         {
-            int currentWatch = (DBVariablesHolder.WatchLvl.Value / GameManager.Instance.SpriteChangeCount);
+            int currentWatch = GetItemIndex(DBVariablesHolder.WatchLvl.Value);
             string key = $"Watch_{currentWatch}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
 
@@ -132,7 +131,7 @@ namespace Core.GamePlay
             _upgradeStates[_clothesIndex].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[_clothesIndex]}_UpgradeState", _upgradeStates[_clothesIndex]);
             DOTween.To(() => ClothMaterial.GetFloat("_Reveal"), x => ClothMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
-            int clotheIndex = DBVariablesHolder.ClothesLvl.Value / GameManager.Instance.SpriteChangeCount;
+            int clotheIndex = GetItemIndex(DBVariablesHolder.ClothesLvl.Value);
             for (int c = 0; c < McResolvers.Length; c++)
             {
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
@@ -158,7 +157,7 @@ namespace Core.GamePlay
             McTalkingComponent.StopTalking();
             DOTween.To(() => HairMaterial.GetFloat("_Reveal"), x => HairMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f)
                 .SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
-            int hairIndex = DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount;
+            int hairIndex = GetItemIndex(DBVariablesHolder.HairsLvl.Value);
             string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
             HeadResolver.SetCategoryAndLabel(headCategory, "0");
         }
@@ -179,7 +178,7 @@ namespace Core.GamePlay
         {
             _upgradeStates[_watchIndex].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[_watchIndex]}_UpgradeState", _upgradeStates[_watchIndex]);
-            int watchIndex = DBVariablesHolder.WatchLvl.Value / GameManager.Instance.SpriteChangeCount;
+            int watchIndex = GetItemIndex(DBVariablesHolder.WatchLvl.Value);
             string key = $"Watch_{watchIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
         }
@@ -215,6 +214,19 @@ namespace Core.GamePlay
             {
                 _upgradeStates[index].IsUpdating = false;
             }
+        }
+    
+        int GetItemIndex(int lvl)
+        {
+            int range = lvl / GameManager.Instance.MapChangeCount;
+            int spriteIndex = GameManager.Instance.SpriteChangeCount;
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            while (range != mapIndex)
+            {
+                lvl -= spriteIndex;
+                range = lvl / GameManager.Instance.MapChangeCount;
+            }
+            return lvl/spriteIndex;
         }
     }
 }

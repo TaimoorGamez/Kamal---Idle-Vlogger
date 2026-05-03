@@ -10,7 +10,7 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        public int SpriteChangeCount = 20, MapChangeCount = 100;
+        public int SpriteChangeCount = 20, MapChangeCount = 100, MaxStoryIndex = 2;
         public float UpdateDelay = 5f;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
@@ -366,7 +366,7 @@ namespace Core.GamePlay
             CurrentStorylineHandler.CountinueStory(DBVariablesHolder.StoryProgress.Value);
         }
 
-        void SwitchToGameplay()
+        public void SwitchToGameplay()
         {
             GameplayEnvironment.SetActive(true);
             GameplayUI.SetActive(true);
