@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: BGs
   m_GUID: dfe8a74ba18ce114d92af99bbbafee6d
   m_SerializeEntries:
+  - m_GUID: 8ca526a13702df04daf635b921d36646
+    m_Address: BG_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BG
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96401620c0052784da5de91e175e0fc1
     m_Address: BG_0
     m_ReadOnly: 0

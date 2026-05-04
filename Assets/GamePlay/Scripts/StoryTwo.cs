@@ -29,16 +29,16 @@ namespace Core.GamePlay
             {
                 MC.StartTalking(false);
             }
-            else
-            {
-                CurrentCurtainController.gameObject.SetActive(true);
-                BestFriend.gameObject.SetActive(false);
-            }
-                base.ShowMsg();
+            base.ShowMsg();
         }
         public override void NextMsg()
         {
             base.NextMsg();
+            if (_currentMsgIndex >= Messages.Length)
+            {
+                CurrentCurtainController.gameObject.SetActive(true);
+                BestFriend.gameObject.SetActive(false);
+            }
         }
     }
 }

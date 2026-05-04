@@ -75,6 +75,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - House
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed3af2f6d1453cb4c9e1250bdec4a140
+    m_Address: House_10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
   m_SchemaSet:

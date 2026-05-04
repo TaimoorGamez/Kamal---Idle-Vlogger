@@ -18,7 +18,7 @@ namespace Core.GamePlay
         [SerializeField] Image MaxLvlToggleBar;
         [SerializeField] McTalking McTalk;
         [SerializeField] Animator McAnimator;
-        [SerializeField] SpriteRenderer StatueImg, WatchImg, CameraImg, MicrophoneImg, TripodImg;
+        [SerializeField] SpriteRenderer StatueImg, CameraImg, MicrophoneImg, TripodImg;
         [SerializeField] TextMeshProUGUI IncomeTxt;
         [SerializeField] Vector2[] StatuePositions, CameraPositions, MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation, ItemsNames;
@@ -46,7 +46,7 @@ namespace Core.GamePlay
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateTripodWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateMicrophoneWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateStatueWithDelay;
-            SimpleEventsHolder .StopStreaming -= StopStreaming;
+            SimpleEventsHolder.StopStreaming -= StopStreaming;
         }
 
         void Start()
@@ -70,7 +70,7 @@ namespace Core.GamePlay
             int currentCamera = GetItemIndex(DBVariablesHolder.CameraLvl.Value);
             string key = $"Camera_{currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
-            CameraImg.transform.position = CameraPositions[currentCamera];
+            CameraImg.transform.position = CameraPositions[DBVariablesHolder.CurrentMap.Value];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[0]}_UpgradeState"))
             {
@@ -103,7 +103,7 @@ namespace Core.GamePlay
             int currentTripod = GetItemIndex(DBVariablesHolder.TripodLvl.Value);
             string key = $"Tripod_{currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
-            TripodImg.transform.position = TripodPositions[currentTripod];
+            TripodImg.transform.position = TripodPositions[DBVariablesHolder.CurrentMap.Value];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[1]}_UpgradeState"))
             {
@@ -136,7 +136,7 @@ namespace Core.GamePlay
             int currentMic = GetItemIndex(DBVariablesHolder.MicrophoneLvl.Value);
             string key = $"Microphone_{currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
-            MicrophoneImg.transform.position = MicPositions[currentMic];
+            MicrophoneImg.transform.position = MicPositions[DBVariablesHolder.CurrentMap.Value];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[2]}_UpgradeState"))
             {
@@ -169,7 +169,7 @@ namespace Core.GamePlay
             int currentStatue = GetItemIndex(DBVariablesHolder.StatueLvl.Value);
             string key = $"Statue_{currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
-            StatueImg.transform.position = StatuePositions[currentStatue];
+            StatueImg.transform.position = StatuePositions[DBVariablesHolder.CurrentMap.Value];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[3]}_UpgradeState"))
             {
@@ -217,7 +217,6 @@ namespace Core.GamePlay
             int currentCamera = GetItemIndex(DBVariablesHolder.CameraLvl.Value);
             string key = $"Camera_{currentCamera}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnCameraLoaded;
-            CameraImg.transform.position = CameraPositions[currentCamera];
         }
 
         void UpdateTripodWithDelay(int eventIndex)
@@ -240,7 +239,6 @@ namespace Core.GamePlay
             int currentTripod = GetItemIndex(DBVariablesHolder.TripodLvl.Value);
             string key = $"Tripod_{currentTripod}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnTripodLoaded;
-            TripodImg.transform.position = TripodPositions[currentTripod];
         }
 
         void UpdateMicrophoneWithDelay(int eventIndex)
@@ -263,7 +261,6 @@ namespace Core.GamePlay
             int currentMic = GetItemIndex(DBVariablesHolder.MicrophoneLvl.Value);
             string key = $"Microphone_{currentMic}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnMicrophoneLoaded;
-            MicrophoneImg.transform.position = MicPositions[currentMic];
         }
 
         void UpdateStatueWithDelay(int eventIndex)
@@ -286,7 +283,6 @@ namespace Core.GamePlay
             int currentStatue = GetItemIndex(DBVariablesHolder.StatueLvl.Value);
             string key = $"Statue_{currentStatue}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnStatueLoaded;
-            StatueImg.transform.position = StatuePositions[currentStatue];
         }
 
         void CheckRemainingTime(int index, DBInt lvlData)

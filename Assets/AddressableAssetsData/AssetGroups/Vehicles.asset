@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Vehicle
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e2e73e722e8be741b9cb10b00cbece5
+    m_Address: Vehicle_11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Vehicle
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 641182b94a29eef49bcedfed14cd5270
     m_Address: Vehicle_5
     m_ReadOnly: 0

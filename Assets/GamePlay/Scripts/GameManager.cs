@@ -63,11 +63,6 @@ namespace Core.GamePlay
                 DBVariablesHolder.FFT.Value = 1;
             }
             _upgradeStates = new UpgradeStateData[ItemsNames.Length];
-            LoadBG();
-            LoadHouseFirst();
-            LoadVehicleFirst();
-            LoadBackyardFirst();
-            LoadGroundFirst();
         }
 
         void LoadBG()
@@ -124,7 +119,6 @@ namespace Core.GamePlay
             int houseIndex = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
             string key = $"House_{houseIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[houseIndex];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[0]}_UpgradeState"))
             {
@@ -157,7 +151,6 @@ namespace Core.GamePlay
             int vehicleIndex = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
             string key = $"Vehicle_{vehicleIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[vehicleIndex];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[1]}_UpgradeState"))
             {
@@ -190,7 +183,6 @@ namespace Core.GamePlay
             int backyardIndex = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
             string key = $"Backyard_{backyardIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
-            BackyardImg.transform.position = BackyardPositions[backyardIndex];
 
             if (PlayerPrefs.HasKey($"{ItemsNames[2]}_UpgradeState"))
             {
@@ -238,7 +230,6 @@ namespace Core.GamePlay
             int houseIndex = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
             string key = $"House_{houseIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
-            HouseImg.transform.position = HousePositions[houseIndex];
         }
 
         void UpdateVehicleWithDelay(int eventIndex)
@@ -261,7 +252,6 @@ namespace Core.GamePlay
             int vehicleIndex = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
             string key = $"Vehicle_{vehicleIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
-            VehicleImg.transform.position = VehiclePositions[vehicleIndex];
         }
 
         void UpdateBackyardWithDelay(int eventIndex)
@@ -284,7 +274,6 @@ namespace Core.GamePlay
             int backyardIndex = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
             string key = $"Backyard_{backyardIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
-            BackyardImg.transform.position = BackyardPositions[backyardIndex];
         }
 
         void UpdateGroundWithDelay(int eventIndex)
@@ -366,14 +355,15 @@ namespace Core.GamePlay
             StorylineUI.SetActive(true);
             int storyIndex = DBVariablesHolder.StoryProgress.Value;
             CurrentStorylineHandler.CountinueStory(storyIndex);
-            if (storyIndex < MaxStoryIndex)
-            {
-                LoadBG();
-                LoadHouseFirst();
-                LoadVehicleFirst();
-                LoadBackyardFirst();
-                LoadGroundFirst();
-            }
+            LoadBG();
+            LoadGroundFirst();
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            HouseImg.transform.position = HousePositions[mapIndex];
+            LoadHouseFirst();
+            VehicleImg.transform.position = VehiclePositions[mapIndex];
+            LoadVehicleFirst();
+            BackyardImg.transform.position = BackyardPositions[mapIndex];
+            LoadBackyardFirst();
         }
 
         public void SwitchToGameplay()

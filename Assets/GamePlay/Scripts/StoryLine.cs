@@ -31,7 +31,6 @@ namespace Core.GamePlay
             }
             else
             {
-                CurrentCurtainController.gameObject.SetActive(true);
                 MsgObj.SetActive(false);
                 gameObject.SetActive(false);
                 SimpleEventsHolder.StoryPartComplete?.Invoke();

@@ -75,6 +75,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Backyard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5dbebbfe0c06bd44a5f7af9a583a019
+    m_Address: Backyard_10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
   m_SchemaSet:
