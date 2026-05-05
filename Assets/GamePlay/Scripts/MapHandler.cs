@@ -42,7 +42,8 @@ namespace Core.GamePlay
             {
                 DBVariablesHolder.IsGameplay.Value = 0;
                 GameManager.Instance.StartGame();
-                DBVariablesHolder.CurrentMap.Value++;
+                if (DBVariablesHolder.CurrentMap.Value < GameManager.Instance.LastMap)
+                    DBVariablesHolder.CurrentMap.Value++;
             }
         }
 

@@ -553,6 +553,7 @@ MonoBehaviour:
   - "The good news is that I\u2019ve built a lot of connections, both with good people
     and bad people. If you ever need any help, just contact me. I\u2019ll be very
     happy to help you."
+  - Thanks Bro!
   MessengerName:
   - Kamal
   - Kabir
@@ -566,6 +567,7 @@ MonoBehaviour:
   - Kabir
   - Kamal
   - Kamal
+  - Kabir
   BubbleRotation:
   - 180
   - 0
@@ -579,6 +581,7 @@ MonoBehaviour:
   - 0
   - 180
   - 180
+  - 0
   MC: {fileID: 999533674}
   BestFriend: {fileID: 1507644183}
   McAnimator: {fileID: 999533675}
@@ -4188,6 +4191,7 @@ MonoBehaviour:
   Stories:
   - {fileID: 18580524}
   - {fileID: 48174246}
+  - {fileID: 983926583}
 --- !u!4 &505403842
 Transform:
   m_ObjectHideFlags: 0
@@ -7568,6 +7572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983926582}
+  - component: {fileID: 983926583}
   m_Layer: 0
   m_Name: Story (2)
   m_TagString: Untagged
@@ -7590,6 +7595,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 505403842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983926583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983926581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e503123877d64744b0f3c0174e0535f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GamePlay.StoryTwo
+  CurrentCurtainController: {fileID: 524046097}
+  MsgObj: {fileID: 1294476774}
+  MsgBubble: {fileID: 1869091476}
+  MsgTxt: {fileID: 543073970}
+  NameTxt: {fileID: 1927081778}
+  Messages:
+  - To be continued in the next update
+  MessengerName:
+  - Kabir
+  BubbleRotation:
+  - 0
+  MC: {fileID: 999533674}
+  BestFriend: {fileID: 1507644183}
+  McAnimator: {fileID: 999533675}
 --- !u!1 &984753543
 GameObject:
   m_ObjectHideFlags: 0
@@ -9561,12 +9592,12 @@ MonoBehaviour:
   - {x: 1.7, y: -5.25}
   CameraPositions:
   - {x: 1.7, y: -1.17}
-  - {x: 1.7, y: -1.17}
-  - {x: 1.7, y: -1.17}
+  - {x: 1.7, y: -0.75}
+  - {x: 1.7, y: -0.75}
   MicPositions:
   - {x: 1.63, y: -1.9}
-  - {x: 1.65, y: -1.3}
-  - {x: 1.65, y: -1.3}
+  - {x: 1.75, y: -1.3}
+  - {x: 1.75, y: -1.3}
   TripodPositions:
   - {x: 1.75, y: -3.25}
   - {x: 1.75, y: -3.25}
@@ -16346,7 +16377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4900376772757500879, guid: 776e63f1d78a27e408ebc112f7a232a3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 99.99988
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8408766951589449972, guid: 776e63f1d78a27e408ebc112f7a232a3, type: 3}
       propertyPath: m_Pivot.x

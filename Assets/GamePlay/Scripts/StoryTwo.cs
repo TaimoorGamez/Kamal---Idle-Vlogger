@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 namespace Core.GamePlay
 {
@@ -29,14 +30,18 @@ namespace Core.GamePlay
             {
                 MC.StartTalking(false);
             }
+            else if (_currentMsgIndex == 12)
+            {
+                BestFriend.transform.DOLocalMoveX(_outPosition, _moveDuration).OnComplete(() => BestFriend.gameObject.SetActive(false));
+            }
             base.ShowMsg();
         }
+
         public override void NextMsg()
         {
             base.NextMsg();
             if (_currentMsgIndex >= Messages.Length)
             {
-                CurrentCurtainController.gameObject.SetActive(true);
                 BestFriend.gameObject.SetActive(false);
             }
         }

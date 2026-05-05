@@ -14,6 +14,7 @@ namespace Core.GamePlay
         [SerializeField] protected float[] BubbleRotation;
 
         protected int _currentMsgIndex = 0;
+        protected float _moveDuration = 0.1f, _outPosition = 5f;
 
         protected virtual void ShowMsg()
         {

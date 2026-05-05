@@ -10,7 +10,7 @@ namespace Core.GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        public int SpriteChangeCount = 20, MapChangeCount = 100, MaxStoryIndex = 2;
+        public int SpriteChangeCount = 20, MapChangeCount = 100, MaxStoryIndex = 2, LastMap = 1;
         public float UpdateDelay = 10f;
 
         [SerializeField] GameObject GameplayEnvironment, GameplayUI, StorylineUI;
@@ -63,6 +63,20 @@ namespace Core.GamePlay
                 DBVariablesHolder.FFT.Value = 1;
             }
             _upgradeStates = new UpgradeStateData[ItemsNames.Length];
+            LoadEnvironment();
+        }
+
+        void LoadEnvironment()
+        {
+            LoadBG();
+            LoadGroundFirst();
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            HouseImg.transform.position = HousePositions[mapIndex];
+            LoadHouseFirst();
+            VehicleImg.transform.position = VehiclePositions[mapIndex];
+            LoadVehicleFirst();
+            BackyardImg.transform.position = BackyardPositions[mapIndex];
+            LoadBackyardFirst();
         }
 
         void LoadBG()
@@ -85,7 +99,7 @@ namespace Core.GamePlay
 
         void LoadGroundFirst()
         {
-            int groundIndex = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount);
+            int groundIndex = GetItemIndex(DBVariablesHolder.GroundLvl.Value);
             string key = $"Ground_{groundIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnGroundLoaded;
 
@@ -116,7 +130,7 @@ namespace Core.GamePlay
 
         void LoadHouseFirst()
         {
-            int houseIndex = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
+            int houseIndex = GetItemIndex(DBVariablesHolder.HouseLvl.Value);
             string key = $"House_{houseIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
 
@@ -148,7 +162,7 @@ namespace Core.GamePlay
 
         void LoadVehicleFirst()
         {
-            int vehicleIndex = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
+            int vehicleIndex = GetItemIndex(DBVariablesHolder.VehicleLvl.Value);
             string key = $"Vehicle_{vehicleIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
 
@@ -180,7 +194,7 @@ namespace Core.GamePlay
 
         void LoadBackyardFirst()
         {
-            int backyardIndex = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
+            int backyardIndex = GetItemIndex(DBVariablesHolder.BackyardLvl.Value);
             string key = $"Backyard_{backyardIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
 
@@ -227,7 +241,7 @@ namespace Core.GamePlay
             _upgradeStates[0].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[0]}_UpgradeState", _upgradeStates[0]);
 
-            int houseIndex = (DBVariablesHolder.HouseLvl.Value / SpriteChangeCount);
+            int houseIndex = GetItemIndex(DBVariablesHolder.HouseLvl.Value);
             string key = $"House_{houseIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnHouseLoaded;
         }
@@ -249,7 +263,7 @@ namespace Core.GamePlay
             _upgradeStates[1].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[1]}_UpgradeState", _upgradeStates[1]);
 
-            int vehicleIndex = (DBVariablesHolder.VehicleLvl.Value / SpriteChangeCount);
+            int vehicleIndex = GetItemIndex(DBVariablesHolder.VehicleLvl.Value);
             string key = $"Vehicle_{vehicleIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnVehicleLoaded;
         }
@@ -271,7 +285,7 @@ namespace Core.GamePlay
             _upgradeStates[2].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[2]}_UpgradeState", _upgradeStates[2]);
 
-            int backyardIndex = (DBVariablesHolder.BackyardLvl.Value / SpriteChangeCount);
+            int backyardIndex = GetItemIndex(DBVariablesHolder.BackyardLvl.Value);
             string key = $"Backyard_{backyardIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnBackyardLoaded;
         }
@@ -293,7 +307,7 @@ namespace Core.GamePlay
             _upgradeStates[3].IsUpdating = false;
             JsonDB.Save($"{ItemsNames[3]}_UpgradeState", _upgradeStates[3]);
 
-            int groundIndex = (DBVariablesHolder.GroundLvl.Value / SpriteChangeCount);
+            int groundIndex = GetItemIndex(DBVariablesHolder.GroundLvl.Value);
             string key = $"Ground_{groundIndex}";
             Addressables.LoadAssetAsync<Sprite>(key).Completed += OnGroundLoaded;
         }
@@ -355,15 +369,8 @@ namespace Core.GamePlay
             StorylineUI.SetActive(true);
             int storyIndex = DBVariablesHolder.StoryProgress.Value;
             CurrentStorylineHandler.CountinueStory(storyIndex);
-            LoadBG();
-            LoadGroundFirst();
-            int mapIndex = DBVariablesHolder.CurrentMap.Value;
-            HouseImg.transform.position = HousePositions[mapIndex];
-            LoadHouseFirst();
-            VehicleImg.transform.position = VehiclePositions[mapIndex];
-            LoadVehicleFirst();
-            BackyardImg.transform.position = BackyardPositions[mapIndex];
-            LoadBackyardFirst();
+            if (DBVariablesHolder.CurrentMap.Value < GameManager.Instance.LastMap)
+                LoadEnvironment();
         }
 
         public void SwitchToGameplay()
@@ -372,6 +379,18 @@ namespace Core.GamePlay
             GameplayUI.SetActive(true);
             StorylineUI.SetActive(false);
             CurrentGameplayHandler.ContinueGameplay();
+        }
+        int GetItemIndex(int lvl)
+        {
+            int range = lvl / GameManager.Instance.MapChangeCount;
+            int spriteIndex = GameManager.Instance.SpriteChangeCount;
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            while (range != mapIndex)
+            {
+                lvl -= spriteIndex;
+                range = lvl / GameManager.Instance.MapChangeCount;
+            }
+            return lvl / spriteIndex;
         }
 
         public string FormatMoney(double value)

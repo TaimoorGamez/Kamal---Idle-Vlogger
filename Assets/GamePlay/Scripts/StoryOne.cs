@@ -9,7 +9,7 @@ namespace Core.GamePlay
         [SerializeField] Animation GirlFriend, Rohan;
         [SerializeField] Animator McAnimator;
 
-        float _rohanPosition = 2f, _moveDuration = 0.1f, _outPosition = 5f;
+        float _rohanPosition = 2f;
 
         private void Start()
         {

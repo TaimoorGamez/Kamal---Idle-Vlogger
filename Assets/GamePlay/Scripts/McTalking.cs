@@ -20,7 +20,7 @@ namespace Core.GamePlay
             if (_animationCoroutine != null)
                 StopCoroutine(_animationCoroutine);
 
-            _categoryName = _categoryNamePart + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
+            _categoryName = _categoryNamePart + GetItemIndex(DBVariablesHolder.HairsLvl.Value).ToString();
             _currentIndex = 0;
             _canTalk = true;
             _animationCoroutine = StartCoroutine(AnimateSprites(loop));
@@ -57,6 +57,18 @@ namespace Core.GamePlay
 
             }
             while (_canTalk);
+        }
+        int GetItemIndex(int lvl)
+        {
+            int range = lvl / GameManager.Instance.MapChangeCount;
+            int spriteIndex = GameManager.Instance.SpriteChangeCount;
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            while (range != mapIndex)
+            {
+                lvl -= spriteIndex;
+                range = lvl / GameManager.Instance.MapChangeCount;
+            }
+            return lvl / spriteIndex;
         }
     }
 }
