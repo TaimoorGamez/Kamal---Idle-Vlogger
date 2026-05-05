@@ -25,7 +25,7 @@ namespace Core.Economy
 
         public static void LoadEconomy()
         {
-            _amount = double.Parse(PlayerPrefs.GetString(_cashPrefName, "9000000000000000000000000"));
+            _amount = double.Parse(PlayerPrefs.GetString(_cashPrefName, "0"));
         }
     }
 

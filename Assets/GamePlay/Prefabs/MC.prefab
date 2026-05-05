@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5445168542881587472, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: -2034466894899808846, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_CategoryHash: 0.0000036649535
   m_labelHash: 3.7123793e-10
   m_SpriteKey: 0
-  m_SpriteHash: 655782601
+  m_SpriteHash: 937382576
 --- !u!114 &7718599377303353498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6207496447780834382, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: 2248584573286864241, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -284,9 +284,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
   m_RootBone: {fileID: 5778444905956682691}
   m_BoneTransforms:
-  - {fileID: 2511759422809029563}
   - {fileID: 4517043361832170397}
+  - {fileID: 2046879550341566669}
+  - {fileID: 3985941971129923724}
   - {fileID: 2208693690354037694}
+  - {fileID: 2511759422809029563}
   - {fileID: 34590127907988779}
   - {fileID: 5371112369816717680}
   - {fileID: 2259624135426484640}
@@ -410,7 +412,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 6
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -863096507263054520, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: 7548841695115935352, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -776,7 +778,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8551992153584283398, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: 8407370974853470239, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -800,9 +802,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
   m_RootBone: {fileID: 5778444905956682691}
   m_BoneTransforms:
-  - {fileID: 2223826380002301435}
-  - {fileID: 5365304328181836441}
   - {fileID: 5601454902189359779}
+  - {fileID: 6537895331710522990}
+  - {fileID: 8409993888573107645}
+  - {fileID: 5365304328181836441}
+  - {fileID: 2223826380002301435}
+  - {fileID: 4517043361832170397}
   m_Bounds:
     m_Center: {x: 1.1550002, y: 2.6705706, z: 0.04}
     m_Extent: {x: 0.6750001, y: 2.6705694, z: 0.02}
@@ -922,7 +927,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2431362805075731806, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: 8701518287689700323, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -948,12 +953,10 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6537895331710522990}
   - {fileID: 8409993888573107645}
-  - {fileID: 5601454902189359779}
   - {fileID: 2046879550341566669}
   - {fileID: 3985941971129923724}
   - {fileID: 2223826380002301435}
   - {fileID: 4517043361832170397}
-  - {fileID: 5365304328181836441}
   m_Bounds:
     m_Center: {x: 2.0014951, y: 2.7004948, z: 0.02}
     m_Extent: {x: 0.7449953, y: 2.5418854, z: 0.01}
@@ -1522,7 +1525,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1301962808443831756, guid: 9b9037c09220d84408acc505d0186133, type: 3}
+  m_Sprite: {fileID: -7017943680174650579, guid: 9b9037c09220d84408acc505d0186133, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1757,6 +1760,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 34590127907988779}
   - {fileID: 5371112369816717680}
+  - {fileID: 5867612161473731960}
   m_Bounds:
     m_Center: {x: 1.231315, y: 9.461715, z: 0.04}
     m_Extent: {x: 1.0986853, y: 1.2870655, z: 0}
