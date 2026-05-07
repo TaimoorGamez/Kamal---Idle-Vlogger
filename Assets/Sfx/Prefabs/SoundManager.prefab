@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2436560837953270231}
-  - component: {fileID: 6475478849424837092}
-  - component: {fileID: 6363067990150214088}
   - component: {fileID: 2667549087577537104}
+  - component: {fileID: 6363067990150214088}
+  - component: {fileID: 6475478849424837092}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -34,14 +34,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &6475478849424837092
-AudioListener:
+--- !u!114 &2667549087577537104
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7647138870418314439}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892628e74f722f2448819965d46c100a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Sfx.ButtonPressSfx
 --- !u!114 &6363067990150214088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,15 +62,12 @@ MonoBehaviour:
   BtnClick: {fileID: 8300000, guid: a6e027322946cce408dc5ecab6f40252, type: 3}
   EffectClips:
   - {fileID: 8300000, guid: 21696fbfaccd987429dd124118f52788, type: 3}
---- !u!114 &2667549087577537104
-MonoBehaviour:
+  - {fileID: 8300000, guid: c331648bbe65bfa4f90c9d9a9eb7cdcf, type: 3}
+--- !u!81 &6475478849424837092
+AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7647138870418314439}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892628e74f722f2448819965d46c100a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Core.Sfx.ButtonPressSfx

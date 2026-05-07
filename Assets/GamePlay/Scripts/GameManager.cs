@@ -121,6 +121,7 @@ namespace Core.GamePlay
                 GroundImg.sprite = handle.Result;
                 Material mat = GroundImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -153,6 +154,7 @@ namespace Core.GamePlay
                 Material mat = HouseImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 HouseImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -185,6 +187,7 @@ namespace Core.GamePlay
                 Material mat = VehicleImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 VehicleImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -217,6 +220,7 @@ namespace Core.GamePlay
                 Material mat = BackyardImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 BackyardImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
