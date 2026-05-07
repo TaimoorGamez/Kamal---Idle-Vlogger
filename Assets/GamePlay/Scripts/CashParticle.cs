@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Core.Events;
 using System.Collections;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Core.GamePlay
         {
             _isTapped = false;
             _isSpawning = false;
-            if(_cashCorotine != null)
+            if (_cashCorotine != null)
                 StopCoroutine(_cashCorotine);
         }
 
@@ -77,15 +78,14 @@ namespace Core.GamePlay
             cash.SetActive(true);
 
             Sequence seq = DOTween.Sequence();
-
             seq.Append(cash.transform.DOMoveY(transform.position.y + MoveDistance, Duration).SetEase(Ease.OutQuad));
             seq.Join(cash.transform.DORotate(new Vector3(0, 0, randomRot), Duration, RotateMode.FastBeyond360));
-
             seq.OnComplete(() =>
             {
                 cash.SetActive(false);
                 _pool.Enqueue(cash);
             });
+            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Core.Sfx
         [SerializeField] AudioClip[] EffectClips;
 
         AudioSource _bgSource = null, _btnSource = null, _effectSource = null;
-        float _bgVolume = 0.35f;
+        float _bgVolume = 0.1f;
 
         private void OnEnable()
         {
