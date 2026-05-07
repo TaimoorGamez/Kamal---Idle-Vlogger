@@ -85,7 +85,7 @@ namespace Core.GamePlay
                 cash.SetActive(false);
                 _pool.Enqueue(cash);
             });
-            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
+            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(0);
         }
     }
 }

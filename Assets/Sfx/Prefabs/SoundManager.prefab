@@ -57,7 +57,6 @@ MonoBehaviour:
   BgMusic: {fileID: 8300000, guid: 91f65c3f120245d4ab1f3525dc307b16, type: 3}
   BtnClick: {fileID: 8300000, guid: a6e027322946cce408dc5ecab6f40252, type: 3}
   EffectClips:
-  - {fileID: 8300000, guid: eeba6926b64ea8a409d1c0927ca8736a, type: 3}
   - {fileID: 8300000, guid: 21696fbfaccd987429dd124118f52788, type: 3}
 --- !u!114 &2667549087577537104
 MonoBehaviour:
