@@ -91,7 +91,6 @@ namespace Core.GamePlay
                 Material mat = CameraImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 CameraImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -125,7 +124,6 @@ namespace Core.GamePlay
                 Material mat = TripodImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 TripodImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -159,7 +157,6 @@ namespace Core.GamePlay
                 Material mat = MicrophoneImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 MicrophoneImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -193,7 +190,6 @@ namespace Core.GamePlay
                 Material mat = StatueImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 StatueImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -211,6 +207,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateCameraAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateCameraAnimation()
@@ -233,6 +230,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateTripodAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateTripodAnimation()
@@ -255,6 +253,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateMicrophoneAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateMicrophoneAnimation()
@@ -277,6 +276,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateStatueAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateStatueAnimation()

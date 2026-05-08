@@ -107,7 +107,6 @@ namespace Core.GamePlay
                 Material mat = WatchImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 WatchImg.transform.DOScale(Vector3.one, _scalingDuration).From(0.9f).SetEase(Ease.Linear);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -125,6 +124,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateClothesAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateClothesAnimation()
@@ -137,7 +137,6 @@ namespace Core.GamePlay
             {
                 McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
             }
-            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
         }
 
         void UpdateHairsWithDelay(int eventIndex)
@@ -150,6 +149,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateHairsAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateHairsAnimation()
@@ -159,7 +159,6 @@ namespace Core.GamePlay
             McTalkingComponent.StopTalking();
             DOTween.To(() => HairMaterial.GetFloat("_Reveal"), x => HairMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f)
                 .SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
-            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             int hairIndex = GetItemIndex(DBVariablesHolder.HairsLvl.Value);
             string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
             HeadResolver.SetCategoryAndLabel(headCategory, "0");
@@ -175,6 +174,7 @@ namespace Core.GamePlay
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateWatchAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateWatchAnimation()

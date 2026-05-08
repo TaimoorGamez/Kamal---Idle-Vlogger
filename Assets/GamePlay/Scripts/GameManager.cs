@@ -121,7 +121,6 @@ namespace Core.GamePlay
                 GroundImg.sprite = handle.Result;
                 Material mat = GroundImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -154,7 +153,6 @@ namespace Core.GamePlay
                 Material mat = HouseImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 HouseImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -187,7 +185,6 @@ namespace Core.GamePlay
                 Material mat = VehicleImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 VehicleImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -220,7 +217,6 @@ namespace Core.GamePlay
                 Material mat = BackyardImg.material;
                 DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
                 BackyardImg.transform.DOScale(Vector3.one, _updatingAnimationDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             }
             else
             {
@@ -233,11 +229,12 @@ namespace Core.GamePlay
             if (eventIndex != _houseIndex)
                 return;
 
-            float delay = GameManager.Instance.UpdateDelay;
+            float delay =  UpdateDelay;
             float currentTime = delay;
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
-                UpdateHouseAnimation();
+                UpdateHouseAnimation(); 
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateHouseAnimation()
@@ -255,11 +252,12 @@ namespace Core.GamePlay
             if (eventIndex != _vehicleIndex)
                 return;
 
-            float delay = GameManager.Instance.UpdateDelay;
+            float delay = UpdateDelay;
             float currentTime = delay;
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateVehicleAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateVehicleAnimation()
@@ -277,11 +275,12 @@ namespace Core.GamePlay
             if (eventIndex != _backyardIndex)
                 return;
 
-            float delay = GameManager.Instance.UpdateDelay;
+            float delay = UpdateDelay;
             float currentTime = delay;
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateBackyardAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateBackyardAnimation()
@@ -299,11 +298,12 @@ namespace Core.GamePlay
             if (eventIndex != _groundIndex)
                 return;
 
-            float delay = GameManager.Instance.UpdateDelay;
+            float delay = UpdateDelay;
             float currentTime = delay;
             DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
             {
                 UpdateGroundAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
             });
         }
         void UpdateGroundAnimation()
@@ -319,7 +319,7 @@ namespace Core.GamePlay
         void CheckRemainingTime(int index, DBInt lvlData)
         {
             TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[index].UpdateStartTime);
-            float updateDelay = GameManager.Instance.UpdateDelay;
+            float updateDelay = UpdateDelay;
             float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
             if (remainingTime > 0)
             {
@@ -373,7 +373,7 @@ namespace Core.GamePlay
             StorylineUI.SetActive(true);
             int storyIndex = DBVariablesHolder.StoryProgress.Value;
             CurrentStorylineHandler.CountinueStory(storyIndex);
-            if (DBVariablesHolder.CurrentMap.Value < GameManager.Instance.LastMap)
+            if (DBVariablesHolder.CurrentMap.Value < LastMap)
                 LoadEnvironment();
         }
 
@@ -386,13 +386,13 @@ namespace Core.GamePlay
         }
         int GetItemIndex(int lvl)
         {
-            int range = lvl / GameManager.Instance.MapChangeCount;
-            int spriteIndex = GameManager.Instance.SpriteChangeCount;
+            int range = lvl / MapChangeCount;
+            int spriteIndex = SpriteChangeCount;
             int mapIndex = DBVariablesHolder.CurrentMap.Value;
             while (range != mapIndex)
             {
                 lvl -= spriteIndex;
-                range = lvl / GameManager.Instance.MapChangeCount;
+                range = lvl / MapChangeCount;
             }
             return lvl / spriteIndex;
         }

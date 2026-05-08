@@ -11,7 +11,7 @@ namespace Core.Screen
         [SerializeField] RectTransform MusicBtn, SoundBtn;
         [SerializeField] GameObject MusicOff, SoundOff;
 
-        float _transitionDuration = 0.25f;
+        float _transitionDuration = 0.25f, _closePosition = -100, _musicPosition = -190, _soundPosition = -280;
 
         private void OnEnable()
         {
@@ -22,9 +22,8 @@ namespace Core.Screen
         {
             UpdateMusicUI();
             UpdateSoundUI();
-            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(2);
-            MusicBtn.DOAnchorPosY(-150, _transitionDuration).SetEase(Ease.OutBack);
-            SoundBtn.DOAnchorPosY(-240, _transitionDuration).SetEase(Ease.OutBack);
+            MusicBtn.DOAnchorPosY(_musicPosition, _transitionDuration).SetEase(Ease.OutBack);
+            SoundBtn.DOAnchorPosY(_soundPosition, _transitionDuration).SetEase(Ease.OutBack);
             FirebaseHandler.I?.LogEvent("Stg_Open");
         }
 
@@ -56,9 +55,8 @@ namespace Core.Screen
 
         public void OnClose()
         {
-            MusicBtn.DOAnchorPosY(-60, _transitionDuration).SetEase(Ease.InBack);
-            SoundBtn.DOAnchorPosY(-60, _transitionDuration).SetEase(Ease.InBack).OnComplete(()=>gameObject.SetActive(false));
-            SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(2);
+            MusicBtn.DOAnchorPosY(_closePosition, _transitionDuration).SetEase(Ease.InBack);
+            SoundBtn.DOAnchorPosY(_closePosition, _transitionDuration).SetEase(Ease.InBack).OnComplete(()=>gameObject.SetActive(false));
             FirebaseHandler.I?.LogEvent("Stg_Close");
         }
     }
