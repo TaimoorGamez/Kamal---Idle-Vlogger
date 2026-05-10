@@ -14,6 +14,7 @@ namespace Core.GamePlay
 {
     public class GameplayHandler : MonoBehaviour
     {
+        [SerializeField] GameObject CashDonation;
         [SerializeField] RectTransform MaxLvlToggleIcon;
         [SerializeField] Image MaxLvlToggleBar;
         [SerializeField] McTalking McTalk;
@@ -25,10 +26,10 @@ namespace Core.GamePlay
 
         int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _tappedSpeed = 0.1f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
-              _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f;
-        bool _canStream = false, _canEarn = false;
+              _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f, _maxDonationDelay = 50, _donationCap = 2.5f, _donationTimer = 50;
+        bool _canStream = false, _canEarn = false, _canDonate = false;
         string[] _mainStreamAnimations;
-        Coroutine _streamRoutine, _earningRotine;
+        Coroutine _streamRoutine, _earningRotine, _donationRotine;
         UpgradeStateData[] _upgradeStates;
 
         void OnEnable()
@@ -339,11 +340,20 @@ namespace Core.GamePlay
         void StopStreaming()
         {
             _canStream = false;
-            if (_streamRoutine != null)
-                StopCoroutine(_streamRoutine);
+            _canEarn = false;
+            _canDonate = false;
 
             McTalk.StartTalking(false);
             McAnimator.Play("Default State");
+
+            if (_streamRoutine != null)
+                StopCoroutine(_streamRoutine);
+
+            if (_earningRotine != null)
+                StopCoroutine(_earningRotine);
+
+            if(_donationRotine != null)
+                StopCoroutine(_donationRotine);
         }
 
         IEnumerator StreamCoroutine()
@@ -370,6 +380,7 @@ namespace Core.GamePlay
 
         IEnumerator EarningCoroutine()
         {
+            StartDonations();
             while (_canEarn)
             {
                 Subscribers.Amount += 1;
@@ -390,6 +401,41 @@ namespace Core.GamePlay
                 IncomeTxt.text = $"{GameManager.Instance.FormatMoney(income)}/s";
                 CashCurrency.Amount += income;
                 yield return new WaitForSecondsRealtime(_tappedSpeed);
+            }
+        }
+
+        void StartDonations()
+        {
+            if (_donationRotine != null)
+                StopCoroutine(_donationRotine);
+
+            _donationTimer = _maxDonationDelay - (DBVariablesHolder.DonationLvl.Value * _donationCap);
+            _canDonate = true;
+            _donationRotine = StartCoroutine(DonationCoroutine());
+        }
+
+        IEnumerator DonationCoroutine() 
+        {
+            yield return new WaitForSeconds(_donationTimer);
+            Camera mainCamera = Camera.main;
+            RectTransform donationRect = CashDonation.GetComponent<RectTransform>();
+            while (_canDonate)
+            {
+                if (!CashDonation.activeInHierarchy)
+                {
+                    Vector2 screenPos = mainCamera.WorldToScreenPoint(CameraImg.transform.position);
+
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        CashDonation.transform.parent as RectTransform,
+                        screenPos,
+                        null,
+                        out Vector2 localPos
+                    );
+
+                    donationRect.anchoredPosition = localPos;
+                    CashDonation.SetActive(true);
+                }
+                yield return new WaitForSeconds(_donationTimer);
             }
         }
 
