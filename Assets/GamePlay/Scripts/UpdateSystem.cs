@@ -19,6 +19,7 @@ namespace Core.GamePlay
         [SerializeField] protected string[] ItemsNames;
 
         float _startingCost = 0.25f, _costMultiplier = 2.5f, _sizeTween = 0.25f, _slowFactor = 2;
+        const string _upgradeStateKey = "_UpgradeState";
 
         protected PriceHandler[] _priceData;
         protected UpgradeStateData[] _upgradeStates;
@@ -55,9 +56,9 @@ namespace Core.GamePlay
         {
             for (int i = 0; i < _upgradeStates.Length; i++)
             {
-                if (PlayerPrefs.HasKey($"{ItemsNames[i]}_UpgradeState"))
+                if (PlayerPrefs.HasKey($"{ItemsNames[i]}{_upgradeStateKey}"))
                 {
-                    _upgradeStates[i] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[i]}_UpgradeState");
+                    _upgradeStates[i] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[i]}{_upgradeStateKey}");
                 }
                 else
                 {
@@ -94,7 +95,7 @@ namespace Core.GamePlay
                     _upgradeStates[itemIndex].IsUpdating = true;
                     _upgradeStates[itemIndex].UpdateStartTime = DateTime.Now.ToString();
                     _upgradeStates[itemIndex].Levels = _priceData[itemIndex].Levels;
-                    JsonDB.Save($"{ItemsNames[itemIndex]}_UpgradeState", _upgradeStates[itemIndex]);
+                    JsonDB.Save($"{ItemsNames[itemIndex]}{_upgradeStateKey}", _upgradeStates[itemIndex]);
                     SingleIntegerEventsHolder.UpdateItemEvent?.Invoke(eventIndex);
                 }
                 UpdatePriceForAll();
@@ -139,14 +140,14 @@ namespace Core.GamePlay
                         UpdateFillBars[item].fillAmount = (float)((nextLvl % count == 0) ? count : nextLvl % count) / count;
                         _upgradeStates[item].IsUpdating = false;
                         _upgradeStates[item].UpdateStartTime = "";
-                        JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
+                        JsonDB.Save($"{ItemsNames[item]}{_upgradeStateKey}", _upgradeStates[item]);
                         UpdateData();
                     });
                 }
                 else if (remainingTime <= 0)
                 {
                     _upgradeStates[item].IsUpdating = false;
-                    JsonDB.Save($"{ItemsNames[item]}_UpgradeState", _upgradeStates[item]);
+                    JsonDB.Save($"{ItemsNames[item]}{_upgradeStateKey}", _upgradeStates[item]);
                     UpdateData();
                 }
             }
