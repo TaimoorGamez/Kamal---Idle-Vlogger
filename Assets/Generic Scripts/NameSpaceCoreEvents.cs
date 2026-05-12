@@ -21,7 +21,7 @@ namespace Core.Events
         UpdateCashTxtEvent, UpdateGoldTxtEvent, UpdateSubscribeTxtEvent,
 
         //-------------------Sound Events-------------------
-        BtnPressSfxEvent, UpdateMusicStateEvent, UpdateSoundStateEvent,
+        UpdateMusicStateEvent, UpdateSoundStateEvent,
 
         //-------------------Spin Wheel Events-------------------
         ResetSpinWheelEvent,

@@ -16,7 +16,6 @@ namespace Core.Sfx
         {
             SimpleEventsHolder.UpdateMusicStateEvent += UpdateBGMusicState;
             SimpleEventsHolder.UpdateSoundStateEvent += UpdateSoundState;
-            SimpleEventsHolder.BtnPressSfxEvent += PlayBtnSound;
             SingleIntegerEventsHolder.SoundEffectEvent += PlaySoundEffect;
         }
 
@@ -24,7 +23,6 @@ namespace Core.Sfx
         {
             SimpleEventsHolder.UpdateMusicStateEvent -= UpdateBGMusicState;
             SimpleEventsHolder.UpdateSoundStateEvent -= UpdateSoundState;
-            SimpleEventsHolder.BtnPressSfxEvent -= PlayBtnSound;
             SingleIntegerEventsHolder.SoundEffectEvent -= PlaySoundEffect;
         }
 
@@ -95,7 +93,7 @@ namespace Core.Sfx
             }
         }
 
-        void PlayBtnSound()
+        public void PlayBtnSound()
         {
             if (DBVariablesHolder.Sound.Value == 1 && _btnSource != null)
             {

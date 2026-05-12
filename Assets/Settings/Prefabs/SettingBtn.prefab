@@ -129,6 +129,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8729757972314121177, guid: 7b26c9a2eac24f144815375a741df200, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8729757972314121177, guid: 7b26c9a2eac24f144815375a741df200, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 0}
@@ -162,6 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3013851677243336866, guid: 7b26c9a2eac24f144815375a741df200, type: 3}
+    - {fileID: -5937026055895835653, guid: 7b26c9a2eac24f144815375a741df200, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

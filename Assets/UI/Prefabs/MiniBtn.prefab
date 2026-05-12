@@ -161,7 +161,6 @@ GameObject:
   - component: {fileID: 4600733382793412619}
   - component: {fileID: 4461154731130974385}
   - component: {fileID: 8485556473695344870}
-  - component: {fileID: -5937026055895835653}
   - component: {fileID: -3013851677243336866}
   - component: {fileID: 8729757972314121177}
   m_Layer: 5
@@ -230,18 +229,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-5937026055895835653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5663525339896712775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892628e74f722f2448819965d46c100a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-3013851677243336866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +258,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -5937026055895835653}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Core.Sfx.ButtonPressSfx, Assembly-CSharp
           m_MethodName: OnBtnPress
           m_Mode: 1
