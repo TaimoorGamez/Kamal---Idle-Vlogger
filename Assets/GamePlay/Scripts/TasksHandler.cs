@@ -1,18 +1,32 @@
+using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Core.Events;
+using Core.Economy;
 using Core.DB.Variables;
 
 namespace Core.GamePlay.Tasks
 {
     public class TasksHandler : MonoBehaviour
     {
-        [SerializeField] GameObject TaskPanel;
+        [SerializeField] TextMeshProUGUI NotificationTxt;
+        [SerializeField] GameObject TaskPanel, NotificationObj;
         [SerializeField] TaskBox[] TaskBoxes;
 
         TaskData[] _activeTasks;
         string _dataKey = "Task_";
-        int _totalTasks = 13;
+        int _totalTasks = 9;
         float _tweenDuration = 0.25f;
+
+        private void OnEnable()
+        {
+            DoubleIntegerEventHolder.TaskEvent += UpdateTaskProgress;
+        }
+
+        private void OnDisable()
+        {
+            DoubleIntegerEventHolder.TaskEvent -= UpdateTaskProgress;
+        }
 
         private void Start()
         {
@@ -39,20 +53,9 @@ namespace Core.GamePlay.Tasks
                 TaskData task = _activeTasks[i];
                 TaskBoxes[i].DescriptionTxt.text = task.TaskDescription;
                 TaskBoxes[i].RewardTxt.text = GameManager.Instance.FormatMoney(task.Reward);
-                if (task.IsCompleted)
-                {
-                    TaskBoxes[i].ProgressBar.fillAmount = 1f;
-                    TaskBoxes[i].ActiveBtn.SetActive(true);
-                    TaskBoxes[i].InActiveBtn.SetActive(false);
-                }
-                else
-                {
-                    TaskBoxes[i].ActiveBtn.SetActive(false);
-                    TaskBoxes[i].InActiveBtn.SetActive(true);
-                }
             }
+            UpdateNotification();
         }
-
         TaskData GetNewTask()
         {
             int index = Random.Range(0, _totalTasks);
@@ -104,7 +107,7 @@ namespace Core.GamePlay.Tasks
         {
             switch (taskIndex)
             {
-                case 0: return $"Earn Cash {target}";
+                case 0: return $"Earn Cash By Tapping {target}";
                 case 1: return $"Increase Income To {target}";
                 case 2: return $"Spend Cash {target}";
                 case 3: return $"Collect Donations {target} Times";
@@ -171,6 +174,39 @@ namespace Core.GamePlay.Tasks
 
             return false;
         }
+        void UpdateTaskProgress(int index, double progress)
+        {
+            TaskData task = null;
+            int slotIndex = -1;
+            for (int i = 0; i < _activeTasks.Length; i++)
+            {
+                if (_activeTasks[i] != null && _activeTasks[i].TaskIndex == index)
+                {
+                    task = _activeTasks[i];
+                    slotIndex = i;
+                    break;
+                }
+            }
+
+            if (task == null) return;
+
+            if(task.TaskIndex == 0 || task.TaskIndex == 2 || task.TaskIndex == 3 || task.TaskIndex == 4 || task.TaskIndex == 5)
+            {
+                task.Progress += progress;
+            }
+            else
+            {
+                task.Progress = progress;
+            }
+
+            if (task.Progress >= task.Target)
+            {
+                task.IsCompleted = true;
+                task.Progress = task.Target; 
+                UpdateNotification();
+            }
+            JsonDB.Save($"{_dataKey}{slotIndex}", _activeTasks[slotIndex]);
+        }
 
         public void ShowTaskPanel()
         {
@@ -186,21 +222,55 @@ namespace Core.GamePlay.Tasks
                             TaskBoxes[i].ProgressBar.fillAmount = 1f;
                             TaskBoxes[i].InActiveBtn.SetActive(false);
                             TaskBoxes[i].ActiveBtn.SetActive(true);
-                            TaskBoxes[i].ActiveBtn.transform.DOScale(1.2f, _tweenDuration).From(1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+                            TaskBoxes[i].ActiveBtn.transform.DOScale(1.1f, _tweenDuration).From(1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
                         }
                         else
                         {
-                            TaskBoxes[i].ProgressBar.DOFillAmount(task.Progress / task.Target, _tweenDuration).SetEase(Ease.Linear);
+                            TaskBoxes[i].ProgressBar.DOFillAmount((float)(task.Progress / task.Target), _tweenDuration).SetEase(Ease.Linear);
                             TaskBoxes[i].InActiveBtn.SetActive(true);
                             TaskBoxes[i].ActiveBtn.SetActive(false);
                         }
                     }
                 });
         }
-
         public void HideTaskPanel()
         {
             TaskPanel.transform.DOScale(Vector3.zero, _tweenDuration).SetEase(Ease.InBack).OnComplete(() => TaskPanel.SetActive(false));
+        }
+        public void ClaimReward(int index)
+        {
+            TaskData task = _activeTasks[index];
+            if (!task.IsCompleted) return;
+
+            CashCurrency.Amount+= task.Reward;
+            task.IsCompleted = false;
+            UpdateNotification();
+
+            TaskData newTask = GetNewTask();
+            TaskBoxes[index].ProgressBar.fillAmount = 0;
+            TaskBoxes[index].ActiveBtn.transform.DOKill();
+            TaskBoxes[index].InActiveBtn.SetActive(true);
+            TaskBoxes[index].ActiveBtn.SetActive(false);
+            _activeTasks[index] = newTask;
+            JsonDB.Save($"{_dataKey}{index}", _activeTasks[index]);
+            TaskBoxes[index].DescriptionTxt.text = newTask.TaskDescription;
+            TaskBoxes[index].RewardTxt.text = GameManager.Instance.FormatMoney(newTask.Reward);
+        }
+        
+        void UpdateNotification()
+        {
+            NotificationObj.SetActive(false);
+            int completedTasks = 0;
+            for (int i = 0; i < _activeTasks.Length; i++)
+            {
+                TaskData task = _activeTasks[i];
+                if (task != null && task.IsCompleted)
+                {
+                    completedTasks++;
+                    NotificationTxt.text = completedTasks.ToString();
+                    NotificationObj.SetActive(true);
+                }
+            }
         }
     }
 
@@ -208,7 +278,7 @@ namespace Core.GamePlay.Tasks
     {
         public int TaskIndex;
         public string TaskDescription;
-        public float Progress, Target, Reward;
+        public double Progress, Target, Reward;
         public bool IsCompleted;
     }
 }

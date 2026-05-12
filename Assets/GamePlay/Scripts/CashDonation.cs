@@ -1,9 +1,11 @@
+using Core.DB.Variables;
+using Core.Economy;
+using Core.Events;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using DG.Tweening;
-using Core.Economy;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
-using Core.DB.Variables;
 
 namespace Core.GamePlay
 {
@@ -68,6 +70,7 @@ namespace Core.GamePlay
             _moveTween.Kill();
             AmountText.gameObject.SetActive(true);
             _amountTween = _textRect.DOAnchorPosY(_textPadding, _textDisplayDuration).From(Vector2.zero).SetEase(Ease.OutSine).OnComplete(DisappearNow);
+            DoubleIntegerEventHolder.TaskEvent?.Invoke(3, 1);
         }
     }
 }

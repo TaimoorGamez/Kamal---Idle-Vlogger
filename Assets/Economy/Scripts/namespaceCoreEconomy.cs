@@ -1,6 +1,6 @@
 using Core.Events;
-using Core.DB.Variables;
 using UnityEngine;
+using Core.DB.Variables;
 
 namespace Core.Economy
 {
@@ -17,6 +17,10 @@ namespace Core.Economy
             }
             set
             {
+                if (value < _amount)
+                {
+                    DoubleIntegerEventHolder.TaskEvent?.Invoke(2, (_amount - value));
+                }
                 _amount = value;
                 PlayerPrefs.SetString(_cashPrefName, _amount.ToString());
                 SimpleEventsHolder.UpdateCashTxtEvent?.Invoke();

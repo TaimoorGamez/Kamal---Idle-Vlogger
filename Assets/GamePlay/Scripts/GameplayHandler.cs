@@ -391,6 +391,9 @@ namespace Core.GamePlay
                         _tappedMultipler += 0.1f;
 
                     IncomeTxt.color = Color.green;
+                    DoubleIntegerEventHolder.TaskEvent?.Invoke(0, (income*_tappedMultipler));
+                    DoubleIntegerEventHolder.TaskEvent?.Invoke(4, 1);
+                    DoubleIntegerEventHolder.TaskEvent?.Invoke(5, 1);
                 }
                 else if (_tappedMultipler > 1)
                 {
@@ -400,6 +403,7 @@ namespace Core.GamePlay
                 income *= _tappedMultipler;
                 IncomeTxt.text = $"{GameManager.Instance.FormatMoney(income)}/s";
                 CashCurrency.Amount += income;
+                DoubleIntegerEventHolder.TaskEvent?.Invoke(1, income);
                 yield return new WaitForSecondsRealtime(_tappedSpeed);
             }
         }

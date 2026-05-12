@@ -7,7 +7,7 @@ namespace Core.Events
 
     public delegate void GameEventInteger(int val);
 
-    public delegate void GameEventWith2Ints(int index, int val);
+    public delegate void GameEventWith2Ints(int index, double val);
 
     public static class SimpleEventsHolder
     {
