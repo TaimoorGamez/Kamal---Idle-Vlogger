@@ -6,6 +6,7 @@ using Core.Economy;
 using Core.GamePlay;
 using UnityEngine.UI;
 using Core.DB.Variables;
+using Core.Plugins.Firebase;
 
 namespace Core.Screen
 {
@@ -62,6 +63,7 @@ namespace Core.Screen
 
         public void OnClickClaimReward()
         {
+            FirebaseHandler.I.LogEvent($"Subscriber_{DBVariablesHolder.SubscriberLvl.Value}");
             CashCurrency.Amount += (_currentTarget * _cashMultipler);
             _currentTarget *= _targetMultiplier;
             DBVariablesHolder.SubscriberLvl.Value++;

@@ -45,9 +45,9 @@ namespace Core.GamePlay
         protected override void UpdatePriceForAll()
         {
             UpdateCost(0, DBVariablesHolder.CharismaLvl.Value);
-            UpdateCost(1, DBVariablesHolder.EruditionLvl.Value);
-            UpdateCost(2, DBVariablesHolder.ImprovisationLvl.Value);
-            UpdateCost(3, DBVariablesHolder.WitLvl.Value);
+            UpdateCost(1, DBVariablesHolder.ContentCreation.Value);
+            UpdateCost(2, DBVariablesHolder.ActingLvl.Value);
+            UpdateCost(3, DBVariablesHolder.EditingSkill.Value);
         }
 
         public override int GetAvailableUpdates()
@@ -58,16 +58,16 @@ namespace Core.GamePlay
             if (!AnyRestriction(charimaLvl) && CashCurrency.Amount >= GetCost(charimaLvl + 1))
                 count++;
 
-            int erudLvl = DBVariablesHolder.EruditionLvl.Value;
-            if (!AnyRestriction(erudLvl) && CashCurrency.Amount >= GetCost(erudLvl + 1))
+            int contentCreationLvl = DBVariablesHolder.ContentCreation.Value;
+            if (!AnyRestriction(contentCreationLvl) && CashCurrency.Amount >= GetCost(contentCreationLvl + 1))
                 count++;
 
-            int improLvl = DBVariablesHolder.ImprovisationLvl.Value;
-            if (!AnyRestriction(improLvl) && CashCurrency.Amount >= GetCost(improLvl + 1))
+            int actingLvl = DBVariablesHolder.ActingLvl.Value;
+            if (!AnyRestriction(actingLvl) && CashCurrency.Amount >= GetCost(actingLvl + 1))
                 count++;
 
-            int witLvl = DBVariablesHolder.WitLvl.Value;
-            if (!AnyRestriction(witLvl) && CashCurrency.Amount >= GetCost(witLvl + 1))
+            int editingLvl = DBVariablesHolder.EditingSkill.Value;
+            if (!AnyRestriction(editingLvl) && CashCurrency.Amount >= GetCost(editingLvl + 1))
                 count++;
 
             return count;
@@ -82,15 +82,15 @@ namespace Core.GamePlay
                     break;
 
                 case -2:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.EruditionLvl, 1, false);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.ContentCreation, 1, false);
                     break;
 
                 case -3:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.ImprovisationLvl, 2, false);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.ActingLvl, 2, false);
                     break;
 
                 case -4:
-                    UpdateItemProcess(itemIndex, DBVariablesHolder.WitLvl, 3, false);
+                    UpdateItemProcess(itemIndex, DBVariablesHolder.EditingSkill, 3, false);
                     break;
             }
         }

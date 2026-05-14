@@ -9,6 +9,8 @@ namespace Core.Plugins.Ads
 {
     public class AdsManager : MonoBehaviour
     {
+        public AdConfig AdsConfig;
+
         [SerializeField] AdHandler RewardedAd, IntertitialAd;
 
         [HideInInspector] public bool IsInitialized = false;

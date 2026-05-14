@@ -6,6 +6,7 @@ using Core.Events;
 using Core.Economy;
 using UnityEngine.UI;
 using Core.DB.Variables;
+using Core.Plugins.Firebase;
 
 namespace Core.GamePlay
 {
@@ -97,6 +98,10 @@ namespace Core.GamePlay
                     _upgradeStates[itemIndex].Levels = _priceData[itemIndex].Levels;
                     JsonDB.Save($"{ItemsNames[itemIndex]}{_upgradeStateKey}", _upgradeStates[itemIndex]);
                     SingleIntegerEventsHolder.UpdateItemEvent?.Invoke(eventIndex);
+                }
+                if (lvlData.Value % GameManager.Instance.SpriteChangeCount == 0)
+                {
+                    FirebaseHandler.I.LogEvent($"Upgrade_{ItemsNames[itemIndex]}_{lvlData.Value}");
                 }
                 UpdatePriceForAll();
             }

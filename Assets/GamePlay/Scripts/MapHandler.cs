@@ -1,8 +1,9 @@
-using UnityEngine;
-using DG.Tweening;
 using Core.Events;
+using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 using Core.DB.Variables;
+using Core.Plugins.Firebase;
 
 namespace Core.GamePlay
 {
@@ -40,9 +41,11 @@ namespace Core.GamePlay
 
             if (progress >= _totalTasks && DBVariablesHolder.IsGameplay.Value == 1)
             {
+                int currentMap = DBVariablesHolder.CurrentMap.Value;
+                FirebaseHandler.I.LogEvent($"Map_C_{currentMap}");
                 DBVariablesHolder.IsGameplay.Value = 0;
                 GameManager.Instance.StartGame();
-                if (DBVariablesHolder.CurrentMap.Value < GameManager.Instance.LastMap)
+                if (currentMap < GameManager.Instance.LastMap)
                     DBVariablesHolder.CurrentMap.Value++;
             }
         }
@@ -53,11 +56,11 @@ namespace Core.GamePlay
 
             if (DBVariablesHolder.CharismaLvl.Value % mapLvls == 0)
                 progress++;
-            if (DBVariablesHolder.EruditionLvl.Value % mapLvls == 0)
+            if (DBVariablesHolder.ContentCreation.Value % mapLvls == 0)
                 progress++;
-            if (DBVariablesHolder.ImprovisationLvl.Value % mapLvls == 0)
+            if (DBVariablesHolder.ActingLvl.Value % mapLvls == 0)
                 progress++;
-            if (DBVariablesHolder.WitLvl.Value % mapLvls == 0)
+            if (DBVariablesHolder.EditingSkill.Value % mapLvls == 0)
                 progress++;
             if (DBVariablesHolder.CameraLvl.Value % mapLvls == 0)
                 progress++;

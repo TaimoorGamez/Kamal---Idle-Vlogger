@@ -4,6 +4,7 @@ using DG.Tweening;
 using Core.Events;
 using Core.Economy;
 using Core.DB.Variables;
+using Core.Plugins.Firebase;
 
 namespace Core.GamePlay.Tasks
 {
@@ -245,6 +246,7 @@ namespace Core.GamePlay.Tasks
             CashCurrency.Amount+= task.Reward;
             task.IsCompleted = false;
             UpdateNotification();
+            FirebaseHandler.I.LogEvent($"Task_{task.TaskIndex}");
 
             TaskData newTask = GetNewTask();
             TaskBoxes[index].ProgressBar.fillAmount = 0;

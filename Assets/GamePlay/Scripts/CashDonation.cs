@@ -1,11 +1,11 @@
-using Core.DB.Variables;
-using Core.Economy;
-using Core.Events;
-using DG.Tweening;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
+using Core.Events;
+using Core.Economy;
 using UnityEngine.UI;
+using Core.DB.Variables;
+using Core.Plugins.Firebase;
 
 namespace Core.GamePlay
 {
@@ -71,6 +71,7 @@ namespace Core.GamePlay
             AmountText.gameObject.SetActive(true);
             _amountTween = _textRect.DOAnchorPosY(_textPadding, _textDisplayDuration).From(Vector2.zero).SetEase(Ease.OutSine).OnComplete(DisappearNow);
             DoubleIntegerEventHolder.TaskEvent?.Invoke(3, 1);
+            FirebaseHandler.I.LogEvent($"Donation_{_donationAmount}");
         }
     }
 }
