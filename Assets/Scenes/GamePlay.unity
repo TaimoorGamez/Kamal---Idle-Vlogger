@@ -5349,9 +5349,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 356498599268611393, guid: 4809cbe9263be3e4ebf4341311a301de, type: 3}
+      propertyPath: AdId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 356498599268611393, guid: 4809cbe9263be3e4ebf4341311a301de, type: 3}
+      propertyPath: IsTestAd
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4809012662594168907, guid: 4809cbe9263be3e4ebf4341311a301de, type: 3}
       propertyPath: m_Name
       value: AdsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326999776797565615, guid: 4809cbe9263be3e4ebf4341311a301de, type: 3}
+      propertyPath: AdId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326999776797565615, guid: 4809cbe9263be3e4ebf4341311a301de, type: 3}
+      propertyPath: IsTestAd
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8609341886378999979, guid: 4809cbe9263be3e4ebf4341311a301de, type: 3}
       propertyPath: m_LocalPosition.x
