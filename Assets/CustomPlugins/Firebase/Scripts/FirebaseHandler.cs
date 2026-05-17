@@ -75,8 +75,6 @@ namespace Core.Plugins.Firebase
                 remoteConfig.ActivateAsync().ContinueWith(
                    Task =>
                    {
-                       RemoteDataHolder.MaxLevelsAvailable = (int)remoteConfig.GetValue("MaxLevelsAvailable").LongValue;
-
                        string adJson = remoteConfig.GetValue("AdConfig").StringValue;
                        AdsManager.I.AdsConfig = JsonUtility.FromJson<AdConfig>(adJson);
                           IsRemoteFetched = true;

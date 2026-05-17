@@ -1,8 +1,10 @@
 using System;
+using UnityEngine;
 using Core.Events;
 using DG.Tweening;
-using UnityEngine;
+using Core.Plugins.Ads;
 using Core.DB.Variables;
+using Core.Plugins.Firebase;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -22,7 +24,7 @@ namespace Core.GamePlay
         [SerializeField] string[] ItemsNames;
 
         int _houseIndex = 6, _vehicleIndex = 7, _backyardIndex = 8, _groundIndex = 9;
-        float _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f;
+        float _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f, _initDelay = 2f;
         UpgradeStateData[] _upgradeStates;
 
         public static GameManager Instance;
@@ -441,6 +443,41 @@ namespace Core.GamePlay
             }
 
             return result;
+        }
+    
+        void InitAllPlugins()
+        {
+            bool allInit = false;
+            if (FirebaseHandler.I.IsInitialize)
+            {
+                Debug.Log("Firebase Initialized");
+                if (FirebaseHandler.I.IsRemoteFetched)
+                {
+                    Debug.Log("Firebase Remote Config Fetched");
+                    if (!AdsManager.I.IsInitialized)
+                    {
+                        Debug.Log("Initializing AdsManager...");
+                        AdsManager.I.InitPlugin();
+                    }
+                    else
+                    {
+                        allInit = true;
+                    }
+                }
+                else
+                {
+                    FirebaseHandler.I.FetchRemoteConfig();
+                }
+            }
+            else
+            {
+                FirebaseHandler.I.InitPlugin();
+            }
+
+            if (!allInit)
+            {
+                Invoke(nameof(InitAllPlugins), _initDelay);
+            }
         }
     }
 }

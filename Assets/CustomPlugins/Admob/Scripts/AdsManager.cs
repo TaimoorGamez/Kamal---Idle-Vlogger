@@ -1,26 +1,30 @@
 using Core.Events;
+using DG.Tweening;
 using UnityEngine;
 using Core.DB.Variables;
 using System.Collections;
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Ump.Api;
+using System.Collections.Generic;
 
 namespace Core.Plugins.Ads
 {
     public class AdsManager : MonoBehaviour
     {
+        public RectTransform[] AdButtons;
         public AdConfig AdsConfig;
+        public bool AdTimerComplete = false, AdPlaying = false, CanMultiply = false, CanDoubleDailyReward = false,
+                    CanSpin = false, CanBlockAds = false;
 
-        [SerializeField] AdHandler RewardedAd, IntertitialAd;
+        [SerializeField] AdHandler RewardedAdOne, RewardedAdTwo, InterstitialAd;
 
-        [HideInInspector] public bool IsInitialized = false;
-
-        public bool AdTimerComplete = false, AdPlaying = false, CanAddMoves = false, CanMultiply = false, CanDoubleDailyReward = false,
-                    CanSpin = false, CanCap = false, CanSpray = false, CanBlockAds = false, CanFlame = false, CanUndo = false,
-                                    CanAddExtraTube = false, CanSwitchColor = false;
+         public bool IsInitialized = false;
 
         Coroutine _rewardRotine = null, _adsRotine = null;
         bool _isEnable = false;
+        float _yPos = -400, yPosDiff = 110, _tweenDuration = 0.25f;
+        int buttonCount = 0;
+        Queue<RectTransform> _activeButtons = new Queue<RectTransform>();
 
         private void OnEnable()
         {
@@ -54,19 +58,20 @@ namespace Core.Plugins.Ads
 
         public void InitPlugin()
         {
+            Debug.Log("get into init");
             if (!RemoteDataHolder.AdData.CanShowAds || IsInitialized)
                 return;
 
-            #if UNITY_EDITOR
-            InitAds();  
-            #else
+#if UNITY_EDITOR
+            InitAds();
+#else
                 RequestConsentInfo();
-            #endif
+#endif
         }
 
         void RequestConsentInfo()
         {
-            if(!RemoteDataHolder.AdData.CanShowAds)
+            if (!RemoteDataHolder.AdData.CanShowAds)
                 return;
 
             ConsentRequestParameters request = new ConsentRequestParameters
@@ -119,7 +124,8 @@ namespace Core.Plugins.Ads
         }
 
         void InitAds()
-        { 
+        {
+            Debug.Log("Initializing AdMob...");
             try
             {
                 MobileAds.Initialize((InitializationStatus initstatus) =>
@@ -133,12 +139,14 @@ namespace Core.Plugins.Ads
                     IsInitialized = true;
                     if (RemoteDataHolder.AdData.Rewarded)
                     {
-                        RewardedAd.LoadAd();
+                        RewardedAdOne.LoadAd();
+                        RewardedAdTwo.LoadAd();
+                        StartCoroutine(CheckRewardedButtons());
                     }
 
                     if (RemoteDataHolder.AdData.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
                     {
-                        IntertitialAd.LoadAd();
+                        InterstitialAd.LoadAd();
                     }
                 });
             }
@@ -160,31 +168,7 @@ namespace Core.Plugins.Ads
             while (_isEnable)
             {
                 yield return wait;
-                if (CanAddMoves)
-                {
-                    CanAddMoves = false;
-                    SimpleEventsHolder.AddMovesEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanUndo)
-                {
-                    CanUndo = false;
-                    SimpleEventsHolder.RewardUndoEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanAddExtraTube)
-                {
-                    CanAddExtraTube = false;
-                    SimpleEventsHolder.RewardExtraTubeEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanSwitchColor)
-                {
-                    CanSwitchColor = false;
-                    SimpleEventsHolder.RewardSwapColor?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanMultiply)
+                if (CanMultiply)
                 {
                     CanMultiply = false;
                     SimpleEventsHolder.MultiplayRewardEvent?.Invoke();
@@ -200,24 +184,6 @@ namespace Core.Plugins.Ads
                 {
                     CanSpin = false;
                     SimpleEventsHolder.RewardSpinWheelEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanCap)
-                {
-                    CanCap = false;
-                    SimpleEventsHolder.BuyCaps?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanSpray)
-                {
-                    CanSpray = false;
-                    SimpleEventsHolder.BuySprays?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanFlame)
-                {
-                    CanFlame = false;
-                    SimpleEventsHolder.BuyFlames?.Invoke();
                     _isEnable = false;
                 }
                 else if (CanBlockAds)
@@ -281,15 +247,51 @@ namespace Core.Plugins.Ads
 
         public void ShowRewardedAd(string reward)
         {
-            RewardedAd.ShowAd(reward);
+            //RewardedAd.ShowAd(reward);
         }
 
         public void ShowInterstitialAd(string detail = "")
         {
             if (RemoteDataHolder.AdData.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
             {
-                IntertitialAd.ShowAd(detail);
+                InterstitialAd.ShowAd(detail);
             }
         }
+
+        IEnumerator CheckRewardedButtons()
+        {
+            Debug.Log("CheckRewardedButtons started");
+            WaitForSeconds wait = new WaitForSeconds(1f);
+            while (true)
+            {
+                Debug.Log("Checking rewarded buttons...");
+                yield return wait;
+                if (_activeButtons.Count < AdButtons.Length)
+                {
+                    Debug.Log("Checking if rewarded ads are available...");
+                    if (RewardedAdOne.IsAdAvailable || RewardedAdTwo.IsAdAvailable)
+                    {
+                        Debug.Log("Rewarded ad is available.");
+                        _activeButtons.Enqueue(AdButtons[buttonCount]);
+                        buttonCount++;
+                        if (buttonCount >= AdButtons.Length)
+                        {
+                            buttonCount = 0;
+                        }
+                        int positionIndex = 0;
+                        for (int i = 0; i < _activeButtons.Count; i++)
+                        {
+                            RectTransform buttTransform = _activeButtons.Dequeue();
+                            buttTransform.gameObject.SetActive(true);
+                            buttTransform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                            buttTransform.DOAnchorPosY(_yPos - (positionIndex * yPosDiff), _tweenDuration).SetEase(Ease.Linear);
+                            positionIndex++;
+                        }
+                    }
+                }
+            }
+        }
+        
+
     }
 }

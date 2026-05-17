@@ -1,11 +1,12 @@
 using UnityEngine;
-using Core.Plugins.Ads;
 
-
-public class CallRewardedAd : MonoBehaviour
+namespace Core.Plugins.Ads
 {
-    public void ShowAd(string reward)
+    public class CallRewardedAd : MonoBehaviour
     {
-        AdsManager.I?.ShowRewardedAd(reward);
+        public void ShowAd(string reward)
+        {
+            AdsManager.I?.ShowRewardedAd(reward);
+        }
     }
 }

@@ -56,10 +56,15 @@ namespace Core.Screen
                 yield return new WaitForSeconds(0.5f);
                 if (FirebaseHandler.I.IsInitialize)
                 {
+                    Debug.Log("Firebase Initialized");
                     if (FirebaseHandler.I.IsRemoteFetched)
                     {
-                        if(!AdsManager.I.IsInitialized)
+                        Debug.Log("Firebase Remote Config Fetched");
+                        if (!AdsManager.I.IsInitialized)
+                        {
+                            Debug.Log("Initializing AdsManager...");
                             AdsManager.I.InitPlugin();
+                        }
                     }
                     else
                     {

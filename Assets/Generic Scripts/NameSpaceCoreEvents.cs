@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Core.Events
 {
     public delegate void GameEvent();
@@ -34,9 +31,9 @@ namespace Core.Events
 
         //------------------Ads Events------------------
         RemoveAds, StartCountingAdBreak, GrantRewardEvent,
-        MultiplayRewardEvent, AddMovesEvent, DoubleDailyRewardEvent,
-        RewardSpinWheelEvent, BuyCaps, BuySprays, BuyFlames, AdsBlockerEvent,
-        RewardUndoEvent, RewardExtraTubeEvent, RewardSwapColor;
+        MultiplayRewardEvent, DoubleDailyRewardEvent,
+        RewardSpinWheelEvent, AdsBlockerEvent, x2Income,
+        x2Tappoed, x10Income;
     }
 
     public static class SingleIntegerEventsHolder
@@ -58,15 +55,5 @@ namespace Core.Events
 
         //-------------------DailyTask Events-------------------
         TaskEvent;
-    }
-
-    public static class EventDictionariesHolder
-    {
-        public static Dictionary<string, GameEvent> RewardPowerEvent = new Dictionary<string, GameEvent>(StringComparer.Ordinal)
-        {
-            { "SortUndo", SimpleEventsHolder.RewardUndoEvent },
-            { "SwapColor", SimpleEventsHolder.RewardSwapColor },
-            { "ExtraTube", SimpleEventsHolder.RewardExtraTubeEvent }
-        };
     }
 }

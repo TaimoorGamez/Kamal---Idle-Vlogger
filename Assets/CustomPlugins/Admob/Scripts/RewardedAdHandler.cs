@@ -117,24 +117,8 @@ namespace Core.Plugins.Ads
         {
             switch (rewardName)
             {
-                case "AddMoves":
-                    AdsManager.I.CanAddMoves = true;
-                    break;
-
                 case "MultiplyReward":
                     AdsManager.I.CanMultiply = true;
-                    break;
-
-                case "SortUndo":
-                    AdsManager.I.CanUndo = true;
-                    break;
-
-                case "ExtraTube":
-                    AdsManager.I.CanAddExtraTube = true;
-                    break;
-
-                case "SwapColor":
-                    AdsManager.I.CanSwitchColor = true;
                     break;
 
                 case "DoubleDailyReward":
@@ -147,18 +131,6 @@ namespace Core.Plugins.Ads
 
                 case "AdBlocker":
                     AdsManager.I.CanBlockAds = true;
-                    break;
-
-                case "Caps":
-                    AdsManager.I.CanCap = true;
-                    break;
-
-                case "Sprays":
-                    AdsManager.I.CanSpray = true;
-                    break;
-
-                case "FlameThrowers":
-                    AdsManager.I.CanFlame = true;
                     break;
             }
             SimpleEventsHolder.GrantRewardEvent?.Invoke();

@@ -5,8 +5,10 @@ using Core.Events;
 using DG.Tweening;
 using Core.Economy;
 using UnityEngine.UI;
+using Core.Plugins.Ads;
 using Core.DB.Variables;
 using System.Collections;
+using Core.Plugins.Firebase;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 

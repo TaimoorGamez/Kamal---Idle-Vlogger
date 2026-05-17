@@ -1,10 +1,12 @@
 using UnityEngine;
-using Core.Plugins.Ads;
 
-public class CallInterstitialAd : MonoBehaviour
+namespace Core.Plugins.Ads
 {
-    public void ShowAd(string detail = "")
+    public class CallInterstitialAd : MonoBehaviour
     {
-        AdsManager.I?.ShowInterstitialAd(detail);
+        public void ShowAd(string detail = "")
+        {
+            AdsManager.I?.ShowInterstitialAd(detail);
+        }
     }
 }
