@@ -52,7 +52,7 @@ namespace Core.Plugins.Firebase
                 return;
             }
 
-            Debug.Log("Fetching data...");
+            //Debug.Log("Fetching data...");
             FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.DefaultInstance;
             remoteConfig.FetchAsync(System.TimeSpan.Zero).ContinueWith(
                Task =>
@@ -75,9 +75,9 @@ namespace Core.Plugins.Firebase
                 remoteConfig.ActivateAsync().ContinueWith(
                    Task =>
                    {
-                       string adJson = remoteConfig.GetValue("AdConfig").StringValue;
+                       string adJson = remoteConfig.GetValue("AdsConfig").StringValue;
                        AdsManager.I.AdsConfig = JsonUtility.FromJson<AdConfig>(adJson);
-                          IsRemoteFetched = true;
+                       IsRemoteFetched = true;
                    });
             }
 

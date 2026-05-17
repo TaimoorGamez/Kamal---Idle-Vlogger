@@ -40,10 +40,4 @@ namespace Core.Plugins
         public float AdShowTime = 0, AdBlockTime = 5;
         public bool Interstitial = false, Rewarded = false;
     }
-
-    public static class RemoteDataHolder
-    {
-        public static int MaxLevelsAvailable = 0;
-        public static AdConfig AdData = new AdConfig();
-    }
 }

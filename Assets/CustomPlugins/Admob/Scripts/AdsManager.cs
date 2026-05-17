@@ -1,6 +1,7 @@
 using Core.Events;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Core.DB.Variables;
 using System.Collections;
 using GoogleMobileAds.Api;
@@ -11,20 +12,23 @@ namespace Core.Plugins.Ads
 {
     public class AdsManager : MonoBehaviour
     {
-        public RectTransform[] AdButtons;
-        public AdConfig AdsConfig;
+        public RectTransform[] AdButtons2X, AdButtons10X;
+        public AdConfig AdsConfig = new AdConfig();
         public bool AdTimerComplete = false, AdPlaying = false, CanMultiply = false, CanDoubleDailyReward = false,
                     CanSpin = false, CanBlockAds = false;
 
         [SerializeField] AdHandler RewardedAdOne, RewardedAdTwo, InterstitialAd;
+        [SerializeField] Image AdPanel;
+        [SerializeField] Sprite[] AdPanelSprites;
 
          public bool IsInitialized = false;
 
         Coroutine _rewardRotine = null, _adsRotine = null;
-        bool _isEnable = false;
-        float _yPos = -400, yPosDiff = 110, _tweenDuration = 0.25f;
-        int buttonCount = 0;
-        Queue<RectTransform> _activeButtons = new Queue<RectTransform>();
+        bool _isEnable = false, _adPanelActive = false;
+        float _yPos = -400, yPosDiff = 110, _tweenDuration = 0.25f, adDelay = 5;
+        int _currentAdIndex = -1;
+        List<RectTransform> _activeButtons2X = new List<RectTransform>();
+        List<RectTransform> _activeButtons10X = new List<RectTransform>();
 
         private void OnEnable()
         {
@@ -58,8 +62,7 @@ namespace Core.Plugins.Ads
 
         public void InitPlugin()
         {
-            Debug.Log("get into init");
-            if (!RemoteDataHolder.AdData.CanShowAds || IsInitialized)
+            if (!AdsConfig.CanShowAds || IsInitialized)
                 return;
 
 #if UNITY_EDITOR
@@ -71,7 +74,7 @@ namespace Core.Plugins.Ads
 
         void RequestConsentInfo()
         {
-            if (!RemoteDataHolder.AdData.CanShowAds)
+            if (!AdsConfig.CanShowAds)
                 return;
 
             ConsentRequestParameters request = new ConsentRequestParameters
@@ -125,7 +128,6 @@ namespace Core.Plugins.Ads
 
         void InitAds()
         {
-            Debug.Log("Initializing AdMob...");
             try
             {
                 MobileAds.Initialize((InitializationStatus initstatus) =>
@@ -137,14 +139,14 @@ namespace Core.Plugins.Ads
                     }
                     MobileAds.RaiseAdEventsOnUnityMainThread = true;
                     IsInitialized = true;
-                    if (RemoteDataHolder.AdData.Rewarded)
+                    if (AdsConfig.Rewarded)
                     {
                         RewardedAdOne.LoadAd();
                         RewardedAdTwo.LoadAd();
                         StartCoroutine(CheckRewardedButtons());
                     }
 
-                    if (RemoteDataHolder.AdData.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
+                    if (AdsConfig.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
                     {
                         InterstitialAd.LoadAd();
                     }
@@ -210,7 +212,7 @@ namespace Core.Plugins.Ads
 
         IEnumerator CountAdBreak()
         {
-            yield return new WaitForSeconds(RemoteDataHolder.AdData.AdShowTime);
+            yield return new WaitForSeconds(AdsConfig.AdShowTime);
             AdTimerComplete = true;
 
             if (_adsRotine != null)
@@ -252,7 +254,7 @@ namespace Core.Plugins.Ads
 
         public void ShowInterstitialAd(string detail = "")
         {
-            if (RemoteDataHolder.AdData.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
+            if (AdsConfig.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
             {
                 InterstitialAd.ShowAd(detail);
             }
@@ -260,38 +262,103 @@ namespace Core.Plugins.Ads
 
         IEnumerator CheckRewardedButtons()
         {
-            Debug.Log("CheckRewardedButtons started");
-            WaitForSeconds wait = new WaitForSeconds(1f);
+            WaitForSeconds wait = new WaitForSeconds(adDelay);
             while (true)
             {
-                Debug.Log("Checking rewarded buttons...");
-                yield return wait;
-                if (_activeButtons.Count < AdButtons.Length)
+                if (RewardedAdOne.IsAdAvailable)
                 {
-                    Debug.Log("Checking if rewarded ads are available...");
-                    if (RewardedAdOne.IsAdAvailable || RewardedAdTwo.IsAdAvailable)
+                    RectTransform newButton2x = GetButton2X();
+                    if (newButton2x  != null)
                     {
-                        Debug.Log("Rewarded ad is available.");
-                        _activeButtons.Enqueue(AdButtons[buttonCount]);
-                        buttonCount++;
-                        if (buttonCount >= AdButtons.Length)
-                        {
-                            buttonCount = 0;
-                        }
-                        int positionIndex = 0;
-                        for (int i = 0; i < _activeButtons.Count; i++)
-                        {
-                            RectTransform buttTransform = _activeButtons.Dequeue();
-                            buttTransform.gameObject.SetActive(true);
-                            buttTransform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
-                            buttTransform.DOAnchorPosY(_yPos - (positionIndex * yPosDiff), _tweenDuration).SetEase(Ease.Linear);
-                            positionIndex++;
-                        }
+                        _activeButtons2X.Add(newButton2x);
+                    }
+
+                    int position2x = 0;
+                    for (int i = 0; i < _activeButtons2X.Count; i++)
+                    {
+                        RectTransform buttTransform = _activeButtons2X[i];
+                        buttTransform.gameObject.SetActive(true);
+                        buttTransform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                        buttTransform.DOAnchorPosY(_yPos - (position2x * yPosDiff), _tweenDuration).SetEase(Ease.Linear);
+                        position2x++;
                     }
                 }
+
+                if (RewardedAdTwo.IsAdAvailable) 
+                {
+                    RectTransform newButton10x = GetButton10X();
+                    if (newButton10x != null)
+                    {
+                        _activeButtons10X.Add(newButton10x);
+                    }
+
+                    int position10x = 0;
+                    for (int i = 0; i < _activeButtons10X.Count; i++)
+                    {
+                        RectTransform buttTransform = _activeButtons10X[i];
+                        buttTransform.gameObject.SetActive(true);
+                        buttTransform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                        buttTransform.DOAnchorPosY(_yPos - (position10x * yPosDiff), _tweenDuration).SetEase(Ease.Linear);
+                        position10x++;
+                    }
+                }
+                yield return wait;
             }
         }
         
+        RectTransform GetButton2X()
+        {
+            for(int b =0; b< AdButtons2X.Length; b++)
+            {
+                if(!AdButtons2X[b].gameObject.activeInHierarchy)
+                {
+                    return AdButtons2X[b];
+                }
+            }
+            return null;
+        }
 
+        RectTransform GetButton10X()
+        {
+            for (int b = 0; b < AdButtons10X.Length; b++)
+            {
+                if (!AdButtons10X[b].gameObject.activeInHierarchy)
+                {
+                    return AdButtons10X[b];
+                }
+            }
+            return null;
+        }
+    
+        public void ShowAdDetails(int adIndex)
+        {
+            if (!_adPanelActive)
+            {
+                _adPanelActive = true;
+                _currentAdIndex = adIndex;
+                AdPanel.sprite = AdPanelSprites[_currentAdIndex];
+                AdPanel.transform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+            }
+        }
+
+        public void OnClaimReward()
+        {
+            switch (_currentAdIndex) 
+            {
+                case 0:
+
+                    break;
+            }
+            HideAdDetails();
+        }
+
+        public void HideAdDetails() 
+        {
+            AdPanel.transform.DOScale(Vector3.zero,_tweenDuration).SetEase(Ease.InBack).OnComplete(()=>
+            {
+                _adPanelActive = false;
+                AdPanel.gameObject.SetActive(false);
+            });
+        }
     }
 }

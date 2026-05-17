@@ -365,6 +365,7 @@ namespace Core.GamePlay
             {
                 SwitchToGameplay();
             }
+                InitAllPlugins();
         }
 
         void SwitchToStoryline()
@@ -450,13 +451,10 @@ namespace Core.GamePlay
             bool allInit = false;
             if (FirebaseHandler.I.IsInitialize)
             {
-                Debug.Log("Firebase Initialized");
                 if (FirebaseHandler.I.IsRemoteFetched)
                 {
-                    Debug.Log("Firebase Remote Config Fetched");
                     if (!AdsManager.I.IsInitialized)
                     {
-                        Debug.Log("Initializing AdsManager...");
                         AdsManager.I.InitPlugin();
                     }
                     else
