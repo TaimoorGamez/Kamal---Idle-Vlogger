@@ -23,6 +23,7 @@ namespace Core.GamePlay
         [SerializeField] TextMeshProUGUI IncomeTxt;
         [SerializeField] Vector2[] StatuePositions, CameraPositions, MicPositions, TripodPositions;
         [SerializeField] string[] BaseStreamAnimation, ItemsNames;
+        [SerializeField] MultiplierBar MultiplierIncome;
 
         int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _tappedSpeed = 0.1f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
@@ -595,6 +596,16 @@ namespace Core.GamePlay
             _maxTapped /= 2;
             _x2TapDuration = 3600;
             _x2TapRoutine = null;
+        }
+
+        public void MultipleOfflineIncome()
+        {
+            
+        }
+
+        public void ClaimOfflineIncome()
+        {
+
         }
     }
 }
