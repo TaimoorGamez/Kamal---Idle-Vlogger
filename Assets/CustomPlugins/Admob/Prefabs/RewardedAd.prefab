@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1968916292384027981}
   - component: {fileID: 2106236731592003659}
   - component: {fileID: 7765032381907223271}
-  - component: {fileID: 3734712443323296407}
   - component: {fileID: 8557965876634423258}
   m_Layer: 5
   m_Name: RewardedAd
@@ -77,18 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3734712443323296407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2509326720573698922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6359194061667f847a7729b763b13a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CallRewardedAd
 --- !u!114 &8557965876634423258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +181,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3734712443323296407}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CallRewardedAd, Assembly-CSharp
           m_MethodName: ShowAd
           m_Mode: 5

@@ -5,10 +5,8 @@ using Core.Events;
 using DG.Tweening;
 using Core.Economy;
 using UnityEngine.UI;
-using Core.Plugins.Ads;
 using Core.DB.Variables;
 using System.Collections;
-using Core.Plugins.Firebase;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -16,7 +14,7 @@ namespace Core.GamePlay
 {
     public class GameplayHandler : MonoBehaviour
     {
-        [SerializeField] GameObject CashDonation;
+        [SerializeField] GameObject BoosterParticle, CashDonation;
         [SerializeField] RectTransform MaxLvlToggleIcon;
         [SerializeField] Image MaxLvlToggleBar;
         [SerializeField] McTalking McTalk;
@@ -28,10 +26,11 @@ namespace Core.GamePlay
 
         int _cameraIndex = 3, _tripodIndex = 4, _micIndex = 5, _statueIndex = 10;
         float _tappedMultipler = 1, _maxTapped = 1.8f, _tappedSpeed = 0.1f, _maxLvlToggleAnchor = 20, _maxLvlAnimationDuration = 0.25f,
-              _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f, _maxDonationDelay = 50, _donationCap = 2.5f, _donationTimer = 50;
-        bool _canStream = false, _canEarn = false, _canDonate = false;
+              _updatingAnimationDuration = 0.45f, _visualDuration = 0.5f, _maxDonationDelay = 50, _donationCap = 2.5f, 
+              _donationTimer = 50, _x2IncomeDuration = 3600, _x2TapDuration = 3600, _x10IncomeDuration = 10;
+        bool _canStream = false, _canEarn = false, _canDonate = false, _can2xIncome, _can10xIncome;
         string[] _mainStreamAnimations;
-        Coroutine _streamRoutine, _earningRotine, _donationRotine;
+        Coroutine _streamRoutine, _earningRotine, _donationRotine, _x10Routine, _x2IncomeRoutine, _x2TapRoutine;
         UpgradeStateData[] _upgradeStates;
 
         void OnEnable()
@@ -41,6 +40,9 @@ namespace Core.GamePlay
             SingleIntegerEventsHolder.UpdateItemEvent += UpdateMicrophoneWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent += UpdateStatueWithDelay;
             SimpleEventsHolder.StopStreaming += StopStreaming;
+            SimpleEventsHolder.X10IncomeEvent += TenTimesIncome;
+            SimpleEventsHolder.X2IncomeEvent += TwoTimesIncome;
+            SimpleEventsHolder.X2TappedEvent += TwoTimesTap;
         }
 
         private void OnDisable()
@@ -50,6 +52,10 @@ namespace Core.GamePlay
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateMicrophoneWithDelay;
             SingleIntegerEventsHolder.UpdateItemEvent -= UpdateStatueWithDelay;
             SimpleEventsHolder.StopStreaming -= StopStreaming;
+            SimpleEventsHolder.X10IncomeEvent -= TenTimesIncome;
+            SimpleEventsHolder.X2IncomeEvent -= TwoTimesIncome;
+            SimpleEventsHolder.X2TappedEvent -= TwoTimesTap;
+            DBVariablesHolder.ClosingTime.Value = DateTime.Now.ToString();
         }
 
         void Start()
@@ -60,12 +66,44 @@ namespace Core.GamePlay
         public void ContinueGameplay()
         {
             _upgradeStates = new UpgradeStateData[ItemsNames.Length];
+            _x10IncomeDuration = DBVariablesHolder.X10Duration.Value;
+            CheckBoostRemainingTime();
             McAnimator.SetTrigger("Default");
             LoadCameraFirst();
             LoadTripodFirst();
             LoadMicrophoneFirst();
             LoadStatueFirst();
             StartStreaming();
+        }
+
+        void CheckBoostRemainingTime()
+        {
+            if (!string.IsNullOrEmpty(DBVariablesHolder.X2Time.Value))
+            {
+                DateTime startTimeX2Income = DateTime.Parse(DBVariablesHolder.X2Time.Value);
+                TimeSpan offlineTime = DateTime.Now - startTimeX2Income;
+
+                float remainingX2Income = _x2IncomeDuration - (float)offlineTime.TotalSeconds;
+
+                if (remainingX2Income > 0)
+                {
+                    _x2IncomeDuration = remainingX2Income;
+                    TwoTimesIncome();
+                } 
+            }
+
+            if(!string.IsNullOrEmpty(DBVariablesHolder.X2TapTime.Value))
+            {
+                DateTime startTimeX2Tap = DateTime.Parse(DBVariablesHolder.X2TapTime.Value);
+                TimeSpan offlineTime = DateTime.Now - startTimeX2Tap;
+                float remainingX2Tap = _x2TapDuration - (float)offlineTime.TotalSeconds;
+                if (remainingX2Tap > 0)
+                {
+                    _x2TapDuration = remainingX2Tap;
+                    TwoTimesTap();
+                }
+            }
+
         }
 
         void LoadCameraFirst()
@@ -402,6 +440,14 @@ namespace Core.GamePlay
                     _tappedMultipler -= 0.1f;
                     IncomeTxt.color = Color.black;
                 }
+                if (_can10xIncome)
+                {
+                    income *= 10;
+                }
+                if(_can2xIncome)
+                {
+                    income *= 2;
+                }
                 income *= _tappedMultipler;
                 IncomeTxt.text = $"{GameManager.Instance.FormatMoney(income)}/s";
                 CashCurrency.Amount += income;
@@ -485,6 +531,70 @@ namespace Core.GamePlay
                 range = lvl / GameManager.Instance.MapChangeCount;
             }
             return lvl / spriteIndex;
+        }
+        void TenTimesIncome()
+        {
+            if (_x10Routine != null)
+                StopCoroutine(_x10Routine);
+
+            _x10Routine = StartCoroutine(X10IncomeRoutine());
+        }
+
+        IEnumerator X10IncomeRoutine()
+        {
+            _can10xIncome = true;
+            _canStream = false;
+            if (_streamRoutine != null)
+            {
+                StopCoroutine(_streamRoutine);
+                _streamRoutine = null;
+            }
+            BoosterParticle.SetActive(true);
+            McAnimator.Play("Booster Start");
+            yield return new WaitForSecondsRealtime(_x10IncomeDuration);
+            BoosterParticle.SetActive(false);
+            McAnimator.Play("Booster End");
+            _can10xIncome = false;
+            StartStreaming();
+            _x10Routine = null;
+        }
+
+        void TwoTimesIncome()
+        {
+            if (_x2IncomeRoutine != null)
+                StopCoroutine(_x2IncomeRoutine);
+
+            _x2IncomeRoutine = StartCoroutine(X2IncomeRoutine());
+        }
+
+        IEnumerator X2IncomeRoutine()
+        {
+            _can2xIncome = true;
+            DBVariablesHolder.X2Time.Value = DateTime.Now.ToString();
+            yield return new WaitForSecondsRealtime(_x2IncomeDuration);
+
+            _can2xIncome = false;
+            _x2IncomeDuration = 3600;
+            _x2IncomeRoutine = null;
+        }
+
+        void TwoTimesTap()
+        {
+            if (_x2TapRoutine != null)
+                StopCoroutine(_x2TapRoutine);
+
+            _x2TapRoutine = StartCoroutine(X2TapRoutine());
+        }
+
+        IEnumerator X2TapRoutine()
+        {
+            _maxTapped *= 2;
+            DBVariablesHolder.X2TapTime.Value = DateTime.Now.ToString();
+            yield return new WaitForSecondsRealtime(_x2TapDuration);
+
+            _maxTapped /= 2;
+            _x2TapDuration = 3600;
+            _x2TapRoutine = null;
         }
     }
 }

@@ -1,6 +1,5 @@
 using Core.Events;
 using UnityEngine;
-//using Core.GamePlay;
 using Core.DB.Variables;
 using GoogleMobileAds.Api;
 using Core.Plugins.Firebase;
@@ -16,7 +15,7 @@ namespace Core.Plugins.Ads
 
         public override void LoadAd()
         {
-            if (!AdsManager.I.IsInitialized || DBVariablesHolder.RemoveAds.Value == 1)
+            if (!AdsManager.I.IsInitialized || DBVariablesHolder.RemoveAds.Value == 1 || !AdsManager.I.AdsConfig.Interstitial || !AdsManager.I.AdsConfig.CanShowAds)
                 return;
 
             if (IsTestAd)
@@ -53,7 +52,7 @@ namespace Core.Plugins.Ads
             get
             {
                 return _interstitialAd != null && _interstitialAd.CanShowAd() && AdsManager.I.AdTimerComplete && !AdsManager.I.AdPlaying
-                    &&  DBVariablesHolder.RemoveAds.Value != 1 && DBVariablesHolder.AdBlocked.Value != 1;
+                       && DBVariablesHolder.AdBlocked.Value != 1;
             }
         }
 

@@ -95,6 +95,10 @@ namespace Core.DB.Variables
         public static DBInt AdBlocked = new DBInt("AdBlocked", 0);
         public static DBString AdBlockingTime = new DBString("AdBlockingTime", DateTime.MinValue.ToString());
         public static DBString LastDate = new DBString("LastDate", DateTime.MinValue.ToString());
+        public static DBString X2Time = new DBString("X2Time", DateTime.MinValue.ToString());
+        public static DBString X2TapTime = new DBString("X2TapTime", DateTime.MinValue.ToString());
+        public static DBString ClosingTime = new DBString("ClosingTime", "");
+
 
         //---------------------Economy Data -------------------  
         public static DBInt GoldWallet = new DBInt("GoldWallet", 0);
@@ -140,6 +144,7 @@ namespace Core.DB.Variables
         public static DBInt MaxLevels = new DBInt("MaxLevels", 0);
         public static DBInt SubscriberLvl = new DBInt("SubscriberLvl", 0);
         public static DBInt DonationLvl = new DBInt("DonationLvl", 0);
+        public static DBFloat X10Duration = new DBFloat("X10Duration", 10f);
     }
 
     public static class DBVariableDictionariesHolder

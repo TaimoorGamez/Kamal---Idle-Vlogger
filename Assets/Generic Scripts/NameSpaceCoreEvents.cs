@@ -32,8 +32,8 @@ namespace Core.Events
         //------------------Ads Events------------------
         RemoveAds, StartCountingAdBreak, GrantRewardEvent,
         MultiplayRewardEvent, DoubleDailyRewardEvent,
-        RewardSpinWheelEvent, AdsBlockerEvent, x2Income,
-        x2Tappoed, x10Income;
+        RewardSpinWheelEvent, AdsBlockerEvent, X2IncomeEvent,
+        X2TappedEvent, X10IncomeEvent;
     }
 
     public static class SingleIntegerEventsHolder

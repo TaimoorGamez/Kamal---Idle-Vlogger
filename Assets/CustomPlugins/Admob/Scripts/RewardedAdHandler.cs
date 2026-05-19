@@ -1,6 +1,7 @@
 using Core.Events;
-using GoogleMobileAds.Api;
 using Core.Plugins.Firebase;
+using GoogleMobileAds.Api;
+using System.Xml.Linq;
 
 namespace Core.Plugins.Ads
 {
@@ -12,7 +13,7 @@ namespace Core.Plugins.Ads
 
         public override void LoadAd()
         {
-            if(!AdsManager.I.IsInitialized)
+            if(!AdsManager.I.IsInitialized || !AdsManager.I.AdsConfig.Rewarded || !AdsManager.I.AdsConfig.CanShowAds)
                 return;
             
 
@@ -131,6 +132,26 @@ namespace Core.Plugins.Ads
 
                 case "AdBlocker":
                     AdsManager.I.CanBlockAds = true;
+                    break;
+
+                case "Ad_2X":
+                    AdsManager.I.CanX2Income = true;
+                    break;
+
+                case "Ad_2XTap":
+                    AdsManager.I.CanX2Tap = true;
+                    break;
+
+                case "Ad_10X":
+                    AdsManager.I.CanX10Income = true;
+                    break;
+
+                case "Ad_CashPrize":
+                    AdsManager.I.CanRewardCash = true;
+                    break;
+
+                case "Ad_GoldPrize":
+                    AdsManager.I.CanRewardGold = true;
                     break;
             }
             SimpleEventsHolder.GrantRewardEvent?.Invoke();
