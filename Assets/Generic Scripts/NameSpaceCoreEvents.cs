@@ -1,27 +1,24 @@
-using System;
-using System.Collections.Generic;
-
 namespace Core.Events
 {
     public delegate void GameEvent();
 
     public delegate void GameEventInteger(int val);
 
-    public delegate void GameEventWith2Ints(int index, int val);
+    public delegate void GameEventWith2Ints(int index, double val);
 
     public static class SimpleEventsHolder
     {
         public static GameEvent
 
         //-------------------Game Flow Events-------------------
-        SelfDestructionEvent, HideColorBowlEvent, CheckCompleteEvent,
-        StartColoringEvent, ColorSelectedEvent, DestroyLevelEvent, InitLvlEvent,
-        UpdateMovesEvent, RestartLevelEvent, ExtraTubeEvent,
-        UpdateExtraTubeStatusEvent, RegisterMoveEvent, UndoEvent, UpdateUndoStatusEvent,
-        SwapColorsEvent, UpdateSwapStatusEvent, UpdatePowerBtnsUIEvent, CheckPluginStatus,
+        SelfDestructionEvent, StoryPartComplete, CheckPluginStatus,
+        UpdatePriceTxt, UpdateMapProgress, StopStreaming,
+
+        //-------------------Economy Events-------------------
+        UpdateCashTxtEvent, UpdateGoldTxtEvent, UpdateSubscribeTxtEvent,
 
         //-------------------Sound Events-------------------
-        BtnPressSfxEvent, UpdateMusicStateEvent, UpdateSoundStateEvent,
+        UpdateMusicStateEvent, UpdateSoundStateEvent,
 
         //-------------------Spin Wheel Events-------------------
         ResetSpinWheelEvent,
@@ -34,20 +31,16 @@ namespace Core.Events
 
         //------------------Ads Events------------------
         RemoveAds, StartCountingAdBreak, GrantRewardEvent,
-        MultiplayRewardEvent, AddMovesEvent, DoubleDailyRewardEvent,
-        RewardSpinWheelEvent, BuyCaps, BuySprays, BuyFlames, AdsBlockerEvent,
-        RewardUndoEvent, RewardExtraTubeEvent, RewardSwapColor;
+        MultiplayRewardEvent, DoubleDailyRewardEvent,
+        RewardSpinWheelEvent, AdsBlockerEvent, X2IncomeEvent,
+        X2TappedEvent, X10IncomeEvent;
     }
 
     public static class SingleIntegerEventsHolder
     {
         public static GameEventInteger
-
-        //-------------------Economy Events-------------------
-        DepositEvent, TransactionEvent,
-
         //-------------------Game Flow Events-------------------
-        SwitchProtectorEvent,
+        UpdateItemEvent,
 
         //-------------------Toast Events-------------------
         ShowToastEvent,
@@ -62,30 +55,5 @@ namespace Core.Events
 
         //-------------------DailyTask Events-------------------
         TaskEvent;
-    }
-
-    public static class EventDictionariesHolder
-    {
-
-        public static Dictionary<string, GameEvent> PowerEvents = new Dictionary<string, GameEvent>(StringComparer.Ordinal)
-        {
-            { "SortUndo", SimpleEventsHolder.UndoEvent },
-            { "SwapColor", SimpleEventsHolder.SwapColorsEvent },
-            { "ExtraTube", SimpleEventsHolder.ExtraTubeEvent }
-        };
-
-        public static Dictionary<string, GameEvent> UpdatePowerStatusEvent = new Dictionary<string, GameEvent>(StringComparer.Ordinal)
-        {
-            { "SortUndo", SimpleEventsHolder.UpdateUndoStatusEvent },
-            { "SwapColor", SimpleEventsHolder.UpdateSwapStatusEvent },
-            { "ExtraTube", SimpleEventsHolder.UpdateExtraTubeStatusEvent }
-        };
-
-        public static Dictionary<string, GameEvent> RewardPowerEvent = new Dictionary<string, GameEvent>(StringComparer.Ordinal)
-        {
-            { "SortUndo", SimpleEventsHolder.RewardUndoEvent },
-            { "SwapColor", SimpleEventsHolder.RewardSwapColor },
-            { "ExtraTube", SimpleEventsHolder.RewardExtraTubeEvent }
-        };
     }
 }

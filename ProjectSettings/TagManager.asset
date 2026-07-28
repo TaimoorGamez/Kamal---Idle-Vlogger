@@ -41,5 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Characters
+    uniqueID: 2858279899
+    locked: 0
+  - name: Camera
+    uniqueID: 2715547659
+    locked: 0
+  - name: Cash
+    uniqueID: 1114958611
+    locked: 0
   m_RenderingLayers:
   - Default

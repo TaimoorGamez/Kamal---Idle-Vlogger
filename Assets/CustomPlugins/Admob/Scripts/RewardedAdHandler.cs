@@ -1,6 +1,7 @@
 using Core.Events;
-using GoogleMobileAds.Api;
 using Core.Plugins.Firebase;
+using GoogleMobileAds.Api;
+using System.Xml.Linq;
 
 namespace Core.Plugins.Ads
 {
@@ -12,7 +13,7 @@ namespace Core.Plugins.Ads
 
         public override void LoadAd()
         {
-            if(!AdsManager.I.IsInitialized)
+            if(!AdsManager.I.IsInitialized || !AdsManager.I.AdsConfig.Rewarded || !AdsManager.I.AdsConfig.CanShowAds)
                 return;
             
 
@@ -117,24 +118,8 @@ namespace Core.Plugins.Ads
         {
             switch (rewardName)
             {
-                case "AddMoves":
-                    AdsManager.I.CanAddMoves = true;
-                    break;
-
                 case "MultiplyReward":
                     AdsManager.I.CanMultiply = true;
-                    break;
-
-                case "SortUndo":
-                    AdsManager.I.CanUndo = true;
-                    break;
-
-                case "ExtraTube":
-                    AdsManager.I.CanAddExtraTube = true;
-                    break;
-
-                case "SwapColor":
-                    AdsManager.I.CanSwitchColor = true;
                     break;
 
                 case "DoubleDailyReward":
@@ -149,16 +134,24 @@ namespace Core.Plugins.Ads
                     AdsManager.I.CanBlockAds = true;
                     break;
 
-                case "Caps":
-                    AdsManager.I.CanCap = true;
+                case "Ad_2X":
+                    AdsManager.I.CanX2Income = true;
                     break;
 
-                case "Sprays":
-                    AdsManager.I.CanSpray = true;
+                case "Ad_2XTap":
+                    AdsManager.I.CanX2Tap = true;
                     break;
 
-                case "FlameThrowers":
-                    AdsManager.I.CanFlame = true;
+                case "Ad_10X":
+                    AdsManager.I.CanX10Income = true;
+                    break;
+
+                case "Ad_CashPrize":
+                    AdsManager.I.CanRewardCash = true;
+                    break;
+
+                case "Ad_GoldPrize":
+                    AdsManager.I.CanRewardGold = true;
                     break;
             }
             SimpleEventsHolder.GrantRewardEvent?.Invoke();

@@ -1,6 +1,6 @@
 using System.Linq;
 using UnityEngine;
-using Core.Plugins;
+using Core.Plugins.Ads;
 using UnityEngine.Purchasing;
 using System.Collections.Generic;
 
@@ -18,7 +18,7 @@ namespace Core.Purchase
 
         public void InitializePurchasing()
         {
-            if (IsInitialized || !RemoteDataHolder.AdData.CanPurchase)
+            if (IsInitialized || !AdsManager.I.AdsConfig.CanPurchase)
                 return;
 
             InitializeIAP();

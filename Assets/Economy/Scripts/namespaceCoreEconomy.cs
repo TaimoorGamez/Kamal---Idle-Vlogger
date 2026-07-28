@@ -1,50 +1,83 @@
-using System;
 using Core.Events;
+using UnityEngine;
 using Core.DB.Variables;
-using System.Collections.Generic;
 
 namespace Core.Economy
 {
-    public class Currencies
+    public static class CashCurrency
     {
-        public DBInt CurrencyWallet;
+        static string _cashPrefName = "CashWallet";
+        static double _amount;
 
-        public Currencies(DBInt wallet)
-        {
-            CurrencyWallet = wallet;
-        }
-
-        public virtual int Amount
+        public static double Amount
         {
             get
             {
-                return CurrencyWallet.Value;
+                return _amount;
             }
             set
             {
-                if (value > CurrencyWallet.Value)
+                if (value < _amount)
                 {
-                    SingleIntegerEventsHolder.DepositEvent?.Invoke(value);
+                    DoubleIntegerEventHolder.TaskEvent?.Invoke(2, (_amount - value));
                 }
-                else if (value < CurrencyWallet.Value)
+                _amount = value;
+                PlayerPrefs.SetString(_cashPrefName, _amount.ToString());
+                SimpleEventsHolder.UpdateCashTxtEvent?.Invoke();
+            }
+        }
+
+        public static void LoadEconomy()
+        {
+            _amount = double.Parse(PlayerPrefs.GetString(_cashPrefName, "0"));
+        }
+    }
+
+    public static class GoldCurrency
+    {
+        public static int Amount
+        {
+            get
+            {
+                return DBVariablesHolder.GoldWallet.Value;
+            }
+            set
+            {
+                if (value > DBVariablesHolder.GoldWallet.Value)
                 {
-                    SingleIntegerEventsHolder.TransactionEvent?.Invoke(value);
-                    DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value);
                 }
-                CurrencyWallet.Value = (value);
+                else if (value < DBVariablesHolder.GoldWallet.Value)
+                {
+                    //DoubleIntegerEventHolder.TaskEvent?.Invoke(2, value);
+                }
+                DBVariablesHolder.GoldWallet.Value = value;
+                SimpleEventsHolder.UpdateGoldTxtEvent?.Invoke();
             }
         }
     }
 
-    public static class CurrenciesHolder 
+    public static class Subscribers
     {
-        public static Currencies CashCurrency = new Currencies(DBVariablesHolder.CashWallet);
-    }
+        static string _subscriberPrefName = "SubscribeWallet";
+        static double _amount;
 
-    public static class CurrencyDictionariesHolder 
-    {
-        public static Dictionary<string, Currencies> AllCurrencies = new Dictionary<string, Currencies>(StringComparer.Ordinal)
+        public static double Amount
         {
-        };
+            get
+            {
+                return _amount;
+            }
+            set
+            {
+                _amount = value;
+                PlayerPrefs.SetString(_subscriberPrefName, _amount.ToString());
+                SimpleEventsHolder.UpdateSubscribeTxtEvent?.Invoke();
+            }
+        }
+
+        public static void LoadSubscribers()
+        {
+            _amount = double.Parse(PlayerPrefs.GetString(_subscriberPrefName, "0"));
+        }
     }
 }

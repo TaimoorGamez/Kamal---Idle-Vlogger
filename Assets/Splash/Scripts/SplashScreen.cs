@@ -1,64 +1,78 @@
 using TMPro;
-//using Core.Store;
 using UnityEngine;
 using DG.Tweening;
-using Core.Events;
-using Core.States;
-//using Core.GamePlay;
-using UnityEngine.UI;
-using Core.DB.Variables;
+using Core.Economy;
+using Core.GamePlay;
+using Core.Plugins.Ads;
+using System.Collections;
+using Core.Plugins.Firebase;
 
 namespace Core.Screen
 {
-    public class SplashScreen : UiScreens
+    public class SplashScreen : MonoBehaviour
     {
         [SerializeField] Transform FillImage;
-        [SerializeField] TextMeshProUGUI LoadingText, TipsText;
-        [SerializeField] Image LogoImage;
+        [SerializeField] TextMeshProUGUI LoadingText;
 
-        float _loadingTime = 2;
+        float _loadingTime = 2f;
         string _loadingTxt = "Loading...     ";
-        string[] _gameTips = 
-        {
-            "Tip: Fill a bottle with one color to complete it.",
-            "Tip: Use Undo to fix mistakes.",
-            "Tip: Mixed-color bottles are not complete.",
-            "Tip: Having trouble? Try adding an extra bottle.",
-            "Tip: Use Switch to swap two colors."
-        };
+        Coroutine _initCorotine = null;
+        bool _isEnded = false;
 
         private void Start()
         {
-            if (DBVariablesHolder.FFT.Value != 1)
-            {
-                //StorageData.AllItems[StorageData.FlameThrowersKey][0].IsPurchased = true;
-                //StorageData.AllItems[StorageData.CapsKey][0].IsPurchased = true;
-                //StorageData.AllItems[StorageData.SpraysKey][0].IsPurchased = true;
-                DBVariablesHolder.FFT.Value = 1;
-            }
+            _isEnded = true;
+            _initCorotine = StartCoroutine(InitializeGame());
+        }
 
-            int tipIndex = Random.Range(0, _gameTips.Length);
-            TipsText.text = _gameTips[tipIndex];
-
-            LogoImage.DOFillAmount(1, _loadingTime).SetEase(Ease.Linear);
-            FillImage.DOScaleX(1f, _loadingTime).SetEase(Ease.Linear).OnUpdate(() =>
-            {
-                float currentX = FillImage.localScale.x;
-                int percent = (int)(currentX * 100f);
-                LoadingText.text = _loadingTxt + percent + "%";
-            }).OnComplete(() =>
-            {
-                if (DBVariablesHolder.LvlNum.Value <= 5)
+        IEnumerator InitializeGame()
+        {
+            FillImage.DOScaleX(1f, _loadingTime)
+                .SetEase(Ease.Linear)
+                .OnUpdate(() =>
                 {
-                    SimpleEventsHolder.InitLvlEvent?.Invoke();
-                    StateManager.I.ActiveState(StateManager.I.GamePlayStatePath);
+                    float currentX = FillImage.localScale.x;
+                    int percent = (int)(currentX * 100f);
+                    LoadingText.text = _loadingTxt + percent + "%";
+                })
+                .OnComplete(() =>
+                {
+                    GameManager.Instance.StartGame();
+                    if (_initCorotine != null)
+                    {
+                        StopCoroutine(_initCorotine);
+                    }
+                    Destroy(gameObject, 0.1f);
+                });
+
+            CashCurrency.LoadEconomy();
+            Subscribers.LoadSubscribers();
+
+            // Firebase first
+            FirebaseHandler.I.InitPlugin();
+
+            while (_isEnded)
+            {
+                yield return new WaitForSeconds(1f);
+                if (FirebaseHandler.I.IsInitialize)
+                {
+                    if (FirebaseHandler.I.IsRemoteFetched)
+                    {
+                        if (!AdsManager.I.IsInitialized)
+                        {
+                            AdsManager.I.InitPlugin();
+                        }
+                    }
+                    else
+                    {
+                        FirebaseHandler.I.FetchRemoteConfig();
+                    }
                 }
                 else
                 {
-                    StateManager.I.ActiveState(StateManager.I.MainMenuStatePath);
+                    FirebaseHandler.I.InitPlugin();
                 }
-                StateManager.I.DestroyState(StateManager.I.SplashStatePath);
-            });
+            }
         }
     }
 }

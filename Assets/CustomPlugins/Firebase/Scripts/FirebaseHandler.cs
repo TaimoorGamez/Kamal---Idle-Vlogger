@@ -1,5 +1,6 @@
 using Firebase;
 using UnityEngine;
+using Core.Plugins.Ads;
 using Firebase.Analytics;
 using Firebase.RemoteConfig;
 
@@ -51,7 +52,7 @@ namespace Core.Plugins.Firebase
                 return;
             }
 
-            Debug.Log("Fetching data...");
+            //Debug.Log("Fetching data...");
             FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.DefaultInstance;
             remoteConfig.FetchAsync(System.TimeSpan.Zero).ContinueWith(
                Task =>
@@ -74,15 +75,14 @@ namespace Core.Plugins.Firebase
                 remoteConfig.ActivateAsync().ContinueWith(
                    Task =>
                    {
-                       RemoteDataHolder.MaxLevelsAvailable = (int)remoteConfig.GetValue("MaxLevelsAvailable").LongValue;
-
-                       string adJson = remoteConfig.GetValue("AdConfig").StringValue;
-                       RemoteDataHolder.AdData = JsonUtility.FromJson<AdConfig>(adJson);
-                          IsRemoteFetched = true;
+                       string adJson = remoteConfig.GetValue("AdsConfig").StringValue;
+                       AdsManager.I.AdsConfig = JsonUtility.FromJson<AdConfig>(adJson);
+                       IsRemoteFetched = true;
                    });
             }
 
-            string rawId = SystemInfo.deviceUniqueIdentifier; _deviceId = string.IsNullOrEmpty(rawId)? "unknown": rawId.Length > 10? rawId[^10..]: rawId;
+            string rawId = SystemInfo.deviceUniqueIdentifier; 
+            _deviceId = string.IsNullOrEmpty(rawId)? "unknown": rawId.Length > 10? rawId[^10..]: rawId;
         }
 
         public void LogEvent(string eventString)

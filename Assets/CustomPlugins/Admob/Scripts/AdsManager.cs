@@ -1,24 +1,41 @@
+using TMPro;
 using Core.Events;
+using DG.Tweening;
 using UnityEngine;
+using Core.Economy;
+using Core.GamePlay;
+using UnityEngine.UI;
 using Core.DB.Variables;
 using System.Collections;
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Ump.Api;
+using System.Collections.Generic;
 
 namespace Core.Plugins.Ads
 {
     public class AdsManager : MonoBehaviour
     {
-        [SerializeField] AdHandler RewardedAd, IntertitialAd;
+        public RectTransform[] AdButtons2X, AdButtons10X;
+        public AdConfig AdsConfig = new AdConfig();
+        public bool AdTimerComplete = false, AdPlaying = false, CanMultiply = false, CanDoubleDailyReward = false,
+                    CanSpin = false, CanBlockAds = false, CanX2Income = false, CanX2Tap = false, CanX10Income = false
+                    ,CanRewardCash, CanRewardGold;
 
-        [HideInInspector] public bool IsInitialized = false;
+        [SerializeField] AdHandler RewardedAdOne, RewardedAdTwo, InterstitialAd;
+        [SerializeField] Image AdPanel;
+        [SerializeField] TextMeshProUGUI AdPanelDescription;
+        [SerializeField] Sprite[] AdPanelSprites;
 
-        public bool AdTimerComplete = false, AdPlaying = false, CanAddMoves = false, CanMultiply = false, CanDoubleDailyReward = false,
-                    CanSpin = false, CanCap = false, CanSpray = false, CanBlockAds = false, CanFlame = false, CanUndo = false,
-                                    CanAddExtraTube = false, CanSwitchColor = false;
+         public bool IsInitialized = false;
 
         Coroutine _rewardRotine = null, _adsRotine = null;
-        bool _isEnable = false;
+        bool _adPanelActive = false;
+        float _yPos = -400, yPosDiff = 110, _tweenDuration = 0.25f, adDelay = 5;
+        int _currentAdIndex = -1, _goldReward = -1, _cashPrizeMultipler = 100, _basicGoldPrize = 5, _goldPrizeMultipler = 4;
+        double _cashReward = -1;
+        Transform _adPanelParent;
+        List<RectTransform> _activeButtons2X = new List<RectTransform>();
+        List<RectTransform> _activeButtons10X = new List<RectTransform>();
 
         private void OnEnable()
         {
@@ -52,19 +69,19 @@ namespace Core.Plugins.Ads
 
         public void InitPlugin()
         {
-            if (!RemoteDataHolder.AdData.CanShowAds || IsInitialized)
+            if (!AdsConfig.CanShowAds || IsInitialized)
                 return;
 
-            #if UNITY_EDITOR
-            InitAds();  
-            #else
+#if UNITY_EDITOR
+            InitAds();
+#else
                 RequestConsentInfo();
-            #endif
+#endif
         }
 
         void RequestConsentInfo()
         {
-            if(!RemoteDataHolder.AdData.CanShowAds)
+            if (!AdsConfig.CanShowAds)
                 return;
 
             ConsentRequestParameters request = new ConsentRequestParameters
@@ -117,7 +134,7 @@ namespace Core.Plugins.Ads
         }
 
         void InitAds()
-        { 
+        {
             try
             {
                 MobileAds.Initialize((InitializationStatus initstatus) =>
@@ -129,14 +146,17 @@ namespace Core.Plugins.Ads
                     }
                     MobileAds.RaiseAdEventsOnUnityMainThread = true;
                     IsInitialized = true;
-                    if (RemoteDataHolder.AdData.Rewarded)
+                    if (AdsConfig.Rewarded)
                     {
-                        RewardedAd.LoadAd();
+                        _adPanelParent = AdPanel.transform.parent;
+                        RewardedAdOne.LoadAd();
+                        RewardedAdTwo.LoadAd();
+                        StartCoroutine(CheckRewardedButtons());
                     }
 
-                    if (RemoteDataHolder.AdData.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
+                    if (AdsConfig.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
                     {
-                        IntertitialAd.LoadAd();
+                        InterstitialAd.LoadAd();
                     }
                 });
             }
@@ -148,83 +168,59 @@ namespace Core.Plugins.Ads
 
         void PlayRewardCorotine()
         {
-            _isEnable = true;
             _rewardRotine = StartCoroutine(RewardCorotine());
         }
 
         IEnumerator RewardCorotine()
         {
-            WaitForSeconds wait = new WaitForSeconds(0.01f);
-            while (_isEnable)
+            yield return new WaitForSeconds(0.01f);
+
+            if (CanMultiply)
             {
-                yield return wait;
-                if (CanAddMoves)
-                {
-                    CanAddMoves = false;
-                    SimpleEventsHolder.AddMovesEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanUndo)
-                {
-                    CanUndo = false;
-                    SimpleEventsHolder.RewardUndoEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanAddExtraTube)
-                {
-                    CanAddExtraTube = false;
-                    SimpleEventsHolder.RewardExtraTubeEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanSwitchColor)
-                {
-                    CanSwitchColor = false;
-                    SimpleEventsHolder.RewardSwapColor?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanMultiply)
-                {
-                    CanMultiply = false;
-                    SimpleEventsHolder.MultiplayRewardEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanDoubleDailyReward)
-                {
-                    CanDoubleDailyReward = false;
-                    SimpleEventsHolder.DoubleDailyRewardEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanSpin)
-                {
-                    CanSpin = false;
-                    SimpleEventsHolder.RewardSpinWheelEvent?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanCap)
-                {
-                    CanCap = false;
-                    SimpleEventsHolder.BuyCaps?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanSpray)
-                {
-                    CanSpray = false;
-                    SimpleEventsHolder.BuySprays?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanFlame)
-                {
-                    CanFlame = false;
-                    SimpleEventsHolder.BuyFlames?.Invoke();
-                    _isEnable = false;
-                }
-                else if (CanBlockAds)
-                {
-                    CanBlockAds = false;
-                    SimpleEventsHolder.AdsBlockerEvent?.Invoke();
-                    _isEnable = false;
-                }
+                CanMultiply = false;
+                SimpleEventsHolder.MultiplayRewardEvent?.Invoke();
             }
+            else if (CanDoubleDailyReward)
+            {
+                CanDoubleDailyReward = false;
+                SimpleEventsHolder.DoubleDailyRewardEvent?.Invoke();
+            }
+            else if (CanSpin)
+            {
+                CanSpin = false;
+                SimpleEventsHolder.RewardSpinWheelEvent?.Invoke();
+            }
+            else if (CanBlockAds)
+            {
+                CanBlockAds = false;
+                SimpleEventsHolder.AdsBlockerEvent?.Invoke();
+            }
+            else if(CanX2Income)
+            {
+                CanX2Income = false;
+                SimpleEventsHolder.X2IncomeEvent?.Invoke();
+            }
+            else if (CanX2Tap)
+            {
+                CanX2Tap = false;
+                SimpleEventsHolder.X2TappedEvent?.Invoke();
+            }
+            else if (CanX10Income)
+            {
+                CanX10Income = false;
+                SimpleEventsHolder.X10IncomeEvent?.Invoke();
+            }
+            else if (CanRewardCash)
+            {
+                CanRewardCash = false;
+                CashCurrency.Amount+=_cashReward;
+            }
+            else if (CanRewardGold)
+            {
+                CanRewardGold = false;
+                GoldCurrency.Amount += _goldReward;
+            }
+
             if (_rewardRotine != null)
             {
                 StopCoroutine(_rewardRotine);
@@ -242,7 +238,7 @@ namespace Core.Plugins.Ads
 
         IEnumerator CountAdBreak()
         {
-            yield return new WaitForSeconds(RemoteDataHolder.AdData.AdShowTime);
+            yield return new WaitForSeconds(AdsConfig.AdShowTime);
             AdTimerComplete = true;
 
             if (_adsRotine != null)
@@ -264,7 +260,6 @@ namespace Core.Plugins.Ads
 
         void CustomDisable()
         {
-            _isEnable = false;
             if (_rewardRotine != null)
             {
                 StopCoroutine(_rewardRotine);
@@ -277,17 +272,144 @@ namespace Core.Plugins.Ads
             }
         }
 
-        public void ShowRewardedAd(string reward)
+        IEnumerator CheckRewardedButtons()
         {
-            RewardedAd.ShowAd(reward);
+            WaitForSeconds wait = new WaitForSeconds(adDelay);
+            while (true)
+            {
+                if (RewardedAdOne.IsAdAvailable)
+                {
+                    RectTransform newButton2x = GetButton2X();
+                    if (newButton2x  != null)
+                    {
+                        _activeButtons2X.Add(newButton2x);
+                    }
+
+                    int position2x = 0;
+                    for (int i = 0; i < _activeButtons2X.Count; i++)
+                    {
+                        RectTransform buttTransform = _activeButtons2X[i];
+                        buttTransform.gameObject.SetActive(true);
+                        buttTransform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                        buttTransform.DOAnchorPosY(_yPos - (position2x * yPosDiff), _tweenDuration).SetEase(Ease.Linear);
+                        position2x++;
+                    }
+                }
+
+                if (RewardedAdTwo.IsAdAvailable) 
+                {
+                    RectTransform newButton10x = GetButton10X();
+                    if (newButton10x != null)
+                    {
+                        _activeButtons10X.Add(newButton10x);
+                    }
+
+                    int position10x = 0;
+                    for (int i = 0; i < _activeButtons10X.Count; i++)
+                    {
+                        RectTransform buttTransform = _activeButtons10X[i];
+                        buttTransform.gameObject.SetActive(true);
+                        buttTransform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                        buttTransform.DOAnchorPosY(_yPos - (position10x * yPosDiff), _tweenDuration).SetEase(Ease.Linear);
+                        position10x++;
+                    }
+                }
+                yield return wait;
+            }
+        }
+        
+        RectTransform GetButton2X()
+        {
+            for(int b =0; b< AdButtons2X.Length; b++)
+            {
+                if(!AdButtons2X[b].gameObject.activeInHierarchy)
+                {
+                    return AdButtons2X[b];
+                }
+            }
+            return null;
         }
 
-        public void ShowInterstitialAd(string detail = "")
+        RectTransform GetButton10X()
         {
-            if (RemoteDataHolder.AdData.Interstitial && DBVariablesHolder.RemoveAds.Value == 0)
+            for (int b = 0; b < AdButtons10X.Length; b++)
             {
-                IntertitialAd.ShowAd(detail);
+                if (!AdButtons10X[b].gameObject.activeInHierarchy)
+                {
+                    return AdButtons10X[b];
+                }
             }
+            return null;
+        }
+    
+        public void ShowAdDetails(int adIndex)
+        {
+            if (!_adPanelActive)
+            {
+                _adPanelActive = true;
+                _currentAdIndex = adIndex;
+                AdPanel.sprite = AdPanelSprites[_currentAdIndex];
+                AdPanelDescription.gameObject.SetActive(false);
+                _adPanelParent.gameObject.SetActive(true);
+                AdPanel.transform.DOScale(Vector3.one, _tweenDuration).From(Vector3.zero).SetEase(Ease.OutBack);
+                if (adIndex == 3) 
+                {
+                    _cashReward = DBVariablesHolder.BasicIncome.Value * _cashPrizeMultipler;
+                    AdPanelDescription.text = GameManager.Instance.FormatMoney(_cashReward);
+                    AdPanelDescription.gameObject.SetActive(true);
+                }
+                if (adIndex == 4)
+                {
+                    _goldReward = _basicGoldPrize + (DBVariablesHolder.CurrentMap.Value * _goldPrizeMultipler);
+                    AdPanelDescription.text = GameManager.Instance.FormatMoney(_goldReward);
+                    AdPanelDescription.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        public void OnWatchAd()
+        {
+            string AdName = string.Empty;
+            switch (_currentAdIndex) 
+            {
+                case 0:
+                    AdName = "Ad_2X";
+                    break;
+
+                case 1:
+                    AdName = "Ad_2XTap";
+                    break;
+
+                case 2:
+                    AdName = "Ad_10X";
+                    break;
+
+                case 3:
+                    AdName = "Ad_CashPrize";
+                    break;
+
+                case 4:
+                    AdName = "Ad_GoldPrize";
+                    break;
+            }
+            if (RewardedAdOne.IsAdAvailable) 
+            {
+                RewardedAdOne.ShowAd(AdName);
+            }
+            else if (RewardedAdTwo.IsAdAvailable) 
+            {
+                RewardedAdTwo.ShowAd(AdName);
+            }
+            HideAdDetails();
+        }
+
+        public void HideAdDetails() 
+        {
+            AdPanel.transform.DOScale(Vector3.zero,_tweenDuration).SetEase(Ease.InBack).OnComplete(()=>
+            {
+                _adPanelActive = false;
+                _adPanelParent.gameObject.SetActive(false);
+            });
         }
     }
 }

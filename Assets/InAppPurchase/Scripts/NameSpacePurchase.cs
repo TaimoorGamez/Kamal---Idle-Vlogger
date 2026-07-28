@@ -39,7 +39,7 @@ namespace Core.Purchase
 
         public override void BuyProduct()
         {
-            CurrencyDictionariesHolder.AllCurrencies[CurrencyName].Amount += Amount;
+            //CurrencyDictionariesHolder.AllCurrencies[CurrencyName].Amount += Amount;
             FirebaseHandler.I?.LogEvent($"IAP_{CurrencyName}_Amt{Amount}");
         }
     }

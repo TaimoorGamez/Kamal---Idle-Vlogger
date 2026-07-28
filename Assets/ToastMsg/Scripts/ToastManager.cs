@@ -1,14 +1,20 @@
+using TMPro;
 using UnityEngine;
 using Core.Events;
+using DG.Tweening;
 
 namespace Core.ToastMsg
 {
     public class ToastManager : MonoBehaviour
     {
-        [SerializeField] ToastScreen ToastMsgPrefab;
+        public float HiddingDelay = 2;
+        public int OldMsgNum = -1;
 
-        ToastScreen _oldMsgScreen;
-        int _oldMsgNum = -1;
+        [SerializeField] RectTransform ToastMsgPrefab;
+        [SerializeField] TextMeshProUGUI MsgText;
+        [SerializeField] string[] ToastMsgs;
+
+        float _msgPos = -100, _hidePos = 100, _showTween = 0.25f;
 
         public void OnEnable()
         {
@@ -22,16 +28,15 @@ namespace Core.ToastMsg
 
         void ShowToastMsg(int toastNum)
         {
-            if (_oldMsgScreen == null)
+            if (OldMsgNum == -1 || toastNum != OldMsgNum)
             {
-                _oldMsgScreen = Instantiate(ToastMsgPrefab);
-                _oldMsgScreen.ChangeMsg(toastNum);
-                _oldMsgNum = toastNum;
-            }
-            else if(toastNum != _oldMsgNum)
-            {
-                _oldMsgScreen.ChangeMsg(toastNum);
-                _oldMsgNum = toastNum;
+                HiddingDelay = 2;
+                MsgText.text = ToastMsgs[toastNum];
+                OldMsgNum = toastNum;
+                ToastMsgPrefab.gameObject.SetActive(true);
+                ToastMsgPrefab.DOKill();
+                ToastMsgPrefab.DOAnchorPosY(_msgPos, _showTween).From(new Vector2(0, _hidePos)).SetEase(Ease.OutBack);
+                ToastMsgPrefab.DOScale(Vector3.one, _showTween).From(Vector3.zero).SetEase(Ease.OutBack);
             }
         }
     }

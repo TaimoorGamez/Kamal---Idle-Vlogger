@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Cameras
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Cameras
+  m_GUID: 8ec9d7abcce3f9f408c27756f145feec
+  m_SerializeEntries:
+  - m_GUID: 04885f7528d9f834cb9da10d366c92b6
+    m_Address: Camera_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18b24409af42ee84bb63250959d2e966
+    m_Address: Camera_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 575c0e958e16cac4387aaaffc47cf02f
+    m_Address: Camera_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b033996d11941b4a9be40d42a4d209b
+    m_Address: Camera_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c9698aa3867a9f42851d101a6a555a2
+    m_Address: Camera_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c5758aabd4f23a409303a4f3ea284a8
+    m_Address: Camera_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a15d2e0b3f72f3c40866bc60f52fbc6c
+    m_Address: Camera_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbe1c93e7ffdd084d8378de7509b7be9
+    m_Address: Camera_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7671d36fd435e1409b96a56389bd85a
+    m_Address: Camera_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efbf801e9e4f96a46bb5e87fd8afcc8d
+    m_Address: Camera_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9a5d828c604d77c4aaad2e83c452b4e7, type: 2}
+    - {fileID: 11400000, guid: 3d8fbc5af2f339e41a5c40a9853024d1, type: 2}
