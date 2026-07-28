@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Backyards
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Backyards
+  m_GUID: 53b2e0884b9efe548a6f56ba8253a3a5
+  m_SerializeEntries:
+  - m_GUID: 1cb7f3b11d03c5848981c78c5e44ee5c
+    m_Address: Backyard_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cec8045919827f4e960c184ba0fb264
+    m_Address: Backyard_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4580951f762c1224eae40da00b03c93c
+    m_Address: Backyard_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b7896860d0db5249912d3df0bfed81a
+    m_Address: Backyard_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a173dd5e5825214f8a87239a42d935f
+    m_Address: Backyard_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99a573d617584594a94ad8eaa6701c60
+    m_Address: Backyard_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ab3142bc9e324b4a98776be97914584
+    m_Address: Backyard_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2638e6d0ca97c84ea9dbba9cc854c9f
+    m_Address: Backyard_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e28970bd6dfef984b9fc28dcee768841
+    m_Address: Backyard_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e559f9b4d7cff1548be566d525d1ecb9
+    m_Address: Backyard_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5dbebbfe0c06bd44a5f7af9a583a019
+    m_Address: Backyard_10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Backyard
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0e7b920b27830af43bb085df48b1174d, type: 2}
+    - {fileID: 11400000, guid: 4bbdd41670c779e45bcc69626c665f53, type: 2}

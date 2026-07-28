@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Houses
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Houses
+  m_GUID: 3494837789634b344bf461a542929786
+  m_SerializeEntries:
+  - m_GUID: 1786a995cdc3b0541901e0273ea4ea0d
+    m_Address: House_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65af23a4931cb754d9a57bd6b9e7bf00
+    m_Address: House_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6609ac89b4222eb42a99936e7e30474d
+    m_Address: House_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73d2d6a8321591f4598011b5dd92fc76
+    m_Address: House_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cebb0a77fd3e4c4a81966fabd52b225
+    m_Address: House_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8687cc2ccda0f354da406b5745e53851
+    m_Address: House_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96724a8136111234d8af1125edbb94c1
+    m_Address: House_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 970cd28dc7e273e40a067d0de2fe7979
+    m_Address: House_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9767b4111f803ab41a8d17f60578506e
+    m_Address: House_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa8f989c579625d4fb6f6537be0e9811
+    m_Address: House_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed3af2f6d1453cb4c9e1250bdec4a140
+    m_Address: House_10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - House
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 73d1ed7d9d1a8704e8ecac51b2be84bb, type: 2}
+    - {fileID: 11400000, guid: fe02ce50cc1828343b70d5b9387d5b7b, type: 2}

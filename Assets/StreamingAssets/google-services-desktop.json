@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919146379329",
+    "project_id": "kabir-idle-vlogger",
+    "storage_bucket": "kabir-idle-vlogger.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919146379329:android:2a52ca8bb60ab444d12ec0",
+        "android_client_info": {
+          "package_name": "com.playmenu.kabir.vlogger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUhfY6E-AwQOlTS2XCywPxQ-2RMJGeRpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

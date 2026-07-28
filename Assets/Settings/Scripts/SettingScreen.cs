@@ -1,0 +1,63 @@
+using Core.Events;
+using DG.Tweening;
+using UnityEngine;
+using Core.DB.Variables;
+using Core.Plugins.Firebase;
+
+namespace Core.Screen
+{
+    public class SettingScreen : MonoBehaviour
+    {
+        [SerializeField] RectTransform MusicBtn, SoundBtn;
+        [SerializeField] GameObject MusicOff, SoundOff;
+
+        float _transitionDuration = 0.25f, _closePosition = -100, _musicPosition = -190, _soundPosition = -280;
+
+        private void OnEnable()
+        {
+            OnOpen();
+        }
+
+        public void OnOpen()
+        {
+            UpdateMusicUI();
+            UpdateSoundUI();
+            MusicBtn.DOAnchorPosY(_musicPosition, _transitionDuration).SetEase(Ease.OutBack);
+            SoundBtn.DOAnchorPosY(_soundPosition, _transitionDuration).SetEase(Ease.OutBack);
+            FirebaseHandler.I?.LogEvent("Stg_Open");
+        }
+
+        public void ToggleMusic()
+        {
+            DBVariablesHolder.Music.Value = DBVariablesHolder.Music.Value == 1 ? 0 : 1;
+            SimpleEventsHolder.UpdateMusicStateEvent?.Invoke();
+            UpdateMusicUI();
+            FirebaseHandler.I?.LogEvent($"Stg_Music_{DBVariablesHolder.Music.Value}");
+        }
+
+        public void ToggleSound()
+        {
+            DBVariablesHolder.Sound.Value = DBVariablesHolder.Sound.Value == 1 ? 0 : 1;
+            SimpleEventsHolder.UpdateSoundStateEvent?.Invoke();
+            UpdateSoundUI();
+            FirebaseHandler.I?.LogEvent($"Stg_Sound_{DBVariablesHolder.Sound.Value}");
+        }
+
+        void UpdateMusicUI()
+        {
+            MusicOff.SetActive(DBVariablesHolder.Music.Value != 1);
+        }
+
+        void UpdateSoundUI()
+        {
+            SoundOff.SetActive(DBVariablesHolder.Sound.Value != 1);
+        }
+
+        public void OnClose()
+        {
+            MusicBtn.DOAnchorPosY(_closePosition, _transitionDuration).SetEase(Ease.InBack);
+            SoundBtn.DOAnchorPosY(_closePosition, _transitionDuration).SetEase(Ease.InBack).OnComplete(()=>gameObject.SetActive(false));
+            FirebaseHandler.I?.LogEvent("Stg_Close");
+        }
+    }
+}

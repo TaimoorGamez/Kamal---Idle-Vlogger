@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: AddressableAssetSettings
+  m_EditorClassIdentifier: 
+  m_DefaultGroup: dfe8a74ba18ce114d92af99bbbafee6d
+  m_currentHash:
+    serializedVersion: 2
+    Hash: f3b40af8a88c8f6e7eeb7453c2e558b6
+  m_OptimizeCatalogSize: 0
+  m_BuildRemoteCatalog: 1
+  m_BundleLocalCatalog: 0
+  m_CatalogRequestsTimeout: 0
+  m_DisableCatalogUpdateOnStart: 1
+  m_InternalIdNamingMode: 0
+  m_InternalBundleIdMode: 1
+  m_AssetLoadMode: 0
+  m_BundledAssetProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider
+  m_AssetBundleProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
+  m_IgnoreUnsupportedFilesInBuild: 0
+  m_UniqueBundleIds: 0
+  m_EnableJsonCatalog: 1
+  m_NonRecursiveBuilding: 1
+  m_AllowNestedBundleFolders: 0
+  m_CCDEnabled: 0
+  m_maxConcurrentWebRequests: 3
+  m_UseUWRForLocalBundles: 0
+  m_BundleTimeout: 0
+  m_BundleRetryCount: 0
+  m_BundleRedirectLimit: -1
+  m_SharedBundleSettings: 0
+  m_SharedBundleSettingsCustomGroupIndex: 0
+  m_ContiguousBundles: 1
+  m_StripUnityVersionFromBundleBuild: 0
+  m_DisableVisibleSubAssetRepresentations: 0
+  m_BuiltInBundleNaming: 0
+  mBuiltInBundleCustomNaming: 
+  m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
+  m_MonoScriptBundleCustomNaming: 
+  m_RemoteCatalogBuildPath:
+    m_Id: 95d849656ef7941499d785c027e042b9
+  m_RemoteCatalogLoadPath:
+    m_Id: 6549233b74505eb4d9796cd9b2ac6b45
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
+  m_CustomContentStateBuildPath: 
+  m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 0
+  m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
+  m_GroupAssets:
+  - {fileID: 11400000, guid: 76d7075f3a8255a4b92fe28a0e2f5bac, type: 2}
+  - {fileID: 11400000, guid: 466c0254b79be7a4987047f0a4be7c10, type: 2}
+  - {fileID: 11400000, guid: 6b3b374d4dd2a444592c961606373d5d, type: 2}
+  - {fileID: 11400000, guid: 134a0df2f46ccc64abf774e7ce62f805, type: 2}
+  - {fileID: 11400000, guid: 49ddbdfda68343143a7118b4a1a158b6, type: 2}
+  - {fileID: 11400000, guid: e929a2c5831fe0249999099d022c93bb, type: 2}
+  - {fileID: 11400000, guid: 49b6a6ea10ebde34084e0c849403437f, type: 2}
+  - {fileID: 11400000, guid: 77a737f1cdf5c614d92460486c0eea4e, type: 2}
+  - {fileID: 11400000, guid: 13e65a8b171926b4eaa9d0c69f6e6db5, type: 2}
+  - {fileID: 11400000, guid: 1c5e4712781784144a4f4cda60499aff, type: 2}
+  m_BuildSettings:
+    m_LogResourceManagerExceptions: 1
+    m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
+  m_ProfileSettings:
+    m_Profiles:
+    - m_InheritedParent: 
+      m_Id: ee9486a6e128e8145945d28144bad616
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: 5a8c92cc98e5d3c4f8868324878a46fb
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 6549233b74505eb4d9796cd9b2ac6b45
+        m_Value: 'https://sort-paint-anime-art-puz-d825c.web.app/V3/[BuildTarget]'
+      - m_Id: 6ea824d445d0fb04e8350a27e6e10e18
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 95d849656ef7941499d785c027e042b9
+        m_Value: 'ServerData/[BuildTarget]'
+      - m_Id: dc226a5797c3a0d46852f14b2078e882
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+    m_ProfileEntryNames:
+    - m_Id: 5a8c92cc98e5d3c4f8868324878a46fb
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 6549233b74505eb4d9796cd9b2ac6b45
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    - m_Id: 6ea824d445d0fb04e8350a27e6e10e18
+      m_Name: Local.LoadPath
+      m_InlineUsage: 0
+    - m_Id: 95d849656ef7941499d785c027e042b9
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: dc226a5797c3a0d46852f14b2078e882
+      m_Name: BuildTarget
+      m_InlineUsage: 0
+    m_ProfileVersion: 1
+  m_LabelTable:
+    m_LabelNames:
+    - default
+    - BG
+    - Ground
+    - House
+    - Backyard
+    - Vehicle
+    - Statue
+    - Camera
+    - Tripod
+    - Microphone
+    - Watch
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: 8a3dea8bfef544c40afef856c576c446, type: 2}
+  m_InitializationObjects: []
+  m_CertificateHandlerType:
+    m_AssemblyName: 
+    m_ClassName: 
+  m_ActivePlayerDataBuilderIndex: 2
+  m_DataBuilders:
+  - {fileID: 11400000, guid: 5a57b97e0f01b014287ad698c39d848e, type: 2}
+  - {fileID: 11400000, guid: dc074b3501d4e13408b3d18e48d21201, type: 2}
+  - {fileID: 11400000, guid: e0321bdc2f768ef44bae12b1e5cc94fa, type: 2}
+  m_ActiveProfileId: ee9486a6e128e8145945d28144bad616

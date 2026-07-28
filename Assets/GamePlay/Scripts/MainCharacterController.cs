@@ -1,0 +1,235 @@
+using System;
+using UnityEngine;
+using Core.Events;
+using DG.Tweening;
+using Core.DB.Variables;
+using UnityEngine.U2D.Animation;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
+namespace Core.GamePlay
+{
+    public class MainCharacterController : MonoBehaviour
+    {
+        [SerializeField] SpriteRenderer WatchRenderer;
+        [SerializeField] McTalking McTalkingComponent;
+        [SerializeField] SpriteResolver HeadResolver;
+        [SerializeField] SpriteRenderer WatchImg;
+        [SerializeField] SpriteResolver[] McResolvers;
+        [SerializeField] Material ClothMaterial, HairMaterial;
+        [SerializeField] string[] ItemsNames;
+
+        int _clothesIndex = 0, _hairsIndex = 1, _watchIndex = 2;
+        float _scalingDuration = 0.45f, _visualDuration = 0.5f;
+        string[] _categoryName = {"LeftArm", "LeftLeg", "RightLeg", "Body", "RightArm"};
+        string _headCategory = "Head_";
+        UpgradeStateData[] _upgradeStates;
+
+        private void OnEnable()
+        {
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateClothesWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateHairsWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent += UpdateWatchWithDelay;
+        }
+
+        void OnDisable()
+        {
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateClothesWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateHairsWithDelay;
+            SingleIntegerEventsHolder.UpdateItemEvent -= UpdateWatchWithDelay;
+        }
+
+        private void Start()
+        {
+            _upgradeStates = new UpgradeStateData[ItemsNames.Length];
+            UpdateClothesFirst();
+            UpdateHeadSpritesFirst();
+            UpdateWatchFirst();
+        }
+
+        void UpdateClothesFirst()
+        {
+            int clotheIndex = GetItemIndex(DBVariablesHolder.ClothesLvl.Value);
+            for (int c = 0; c < McResolvers.Length; c++)
+            {
+                McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
+            }
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[_clothesIndex]}_UpgradeState"))
+            {
+                _upgradeStates[_clothesIndex] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[_clothesIndex]}_UpgradeState");
+                if (_upgradeStates[_clothesIndex].IsUpdating)
+                    CheckRemainingTime(_clothesIndex, DBVariablesHolder.ClothesLvl);
+            }
+            else
+            {
+                _upgradeStates[_clothesIndex] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
+        }
+        void UpdateHeadSpritesFirst()
+        {
+            string headCategory = _headCategory + GetItemIndex(DBVariablesHolder.HairsLvl.Value).ToString();
+            HeadResolver.SetCategoryAndLabel(headCategory, "0");
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[_hairsIndex]}_UpgradeState"))
+            {
+                _upgradeStates[_hairsIndex] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[_hairsIndex]}_UpgradeState");
+                if (_upgradeStates[_hairsIndex].IsUpdating)
+                    CheckRemainingTime(_hairsIndex, DBVariablesHolder.HairsLvl);
+            }
+            else
+            {
+                _upgradeStates[_hairsIndex] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
+        }
+        void UpdateWatchFirst()
+        {
+            int currentWatch = GetItemIndex(DBVariablesHolder.WatchLvl.Value);
+            string key = $"Watch_{currentWatch}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
+
+            if (PlayerPrefs.HasKey($"{ItemsNames[_watchIndex]}_UpgradeState"))
+            {
+                _upgradeStates[_watchIndex] = JsonDB.Load<UpgradeStateData>($"{ItemsNames[_watchIndex]}_UpgradeState");
+                if (_upgradeStates[_watchIndex].IsUpdating)
+                    CheckRemainingTime(_watchIndex, DBVariablesHolder.WatchLvl);
+            }
+            else
+            {
+                _upgradeStates[_watchIndex] = new UpgradeStateData { IsUpdating = false, UpdateStartTime = "" };
+            }
+        }
+        void OnWatchLoaded(AsyncOperationHandle<Sprite> handle)
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                WatchImg.sprite = handle.Result;
+                Material mat = WatchImg.material;
+                DOTween.To(() => mat.GetFloat("_Reveal"), x => mat.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+                WatchImg.transform.DOScale(Vector3.one, _scalingDuration).From(0.9f).SetEase(Ease.Linear);
+            }
+            else
+            {
+                Debug.Log("Watch load failed!");
+            }
+        }
+
+        void UpdateClothesWithDelay(int eventIndex)
+        {
+            if (eventIndex != _clothesIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateClothesAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
+            });
+        }
+        void UpdateClothesAnimation()
+        {
+            _upgradeStates[_clothesIndex].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[_clothesIndex]}_UpgradeState", _upgradeStates[_clothesIndex]);
+            DOTween.To(() => ClothMaterial.GetFloat("_Reveal"), x => ClothMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f).SetEase(Ease.Linear);
+            int clotheIndex = GetItemIndex(DBVariablesHolder.ClothesLvl.Value);
+            for (int c = 0; c < McResolvers.Length; c++)
+            {
+                McResolvers[c].SetCategoryAndLabel(_categoryName[c], clotheIndex.ToString());
+            }
+        }
+
+        void UpdateHairsWithDelay(int eventIndex)
+        {
+            if (eventIndex != _hairsIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateHairsAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
+            });
+        }
+        void UpdateHairsAnimation()
+        {
+            _upgradeStates[_hairsIndex].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[_hairsIndex]}_UpgradeState", _upgradeStates[_hairsIndex]);
+            McTalkingComponent.StopTalking();
+            DOTween.To(() => HairMaterial.GetFloat("_Reveal"), x => HairMaterial.SetFloat("_Reveal", x), 1f, _visualDuration).From(0f)
+                .SetEase(Ease.Linear).OnComplete(() => McTalkingComponent.StartTalking(true));
+            int hairIndex = GetItemIndex(DBVariablesHolder.HairsLvl.Value);
+            string headCategory = _headCategory + (DBVariablesHolder.HairsLvl.Value / GameManager.Instance.SpriteChangeCount).ToString();
+            HeadResolver.SetCategoryAndLabel(headCategory, "0");
+        }
+
+        void UpdateWatchWithDelay(int eventIndex)
+        {
+            if (eventIndex != _watchIndex)
+                return;
+
+            float delay = GameManager.Instance.UpdateDelay;
+            float currentTime = delay;
+            DOTween.To(() => currentTime, x => currentTime = x, 0, delay).OnComplete(() =>
+            {
+                UpdateWatchAnimation();
+                SingleIntegerEventsHolder.SoundEffectEvent?.Invoke(1);
+            });
+        }
+        void UpdateWatchAnimation()
+        {
+            _upgradeStates[_watchIndex].IsUpdating = false;
+            JsonDB.Save($"{ItemsNames[_watchIndex]}_UpgradeState", _upgradeStates[_watchIndex]);
+            int watchIndex = GetItemIndex(DBVariablesHolder.WatchLvl.Value);
+            string key = $"Watch_{watchIndex}";
+            Addressables.LoadAssetAsync<Sprite>(key).Completed += OnWatchLoaded;
+        }
+
+        void CheckRemainingTime(int index, DBInt lvlData)
+        {
+            TimeSpan timePassed = DateTime.Now - DateTime.Parse(_upgradeStates[index].UpdateStartTime);
+            float updateDelay = GameManager.Instance.UpdateDelay;
+            float remainingTime = updateDelay - (float)timePassed.TotalSeconds;
+            if (remainingTime > 0)
+            {
+                float currentTime = remainingTime;
+                DOTween.To(() => currentTime, x => currentTime = x, 0, remainingTime).OnComplete(() =>
+                {
+                    lvlData.Value += _upgradeStates[index].Levels;
+                    switch (index)
+                    {
+                        case 0:
+                            UpdateClothesAnimation();
+                            break;
+
+                        case 1:
+                            UpdateHairsAnimation();
+                            break;
+
+                        case 2:
+                            UpdateWatchAnimation();
+                            break;
+                    }
+                });
+            }
+            else
+            {
+                _upgradeStates[index].IsUpdating = false;
+            }
+        }
+    
+        int GetItemIndex(int lvl)
+        {
+            int range = lvl / GameManager.Instance.MapChangeCount;
+            int spriteIndex = GameManager.Instance.SpriteChangeCount;
+            int mapIndex = DBVariablesHolder.CurrentMap.Value;
+            while (range != mapIndex)
+            {
+                lvl -= spriteIndex;
+                range = lvl / GameManager.Instance.MapChangeCount;
+            }
+            return lvl/spriteIndex;
+        }
+    }
+}

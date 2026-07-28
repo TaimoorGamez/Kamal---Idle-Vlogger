@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Microphones
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Microphones
+  m_GUID: 4450b1b08b0b87146aded17d7140bced
+  m_SerializeEntries:
+  - m_GUID: 6a2ef7f06f7c36540ad36b1a54ebacd4
+    m_Address: Microphone_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7633bf7be23341d449294d3f204d8578
+    m_Address: Microphone_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7aaed113d4dbab54dbf543b945d803da
+    m_Address: Microphone_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f980cbe04a847b439ce8106638f2179
+    m_Address: Microphone_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9518ec8a0fde28d41a888e110fc27a24
+    m_Address: Microphone_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b25efc96f7cd5574a8b56ef40c26f1d9
+    m_Address: Microphone_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b56acbe13dbd27a4aa71a3665f43c21f
+    m_Address: Microphone_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bec00129f42d815408015673ba13fdfd
+    m_Address: Microphone_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1876a6582e40354c95a0f203cda2ce0
+    m_Address: Microphone_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6612e15a59d31e40a8a43f2dd530550
+    m_Address: Microphone_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Microphone
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08e55d4409f89ac47a12dfaafbfe9821, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 748edd6b723e6f545a055fe6442cb54e, type: 2}
+    - {fileID: 11400000, guid: 1c31f1508fc1a7f4ab1484eeb82d66eb, type: 2}
